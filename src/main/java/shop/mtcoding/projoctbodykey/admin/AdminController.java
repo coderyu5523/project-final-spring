@@ -37,33 +37,33 @@ public class AdminController {
     }
 
     //챌린지 관련
-    @GetMapping("/challenge/save-form")
+    @GetMapping("/admin/challenge/save-form")
     public String challengeSaveForm() {
         return "/challenge/save-form";
     }
 
-    @GetMapping("/challenge/list")
+    @GetMapping("/admin/challenge/list")
     public String challengeForm() {
         return "challenge/list";
     }
 
-    @GetMapping("/challenge/update-form")
+    @GetMapping("/admin/challenge/update-form")
     public String challengeUpdateForm() {
         return "/challenge/update-form";
     }
 
     //식단 관련
-    @GetMapping("/food/save-form")
+    @GetMapping("/admin/food/save-form")
     public String foodSaveForm() {
         return "food/save-form";
     }
 
-    @GetMapping("/food/update-form")
+    @GetMapping("/admin/food/update-form")
     public String foodUpdateForm() {
         return "food/update-form";
     }
 
-    @GetMapping("/food/form")
+    @GetMapping("/admin/food/form")
     public String foodForm() {
         return "food/list";
     }
