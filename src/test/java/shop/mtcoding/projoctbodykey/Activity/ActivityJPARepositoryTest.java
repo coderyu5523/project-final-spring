@@ -1,4 +1,4 @@
-package shop.mtcoding.projoctbodykey;
+package shop.mtcoding.projoctbodykey.Activity;
 
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,8 @@ import shop.mtcoding.projoctbodykey.activity.ActivityJPARepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @DataJpaTest
 public class ActivityJPARepositoryTest {
@@ -31,5 +33,17 @@ public class ActivityJPARepositoryTest {
         // then
     }
 
+    @Test
+    public void TimeStamp_test(){
+        // given
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        LocalDateTime dateTime = timestamp.toLocalDateTime();
+        // when
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String strDate = dateTime.format(formatter);
 
+        //eye
+        System.out.println("strDate = " + strDate);
+        // then
+    }
 }
