@@ -6,4 +6,4 @@ VALUES ('ssar', '1234', '010-0100-0100', '김백미', '1994-04-22', 'F', 178.5, 
 INSERT INTO activity_tb(user_id, walking,drink_water,created_at) VALUES (1,2222,500,now());
 
 //바디
-INSERT INTO body_tb(user_id, weight, muscle, fat, created_at) VALUES (1,2222,500,now());
+INSERT INTO body_tb(user_id, weight, muscle, fat, created_at) VALUES (1,75.8,27.6,20.1,500,now());
