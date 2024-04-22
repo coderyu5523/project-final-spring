@@ -1,0 +1,104 @@
+{{> layout/header}}
+<div class="container d-flex">
+    <div class="justify-content-center mx-2 pb-4 w-100">
+        <div class="border border-tertiary p-5 ">
+            <h1 class="d-inline-flex">챌린지 등록하기</h1>
+            <hr>
+            <form action="/challenge/save" method="post">
+
+                <div class="px-5 mt-5">
+                    <!-- 이미지 업로드 시작 -->
+                    <div class="form-group form-floating m-3 mx-auto">
+                        <div class="px-5 mt-5">
+                            <!-- 이미지 업로드 시작 -->
+                            <div class="upload d-flex justify-content-center mb-5 flex-column align-items-center">
+                                <div class="d-flex justify-content-center align-items-center"
+                                     style="width: 500px; height: 400px; border: 1px solid #E6E6E6; color: #E6E6E6;"
+                                     id="profilePreview">
+                                    <b>사진을 등록해 주세요.</b>
+                                </div>
+                                <input type="file" id="imageUpload" name="profile"
+                                       class="real-upload mx-auto d-block mt-2 w-50 h-50" accept="image/*" required
+                                       multiple>
+                            </div>
+                            <!-- 이미지 업로드 끝 -->
+                        </div>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#imageUpload').change(function (event) {
+                                if (this.files && this.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        $('#profilePreview').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                    let fileName = this.files[0].name; // 'this'를 사용해서 파일 이름을 가져옵니다.
+                                    console.log(fileName);
+                                }
+                            });
+                        });
+                    </script>
+                    <!-- 이미지 업로드 끝 -->
+                </div>
+                <label for="name"><b>산 이름</b></label>
+                <input class="form-control" type="text" name="name" id="name" required>
+                <div class="mt-4">
+                    <label for="meter"><b>산 높이/길이</b></label>
+                    <input class="form-control" type="text" name="meter" id="meter" required>
+                </div>
+                <div class="mt-4">
+                    <label for="location"><b>산 위치</b></label>
+                    <input class="form-control" type="text" name="location" id="location" required>
+                </div>
+                <div class="mt-4">
+                    <label for="content"><b>산 설명</b></label>
+                    <div class="border border-tertiary p-3 d-inline-flex me-3 mb-3 w-100">
+                        <input class="form-control border-0" id="content" type="text" name="content"
+                               required>
+                    </div>
+                </div>
+                <!-- 이미지 업로드 시작 -->
+                <div class="form-group form-floating m-3 mx-auto">
+                    <div class="px-5 mt-5">
+                        <!-- 이미지 업로드 시작 -->
+                        <div class="upload d-flex justify-content-center mb-5 flex-column align-items-center">
+                            <div class="d-flex justify-content-center align-items-center"
+                                 style="width: 200px; height: 150px; border: 1px solid #E6E6E6; color: #E6E6E6;"
+                                 id="profilePreview">
+                                <b>뱃지를 등록해 주세요.</b>
+                            </div>
+                            <input type="file" id="imageUpload" name="profile"
+                                   class="real-upload mx-auto d-block mt-2 w-50 h-50" accept="image/*" required
+                                   multiple>
+                        </div>
+                        <!-- 이미지 업로드 끝 -->
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#imageUpload').change(function (event) {
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    $('#profilePreview').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
+                                };
+                                reader.readAsDataURL(this.files[0]);
+                                let fileName = this.files[0].name; // 'this'를 사용해서 파일 이름을 가져옵니다.
+                                console.log(fileName);
+                            }
+                        });
+                    });
+                </script>
+                <!-- 이미지 업로드 끝 -->
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-danger mb-3"
+                            style="width: 100%">등록하기
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

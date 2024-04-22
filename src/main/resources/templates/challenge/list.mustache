@@ -1,0 +1,93 @@
+{{> layout/header}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div style="margin-top: 10px; margin-left: 75%">
+            <a href="/challenge/save-form" class="btn btn-warning">챌린지 작성</a>
+        </div>
+
+        <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
+            <div class="card" style="border-radius: 10px;">
+                <div style="width: 100%;">
+                    <div>
+                        <h6 class="card-subtitle text-muted"></h6>
+                        <ul class="nav flex-column nav-pills">
+                            <li>
+                                <div style="background-color: green; color: white" class="nav-link sub-menu a p-1">챌린지 관리
+                                </div>
+                            </li>
+                            <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
+                                <a id="food" href="/food/form" class="nav-link sub-menu a p-1 mb-1">음식 관리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 표 및 페이지네이션 -->
+        <div style="width: 1200px">
+            <div class="container p-5">
+                <!-- 표 시작 -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">산 이미지</th>
+                        <th scope="col">산 제목</th>
+                        <th scope="col">뱃지 이미지</th>
+                        <th scope="col">내용1</th>
+                        <th scope="col">내용2</th>
+                        <th scope="col">거리</th>
+                        <th scope="col" class="text-center">작업</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><img src="산이미지경로" alt="산 이미지" width="100"></td>
+                        <td>산 제목</td>
+                        <td><img src="뱃지이미지경로" alt="뱃지 이미지" width="50"></td>
+                        <td>내용1</td>
+                        <td>내용2</td>
+                        <td>거리</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <a href="/challenge/update-form" class="btn btn-warning me-1">수정</a>
+                                <form action="/challenge/delete" method="post">
+                                    <button class="btn btn-danger">삭제</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><img src="산이미지경로" alt="산 이미지" width="100"></td>
+                        <td>산 제목</td>
+                        <td><img src="뱃지이미지경로" alt="뱃지 이미지" width="50"></td>
+                        <td>내용1</td>
+                        <td>내용2</td>
+                        <td>거리</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <a href="/challenge/update-form" class="btn btn-warning me-1">수정</a>
+                                <form action="/challenge/delete" method="post">
+                                    <button class="btn btn-danger">삭제</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- 표 끝 -->
+
+                <!-- 페이지네이션 -->
+                <ul class="pagination d-flex justify-content-center">
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

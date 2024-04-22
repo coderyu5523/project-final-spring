@@ -1,0 +1,36 @@
+{{> layout/header}}
+<div class="container d-flex">
+    <div class="justify-content-center mx-2 pb-4 w-100">
+        <div class="border border-tertiary p-5 ">
+            <h1 class="d-inline-flex">음식 등록하기</h1>
+            <hr>
+            <form action="/food/save" method="post">
+
+                <div class="px-5 mt-5">
+                </div>
+                <label for="name"><b>음식 이름</b></label>
+                <input class="form-control" type="text" name="name" id="name" required>
+                <div class="mt-4">
+                    <label for="carbo"><b>탄수화물</b></label>
+                    <input class="form-control" type="text" name="carbo" id="carbo" required>
+                </div>
+                <div class="mt-4">
+                    <label for="protein"><b>단백질</b></label>
+                    <input class="form-control" type="text" name="protein" id="protein" required>
+                </div>
+                <div class="mt-4">
+                    <label for="fat"><b>지방</b></label>
+                    <div class="border border-tertiary p-3 d-inline-flex me-3 mb-3 w-100">
+                        <input class="form-control border-0" id="fat" type="text" name="fat"
+                               required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-danger mb-3"
+                            style="width: 100%">등록하기
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
