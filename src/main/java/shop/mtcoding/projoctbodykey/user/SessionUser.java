@@ -49,7 +49,7 @@ public class SessionUser {
         this.weight = user.getWeight();
         this.muscle = user.getMuscle();
         this.fat = user.getFat();
-        this.userImg = user.getUserIng();
+        this.userImg = user.getUserImg();
         this.createdAt = user.getCreatedAt();
     }
 }
