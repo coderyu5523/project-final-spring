@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import shop.mtcoding.projoctbodykey._core.utils.MyDateUtil;
 
 import java.sql.Timestamp;
 
@@ -29,6 +31,8 @@ public class User {
     private double fat; // 지방량
     private String userImg; // 사진파일경로
     private Integer totalCoin; // 보상 받은 코인 합산
+
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
