@@ -26,17 +26,16 @@ public class User {
     private Timestamp birth; //생년월일
     private Character gender; //성별 M,F
     private double height; // 키
-    private double weight; // 몸무게
-    private double muscle; // 근육량
-    private double fat; // 지방량
     private String userImg; // 사진파일경로
     private Integer totalCoin; // 보상 받은 코인 합산
 
     @CreationTimestamp
     private Timestamp createdAt;
-
+    private double goalMuscle;
+    private double goalFat;
     @Builder
-    public User(Integer id, String username, String password, String phone, String name, Timestamp birth, Character gender, double height, double weight, double muscle, double fat, String userImg, Integer totalCoin, Timestamp createdAt) {
+
+    public User(Integer id, String username, String password, String phone, String name, Timestamp birth, Character gender, double height, String userImg, Integer totalCoin, Timestamp createdAt, double goalMuscle, double goalFat) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -45,11 +44,10 @@ public class User {
         this.birth = birth;
         this.gender = gender;
         this.height = height;
-        this.weight = weight;
-        this.muscle = muscle;
-        this.fat = fat;
         this.userImg = userImg;
         this.totalCoin = totalCoin;
         this.createdAt = createdAt;
+        this.goalMuscle = goalMuscle;
+        this.goalFat = goalFat;
     }
 }
