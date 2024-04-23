@@ -4,7 +4,7 @@
         <div class="border border-tertiary p-5 ">
             <h1 class="d-inline-flex">챌린지 수정하기</h1>
             <hr>
-            <form action="/challenge/update" method="post">
+            <form action="/admin/challenge/update" method="post">
 
                 <div class="px-5 mt-5">
                     <!-- 이미지 업로드 시작 -->
@@ -66,10 +66,10 @@
                         <div class="upload d-flex justify-content-center mb-5 flex-column align-items-center">
                             <div class="d-flex justify-content-center align-items-center"
                                  style="width: 200px; height: 150px; border: 1px solid #E6E6E6; color: #E6E6E6;"
-                                 id="profilePreview">
+                                 id="profilePreview2">
                                 <b>뱃지를 등록해 주세요.</b>
                             </div>
-                            <input type="file" id="imageUpload" name="profile"
+                            <input type="file" id="imageUpload2" name="profile"
                                    class="real-upload mx-auto d-block mt-2 w-50 h-50" accept="image/*" required
                                    multiple>
                         </div>
@@ -79,11 +79,11 @@
 
                 <script>
                     $(document).ready(function () {
-                        $('#imageUpload').change(function (event) {
+                        $('#imageUpload2').change(function (event) {
                             if (this.files && this.files[0]) {
                                 var reader = new FileReader();
                                 reader.onload = function (e) {
-                                    $('#profilePreview').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
+                                    $('#profilePreview2').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
                                 };
                                 reader.readAsDataURL(this.files[0]);
                                 let fileName = this.files[0].name; // 'this'를 사용해서 파일 이름을 가져옵니다.

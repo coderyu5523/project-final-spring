@@ -20,7 +20,6 @@ public class WhichChallenge {
     private String location; // 산 지역
     private String content;  // 챌린지 내용
 
-
     @Builder
     public WhichChallenge(Integer id, String challengeName, String challengeFilename, Integer meter, String badgeFilename, String location, String content) {
         this.id = id;

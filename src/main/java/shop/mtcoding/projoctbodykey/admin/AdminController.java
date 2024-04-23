@@ -1,14 +1,20 @@
 package shop.mtcoding.projoctbodykey.admin;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey.activity.ActivityService;
+import shop.mtcoding.projoctbodykey.challenge.Challenge;
 import shop.mtcoding.projoctbodykey.challenge.ChallengeService;
 import shop.mtcoding.projoctbodykey.food.FoodService;
 import shop.mtcoding.projoctbodykey.user.UserService;
+import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallenge;
+import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallengeRequest;
+import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallengeService;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -17,6 +23,7 @@ public class AdminController {
     private final UserService userService;
     private final ActivityService activityService;
     private final ChallengeService challengeService;
+    private final WhichChallengeService whichChallengeService;
     private final FoodService foodService;
     private final HttpSession session;
 
@@ -28,13 +35,17 @@ public class AdminController {
 
     @PostMapping("/admin/login")
     public String login() {
-        return "redirect:/challenge/list";
+        return "redirect:/admin/challenge/list";
     }
 
     @GetMapping("/admin/logout")
     public String logout() {
         return "redirect:/admin";
     }
+
+
+// ====================================================================
+
 
     //챌린지 관련
     @GetMapping("/admin/challenge/save-form")
@@ -43,7 +54,11 @@ public class AdminController {
     }
 
     @GetMapping("/admin/challenge/list")
-    public String challengeForm() {
+    public String challengeForm(HttpServletRequest request) {
+        List<WhichChallenge> whichChallengeList = whichChallengeService.whichChallengeList();
+
+        request.setAttribute("whichChallengeList", whichChallengeList);
+
         return "challenge/list";
     }
 
@@ -51,6 +66,27 @@ public class AdminController {
     public String challengeUpdateForm() {
         return "/challenge/update-form";
     }
+
+    @PostMapping("/admin/challenge/save")
+    public String challengeSave(WhichChallengeRequest.AdminChallengeSaveDTO reqDTO) {
+        whichChallengeService.adminChallengeSave(reqDTO);
+
+        return "redirect:/admin/challenge/list";
+    }
+
+    @PostMapping("/admin/challenge/update")
+    public String challengeUpdate() {
+        return "redirect:/admin/challenge/list";
+    }
+
+    @DeleteMapping("/admin/challenge/delete")
+    public String challengeDelete() {
+        return "redirect:/admin/challenge/list";
+    }
+
+
+// ====================================================================
+
 
     //식단 관련
     @GetMapping("/admin/food/save-form")

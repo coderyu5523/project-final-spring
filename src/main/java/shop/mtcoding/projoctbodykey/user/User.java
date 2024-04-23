@@ -28,13 +28,12 @@ public class User {
     private double height; // 키
     private String userImg; // 사진파일경로
     private Integer totalCoin; // 보상 받은 코인 합산
-
-    @CreationTimestamp
-    private Timestamp createdAt;
     private double goalMuscle;
     private double goalFat;
-    @Builder
+    @CreationTimestamp
+    private Timestamp createdAt;
 
+    @Builder
     public User(Integer id, String username, String password, String phone, String name, Timestamp birth, Character gender, double height, String userImg, Integer totalCoin, Timestamp createdAt, double goalMuscle, double goalFat) {
         this.id = id;
         this.username = username;
