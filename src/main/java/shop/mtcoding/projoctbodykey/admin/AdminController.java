@@ -5,14 +5,13 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import shop.mtcoding.projoctbodykey.AttendChallenge.AttendChallengeService;
+import shop.mtcoding.projoctbodykey.Challenge.Challenge;
 import shop.mtcoding.projoctbodykey.activity.ActivityService;
-import shop.mtcoding.projoctbodykey.challenge.Challenge;
-import shop.mtcoding.projoctbodykey.challenge.ChallengeService;
 import shop.mtcoding.projoctbodykey.food.FoodService;
 import shop.mtcoding.projoctbodykey.user.UserService;
-import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallenge;
-import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallengeRequest;
-import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallengeService;
+import shop.mtcoding.projoctbodykey.Challenge.ChallengeRequest;
+import shop.mtcoding.projoctbodykey.Challenge.ChallengeService;
 
 import java.util.List;
 
@@ -22,8 +21,8 @@ public class AdminController {
 
     private final UserService userService;
     private final ActivityService activityService;
+    private final AttendChallengeService attendChallengeService;
     private final ChallengeService challengeService;
-    private final WhichChallengeService whichChallengeService;
     private final FoodService foodService;
     private final HttpSession session;
 
@@ -55,9 +54,9 @@ public class AdminController {
 
     @GetMapping("/admin/challenge/list")
     public String challengeForm(HttpServletRequest request) {
-        List<WhichChallenge> whichChallengeList = whichChallengeService.whichChallengeList();
+        List<Challenge> ChallengeList = challengeService.ChallengeList();
 
-        request.setAttribute("whichChallengeList", whichChallengeList);
+        request.setAttribute("ChallengeList", ChallengeList);
 
         return "challenge/list";
     }
@@ -68,8 +67,8 @@ public class AdminController {
     }
 
     @PostMapping("/admin/challenge/save")
-    public String challengeSave(WhichChallengeRequest.AdminChallengeSaveDTO reqDTO) {
-        whichChallengeService.adminChallengeSave(reqDTO);
+    public String challengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO) {
+        challengeService.adminChallengeSave(reqDTO);
 
         return "redirect:/admin/challenge/list";
     }
@@ -99,7 +98,7 @@ public class AdminController {
         return "food/update-form";
     }
 
-    @GetMapping("/admin/food/form")
+    @GetMapping("/admin/food/list")
     public String foodForm() {
         return "food/list";
     }

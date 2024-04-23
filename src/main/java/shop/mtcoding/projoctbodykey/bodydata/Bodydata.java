@@ -1,20 +1,20 @@
-package shop.mtcoding.projoctbodykey.body;
+package shop.mtcoding.projoctbodykey.bodydata;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import shop.mtcoding.projoctbodykey.user.User;
-import shop.mtcoding.projoctbodykey.whichChallenge.WhichChallenge;
 
 import java.sql.Timestamp;
 
 
 @NoArgsConstructor
 @Data
-@Table(name = "body_tb")
+@Table(name = "bodydata_tb")
 @Entity
-public class Body {
+public class Bodydata {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,11 +25,11 @@ public class Body {
     private double weight;
     private double muscle;
     private double fat;
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-
-    public Body(Integer id, User user, double weight, double muscle, double fat, Timestamp createdAt) {
+    public Bodydata(Integer id, User user, double weight, double muscle, double fat, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.weight = weight;

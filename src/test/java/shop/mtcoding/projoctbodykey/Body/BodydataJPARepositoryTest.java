@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import shop.mtcoding.projoctbodykey.body.Body;
-import shop.mtcoding.projoctbodykey.body.BodyJPARepository;
+import shop.mtcoding.projoctbodykey.bodydata.Bodydata;
+import shop.mtcoding.projoctbodykey.bodydata.BodydataJPARepository;
 
 import java.util.List;
 
 @DataJpaTest
-public class BodyJPARepositoryTest {
+public class BodydataJPARepositoryTest {
     @Autowired
-    private BodyJPARepository bodyJPARepository;
+    private BodydataJPARepository bodydataJPARepository;
     @Autowired
     private EntityManager em;
 
@@ -25,10 +25,10 @@ public class BodyJPARepositoryTest {
         Pageable pageable = PageRequest.of(0, 7);
 
         // when
-        List<Body> bodys=bodyJPARepository.findBodySevenByUserId(userId, pageable).get();
+        List<Bodydata> bodydata = bodydataJPARepository.findBodySevenByUserId(userId, pageable).get();
 
         // eye
-        System.out.println("bodys = " + bodys);
+        System.out.println("bodys = " + bodydata);
         // then
     }
 }
