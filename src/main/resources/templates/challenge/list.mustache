@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         <div style="margin-top: 10px; margin-left: 75%">
-            <a href="/admin/challenge/save-form" class="btn btn-warning">챌린지 작성</a>
+            <a href="/admin/challenge/save-form" class="btn btn-success">챌린지 작성</a>
         </div>
 
         <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
@@ -42,22 +42,22 @@
                     </thead>
                     <tbody>
                     {{#ChallengeList}}
-                    <tr>
-                        <th scope="row">{{id}}</th>
-                        <td><img src="{{backgroundImg}}" alt="챌린지 이미지" width="100"></td>
-                        <td>{{challengeName}}</td>
-                        <td><img src="{{badgeImg}}" alt="뱃지 이미지" width="50"></td>
-                        <td>기간</td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center">
-                                <a href="/admin/challenge/detail" class="btn btn-warning me-1">상세보기</a>
-                                <a href="/admin/challenge/update-form" class="btn btn-warning me-1">수정</a>
-                                <form action="/admin/challenge/delete" method="post">
-                                    <button class="btn btn-danger">삭제</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td><img src="{{backgroundImg}}" alt="챌린지 이미지" width="100"></td>
+                            <td>{{challengeName}}</td>
+                            <td><img src="{{badgeImg}}" alt="뱃지 이미지" width="50"></td>
+                            <td>기간</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <a href="/admin/challenge/detail" class="btn btn-primary me-1">상세보기</a>
+                                    <a href="/admin/challenge/update-form" class="btn btn-success me-1">수정</a>
+                                    <form action="/admin/challenge/delete" method="post">
+                                        <button class="btn btn-danger">삭제</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
                     {{/ChallengeList}}
                     </tbody>
                 </table>
