@@ -10,7 +10,7 @@ import java.util.List;
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
 
-    public List<Challenge> ChallengeList() {
+    public List<Challenge> adminChallengeList() {
 
         return challengeJPARepository.findAll();
     }
