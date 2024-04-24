@@ -1,6 +1,10 @@
 package shop.mtcoding.projoctbodykey.Challenge;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.nio.file.Paths;
+import java.sql.Timestamp;
 
 public class ChallengeRequest {
 
@@ -8,19 +12,25 @@ public class ChallengeRequest {
     public static class AdminChallengeSaveDTO {
         private String challengeName; // 챌린지명
         private String backgroundImg;// 챌린지 배경사진
-        private Integer distance; // 산 높이
-        private String badgeImg; // 뱃지 사진
-        private String location; // 산 지역
+        private String subTitle; // 산 지역
+        private Integer walking; // 걸어야할 걸음수
+        private String badgeImg; // 뱃지 사진 경로
         private String content;  // 챌린지 내용
+        private Integer coin; // 보상 코인
+        private Timestamp period; //챌린지 기간
+        private MultipartFile backgroundImgFile;
+        private MultipartFile badgeImgFile;
 
-        public Challenge toEntity() {
+        public Challenge toEntity(String backgroundImg, String badgeImg) {
             return Challenge.builder()
                     .challengeName(challengeName)
                     .backgroundImg(backgroundImg)
-                    .distance(distance)
+                    .subTitle(subTitle)
+                    .walking(walking)
                     .badgeImg(badgeImg)
-                    .location(location)
                     .content(content)
+                    .coin(coin)
+                    .period(period)
                     .build();
         }
     }

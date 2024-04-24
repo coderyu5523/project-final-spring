@@ -1,0 +1,51 @@
+{{> layout/header}}
+<div class="container d-flex">
+    <div class="justify-content-center mx-2 pb-4 w-100">
+        <div class="border border-tertiary p-5 ">
+            <h1 class="d-inline-flex">챌린지 제목</h1>
+            <hr>
+            <div class="px-5 mt-5">
+                <div class="px-5 mt-5">
+                    <div class="form-group form-floating m-3 mx-auto">
+                        <div class="px-5 mt-5">
+                            <div class="d-flex justify-content-center mb-5 flex-column align-items-center">
+                                <div class="d-flex justify-content-center align-items-center"
+                                     style="width: 500px; height: 400px; border: 1px solid #E6E6E6; color: #E6E6E6;"
+                                     id="backgroundImg2">
+                                    <b>사진을 등록해 주세요.</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-floating m-3 mx-auto">
+                        <div class="px-5 mt-5">
+                            <div class="d-flex justify-content-center mb-5 flex-column align-items-center">
+                                <div class="d-flex justify-content-center align-items-center"
+                                     style="width: 200px; height: 150px; border: 1px solid #E6E6E6; color: #E6E6E6;"
+                                     id="badgeImg2">
+                                    <b>뱃지를 등록해 주세요.</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="name"><b>산 이름</b></label>
+                    <input class="form-control" type="text" name="name" id="name" required>
+                    <div class="mt-4">
+                        <label for="meter"><b>산 높이/길이</b></label>
+                        <input class="form-control" type="text" name="meter" id="meter" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="location"><b>산 위치</b></label>
+                        <input class="form-control" type="text" name="location" id="location" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="content"><b>산 설명</b></label>
+                        <div class="border border-tertiary p-3 d-inline-flex me-3 mb-3 w-100">
+                            <input class="form-control border-0" id="content" type="text" name="content" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
