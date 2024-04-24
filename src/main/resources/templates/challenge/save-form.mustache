@@ -74,19 +74,31 @@
                     <!-- 이미지 업로드 끝 -->
                 </div>
                 <label for="name"><b>챌린지 명</b></label>
-                <input class="form-control" type="text" name="challengeName" id="challengeName" required>
+                <input value="챌린지 명" class="form-control" type="text" name="challengeName" id="challengeName" required>
                 <div class="mt-4">
-                    <label for="meter"><b>산 높이/길이</b></label>
-                    <input class="form-control" type="text" name="distance" id="distance" required>
+                    <label for="meter"><b>부 제목</b></label>
+                    <input value="부 제목" class="form-control" type="text" name="subTitle" id="subTitle" required>
                 </div>
                 <div class="mt-4">
-                    <label for="location"><b>산 위치</b></label>
-                    <input class="form-control" type="text" name="location" id="location" required>
+                    <label for="location"><b>걸어야할 걸음 수(정수)</b></label>
+                    <input value="10" class="form-control" type="text" name="walking" id="walking" required>
+                </div>
+                <div class="mt-4">
+                    <label for="location"><b>총 거리</b></label>
+                    <input value="10km" class="form-control" type="text" name="distance" id="distance" required>
+                </div>
+                <div class="mt-4">
+                    <label for="location"><b>보상 코인(정수)</b></label>
+                    <input value="10" class="form-control" type="text" name="coin" id="coin" required>
+                </div>
+                <div class="mt-4">
+                    <label for="location"><b>챌린지 기간</b></label>
+                    <input value="2024-04-02" class="form-control" type="date" name="period" id="period" required>
                 </div>
                 <div class="mt-4">
                     <label for="content"><b>챌린지 내용</b></label>
                     <div class="border border-tertiary p-3 d-inline-flex me-3 mb-3 w-100">
-                        <input class="form-control border-0" id="content" type="text" name="content"
+                        <input value="챌린지 내용" class="form-control border-0" id="content" type="text" name="content"
                                required>
                     </div>
                 </div>

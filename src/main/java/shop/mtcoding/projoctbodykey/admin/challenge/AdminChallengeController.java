@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,6 +30,7 @@ public class AdminChallengeController {
     //챌린지 관련
     @GetMapping("/admin/challenge/save-form")
     public String challengeSaveForm() {
+
         return "/challenge/save-form";
     }
 
@@ -51,10 +54,8 @@ public class AdminChallengeController {
     }
 
     @PostMapping("/admin/challenge/save")
-    public String challengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO) throws IOException {
-
-        challengeService.adminChallengeSave(reqDTO);
-
+    public String challengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO, Timestamp period) throws IOException {
+        challengeService.adminChallengeSave(period,reqDTO);
 
         return "redirect:/admin/challenge/list";
     }
