@@ -8,9 +8,9 @@ VALUES (1, 2222, 500, now());
 INSERT INTO bodydata_tb(user_id, weight, muscle, fat, created_at)
 VALUES (1, 75.8, 27.6, 20.1, now());
 
-insert into challenge_tb(challenge_name, background_img, sub_title, walking, badge_img, content, coin, period, created_at)
-values ('챌린지명', '챌린지 사진경로', '산지역', 100, '뱃지사진', '챌린지 내용', 10, '2024-06-02', now()),
-       ('챌린지명2', '챌린지 사진경로', '산지역', 100, '뱃지사진', '챌린지 내용2', 10, '2024-06-02', now());
+insert into challenge_tb(challenge_name, background_img, sub_title, walking, badge_img, content, coin, period, distance, created_at)
+values ('챌린지명', '챌린지 사진경로', '산지역', 100, '뱃지사진', '챌린지 내용', 10, '2024-06-02', '10km', now()),
+       ('챌린지명2', '챌린지 사진경로', '산지역', 100, '뱃지사진', '챌린지 내용2', 10, '2024-06-02', '20km', now());
 
 insert into attend_challenge_tb(user_id, total_walking, challenge_id, opening_time, closing_time, status, created_at)
 values (1, 100, 1, '2024-04-23', '2024-04-24', null, now());

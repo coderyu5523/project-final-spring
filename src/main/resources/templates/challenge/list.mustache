@@ -33,10 +33,12 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">챌린지 이미지</th>
                         <th scope="col">챌린지 제목</th>
-                        <th scope="col">뱃지 이미지</th>
-                        <th scope="col">기간</th>
+                        <th scope="col">챌린지 지역</th>
+                        <th scope="col">걸어야할 걸음 수</th>
+                        <th scope="col">총 거리</th>
+                        <th scope="col">보상 코인 수</th>
+                        <th scope="col">챌린지 기간</th>
                         <th scope="col" class="text-center">작업</th>
                     </tr>
                     </thead>
@@ -44,10 +46,12 @@
                     {{#ChallengeList}}
                         <tr>
                             <th scope="row">{{id}}</th>
-                            <td><img src="{{backgroundImg}}" alt="챌린지 이미지" width="100"></td>
                             <td>{{challengeName}}</td>
-                            <td><img src="{{badgeImg}}" alt="뱃지 이미지" width="50"></td>
-                            <td>기간</td>
+                            <td>{{subTitle}}</td>
+                            <td>{{walking}}</td>
+                            <td>{{distance}}</td>
+                            <td>{{coin}}</td>
+                            <td>{{period}}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
                                     <a href="/admin/challenge/detail" class="btn btn-primary me-1">상세보기</a>
