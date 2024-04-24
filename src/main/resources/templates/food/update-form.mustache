@@ -4,27 +4,31 @@
         <div class="border border-tertiary p-5 ">
             <h1 class="d-inline-flex">음식 수정하기</h1>
             <hr>
-            <form action="/admin/food/update" method="post">
+            <form action="/admin/food/{{food.id}}/update" method="post">
 
                 <div class="px-5 mt-5">
                 </div>
                 <label for="name"><b>음식 이름</b></label>
-                <input class="form-control" type="text" name="name" id="name" required>
+                <input class="form-control" type="text" name="name" id="name" value="{{food.name}}" required>
+                <div class="mt-4">
+                    <label for="carbo"><b>칼로리</b></label>
+                    <input class="form-control" type="text" name="kcal" id="kcal" value="{{food.kcal}}" required>
+                </div>
                 <div class="mt-4">
                     <label for="carbo"><b>탄수화물</b></label>
-                    <input class="form-control" type="text" name="carbo" id="carbo" required>
+                    <input class="form-control" type="text" name="carbo" id="carbo" value="{{food.carbo}}" required>
                 </div>
                 <div class="mt-4">
                     <label for="protein"><b>단백질</b></label>
-                    <input class="form-control" type="text" name="protein" id="protein" required>
+                    <input class="form-control" type="text" name="protein" id="protein" value="{{food.protein}}" required>
                 </div>
                 <div class="mt-4">
                     <label for="fat"><b>지방</b></label>
-                    <input class="form-control" type="text" name="fat" id="fat" required>
+                    <input class="form-control" type="text" name="fat" id="fat" value="{{food.fat}}" required>
                 </div>
                 <div class="mt-4 mb-5">
                     <label for="fat"><b>양</b></label>
-                    <input class="form-control" type="text" name="gram" id="gram" required>
+                    <input class="form-control" type="text" name="gram" id="gram" value="{{food.gram}}" required>
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-outline-danger mb-3"
