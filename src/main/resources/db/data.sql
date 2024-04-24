@@ -12,3 +12,5 @@ values ('챌린지명', '챌린지 사진경로', 100, '뱃지사진', '산 지�
 
 insert into attend_challenge_tb(user_id, total_walking, challenge_id, opening_time, closing_time, status, created_at)
 values (1, 100, 1, '2024-04-23', '2024-04-24', null, now());
+
+INSERT INTO food_tb(name, carbo, protein, fat, kcal, gram, created_at) VALUES ('바나나', 22.84, 1.09, 0.33, 88,100,now());
