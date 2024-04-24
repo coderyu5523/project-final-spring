@@ -54,8 +54,8 @@ public class AdminChallengeController {
     }
 
     @PostMapping("/admin/challenge/save")
-    public String challengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO, Timestamp period) throws IOException {
-        challengeService.adminChallengeSave(period,reqDTO);
+    public String challengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO) throws IOException {
+        challengeService.adminChallengeSave(reqDTO);
 
         return "redirect:/admin/challenge/list";
     }

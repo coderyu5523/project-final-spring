@@ -26,14 +26,14 @@ public class Challenge {
     private String badgeImg; // 뱃지 사진 경로
     private String content;  // 챌린지 내용
     private Integer coin; // 보상 코인
-    private Timestamp period; //챌린지 기간
+    private String period; //챌린지 기간
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
 
-    public Challenge(Integer id, String challengeName, String backgroundImg, String subTitle, String distance, Integer walking, String badgeImg, String content, Integer coin, Timestamp period, Timestamp createdAt) {
+    public Challenge(Integer id, String challengeName, String backgroundImg, String subTitle, String distance, Integer walking, String badgeImg, String content, Integer coin, String period, Timestamp createdAt) {
         this.id = id;
         this.challengeName = challengeName;
         this.backgroundImg = backgroundImg;

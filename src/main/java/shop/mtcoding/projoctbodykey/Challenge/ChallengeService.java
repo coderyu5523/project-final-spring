@@ -28,9 +28,7 @@ public class ChallengeService {
     }
 
     @Transactional
-    public void adminChallengeSave(Timestamp period, ChallengeRequest.AdminChallengeSaveDTO reqDTO) throws IOException {
-        System.out.println(period);
-
+    public void adminChallengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO) throws IOException {
 
         // 백그라운드 이미지
         MultipartFile backgroundImg = reqDTO.getBackgroundImgFile();
