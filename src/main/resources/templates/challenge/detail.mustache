@@ -1,8 +1,28 @@
 {{> layout/header}}
-<div class="container d-flex">
+<div class="container d-flex mt-5">
+    <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
+        <div class="card" style="border-radius: 10px;">
+            <div style="width: 100%;">
+                <div>
+                    <h6 class="card-subtitle text-muted"></h6>
+                    <ul class="nav flex-column nav-pills">
+                        <li>
+                            <a href="/admin/challenges" style="background-color: green; color: white" class="nav-link sub-menu a p-1">챌린지 관리
+                            </a>
+                        </li>
+                        <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
+                            <a id="food" href="/admin/foods" class="nav-link sub-menu a p-1 mb-1">음식 관리</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
     <div class="justify-content-center mx-2 pb-4 w-100">
+
         <div class="border border-tertiary p-5 ">
-            <h1 class="d-inline-flex">챌린지 제목</h1>
+
+            <h1 class="d-inline-flex">{{challenge.challengeName}}</h1>
             <hr>
             <div class="px-5 mt-5">
                 <div class="px-5 mt-5">
@@ -12,7 +32,7 @@
                                 <div class="d-flex justify-content-center align-items-center"
                                      style="width: 500px; height: 400px; border: 1px solid #E6E6E6; color: #E6E6E6;"
                                      id="backgroundImg2">
-                                    <b>사진을 등록해 주세요.</b>
+                                    <img style="width: 80%; height: 80%" src="/upload/{{challenge.backgroundImg}}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -23,26 +43,34 @@
                                 <div class="d-flex justify-content-center align-items-center"
                                      style="width: 200px; height: 150px; border: 1px solid #E6E6E6; color: #E6E6E6;"
                                      id="badgeImg2">
-                                    <b>뱃지를 등록해 주세요.</b>
+                                    <img style="width: 80%; height: 80%" src="/upload/{{challenge.badgeImg}}" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <label for="name"><b>산 이름</b></label>
-                    <input class="form-control" type="text" name="name" id="name" required>
                     <div class="mt-4">
-                        <label for="meter"><b>산 높이/길이</b></label>
-                        <input class="form-control" type="text" name="meter" id="meter" required>
+                        <label for="location"><b>부 제목</b></label>
+                        <div>{{challenge.subTitle}}</div>
                     </div>
                     <div class="mt-4">
-                        <label for="location"><b>산 위치</b></label>
-                        <input class="form-control" type="text" name="location" id="location" required>
+                        <label for="location"><b>거리</b></label>
+                        <div>{{challenge.distance}}</div>
                     </div>
                     <div class="mt-4">
-                        <label for="content"><b>산 설명</b></label>
-                        <div class="border border-tertiary p-3 d-inline-flex me-3 mb-3 w-100">
-                            <input class="form-control border-0" id="content" type="text" name="content" required>
-                        </div>
+                        <label for="location"><b>걸어야할 걸음수</b></label>
+                        <div>{{challenge.walking}}</div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="location"><b>보상 코인</b></label>
+                        <div>{{challenge.coin}}</div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="location"><b>챌린지 내용</b></label>
+                        <div>{{challenge.content}}</div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="content"><b>챌린지 기간</b></label>
+                        <div>{{challenge.period}}</div>
                     </div>
                 </div>
             </div>

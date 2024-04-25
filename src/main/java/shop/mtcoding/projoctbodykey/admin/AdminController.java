@@ -1,19 +1,11 @@
 package shop.mtcoding.projoctbodykey.admin;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import shop.mtcoding.projoctbodykey.AttendChallenge.AttendChallengeService;
-import shop.mtcoding.projoctbodykey.Challenge.Challenge;
 import shop.mtcoding.projoctbodykey.activity.ActivityService;
-import shop.mtcoding.projoctbodykey.food.FoodService;
 import shop.mtcoding.projoctbodykey.user.UserService;
-import shop.mtcoding.projoctbodykey.Challenge.ChallengeRequest;
-import shop.mtcoding.projoctbodykey.Challenge.ChallengeService;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -32,7 +24,7 @@ public class AdminController {
 
     @PostMapping("/admin/login")
     public String login() {
-        return "redirect:/admin/challenge/list";
+        return "redirect:/admin/challenges";
     }
 
     @GetMapping("/admin/logout")

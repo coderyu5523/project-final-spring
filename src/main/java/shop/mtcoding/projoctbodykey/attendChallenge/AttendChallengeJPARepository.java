@@ -1,4 +1,4 @@
-package shop.mtcoding.projoctbodykey.AttendChallenge;
+package shop.mtcoding.projoctbodykey.attendChallenge;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

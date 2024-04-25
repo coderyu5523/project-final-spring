@@ -3,22 +3,15 @@ package shop.mtcoding.projoctbodykey.admin.challenge;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import shop.mtcoding.projoctbodykey.AttendChallenge.AttendChallengeService;
-import shop.mtcoding.projoctbodykey.Challenge.Challenge;
-import shop.mtcoding.projoctbodykey.Challenge.ChallengeRequest;
-import shop.mtcoding.projoctbodykey.Challenge.ChallengeService;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
+import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeService;
+import shop.mtcoding.projoctbodykey.challenge.Challenge;
+import shop.mtcoding.projoctbodykey.challenge.ChallengeRequest;
+import shop.mtcoding.projoctbodykey.challenge.ChallengeService;
+
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.text.ParseException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,46 +21,53 @@ public class AdminChallengeController {
     private final AttendChallengeService attendChallengeService;
 
     //챌린지 관련
-    @GetMapping("/admin/challenge/save-form")
+    @GetMapping("/admin/challenges/save-form")
     public String challengeSaveForm() {
 
         return "/challenge/save-form";
     }
 
-    @GetMapping("/admin/challenge/list")
+    @GetMapping("/admin/challenges")
     public String challengeForm(HttpServletRequest request) {
-        List<Challenge> ChallengeList = challengeService.adminChallengeList();
+        List<Challenge> ChallengeList = challengeService.adminList();
 
         request.setAttribute("ChallengeList", ChallengeList);
 
-        return "challenge/list";
+        return "/challenge/challenges";
     }
 
-    @GetMapping("/admin/challenge/detail")
-    public String challengeDetail() {
+    @GetMapping("/admin/challenges/detail/{id}")
+    public String challengeDetail(@PathVariable("id") Integer id, HttpServletRequest request) {
+        Challenge challenge = challengeService.adminDetail(id);
+        request.setAttribute("challenge", challenge);
         return "/challenge/detail";
     }
 
-    @GetMapping("/admin/challenge/update-form")
-    public String challengeUpdateForm() {
+    @GetMapping("/admin/challenges/update-form/{id}")
+    public String challengeUpdateForm(@PathVariable("id") Integer id, HttpServletRequest request) {
+        Challenge challenge = challengeService.adminUpdateForm(id);
+        request.setAttribute("challenge", challenge);
         return "/challenge/update-form";
     }
 
-    @PostMapping("/admin/challenge/save")
-    public String challengeSave(ChallengeRequest.AdminChallengeSaveDTO reqDTO, Timestamp period) throws IOException {
-        challengeService.adminChallengeSave(period,reqDTO);
+    @PostMapping("/admin/challenges/save")
+    public String challengeSave(ChallengeRequest.AdminSaveDTO reqDTO, String period) throws IOException, ParseException {
+        challengeService.adminSave(reqDTO, period);
 
-        return "redirect:/admin/challenge/list";
+        return "redirect:/admin/challenges";
     }
 
 
-    @PostMapping("/admin/challenge/update")
-    public String challengeUpdate() {
-        return "redirect:/admin/challenge/list";
+    @PostMapping("/admin/challenges/update/{id}")
+    public String challengeUpdate(@PathVariable Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) throws IOException, ParseException {
+        challengeService.adminUpdate(id, reqDTO, period);
+
+        return "redirect:/admin/challenges";
     }
 
-    @DeleteMapping("/admin/challenge/delete")
-    public String challengeDelete() {
-        return "redirect:/admin/challenge/list";
+    @PostMapping("/admin/challenges/delete/{id}")
+    public String challengeDelete(@PathVariable("id") Integer id) {
+        challengeService.adminDelete(id);
+        return "redirect:/admin/challenges";
     }
 }

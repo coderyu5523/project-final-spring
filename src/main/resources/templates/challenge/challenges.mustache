@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         <div style="margin-top: 10px; margin-left: 75%">
-            <a href="/admin/challenge/save-form" class="btn btn-success">챌린지 작성</a>
+            <a href="/admin/challenges/save-form" class="btn btn-success">챌린지 작성</a>
         </div>
 
         <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
@@ -13,11 +13,11 @@
                         <h6 class="card-subtitle text-muted"></h6>
                         <ul class="nav flex-column nav-pills">
                             <li>
-                                <div style="background-color: green; color: white" class="nav-link sub-menu a p-1">챌린지 관리
-                                </div>
+                                <a href="/admin/challenges" style="background-color: green; color: white" class="nav-link sub-menu a p-1">챌린지 관리
+                                </a>
                             </li>
                             <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
-                                <a id="food" href="/admin/food/list" class="nav-link sub-menu a p-1 mb-1">음식 관리</a>
+                                <a id="food" href="/admin/foods" class="nav-link sub-menu a p-1 mb-1">음식 관리</a>
                             </li>
                         </ul>
                     </div>
@@ -54,9 +54,9 @@
                             <td>{{period}}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    <a href="/admin/challenge/detail" class="btn btn-primary me-1">상세보기</a>
-                                    <a href="/admin/challenge/update-form" class="btn btn-success me-1">수정</a>
-                                    <form action="/admin/challenge/delete" method="post">
+                                    <a href="/admin/challenges/detail/{{id}}" class="btn btn-primary me-1">상세보기</a>
+                                    <a href="/admin/challenges/update-form/{{id}}" class="btn btn-success me-1">수정</a>
+                                    <form action="/admin/challenges/delete/{{id}}" method="post">
                                         <button class="btn btn-danger">삭제</button>
                                     </form>
                                 </div>
