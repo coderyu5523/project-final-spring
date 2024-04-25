@@ -16,3 +16,10 @@ insert into attend_challenge_tb(user_id, total_walking, challenge_id, opening_ti
 values (1, 100, 1, '2024-04-23', '2024-04-24', null, now());
 
 INSERT INTO food_tb(name, carbo, protein, fat, kcal, gram, created_at) VALUES ('바나나', 22.84, 1.09, 0.33, 88,100,now());
+
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사1', now(), now(),now());
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사2', now(), now(),now());
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사3', now(), now(),now());
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사4', now(), now(),now());
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사5', now(), now(),now());
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사6', now(), now(),now());

@@ -1,0 +1,53 @@
+{{> layout/header}}
+<div class="container d-flex">
+    <div class="justify-content-center mx-2 pb-4 w-100">
+        <div class="border border-tertiary p-5">
+            <h1 class="d-inline-flex">설문지 등록하기</h1>
+            <hr>
+            <form action="/admin/surveys/save" method="post">
+
+                <div class="px-5 mt-5"></div>
+
+                <!-- 이 부분에 추가된 질문들이 들어갈 공간 -->
+                <div id="additionalQuestions"></div>
+
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-danger mb-3" style="width: 100%">등록하기</button>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-danger mb-3" style="width: 100%" onclick="addQuestionInput()">질문 추가하기</button>
+                <button type="button" class="btn btn-outline-danger mb-3" style="width: 100%" onclick="addChoiceInput()">대답 추가하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var questionId = 0;
+    var choiceId = 0;
+
+    function addQuestionInput() {
+        var additionalQuestionsDiv = document.getElementById("additionalQuestions");
+        var questionInputDiv = document.createElement("div");
+        questionInputDiv.classList.add("mt-4");
+        questionInputDiv.innerHTML = `
+            <label for="question"><b>질문</b></label>
+            <input class="form-control" type="text" name="question${questionId++}" required>
+            <div id="additionalChoices${questionId}"></div>
+        `;
+        additionalQuestionsDiv.appendChild(questionInputDiv);
+    }
+
+    function addChoiceInput() {
+        var additionalQuestionsDiv = document.getElementById("additionalChoices"+questionId);
+        var choiceInputDiv = document.createElement("div");
+        choiceInputDiv.classList.add("mt-4");
+        choiceInputDiv.innerHTML = `
+            <label for="choice"><b>대답</b></label>
+            <input class="form-control" type="text" name="choice${choiceId++}" required>
+        `;
+        additionalQuestionsDiv.appendChild(choiceInputDiv);
+    }
+</script>
