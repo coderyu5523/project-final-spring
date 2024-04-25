@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         <div style="margin-top: 10px; margin-left: 75%">
-            <a href="/admin/food/save-form" class="btn btn-warning">음식 작성</a>
+            <a href="/admin/surveys/save-form" class="btn btn-success">설문지 작성</a>
         </div>
 
         <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
@@ -12,19 +12,19 @@
                     <div>
                         <h6 class="card-subtitle text-muted"></h6>
                         <ul class="nav flex-column nav-pills">
-                            <li class="nav-item">
-                                <a id="userHome" class="nav-link sub-menu a p-1 mb-1" href="/admin/challenge/list">챌린지
-                                    관리</a>
+                            <li>
+                                <div style="background-color: green; color: white" class="nav-link sub-menu a p-1">설문지 관리
+                                </div>
                             </li>
                             <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
-                                <a href="admin/foods" style="background-color: green; color: white" class="nav-link sub-menu a p-1">음식
-                                    관리</a>
+                                <a id="food" href="/admin/surveys" class="nav-link sub-menu a p-1 mb-1">설문지 관리</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </aside>
+
         <!-- 표 및 페이지네이션 -->
         <div style="width: 1200px">
             <div class="container p-5">
@@ -33,36 +33,34 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">음식이름</th>
-                        <th scope="col">칼로리</th>
-                        <th scope="col">탄수화물</th>
-                        <th scope="col">단백질</th>
-                        <th scope="col">지방</th>
-                        <th scope="col">양</th>
+                        <th scope="col">설문지 제목</th>
+                        <th scope="col">총 문항 수</th>
+                        <th scope="col">시작 날짜</th>
+                        <th scope="col">마감 날짜</th>
+                        <th scope="col">생성 날짜</th>
                         <th scope="col" class="text-center">작업</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {{#foods}}
+                    {{#surveys}}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>{{name}}</td>
-                            <td>{{kcal}}</td>
-                            <td>{{carbo}}</td>
-                            <td>{{protein}}</td>
-                            <td>{{fat}}</td>
-                            <td>{{gram}}</td>
+                            <th scope="row">{{id}}</th>
+                            <td>{{title}}</td>
+                            <td>총 문항 수</td>
+                            <td>{{openingTime}}</td>
+                            <td>{{closingTime}}</td>
+                            <td>{{createdAt}}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    <a href="/admin/food/{{id}}/update-form" class="btn btn-warning me-1">수정</a>
-                                    <form action="/admin/food/{{id}}/delete" method="post">
+                                    <a href="/admin/surveys/detail" class="btn btn-primary me-1">상세보기</a>
+                                    <a href="/admin/surveys/update-form" class="btn btn-success me-1">수정</a>
+                                    <form action="/admin/surveys/delete" method="post">
                                         <button class="btn btn-danger">삭제</button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
-                    {{/foods}}
-                    <!-- 여러 개의 행 추가 가능 -->
+                    {{/surveys}}
                     </tbody>
                 </table>
                 <!-- 표 끝 -->
@@ -75,4 +73,5 @@
             </div>
         </div>
     </div>
+
 </div>
