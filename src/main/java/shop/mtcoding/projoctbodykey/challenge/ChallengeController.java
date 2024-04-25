@@ -1,4 +1,4 @@
-package shop.mtcoding.projoctbodykey.Challenge;
+package shop.mtcoding.projoctbodykey.challenge;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

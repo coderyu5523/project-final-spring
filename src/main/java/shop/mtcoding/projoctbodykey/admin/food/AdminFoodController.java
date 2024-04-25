@@ -47,7 +47,7 @@ public class AdminFoodController {
     public String foods(HttpServletRequest request) {
         List<FoodResponse.FoodsDTO> respDTO = foodService.findAll();
         request.setAttribute("foods", respDTO);
-        return "food/food";
+        return "list";
     }
 
     @PostMapping("/admin/foods/{id}/delete")
