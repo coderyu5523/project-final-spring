@@ -1,4 +1,4 @@
-package shop.mtcoding.projoctbodykey.Challenge;
+package shop.mtcoding.projoctbodykey.challenge;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

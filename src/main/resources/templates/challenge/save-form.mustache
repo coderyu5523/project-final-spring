@@ -1,5 +1,23 @@
 {{> layout/header}}
-<div class="container d-flex">
+<div class="container d-flex mt-5">
+    <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
+        <div class="card" style="border-radius: 10px;">
+            <div style="width: 100%;">
+                <div>
+                    <h6 class="card-subtitle text-muted"></h6>
+                    <ul class="nav flex-column nav-pills">
+                        <li>
+                            <a href="/admin/challenges" style="background-color: green; color: white" class="nav-link sub-menu a p-1">챌린지 관리
+                            </a>
+                        </li>
+                        <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
+                            <a id="food" href="/admin/foods" class="nav-link sub-menu a p-1 mb-1">음식 관리</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
     <div class="justify-content-center mx-2 pb-4 w-100">
         <div class="border border-tertiary p-5 ">
             <h1 class="d-inline-flex">챌린지 등록하기</h1>
@@ -30,7 +48,7 @@
                                 if (this.files && this.files[0]) {
                                     var reader = new FileReader();
                                     reader.onload = function (e) {
-                                        $('#backgroundImgFile2').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
+                                        $('#backgroundImgFile2').html('<img src="' + e.target.result + '" style="width: 80%; height: 80%"">');
                                     };
                                     reader.readAsDataURL(this.files[0]);
                                     let fileName = this.files[0].name; // 'this'를 사용해서 파일 이름을 가져옵니다.
@@ -64,7 +82,7 @@
                                 if (this.files && this.files[0]) {
                                     var reader = new FileReader();
                                     reader.onload = function (e) {
-                                        $('#badgeImgFile2').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
+                                        $('#badgeImgFile2').html('<img src="' + e.target.result + '" style="width: 80%; height: 80%">');
                                     };
                                     reader.readAsDataURL(this.files[0]);
                                 }
@@ -93,7 +111,7 @@
                 </div>
                 <div class="mt-4">
                     <label for="location"><b>챌린지 기간</b></label>
-                    <input value="2024-04-02" class="form-control" type="date" name="period" id="period" required>
+                    <input value="2024-04-02" class="form-control" type="date" name="period" id="period">
                 </div>
                 <div class="mt-4">
                     <label for="content"><b>챌린지 내용</b></label>

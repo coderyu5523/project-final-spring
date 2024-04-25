@@ -1,9 +1,9 @@
-package shop.mtcoding.projoctbodykey.AttendChallenge;
+package shop.mtcoding.projoctbodykey.attendChallenge;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import shop.mtcoding.projoctbodykey.Challenge.Challenge;
+import shop.mtcoding.projoctbodykey.challenge.Challenge;
 import shop.mtcoding.projoctbodykey.user.User;
 
 import java.sql.Timestamp;
@@ -31,7 +31,4 @@ public class AttendChallenge {
     private Timestamp closingTime; // 챌린지 마감 시간
     private Boolean status ; // 성공 실패 참여 중
     private Timestamp createdAt;
-
-
-
 }
