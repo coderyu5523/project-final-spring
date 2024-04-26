@@ -9,7 +9,7 @@
                 <div class="px-5 mt-5"></div>
 
                 <!-- 이 부분에 추가된 질문들이 들어갈 공간 -->
-                <div id="additionalQuestions"></div>
+                <div class="mt-5 mb-5" id="additionalQuestions"></div>
 
 
                 <div class="d-flex justify-content-center">
@@ -18,7 +18,6 @@
             </form>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-outline-danger mb-3" style="width: 100%" onclick="addQuestionInput()">질문 추가하기</button>
-                <button type="button" class="btn btn-outline-danger mb-3" style="width: 100%" onclick="addChoiceInput()">대답 추가하기</button>
             </div>
         </div>
     </div>
@@ -26,7 +25,7 @@
 
 <script>
     var questionId = 0;
-    var choiceId = 0;
+    var choiceId =0 ;
 
     function addQuestionInput() {
         var additionalQuestionsDiv = document.getElementById("additionalQuestions");
@@ -35,8 +34,11 @@
         questionInputDiv.innerHTML = `
             <label for="question"><b>질문</b></label>
             <input class="form-control" type="text" name="question${questionId++}" required>
+            <button type="button" class="btn btn-outline-danger mb-3" style="width: 100%" onclick="addChoiceInput()">선택문항 추가하기</button>
             <div id="additionalChoices${questionId}"></div>
         `;
+
+
         additionalQuestionsDiv.appendChild(questionInputDiv);
     }
 
@@ -45,9 +47,10 @@
         var choiceInputDiv = document.createElement("div");
         choiceInputDiv.classList.add("mt-4");
         choiceInputDiv.innerHTML = `
-            <label for="choice"><b>대답</b></label>
+            <label for="choice"><b>선택문항</b></label>
             <input class="form-control" type="text" name="choice${choiceId++}" required>
         `;
         additionalQuestionsDiv.appendChild(choiceInputDiv);
     }
+
 </script>
