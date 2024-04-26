@@ -4,8 +4,13 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception401;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
+import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
+import shop.mtcoding.projoctbodykey._core.utils.PasswordUtil;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -14,17 +19,29 @@ public class UserService {
 
     @Transactional
     public User join(UserRequest.JoinDTO reqDTO) {
-        User user = userJPARepository.save(reqDTO.toEntity());
+
+        // 유저네임 중복체크
+        Optional<User> userOP = userJPARepository.findByUsername(reqDTO.getUsername());
+        if (userOP.isPresent()) {
+            throw new Exception400("유저네임이 중복되었습니다.");
+        }
+
+        // 유저패스워드 암호화
+        String encPassword = PasswordUtil.encode(reqDTO.getPassword());
+
+        User user = userJPARepository.save(reqDTO.toEntity(encPassword));
 
         return user;
     }
 
     public User login(UserRequest.LoginDTO reqDTO) {
-        try {
-            return userJPARepository.findByUsernameAndPassword(reqDTO.getUsername(), reqDTO.getPassword())
-                    .orElseThrow(() -> new Exception404("회원 정보가 없습니다."));
-        } catch (EmptyResultDataAccessException e) {
-            throw new Exception401("아이디,비밀번호가 틀렸어요");
-        }
+        User userPS = userJPARepository.findByUsername(reqDTO.getUsername()).orElseThrow(
+                ()-> new Exception401("유저네임을 찾을 수 없습니다")
+        );
+
+        if (!PasswordUtil.verify(reqDTO.getPassword(), userPS.getPassword()))
+            throw new Exception401("패스워드가 일치하지 않습니다");
+
+        return userPS;
     }
 }
