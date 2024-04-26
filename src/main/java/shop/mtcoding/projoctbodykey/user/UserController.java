@@ -31,7 +31,10 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO reqDTO) {
         User user = userService.login(reqDTO);
+
+        // jwt 생성
         String jwt = JwtUtil.create(user);
+
         return ResponseEntity.ok()
                 .header(JwtVO.HEADER, JwtVO.PREFIX + jwt)
                 .body(new ApiUtil(null));

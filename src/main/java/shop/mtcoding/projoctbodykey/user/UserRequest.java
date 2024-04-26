@@ -18,11 +18,11 @@ public class UserRequest {
         private String phone;
         private double height;
 
-        public User toEntity () {
+        public User toEntity (String encPassword) {
             return User.builder()
                     .name(name)
                     .username(username)
-                    .password(password)
+                    .password(encPassword)
                     .birth(birth)
                     .gender(gender)
                     .phone(phone)
@@ -35,5 +35,10 @@ public class UserRequest {
     public static class LoginDTO{
         private String username;
         private String password;
+
+        public LoginDTO(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
     }
 }
