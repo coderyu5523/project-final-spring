@@ -28,11 +28,18 @@ public class AdminChallengeController {
     }
 
     @GetMapping("/admin/challenges")
-    public String challengeForm(HttpServletRequest request) {
-        List<Challenge> ChallengeList = challengeService.adminList();
+    public String challengeForm(HttpServletRequest request, @RequestParam (value = "keyword", defaultValue = "") String keyword) {
 
-        request.setAttribute("ChallengeList", ChallengeList);
+        if (keyword.isBlank()) {
+            List<Challenge> ChallengeList = challengeService.adminList();
+            request.setAttribute("ChallengeList", ChallengeList);
 
+        } else {
+            List<Challenge> ChallengeSearchList = challengeService.ChallengeSearch(keyword);
+            request.setAttribute("ChallengeSearchList", ChallengeSearchList);
+        }
+
+        request.setAttribute("keyword", keyword);
         return "/challenge/challenges";
     }
 

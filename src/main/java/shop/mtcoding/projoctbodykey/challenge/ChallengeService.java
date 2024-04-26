@@ -22,13 +22,19 @@ import java.util.UUID;
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
 
+    public List<Challenge> ChallengeSearch(String keyword) {
 
+        List<Challenge> challengeList;
 
+        if (keyword.isBlank()) {
+            challengeList = challengeJPARepository.findAll();
 
+        } else {
+            challengeList = challengeJPARepository.findAllKeyword(keyword);
+        }
 
-
-    // ===================================== 관리자 페이지 서비스 부분 =====================================
-
+        return challengeList;
+    }
 
     public List<Challenge> adminList() {
         return challengeJPARepository.findAll();

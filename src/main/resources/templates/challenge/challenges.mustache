@@ -1,12 +1,18 @@
 {{> layout/header}}
+<div style="max-width: 100%; display: flex; justify-content: center; margin-left: 47%">
+    <div style="margin-top: 15px;">
+        <form action="/admin/challenges" method="get" class="search-from d-flex" id="search">
+            <input class="form-control me-2" type="text" placeholder="Search" value="{{keyword}}" name="keyword"
+                   required>
+            <button class="btn-m btn-mint form-control" style="width:100px">Search</button>
+        </form>
+        <a href="/admin/challenges/save-form" class="btn btn-success" style="margin-left: 64%; margin-top: 3%">챌린지 작성</a>
+    </div>
+</div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div style="margin-top: 10px; margin-left: 75%">
-            <a href="/admin/challenges/save-form" class="btn btn-success">챌린지 작성</a>
-        </div>
-
-        <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px;">
             <div class="card" style="border-radius: 10px;">
                 <div style="width: 100%;">
                     <div>
@@ -63,6 +69,26 @@
                             </td>
                         </tr>
                     {{/ChallengeList}}
+                    {{#ChallengeSearchList}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td>{{challengeName}}</td>
+                            <td>{{subTitle}}</td>
+                            <td>{{walking}}</td>
+                            <td>{{distance}}</td>
+                            <td>{{coin}}</td>
+                            <td>{{period}}</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <a href="/admin/challenges/detail/{{id}}" class="btn btn-primary me-1">상세보기</a>
+                                    <a href="/admin/challenges/update-form/{{id}}" class="btn btn-success me-1">수정</a>
+                                    <form action="/admin/challenges/delete/{{id}}" method="post">
+                                        <button class="btn btn-danger">삭제</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/ChallengeSearchList}}
                     </tbody>
                 </table>
                 <!-- 표 끝 -->

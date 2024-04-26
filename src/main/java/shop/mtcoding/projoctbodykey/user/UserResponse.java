@@ -13,7 +13,6 @@ public class UserResponse {
         private Integer id;
         private String name;
         private String username;
-        private String password;
         private String birth;
         private Character gender;
         private double height;
@@ -22,7 +21,6 @@ public class UserResponse {
             this.id = user.getId();
             this.name = user.getName();
             this.username = user.getUsername();
-            this.password = user.getPassword();
             this.birth = MyDateUtil.timestampFormat(user.getBirth());
             this.gender = user.getGender();
             this.height = user.getHeight();

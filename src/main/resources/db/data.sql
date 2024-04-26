@@ -9,13 +9,20 @@ INSERT INTO bodydata_tb(user_id, weight, muscle, fat, created_at)
 VALUES (1, 75.8, 27.6, 20.1, now());
 
 insert into challenge_tb(challenge_name, background_img, sub_title, walking, badge_img, content, coin, period, distance, created_at)
-values ('챌린지명', '챌린지 사진경로', '부제목', 100, '뱃지사진', '챌린지 내용', 10, '2024-06-02', '10km', now()),
-       ('챌린지명2', '챌린지 사진경로', '부제목', 100, '뱃지사진', '챌린지 내용2', 10, '2024-06-02', '20km', now());
+values ('백두산', '챌린지 사진경로', '부제목', 100, '뱃지사진', '챌린지 내용', 10, '2024-06-02', '10km', now()),
+       ('설악산', '챌린지 사진경로', '부제목', 100, '뱃지사진', '챌린지 내용2', 10, '2024-06-02', '20km', now()),
+       ('에베레스트', '챌린지 사진경로', '부제목', 100, '뱃지사진', '챌린지 내용2', 10, '2024-06-02', '20km', now()),
+       ('우리집뒷산', '챌린지 사진경로', '부제목', 100, '뱃지사진', '챌린지 내용2', 10, '2024-06-02', '20km', now());
 
 insert into attend_challenge_tb(user_id, total_walking, challenge_id, opening_time, closing_time, status, created_at)
 values (1, 100, 1, '2024-04-23', '2024-04-24', null, now());
 
-INSERT INTO food_tb(name, carbo, protein, fat, kcal, gram, created_at) VALUES ('바나나', 22.84, 1.09, 0.33, 88,100,now());
+INSERT INTO food_tb(name, carbo, protein, fat, kcal, gram, created_at)
+VALUES ('바나나', 22.84, 1.09, 0.33, 88,100,now()),
+       ('사과', 22.84, 1.09, 0.33, 88,100,now()),
+       ('땅콩', 22.84, 1.09, 0.33, 88,100,now()),
+       ('닭가슴살', 22.84, 1.09, 0.33, 88,100,now())
+;
 
 INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사1', now(), now(),now());
 INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사2', now(), now(),now());
