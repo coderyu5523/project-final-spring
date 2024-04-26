@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
+import shop.mtcoding.projoctbodykey.challenge.Challenge;
 
 import java.util.List;
 
@@ -34,6 +35,20 @@ public class FoodService {
     public List<FoodResponse.FoodsDTO> findAll() {
         List<Food> foods = foodJPARepository.findAll();
         return foods.stream().map(FoodResponse.FoodsDTO::new).toList();
+    }
+
+    public List<Food> foodSearch(String keyword) {
+
+        List<Food> foodList;
+
+        if (keyword.isBlank()) {
+            foodList = foodJPARepository.findAll();
+
+        } else {
+            foodList = foodJPARepository.findAllKeyword(keyword);
+        }
+
+        return foodList;
     }
 
     @Transactional

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import shop.mtcoding.projoctbodykey.challenge.Challenge;
+import shop.mtcoding.projoctbodykey.food.Food;
 import shop.mtcoding.projoctbodykey.food.FoodRequest;
 import shop.mtcoding.projoctbodykey.food.FoodResponse;
 import shop.mtcoding.projoctbodykey.food.FoodService;
@@ -44,10 +47,19 @@ public class AdminFoodController {
     }
 
     @GetMapping("/admin/foods")
-    public String foods(HttpServletRequest request) {
-        List<FoodResponse.FoodsDTO> respDTO = foodService.findAll();
-        request.setAttribute("foods", respDTO);
-        return "list";
+    public String foods(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+        if (keyword.isBlank()) {
+            List<FoodResponse.FoodsDTO> foods = foodService.findAll();
+            request.setAttribute("foods", foods);
+
+        } else {
+            List<Food> FoodSearchList = foodService.foodSearch(keyword);
+            request.setAttribute("FoodSearchList", FoodSearchList);
+        }
+
+        request.setAttribute("keyword", keyword);
+        return "food/foods";
     }
 
     @PostMapping("/admin/foods/{id}/delete")

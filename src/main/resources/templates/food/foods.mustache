@@ -1,19 +1,24 @@
 {{> layout/header}}
+<div style="max-width: 100%; display: flex; justify-content: center; margin-left: 47%">
+    <div style="margin-top: 15px;">
+        <form action="/admin/foods" method="get" class="search-from d-flex" id="search">
+            <input class="form-control me-2" type="text" placeholder="Search" name="keyword">
+            <button class="btn-m btn-mint form-control" style="width:100px">Search</button>
+        </form>
+        <a href="/admin/food/save-form" class="btn btn-success" style="margin-left: 69%; margin-top: 3%">음식 작성</a>
+    </div>
+</div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div style="margin-top: 10px; margin-left: 75%">
-            <a href="/admin/food/save-form" class="btn btn-warning">음식 작성</a>
-        </div>
-
-        <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px; margin-left: 10%;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px;">
             <div class="card" style="border-radius: 10px;">
                 <div style="width: 100%;">
                     <div>
                         <h6 class="card-subtitle text-muted"></h6>
                         <ul class="nav flex-column nav-pills">
                             <li class="nav-item">
-                                <a id="userHome" class="nav-link sub-menu a p-1 mb-1" href="/admin/challenge/list">챌린지
+                                <a id="userHome" class="nav-link sub-menu a p-1 mb-1" href="/admin/challenges">챌린지
                                     관리</a>
                             </li>
                             <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
@@ -45,7 +50,7 @@
                     <tbody>
                     {{#foods}}
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
                             <td>{{kcal}}</td>
                             <td>{{carbo}}</td>
@@ -62,6 +67,25 @@
                             </td>
                         </tr>
                     {{/foods}}
+                    {{#FoodSearchList}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td>{{name}}</td>
+                            <td>{{kcal}}</td>
+                            <td>{{carbo}}</td>
+                            <td>{{protein}}</td>
+                            <td>{{fat}}</td>
+                            <td>{{gram}}</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <a href="/admin/food/{{id}}/update-form" class="btn btn-warning me-1">수정</a>
+                                    <form action="/admin/food/{{id}}/delete" method="post">
+                                        <button class="btn btn-danger">삭제</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/FoodSearchList}}
                     <!-- 여러 개의 행 추가 가능 -->
                     </tbody>
                 </table>
