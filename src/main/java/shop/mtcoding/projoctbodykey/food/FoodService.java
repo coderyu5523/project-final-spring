@@ -15,6 +15,17 @@ import java.util.List;
 public class FoodService {
     private final FoodJPARepository foodJPARepository ;
 
+    public Page<Food> adminListPaged(Pageable pageable) {
+        return foodJPARepository.findAll(pageable);
+    }
+
+    public Page<Food> foodSearch(String keyword, Pageable pageable) {
+
+        Page<Food> foodList = foodJPARepository.findAllKeyword(keyword, pageable);;
+
+        return foodList;
+    }
+
     @Transactional
     public FoodResponse.SaveDTO save(FoodRequest.SaveDTO reqDTO) {
         Food food = foodJPARepository.save(reqDTO.toEntity());
@@ -37,19 +48,7 @@ public class FoodService {
         return foods.stream().map(FoodResponse.FoodsDTO::new).toList();
     }
 
-    public List<Food> foodSearch(String keyword) {
 
-        List<Food> foodList;
-
-        if (keyword.isBlank()) {
-            foodList = foodJPARepository.findAll();
-
-        } else {
-            foodList = foodJPARepository.findAllKeyword(keyword);
-        }
-
-        return foodList;
-    }
 
     @Transactional
     public void delete(int foodId) {

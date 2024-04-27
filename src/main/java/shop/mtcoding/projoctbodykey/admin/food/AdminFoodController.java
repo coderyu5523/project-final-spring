@@ -2,6 +2,10 @@ package shop.mtcoding.projoctbodykey.admin.food;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,18 +51,34 @@ public class AdminFoodController {
     }
 
     @GetMapping("/admin/foods")
-    public String foods(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+    public String foods(HttpServletRequest request,
+                        @RequestParam(value = "keyword", defaultValue = "") String keyword,
+                        @RequestParam(name = "page", defaultValue = "0") int page,
+                        @RequestParam(name = "size", defaultValue = "10") int size) {
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page, size, sort);
 
         if (keyword.isBlank()) {
-            List<FoodResponse.FoodsDTO> foods = foodService.findAll();
-            request.setAttribute("foods", foods);
 
+            Page<Food> foods = foodService.adminListPaged(pageable);
+            request.setAttribute("foods", foods);
+            request.setAttribute("first", page == 0);
+            request.setAttribute("last", foods.getTotalPages() == page + 1);
+            request.setAttribute("prev", page - 1);
+            request.setAttribute("keyword", "");
+            request.setAttribute("next", page + 1);
         } else {
-            List<Food> FoodSearchList = foodService.foodSearch(keyword);
-            request.setAttribute("FoodSearchList", FoodSearchList);
+
+            Page<Food> foodSearchList = foodService.foodSearch(keyword, pageable);
+            request.setAttribute("foodSearchList", foodSearchList);
+            request.setAttribute("first", page == 0);
+            request.setAttribute("last", foodSearchList.getTotalPages() == page + 1);
+            request.setAttribute("prev", page - 1);
+            request.setAttribute("next", page + 1);
+            request.setAttribute("keyword", keyword);
         }
 
-        request.setAttribute("keyword", keyword);
         return "food/foods";
     }
 

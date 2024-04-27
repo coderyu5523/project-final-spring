@@ -67,7 +67,7 @@
                             </td>
                         </tr>
                     {{/foods}}
-                    {{#FoodSearchList}}
+                    {{#foodSearchList}}
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
@@ -85,7 +85,7 @@
                                 </div>
                             </td>
                         </tr>
-                    {{/FoodSearchList}}
+                    {{/foodSearchList}}
                     <!-- 여러 개의 행 추가 가능 -->
                     </tbody>
                 </table>
@@ -93,9 +93,10 @@
 
                 <!-- 페이지네이션 -->
                 <ul class="pagination d-flex justify-content-center">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item {{#first}}disabled{{/first}}"><a class="page-link" href="?page={{prev}}&keyword={{keyword}}">Previous</a></li>
+                    <li class="page-item {{#last}}disabled{{/last}}"><a class="page-link" href="?page={{next}}&keyword={{keyword}}">Next</a></li>
                 </ul>
+
             </div>
         </div>
     </div>

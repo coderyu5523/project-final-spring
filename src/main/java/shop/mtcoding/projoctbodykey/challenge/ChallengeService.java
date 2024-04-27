@@ -1,6 +1,9 @@
 package shop.mtcoding.projoctbodykey.challenge;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,22 +25,21 @@ import java.util.UUID;
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
 
-    public List<Challenge> ChallengeSearch(String keyword) {
+    public Page<Challenge> adminListPaged(Pageable pageable) {
+        return challengeJPARepository.findAll(pageable);
+    }
 
-        List<Challenge> challengeList;
+    public Page<Challenge> challengeSearch (String keyword, Pageable pageable) {
 
-        if (keyword.isBlank()) {
-            challengeList = challengeJPARepository.findAll();
-
-        } else {
-            challengeList = challengeJPARepository.findAllKeyword(keyword);
-        }
+        Page<Challenge> challengeList = challengeJPARepository.findAllKeyword(keyword, pageable);
 
         return challengeList;
     }
 
     public List<Challenge> adminList() {
-        return challengeJPARepository.findAll();
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return challengeJPARepository.findAll(sort);
     }
 
     public Challenge adminDetail(Integer id) {
@@ -108,4 +110,6 @@ public class ChallengeService {
                 .orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
         challengeJPARepository.delete(challenge);
     }
+
+
 }
