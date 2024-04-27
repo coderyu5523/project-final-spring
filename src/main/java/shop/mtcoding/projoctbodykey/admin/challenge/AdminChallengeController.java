@@ -2,6 +2,10 @@ package shop.mtcoding.projoctbodykey.admin.challenge;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,20 +32,39 @@ public class AdminChallengeController {
     }
 
     @GetMapping("/admin/challenges")
-    public String challengeForm(HttpServletRequest request, @RequestParam (value = "keyword", defaultValue = "") String keyword) {
+    public String challengeForm(HttpServletRequest request,
+                                @RequestParam(value = "keyword", defaultValue = "") String keyword,
+                                @RequestParam(name = "page", defaultValue = "0") int page,
+                                @RequestParam(name = "size", defaultValue = "10") int size) {
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page, size, sort);
 
         if (keyword.isBlank()) {
-            List<Challenge> ChallengeList = challengeService.adminList();
-            request.setAttribute("ChallengeList", ChallengeList);
 
+            Page<Challenge> challengeList = challengeService.adminListPaged(pageable);
+            request.setAttribute("challengeList", challengeList);
+            request.setAttribute("first", page == 0);
+            request.setAttribute("last", challengeList.getTotalPages() == page + 1);
+            request.setAttribute("prev", page - 1);
+            request.setAttribute("next", page + 1);
+            request.setAttribute("keyword", "");
         } else {
-            List<Challenge> ChallengeSearchList = challengeService.ChallengeSearch(keyword);
-            request.setAttribute("ChallengeSearchList", ChallengeSearchList);
+
+            Page<Challenge> challengeSearchList = challengeService.challengeSearch(keyword, pageable);
+
+            // 전체 페이지 개수
+            request.setAttribute("first", page == 0);
+            request.setAttribute("last", challengeSearchList.getTotalPages() == page + 1);
+            request.setAttribute("prev", page - 1);
+            request.setAttribute("next", page + 1);
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("challengeSearchList", challengeSearchList);
         }
 
-        request.setAttribute("keyword", keyword);
         return "/challenge/challenges";
     }
+
 
     @GetMapping("/admin/challenges/detail/{id}")
     public String challengeDetail(@PathVariable("id") Integer id, HttpServletRequest request) {
