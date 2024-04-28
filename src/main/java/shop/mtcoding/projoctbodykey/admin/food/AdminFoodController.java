@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.projoctbodykey.challenge.Challenge;
+import shop.mtcoding.projoctbodykey.challenge.ChallengeResponse;
 import shop.mtcoding.projoctbodykey.food.Food;
 import shop.mtcoding.projoctbodykey.food.FoodRequest;
 import shop.mtcoding.projoctbodykey.food.FoodResponse;
@@ -56,27 +57,24 @@ public class AdminFoodController {
                         @RequestParam(name = "page", defaultValue = "0") int page,
                         @RequestParam(name = "size", defaultValue = "10") int size) {
 
+        // 내림차순 정렬
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
+
+        // 페이징 하기위해 사용함
+        // sort를 Pageable에 넣어주면 내림차순 가능
         Pageable pageable = PageRequest.of(page, size, sort);
 
+        // 키워드에 값이 없으면
         if (keyword.isBlank()) {
 
-            Page<Food> foods = foodService.adminListPaged(pageable);
+            FoodResponse.AdminFoodListDTO foods = foodService.adminFoodList(page, pageable);
             request.setAttribute("foods", foods);
-            request.setAttribute("first", page == 0);
-            request.setAttribute("last", foods.getTotalPages() == page + 1);
-            request.setAttribute("prev", page - 1);
-            request.setAttribute("keyword", "");
-            request.setAttribute("next", page + 1);
+
+        // 키워드에 값이 있으면
         } else {
 
-            Page<Food> foodSearchList = foodService.foodSearch(keyword, pageable);
+            FoodResponse.AdminFoodSearchListDTO foodSearchList = foodService.adminFoodSearchList(keyword, page, pageable);
             request.setAttribute("foodSearchList", foodSearchList);
-            request.setAttribute("first", page == 0);
-            request.setAttribute("last", foodSearchList.getTotalPages() == page + 1);
-            request.setAttribute("prev", page - 1);
-            request.setAttribute("next", page + 1);
-            request.setAttribute("keyword", keyword);
         }
 
         return "food/foods";

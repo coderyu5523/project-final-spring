@@ -49,6 +49,7 @@
                     </thead>
                     <tbody>
                     {{#foods}}
+                        {{#foodList}}
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
@@ -66,8 +67,10 @@
                                 </div>
                             </td>
                         </tr>
+                        {{/foodList}}
                     {{/foods}}
                     {{#foodSearchList}}
+                        {{#foodList}}
                         <tr>
                             <th scope="row">{{id}}</th>
                             <td>{{name}}</td>
@@ -85,18 +88,24 @@
                                 </div>
                             </td>
                         </tr>
+                        {{/foodList}}
                     {{/foodSearchList}}
                     <!-- 여러 개의 행 추가 가능 -->
                     </tbody>
                 </table>
                 <!-- 표 끝 -->
-
-                <!-- 페이지네이션 -->
-                <ul class="pagination d-flex justify-content-center">
-                    <li class="page-item {{#first}}disabled{{/first}}"><a class="page-link" href="?page={{prev}}&keyword={{keyword}}">Previous</a></li>
-                    <li class="page-item {{#last}}disabled{{/last}}"><a class="page-link" href="?page={{next}}&keyword={{keyword}}">Next</a></li>
-                </ul>
-
+                {{#foods}}
+                    <ul class="pagination d-flex justify-content-center">
+                        <li class="page-item {{#foods.first}}disabled{{/foods.first}}"><a class="page-link" href="?page={{foods.prev}}&keyword={{foods.keyword}}">Previous</a></li>
+                        <li class="page-item {{#foods.last}}disabled{{/foods.last}}"><a class="page-link" href="?page={{foods.next}}&keyword={{foods.keyword}}">Next</a></li>
+                    </ul>
+                {{/foods}}
+                {{#foodSearchList}}
+                    <ul class="pagination d-flex justify-content-center">
+                        <li class="page-item {{#foodSearchList.first}}disabled{{/foodSearchList.first}}"><a class="page-link" href="?page={{foodSearchList.prev}}&keyword={{foodSearchList.keyword}}">Previous</a></li>
+                        <li class="page-item {{#foodSearchList.last}}disabled{{/foodSearchList.last}}"><a class="page-link" href="?page={{foodSearchList.next}}&keyword={{foodSearchList.keyword}}">Next</a></li>
+                    </ul>
+                {{/foodSearchList}}
             </div>
         </div>
     </div>
