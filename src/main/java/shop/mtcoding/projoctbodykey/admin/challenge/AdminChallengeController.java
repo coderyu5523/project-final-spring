@@ -38,6 +38,7 @@ public class AdminChallengeController {
                                 @RequestParam(name = "page", defaultValue = "0") int page,
                                 @RequestParam(name = "size", defaultValue = "10") int size) {
 
+
         // 내림차순 정렬
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
 
@@ -48,10 +49,10 @@ public class AdminChallengeController {
         // 키워드에 값이 없으면
         if (keyword.isBlank()) {
 
-            ChallengeResponse.AdminChallengeListDTO challengeList = challengeService.adminChallengeList(page ,pageable);
+            ChallengeResponse.AdminChallengeListDTO challengeList = challengeService.adminChallengeList(page, pageable);
             request.setAttribute("challenges", challengeList);
 
-        // 키워드에 값이 있으면
+            // 키워드에 값이 있으면
         } else {
 
             ChallengeResponse.AdminChallengeSearchListDTO challengeSearchList = challengeService.adminChallengeSearchList(keyword, page, pageable);
@@ -62,14 +63,14 @@ public class AdminChallengeController {
     }
 
 
-    @GetMapping("/admin/challenges/detail/{id}")
+    @GetMapping("/admin/challenges/{id}/detail")
     public String challengeDetail(@PathVariable("id") Integer id, HttpServletRequest request) {
         Challenge challenge = challengeService.adminDetail(id);
         request.setAttribute("challenge", challenge);
         return "/challenge/detail";
     }
 
-    @GetMapping("/admin/challenges/update-form/{id}")
+    @GetMapping("/admin/challenges/{id}/update-form")
     public String challengeUpdateForm(@PathVariable("id") Integer id, HttpServletRequest request) {
         Challenge challenge = challengeService.adminUpdateForm(id);
         request.setAttribute("challenge", challenge);
@@ -84,14 +85,14 @@ public class AdminChallengeController {
     }
 
 
-    @PostMapping("/admin/challenges/update/{id}")
+    @PostMapping("/admin/challenges/{id}/update")
     public String challengeUpdate(@PathVariable Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) throws IOException, ParseException {
         challengeService.adminUpdate(id, reqDTO, period);
 
         return "redirect:/admin/challenges";
     }
 
-    @PostMapping("/admin/challenges/delete/{id}")
+    @PostMapping("/admin/challenges/{id}/delete")
     public String challengeDelete(@PathVariable("id") Integer id) {
         challengeService.adminDelete(id);
         return "redirect:/admin/challenges";
