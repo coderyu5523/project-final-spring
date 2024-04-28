@@ -2,6 +2,7 @@ package shop.mtcoding.projoctbodykey.challenge;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,29 +18,47 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
 
-    public Page<Challenge> adminListPaged(Pageable pageable) {
-        return challengeJPARepository.findAll(pageable);
+    // 검색 없는 관리자 페이지 챌린지 리스트
+    public ChallengeResponse.AdminChallengeListDTO adminChallengeList(Integer page, Pageable pageable) {
+        Page<Challenge> challenges = challengeJPARepository.findAll(pageable);
+
+        // 페이지가 0이라면 첫번째 페이지
+        Boolean first = page == 0;
+
+        // 페이지의 토탈 페이지 수가 페이지 수에 1을 더한 값과 같다면 마지막 페이지
+        Boolean last = challenges.getTotalPages() == page + 1;
+
+        Integer prev = page - 1;
+        Integer next = page + 1;
+
+        return new ChallengeResponse.AdminChallengeListDTO(first, last, prev, next, challenges);
     }
 
-    public Page<Challenge> challengeSearch (String keyword, Pageable pageable) {
+    // 검색 있는 관리자 페이지 챌린지 리스트
+    public ChallengeResponse.AdminChallengeSearchListDTO adminChallengeSearchList(String keyword, Integer page, Pageable pageable) {
+        Page<Challenge> challenges = challengeJPARepository.findAllKeyword(keyword, pageable);
+        
+        // 페이지가 0이라면 첫번째 페이지
+        Boolean first = page == 0;
 
-        Page<Challenge> challengeList = challengeJPARepository.findAllKeyword(keyword, pageable);
+        // 페이지의 토탈 페이지 수가 페이지 수에 1을 더한 값과 같다면 마지막 페이지
+        Boolean last = challenges.getTotalPages() == page + 1;
+        Integer prev = page - 1;
+        Integer next = page + 1;
 
-        return challengeList;
-    }
-
-    public List<Challenge> adminList() {
-
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        return challengeJPARepository.findAll(sort);
+        return new ChallengeResponse.AdminChallengeSearchListDTO(first, last, prev, next, keyword, challenges);
     }
 
     public Challenge adminDetail(Integer id) {

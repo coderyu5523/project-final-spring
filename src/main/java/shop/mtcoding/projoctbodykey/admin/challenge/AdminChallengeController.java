@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeService;
 import shop.mtcoding.projoctbodykey.challenge.Challenge;
 import shop.mtcoding.projoctbodykey.challenge.ChallengeRequest;
+import shop.mtcoding.projoctbodykey.challenge.ChallengeResponse;
 import shop.mtcoding.projoctbodykey.challenge.ChallengeService;
 
 import java.io.IOException;
@@ -37,28 +38,23 @@ public class AdminChallengeController {
                                 @RequestParam(name = "page", defaultValue = "0") int page,
                                 @RequestParam(name = "size", defaultValue = "10") int size) {
 
+        // 내림차순 정렬
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
+
+        // 페이징 하기위해 사용함
+        // sort를 Pageable에 넣어주면 내림차순 가능
         Pageable pageable = PageRequest.of(page, size, sort);
 
+        // 키워드에 값이 없으면
         if (keyword.isBlank()) {
 
-            Page<Challenge> challengeList = challengeService.adminListPaged(pageable);
-            request.setAttribute("challengeList", challengeList);
-            request.setAttribute("first", page == 0);
-            request.setAttribute("last", challengeList.getTotalPages() == page + 1);
-            request.setAttribute("prev", page - 1);
-            request.setAttribute("next", page + 1);
-            request.setAttribute("keyword", "");
+            ChallengeResponse.AdminChallengeListDTO challengeList = challengeService.adminChallengeList(page ,pageable);
+            request.setAttribute("challenges", challengeList);
+
+        // 키워드에 값이 있으면
         } else {
 
-            Page<Challenge> challengeSearchList = challengeService.challengeSearch(keyword, pageable);
-
-            // 전체 페이지 개수
-            request.setAttribute("first", page == 0);
-            request.setAttribute("last", challengeSearchList.getTotalPages() == page + 1);
-            request.setAttribute("prev", page - 1);
-            request.setAttribute("next", page + 1);
-            request.setAttribute("keyword", keyword);
+            ChallengeResponse.AdminChallengeSearchListDTO challengeSearchList = challengeService.adminChallengeSearchList(keyword, page, pageable);
             request.setAttribute("challengeSearchList", challengeSearchList);
         }
 
