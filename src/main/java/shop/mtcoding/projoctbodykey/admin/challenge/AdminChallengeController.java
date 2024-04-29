@@ -49,13 +49,15 @@ public class AdminChallengeController {
         // 키워드에 값이 없으면
         if (keyword.isBlank()) {
 
-            ChallengeResponse.AdminChallengeListDTO challengeList = challengeService.adminChallengeList(page, pageable);
+            ChallengeResponse.AdminChallengeListDTO challengeList =
+                    challengeService.adminChallengeList(page, pageable);
             request.setAttribute("challenges", challengeList);
 
             // 키워드에 값이 있으면
         } else {
 
-            ChallengeResponse.AdminChallengeSearchListDTO challengeSearchList = challengeService.adminChallengeSearchList(keyword, page, pageable);
+            ChallengeResponse.AdminChallengeSearchListDTO challengeSearchList =
+                    challengeService.adminChallengeSearchList(keyword, page, pageable);
             request.setAttribute("challengeSearchList", challengeSearchList);
         }
 
@@ -78,7 +80,7 @@ public class AdminChallengeController {
     }
 
     @PostMapping("/admin/challenges/save")
-    public String challengeSave(ChallengeRequest.AdminSaveDTO reqDTO, String period) throws IOException, ParseException {
+    public String challengeSave(ChallengeRequest.AdminSaveDTO reqDTO, String period) {
         challengeService.adminSave(reqDTO, period);
 
         return "redirect:/admin/challenges";
@@ -86,7 +88,7 @@ public class AdminChallengeController {
 
 
     @PostMapping("/admin/challenges/{id}/update")
-    public String challengeUpdate(@PathVariable Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) throws IOException, ParseException {
+    public String challengeUpdate(@PathVariable Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) {
         challengeService.adminUpdate(id, reqDTO, period);
 
         return "redirect:/admin/challenges";

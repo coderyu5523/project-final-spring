@@ -2,8 +2,6 @@ package shop.mtcoding.projoctbodykey.challenge;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,18 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
-import shop.mtcoding.projoctbodykey._core.utils.ImageResizer;
+import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -85,16 +78,16 @@ public class ChallengeService {
     }
 
     public Challenge adminDetail(Integer id) {
-        return challengeJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
+        return challengeJPARepository.findById(id).orElseThrow(() ->
+                new Exception404("해당 챌린지를 찾을 수 없습니다."));
     }
-
-
 
     public Challenge adminUpdateForm(Integer id) {
-        return challengeJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
+        return challengeJPARepository.findById(id).orElseThrow(() ->
+                new Exception404("해당 챌린지를 찾을 수 없습니다."));
     }
 
-    public void adminSave(ChallengeRequest.AdminSaveDTO reqDTO, String period) throws IOException, ParseException {
+    public void adminSave(ChallengeRequest.AdminSaveDTO reqDTO, String period) {
         try {
             int targetWidth = 800;
             int targetHeight = 600;
@@ -104,23 +97,14 @@ public class ChallengeService {
             if (backgroundImg == null || backgroundImg.isEmpty()) {
                 throw new Exception400("배경 이미지가 없습니다.");
             }
-            byte[] backgroundImgResized = ImageResizer.resizeImage(backgroundImg, targetWidth, targetHeight);
-            String backgroundImgUUID = UUID.randomUUID() + "_" + backgroundImg.getOriginalFilename();
-            Path backgroundImgPaths = Paths.get("./upload/" + backgroundImgUUID);
-            System.out.println(backgroundImgPaths);
-            Files.write(backgroundImgPaths, backgroundImgResized);
-
+            String backgroundImgUUID = ImageUtil.resizeImage(reqDTO.getBackgroundImg() ,backgroundImg, targetWidth, targetHeight);
 
             // 배지 이미지
             MultipartFile badgeImg = reqDTO.getBadgeImgFile();
             if (badgeImg == null || badgeImg.isEmpty()) {
                 throw new Exception400("배지 이미지가 없습니다.");
             }
-            byte[] badgeImgResized = ImageResizer.resizeImage(badgeImg, targetWidth, targetHeight);
-            String badgeImgUUID = UUID.randomUUID() + "_" + badgeImg.getOriginalFilename();
-            Path badgeImgPath = Paths.get("./upload/" + badgeImgUUID);
-            Files.write(badgeImgPath, badgeImgResized);
-
+            String badgeImgUUID = ImageUtil.resizeImage(reqDTO.getBadgeImg(), badgeImg, targetWidth, targetHeight);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Timestamp timestamp = new Timestamp(dateFormat.parse(period).getTime());
@@ -134,7 +118,7 @@ public class ChallengeService {
     }
 
     @Transactional
-    public void adminUpdate(Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) throws IOException, ParseException {
+    public void adminUpdate(Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) {
         try {
             Challenge challenge = challengeJPARepository.findById(id)
                     .orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
@@ -147,25 +131,17 @@ public class ChallengeService {
             if (backgroundImg == null || backgroundImg.isEmpty()) {
                 throw new Exception400("배경 이미지가 없습니다.");
             }
-            byte[] backgroundImgResized = ImageResizer.resizeImage(backgroundImg, targetWidth, targetHeight);
-            String backgroundImgUUID = UUID.randomUUID() + "_" + backgroundImg.getOriginalFilename();
-            Path backgroundImgPaths = Paths.get("./upload/" + backgroundImgUUID);
-            Files.write(backgroundImgPaths, backgroundImgResized);
+            String backgroundImgUUID = ImageUtil.resizeImage(reqDTO.getBackgroundImg() ,backgroundImg, targetWidth, targetHeight);
 
             // 배지 이미지
             MultipartFile badgeImg = reqDTO.getBadgeImgFile();
             if (badgeImg == null || badgeImg.isEmpty()) {
                 throw new Exception400("배지 이미지가 없습니다.");
             }
-            byte[] badgeImgResized = ImageResizer.resizeImage(badgeImg, targetWidth, targetHeight);
-            String badgeImgUUID = UUID.randomUUID() + "_" + badgeImg.getOriginalFilename();
-            Path badgeImgPath = Paths.get("./upload/" + badgeImgUUID);
-            Files.write(badgeImgPath, badgeImgResized);
+            String badgeImgUUID = ImageUtil.resizeImage(reqDTO.getBadgeImg(), badgeImg, targetWidth, targetHeight);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Timestamp timestamp = new Timestamp(dateFormat.parse(period).getTime());
-
-            // 둘의 UUID를 받아서 인설트 해주는것
 
             challenge.setChallengeName(reqDTO.getChallengeName());
             challenge.setBackgroundImg(backgroundImgUUID);
@@ -188,6 +164,4 @@ public class ChallengeService {
                 .orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
         challengeJPARepository.delete(challenge);
     }
-
-
 }
