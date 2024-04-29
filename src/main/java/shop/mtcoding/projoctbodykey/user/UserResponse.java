@@ -1,5 +1,6 @@
 package shop.mtcoding.projoctbodykey.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import shop.mtcoding.projoctbodykey._core.utils.MyDateUtil;
@@ -24,6 +25,12 @@ public class UserResponse {
             this.birth = MyDateUtil.timestampFormat(user.getBirth());
             this.gender = user.getGender();
             this.height = user.getHeight();
+        }
+    }
+
+    record LoginDTO(@JsonIgnore String accessToken, Integer id, String username) {
+        LoginDTO(String accessToken, User user) {
+            this(accessToken, user.getId(), user.getUsername());
         }
     }
 }

@@ -18,7 +18,7 @@ public class UserService {
     private final UserJPARepository userJPARepository;
 
     @Transactional
-    public User join(UserRequest.JoinDTO reqDTO) {
+    public UserResponse.JoinDTO join(UserRequest.JoinDTO reqDTO) {
 
         // 유저네임 중복체크
         Optional<User> userOP = userJPARepository.findByUsername(reqDTO.getUsername());
@@ -31,17 +31,20 @@ public class UserService {
 
         User user = userJPARepository.save(reqDTO.toEntity(encPassword));
 
-        return user;
+        return new UserResponse.JoinDTO(user);
     }
 
-    public User login(UserRequest.LoginDTO reqDTO) {
+    public UserResponse.LoginDTO login(UserRequest.LoginDTO reqDTO) {
         User userPS = userJPARepository.findByUsername(reqDTO.getUsername()).orElseThrow(
-                ()-> new Exception401("유저네임을 찾을 수 없습니다")
+                ()-> new Exception404("유저네임을 찾을 수 없습니다")
         );
 
-        if (!PasswordUtil.verify(reqDTO.getPassword(), userPS.getPassword()))
+        if (!PasswordUtil.verify(reqDTO.getPassword(), userPS.getPassword())) {
             throw new Exception401("패스워드가 일치하지 않습니다");
+        }
 
-        return userPS;
+        String jwt = JwtUtil.create(userPS);
+
+        return new UserResponse.LoginDTO(jwt, userPS);
     }
 }
