@@ -2,11 +2,21 @@ package shop.mtcoding.projoctbodykey.challenge;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 
 @RequiredArgsConstructor
 @RestController
 public class ChallengeController {
     private final ChallengeService challengeService;
-    private final HttpSession session ;
+    private final HttpSession session;
+
+    @GetMapping("/challenges/{id}/detail")
+    public ResponseEntity<?> challengeDetail(@PathVariable("id") Integer id) {
+        ChallengeResponse.DetailDTO reqDTO = challengeService.detail(id);
+        return ResponseEntity.ok(new ApiUtil(reqDTO));
+    }
 }
