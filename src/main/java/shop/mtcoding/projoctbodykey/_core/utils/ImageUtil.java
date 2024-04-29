@@ -8,8 +8,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
-public class ImageResizer {
+public class ImageUtil {
+
     /**
      * 이미지를 지정된 너비와 높이로 조정하는 메서드
      *
@@ -19,7 +24,7 @@ public class ImageResizer {
      * @return 조정된 이미지를 바이트 배열로 반환
      * @throws IOException 이미지 조정 중 발생한 IO 예외
      */
-    public static byte[] resizeImage(MultipartFile imageFile, int targetWidth, int targetHeight) throws IOException {
+    public static String resizeImage(String img, MultipartFile imageFile, int targetWidth, int targetHeight) throws IOException {
         if (imageFile == null) {
             return null;
         }
@@ -37,6 +42,11 @@ public class ImageResizer {
         // 조정된 이미지를 바이트 배열로 변환하여 반환
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ImageIO.write(outputImage, "jpg", outputStream);
-        return outputStream.toByteArray();
+
+        String imgUUID = UUID.randomUUID() + "_" + img;
+        Path imgPaths = Paths.get("./upload/" + imgUUID);
+        Files.write(imgPaths, outputStream.toByteArray());
+
+        return imgUUID;
     }
 }
