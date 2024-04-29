@@ -1,29 +1,26 @@
 package shop.mtcoding.projoctbodykey.challenge;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.utils.ImageResizer;
-import shop.mtcoding.projoctbodykey._core.utils.MyDateUtil;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -32,13 +29,28 @@ import java.util.stream.Collectors;
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
 
-    public ChallengeResponse.DetailDTO detail(Integer id) {
+    public ChallengeResponse.DetailDTO detail(Integer id) throws IOException {
         Challenge challenge = challengeJPARepository.findById(id).orElseThrow(() ->
                 new Exception404("해당 챌린지를 찾을 수 없습니다."));
 
-        ChallengeResponse.DetailDTO reqDTO = new ChallengeResponse.DetailDTO(challenge);
+        // 이미지 파일을 읽어서 byte 배열로 변환
+        String imagePath = "./upload/" + challenge.getBackgroundImg();
+        File file = new File(imagePath);
 
-        return reqDTO;
+        // 파일이 존재하면 읽어들임
+        if (file.exists()) {
+            InputStream inputStream = new FileInputStream(file);
+            byte[] imageData = IOUtils.toByteArray(inputStream);
+            inputStream.close();
+
+            // 이미지를 Base64로 인코딩
+            String backgroundImg = Base64.getEncoder().encodeToString(imageData);
+
+            ChallengeResponse.DetailDTO reqDTO = new ChallengeResponse.DetailDTO(backgroundImg, challenge);
+            return reqDTO;
+        } else {
+            throw new FileNotFoundException("파일을 찾을 수 없습니다: " + imagePath);
+        }
     }
 
     // 검색 없는 관리자 페이지 챌린지 리스트
@@ -95,6 +107,7 @@ public class ChallengeService {
             byte[] backgroundImgResized = ImageResizer.resizeImage(backgroundImg, targetWidth, targetHeight);
             String backgroundImgUUID = UUID.randomUUID() + "_" + backgroundImg.getOriginalFilename();
             Path backgroundImgPaths = Paths.get("./upload/" + backgroundImgUUID);
+            System.out.println(backgroundImgPaths);
             Files.write(backgroundImgPaths, backgroundImgResized);
 
 

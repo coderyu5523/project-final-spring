@@ -28,10 +28,10 @@ public class ChallengeResponse {
 
         @Builder
 
-        public DetailDTO(Challenge challenge) {
+        public DetailDTO(String backgroundImg, Challenge challenge) {
             this.id = challenge.getId();
             this.challengeName = challenge.getChallengeName();
-            this.backgroundImg = challenge.getBackgroundImg();
+            this.backgroundImg = backgroundImg;
             this.subTitle = challenge.getSubTitle();
 //            this.distance = challenge.getDistance();
             this.walking = challenge.getWalking();

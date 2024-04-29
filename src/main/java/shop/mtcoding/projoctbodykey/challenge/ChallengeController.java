@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 
+import java.io.IOException;
+
 @RequiredArgsConstructor
 @RestController
 public class ChallengeController {
@@ -15,7 +17,7 @@ public class ChallengeController {
     private final HttpSession session;
 
     @GetMapping("/challenges/{id}/detail")
-    public ResponseEntity<?> challengeDetail(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> challengeDetail(@PathVariable("id") Integer id) throws IOException {
         ChallengeResponse.DetailDTO reqDTO = challengeService.detail(id);
         return ResponseEntity.ok(new ApiUtil(reqDTO));
     }
