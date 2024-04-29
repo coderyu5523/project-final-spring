@@ -44,10 +44,10 @@ public class MyExceptionHandler {
         return new ResponseEntity<>(e.body(), e.status());
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> unknownServerError(Exception e){
-        log.error(e.getMessage());
-        ApiUtil<?> apiResult = ApiUtil.error("unknown server error", HttpStatus.INTERNAL_SERVER_ERROR);
-        return new ResponseEntity<>(apiResult, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<?> unknownServerError(Exception e){
+//        log.error(e.getMessage());
+//        ApiUtil<?> apiResult = ApiUtil.error("unknown server error", HttpStatus.INTERNAL_SERVER_ERROR);
+//        return new ResponseEntity<>(apiResult, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }

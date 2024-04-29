@@ -11,7 +11,12 @@ import java.util.List;
 
 public interface ChallengeJPARepository extends JpaRepository<Challenge,Integer> {
 
-    @Query("select c from Challenge c where c.challengeName like %:keyword%")
+    @Query("select c from Challenge c where " +
+            "c.challengeName like %:keyword% " +
+            "or c.subTitle like %:keyword% " +
+            "or c.distance like %:keyword% " +
+            "or c.walking = :keyword " +
+            "or c.coin = :keyword ")
     Page<Challenge> findAllKeyword(@Param("keyword") String keyword, Pageable pageable);
 
     Page<Challenge> findAll(Pageable pageable);

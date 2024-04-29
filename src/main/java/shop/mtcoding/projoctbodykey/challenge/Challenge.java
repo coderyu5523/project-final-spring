@@ -22,6 +22,9 @@ public class Challenge {
     private String distance; // 거리
     private Integer walking; // 걸어야할 걸음수
     private String badgeImg; // 뱃지 사진 경로
+
+    // 컨텐츠 크기가 길어서 TEXT타입으로 바꿔줌 TEXT타입은 글자수 제한이 없다고 한다.
+    @Column(columnDefinition = "TEXT")
     private String content;  // 챌린지 내용
     private Integer coin; // 보상 코인
     private Timestamp period; //챌린지 기간

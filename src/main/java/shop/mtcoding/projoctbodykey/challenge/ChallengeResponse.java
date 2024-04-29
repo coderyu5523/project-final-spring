@@ -1,7 +1,9 @@
 package shop.mtcoding.projoctbodykey.challenge;
 
+import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.domain.Page;
 
 import java.sql.Timestamp;
@@ -9,6 +11,37 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ChallengeResponse {
+
+    @Data
+    public static class DetailDTO {
+        private Integer id;
+        private String challengeName; // 챌린지명
+        private String backgroundImg;// 챌린지 배경사진
+        private String subTitle; // 부 제목
+//        private String distance; // 거리
+        private Integer walking; // 걸어야할 걸음수
+//        private String badgeImg; // 뱃지 사진 경로
+        private String content;  // 챌린지 내용
+//        private Integer coin; // 보상 코인
+//        private Timestamp period; //챌린지 기간
+//        private Timestamp createdAt;
+
+        @Builder
+
+        public DetailDTO(Challenge challenge) {
+            this.id = challenge.getId();
+            this.challengeName = challenge.getChallengeName();
+            this.backgroundImg = challenge.getBackgroundImg();
+            this.subTitle = challenge.getSubTitle();
+//            this.distance = challenge.getDistance();
+            this.walking = challenge.getWalking();
+//            this.badgeImg = challenge.getBadgeImg();
+            this.content = challenge.getContent();
+//            this.coin = challenge.getCoin();
+//            this.period = challenge.getPeriod();
+//            this.createdAt = challenge.getCreatedAt();
+        }
+    }
 
     @Data
     public static class AdminChallengeListDTO {
