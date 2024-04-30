@@ -34,6 +34,13 @@ public class UserService {
         return new UserResponse.JoinDTO(user);
     }
 
+    @Transactional
+    public void saveUser(User user, String encPassword) {
+        User users = userJPARepository.findByUsername(user.getUsername()).orElseThrow();
+
+        users.setPassword(encPassword);
+    }
+
     public UserResponse.LoginDTO login(UserRequest.LoginDTO reqDTO) {
         User userPS = userJPARepository.findByUsername(reqDTO.getUsername()).orElseThrow(
                 ()-> new Exception404("유저네임을 찾을 수 없습니다")

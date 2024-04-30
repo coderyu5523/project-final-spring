@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import java.util.List;
+import java.util.Objects;
+
 @Import(ChallengeQueryRepository.class)
 @DataJpaTest
 public class ChallengeRepositoryTest {
@@ -22,5 +25,12 @@ public class ChallengeRepositoryTest {
         int userId = 1;
 
         System.out.println(challengeQueryRepository.findByUserChallenge(userId));
+    }
+
+    @Test
+    public void partChallenges_test() {
+        int userId = 1;
+
+        System.out.println(challengeQueryRepository.partChallenges(userId));
     }
 }

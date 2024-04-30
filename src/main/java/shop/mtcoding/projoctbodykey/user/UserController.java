@@ -46,12 +46,4 @@ public class UserController {
 
     //todo @PutMapping("/api/users/{userId} 회원정보 수정
 
-
-
-//
-//    //로그인
-//    @PostMapping("/login")
-//
-//    //로그아웃
-//    @GetMapping("/logout")
 }
