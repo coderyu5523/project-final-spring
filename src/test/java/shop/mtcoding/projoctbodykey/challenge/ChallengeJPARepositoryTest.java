@@ -12,9 +12,6 @@ public class ChallengeJPARepositoryTest {
     @Autowired
     private ChallengeJPARepository challengeJPARepository;
 
-
-
-
     @Test
     public void findBodySevenByUserId_test(){
         // given
@@ -22,6 +19,18 @@ public class ChallengeJPARepositoryTest {
 
         // when
         List<Challenge> challengeList = challengeJPARepository.findAllChallengeIdNull(userId);
+
+        // eye
+        System.out.println("challengeList = " + challengeList.toString());
+    }
+
+    @Test
+    public void partChallenges_test(){
+        // given
+        Integer userId = 1;
+
+        // when
+        List<Challenge> challengeList = challengeJPARepository.partChallenges(userId);
 
         // eye
         System.out.println("challengeList = " + challengeList.toString());

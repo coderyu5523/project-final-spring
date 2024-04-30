@@ -1,34 +1,38 @@
 package shop.mtcoding.projoctbodykey.challenge;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.IOUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
+import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
+import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeJPARepository;
+import shop.mtcoding.projoctbodykey.user.User;
 
 import java.io.*;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
+    private final ChallengeQueryRepository challengeResponse;
 
-//    public ChallengeResponse.ChallengeDTO challenges(Integer userId) {
-//
-//        List<Challenge> challengeList = challengeJPARepository.findAllChallengeIdNull(userId);
-//        Challenge challenge = challengeJPARepository.findByUserChallenge(userId).orElseThrow();
-//
-//        return new ChallengeResponse.ChallengeDTO();
-//    }
+    public ChallengeResponse.ChallengeDTO challenges(User user) {
+//        if(user == null) {
+//            throw new Exception404("챌린지를 조회할 권한이 없어요");
+//        }
+
+        List<Challenge> nonPartChallenges = challengeJPARepository.findAllChallengeIdNull(1);
+        List<Object[]> partChallenges = challengeResponse.partChallenges(1);
+        Object[] challenge = challengeResponse.findByUserChallenge(1);
+
+        return new ChallengeResponse.ChallengeDTO(challenge, nonPartChallenges, partChallenges);
+    }
 
     public ChallengeResponse.DetailDTO detail(Integer id) throws IOException {
         Challenge challenge = challengeJPARepository.findById(id).orElseThrow(() ->

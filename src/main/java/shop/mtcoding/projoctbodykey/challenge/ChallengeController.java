@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
+import shop.mtcoding.projoctbodykey.user.User;
 
 import java.io.IOException;
 
@@ -22,10 +23,10 @@ public class ChallengeController {
         return ResponseEntity.ok(new ApiUtil(reqDTO));
     }
 
-//    @GetMapping("/api/challenges")
-//    public ResponseEntity<?> challenges() {
-//        ChallengeResponse.ChallengeListDTO reqDTO = challengeService.challenges();
-//
-//        return ResponseEntity.ok(new ApiUtil(reqDTO));
-//    }
+    @GetMapping("/api/challenges")
+    public ResponseEntity<?> challenges() {
+        User user = (User) session.getAttribute("sessionUser");
+        ChallengeResponse.ChallengeDTO reqDTO = challengeService.challenges(user);
+        return ResponseEntity.ok(new ApiUtil(reqDTO));
+    }
 }

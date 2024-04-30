@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,20 +20,19 @@ public class ChallengeResponse {
         private String subtitle;
         private Timestamp closingTime;
         private Integer coin;
-        private Boolean status;
         private List<NonPartChallengesDTO> nonPartChallenges;
         private List<PartChallengesDTO> partChallenges;
 
-//
-//        public ChallengeDTO(Challenge challenge, Timestamp closingTime, Boolean status, List<Challenge> nonPartChallenges, List<Challenge> partChallenges) {
-//            this.id = challenge.getId();
-//            this.challengeName = challenge.getChallengeName();
-//            this.subtitle = challenge.getSubTitle();
-//            this.closingTime = closingTime;
-//            this.coin = challenge.getCoin();
-//            this.nonPartChallenges = nonPartChallenges.stream().map(NonPartChallengesDTO::new).toList();
-//            this.partChallenges = partChallenges.stream().map(c -> new PartChallengesDTO(c, status)).collect(Collectors.toList());
-//        }
+
+        public ChallengeDTO(Object[] challenge, List<Challenge> nonPartChallenges, List<Object[]> partChallenges) {
+            this.id = (Integer) challenge[0];
+            this.challengeName = (String) challenge[1];
+            this.subtitle = (String) challenge[2];
+            this.closingTime = (Timestamp) challenge[3];
+            this.coin = (Integer) challenge[4];
+            this.nonPartChallenges = nonPartChallenges.stream().map(NonPartChallengesDTO::new).toList();
+            this.partChallenges = partChallenges.stream().map(objects -> new PartChallengesDTO(objects)).toList();
+        }
 
         @Data
         public static class NonPartChallengesDTO {
@@ -57,12 +57,12 @@ public class ChallengeResponse {
             private String badgeImg; // 뱃지 사진 경로
             private Boolean status;
 
-            public PartChallengesDTO(Challenge challenge, Boolean status) {
-                this.id = challenge.getId();
-                this.challengeName = challenge.getChallengeName();
-                this.distance = challenge.getDistance();
-                this.badgeImg = challenge.getBadgeImg();
-                this.status = status;
+            public PartChallengesDTO(Object[] partChallenges) {
+                this.id = (Integer) partChallenges[0];
+                this.challengeName = (String) partChallenges[1];
+                this.distance = (String) partChallenges[2];
+                this.badgeImg = (String) partChallenges[3];
+                this.status = (Boolean) partChallenges[4];
             }
         }
     }

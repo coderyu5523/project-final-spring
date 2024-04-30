@@ -29,6 +29,18 @@ public class UserRequest {
                     .height(height)
                     .build();
         }
+
+        public User toEntity () {
+            return User.builder()
+                    .name(name)
+                    .username(username)
+                    .password(password)
+                    .birth(birth)
+                    .gender(gender)
+                    .phone(phone)
+                    .height(height)
+                    .build();
+        }
     }
 
     @Data
