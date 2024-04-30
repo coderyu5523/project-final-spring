@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ChallengeJPARepository extends JpaRepository<Challenge,Integer> {
 
@@ -20,4 +21,14 @@ public interface ChallengeJPARepository extends JpaRepository<Challenge,Integer>
     Page<Challenge> findAllKeyword(@Param("keyword") String keyword, Pageable pageable);
 
     Page<Challenge> findAll(Pageable pageable);
+
+    @Query("SELECT c " +
+            "FROM Challenge c " +
+            "LEFT JOIN AttendChallenge a ON c.id = a.challenge.id AND a.user.id = :userId " +
+            "WHERE a.user.id IS NULL")
+    List<Challenge> findAllChallengeIdNull(@Param("userId") Integer userId);
+
+
+    @Query("select ac.challenge from AttendChallenge ac where ac.user.id = :userId and ac.status is null")
+    Optional<Challenge> findByUserChallenge(@Param("userId") Integer userId);
 }

@@ -13,6 +13,61 @@ import java.util.stream.Collectors;
 public class ChallengeResponse {
 
     @Data
+    public static class ChallengeDTO {
+        private Integer id;
+        private String challengeName; // 챌린지명
+        private String subtitle;
+        private Timestamp closingTime;
+        private Integer coin;
+        private Boolean status;
+        private List<NonPartChallengesDTO> nonPartChallenges;
+        private List<PartChallengesDTO> partChallenges;
+
+//
+//        public ChallengeDTO(Challenge challenge, Timestamp closingTime, Boolean status, List<Challenge> nonPartChallenges, List<Challenge> partChallenges) {
+//            this.id = challenge.getId();
+//            this.challengeName = challenge.getChallengeName();
+//            this.subtitle = challenge.getSubTitle();
+//            this.closingTime = closingTime;
+//            this.coin = challenge.getCoin();
+//            this.nonPartChallenges = nonPartChallenges.stream().map(NonPartChallengesDTO::new).toList();
+//            this.partChallenges = partChallenges.stream().map(c -> new PartChallengesDTO(c, status)).collect(Collectors.toList());
+//        }
+
+        @Data
+        public static class NonPartChallengesDTO {
+            private Integer id;
+            private String challengeName; // 챌린지명
+            private String distance; // 거리
+            private String badgeImg; // 뱃지 사진 경로
+
+            public NonPartChallengesDTO(Challenge challenge) {
+                this.id = challenge.getId();
+                this.challengeName = challenge.getChallengeName();
+                this.distance = challenge.getDistance();
+                this.badgeImg = challenge.getBadgeImg();
+            }
+        }
+
+        @Data
+        public static class PartChallengesDTO {
+            private Integer id;
+            private String challengeName; // 챌린지명
+            private String distance; // 거리
+            private String badgeImg; // 뱃지 사진 경로
+            private Boolean status;
+
+            public PartChallengesDTO(Challenge challenge, Boolean status) {
+                this.id = challenge.getId();
+                this.challengeName = challenge.getChallengeName();
+                this.distance = challenge.getDistance();
+                this.badgeImg = challenge.getBadgeImg();
+                this.status = status;
+            }
+        }
+    }
+
+    @Data
     public static class DetailDTO {
         private Integer id;
         private String challengeName; // 챌린지명
@@ -27,7 +82,6 @@ public class ChallengeResponse {
 //        private Timestamp createdAt;
 
         @Builder
-
         public DetailDTO(String backgroundImg, Challenge challenge) {
             this.id = challenge.getId();
             this.challengeName = challenge.getChallengeName();
@@ -71,7 +125,7 @@ public class ChallengeResponse {
             private Integer walking;
             private String distance;
             private Integer coin;
-            private Timestamp period;
+            private Integer period;
 
             @Builder
             public AdminChallengeList(Challenge challenge) {
@@ -116,7 +170,7 @@ public class ChallengeResponse {
             private Integer walking;
             private String distance;
             private Integer coin;
-            private Timestamp period;
+            private Integer period;
 
             @Builder
             public AdminChallengeSearchList(Challenge challenge) {
