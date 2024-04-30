@@ -16,9 +16,16 @@ public class ChallengeController {
     private final ChallengeService challengeService;
     private final HttpSession session;
 
-    @GetMapping("/challenges/{id}/detail")
+    @GetMapping("/api/challenges/{id}/detail")
     public ResponseEntity<?> challengeDetail(@PathVariable("id") Integer id) throws IOException {
         ChallengeResponse.DetailDTO reqDTO = challengeService.detail(id);
         return ResponseEntity.ok(new ApiUtil(reqDTO));
     }
+
+//    @GetMapping("/api/challenges")
+//    public ResponseEntity<?> challenges() {
+//        ChallengeResponse.ChallengeListDTO reqDTO = challengeService.challenges();
+//
+//        return ResponseEntity.ok(new ApiUtil(reqDTO));
+//    }
 }

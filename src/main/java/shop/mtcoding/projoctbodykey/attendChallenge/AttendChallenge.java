@@ -26,7 +26,7 @@ public class AttendChallenge {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Challenge Challenge;
+    private Challenge challenge;
 
     private Timestamp openingTime; // 챌린지 시작 시간
     private Timestamp closingTime; // 챌린지 마감 시간
@@ -38,7 +38,7 @@ public class AttendChallenge {
         this.id = id;
         this.user = user;
         this.totalWalking = totalWalking;
-        this.Challenge = challenge;
+        this.challenge = challenge;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.status = status;

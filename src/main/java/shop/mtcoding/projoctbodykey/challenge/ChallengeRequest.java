@@ -17,10 +17,11 @@ public class ChallengeRequest {
         private String badgeImg; // 뱃지 사진 경로
         private String content;  // 챌린지 내용
         private Integer coin; // 보상 코인
+        private Integer period; // 보상 코인
         private MultipartFile backgroundImgFile; // 챌린지 배경사진 파일
         private MultipartFile badgeImgFile; // 뱃지 사진 파일
 
-        public Challenge toEntity(String backgroundImg, String badgeImg, Timestamp period) {
+        public Challenge toEntity(String backgroundImg, String badgeImg) {
             return Challenge.builder()
                     .challengeName(challengeName)
                     .backgroundImg(backgroundImg)
@@ -45,10 +46,11 @@ public class ChallengeRequest {
         private String badgeImg; // 뱃지 사진 경로
         private String content;  // 챌린지 내용
         private Integer coin; // 보상 코인
+        private Integer period; // 보상 코인
         private MultipartFile backgroundImgFile; // 챌린지 배경사진 파일
         private MultipartFile badgeImgFile; // 뱃지 사진 파일
 
-        public Challenge toEntity(String backgroundImg, String badgeImg, Timestamp period) {
+        public Challenge toEntity(String backgroundImg, String badgeImg) {
             return Challenge.builder()
                     .challengeName(challengeName)
                     .backgroundImg(backgroundImg)
