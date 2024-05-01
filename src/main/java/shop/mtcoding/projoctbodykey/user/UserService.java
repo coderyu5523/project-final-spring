@@ -52,16 +52,9 @@ public class UserService {
         String encPassword = PasswordUtil.encode(reqDTO.getPassword());
 
         // 이미지를 디코딩하여 저장하고 파일명 생성
-        byte[] imageData = Base64.getDecoder().decode(reqDTO.getUserImg());
-        String imgUUID = UUID.randomUUID().toString() + ".jpg";
-        String imagePath = "./upload/" + imgUUID;
+        String imgUUID = ImageUtil.decodeReturnUUID(reqDTO.getUserImg());
 
         // 이미지 파일로 저장
-        File file = new File(imagePath);
-        OutputStream outputStream = new FileOutputStream(file);
-        outputStream.write(imageData);
-        outputStream.close();
-
         my.setName(reqDTO.getName());
         my.setPassword(encPassword);
         my.setPhone(reqDTO.getPhone());
