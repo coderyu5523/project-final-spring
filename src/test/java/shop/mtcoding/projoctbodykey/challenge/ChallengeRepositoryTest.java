@@ -24,7 +24,7 @@ public class ChallengeRepositoryTest {
     public void findByUserChallenge_test() {
         int userId = 1;
 
-        System.out.println(challengeQueryRepository.findByUserChallenge(userId));
+        System.out.println(challengeQueryRepository.ongoingChallenges(userId));
     }
 
     @Test

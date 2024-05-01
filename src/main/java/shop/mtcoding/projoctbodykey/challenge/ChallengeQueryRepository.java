@@ -16,9 +16,9 @@ import java.util.List;
 public class ChallengeQueryRepository {
     private final EntityManager em;
 
-    public Object[] findByUserChallenge(Integer userId) {
+    public Object[] ongoingChallenges(Integer userId) {
         String q = """
-            SELECT c.id, c.challenge_name, c.sub_title, a.closing_time, c.coin
+            SELECT c.id, c.challenge_name, c.sub_title, a.closing_time, c.coin, c.background_img, a.status
             FROM challenge_tb c
             LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id
             WHERE a.user_id = ? AND a.status IS NULL;
@@ -35,6 +35,19 @@ public class ChallengeQueryRepository {
             FROM challenge_tb c
             LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id AND a.user_id = ?
             WHERE a.status IS NOT NULL;
+            """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, userId);
+
+        return query.getResultList();
+    }
+
+    public List<Object[]> upcomingChallenges(Integer userId) {
+        String q = """
+            SELECT c.id, c.challenge_name, c.distance, c.badge_img, a.status
+            FROM challenge_tb c
+            LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id AND a.user_id = ?
+            WHERE a.user_id IS NULL;
             """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, userId);

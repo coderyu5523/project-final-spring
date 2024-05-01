@@ -10,6 +10,7 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeJPARepository;
+import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
 
 import java.io.*;
@@ -22,16 +23,15 @@ public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
     private final ChallengeQueryRepository challengeResponse;
 
-    public ChallengeResponse.ChallengeDTO challenges(User user) {
-//        if(user == null) {
-//            throw new Exception404("챌린지를 조회할 권한이 없어요");
-//        }
+    public ChallengeResponse.ChallengesDTO challenges(SessionUser user) throws IOException {
+        if (user == null) {
+            throw new Exception403("챌린지를 조회할 권한이 없어요");
+        }
 
-        List<Challenge> nonPartChallenges = challengeJPARepository.findAllChallengeIdNull(1);
-        List<Object[]> partChallenges = challengeResponse.partChallenges(1);
-        Object[] challenge = challengeResponse.findByUserChallenge(1);
-
-        return new ChallengeResponse.ChallengeDTO(challenge, nonPartChallenges, partChallenges);
+        List<Object[]> pastChallenges = challengeResponse.partChallenges(user.getId());
+        Object[] ongoingChallenges = challengeResponse.ongoingChallenges(user.getId());
+        List<Object[]> upcomingChallenges = challengeResponse.upcomingChallenges(user.getId());
+        return new ChallengeResponse.ChallengesDTO(ongoingChallenges, upcomingChallenges, pastChallenges);
     }
 
     public ChallengeResponse.DetailDTO detail(Integer id) throws IOException {

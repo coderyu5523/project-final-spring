@@ -11,7 +11,7 @@ import java.util.Date;
 public class JwtUtil {
     public static String create(User user){
         String jwt = JWT.create()
-                .withSubject("blog")
+                .withSubject("metacoding")
                 .withExpiresAt(new Date(System.currentTimeMillis()+ 1000*60*60))
                 .withClaim("id", user.getId())
                 .withClaim("username", user.getUsername())
@@ -20,6 +20,7 @@ public class JwtUtil {
     }
 
     public static SessionUser verify(String jwt){
+        jwt = jwt.replace("Bearer ", "");
         DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512("metacoding")).build().verify(jwt);
         int id = decodedJWT.getClaim("id").asInt();
         String username = decodedJWT.getClaim("username").asString();

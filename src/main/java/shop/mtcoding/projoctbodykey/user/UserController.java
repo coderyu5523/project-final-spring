@@ -32,6 +32,12 @@ public class UserController {
     }
 
     //todo @GetMapping("/logout") 로그아웃
+//    @PostMapping("/logout")
+//    public ResponseEntity<?> logout() {
+//        session.invalidate();
+//
+//        return ResponseEntity.ok(new ApiUtil<>(null));
+//    }
 
     //todo  메인페이지 마이페이지 주소 고민
     //todo @GetMapping("/api/users") 메인페이지
