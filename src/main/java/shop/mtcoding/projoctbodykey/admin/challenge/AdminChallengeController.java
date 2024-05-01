@@ -88,8 +88,8 @@ public class AdminChallengeController {
 
 
     @PostMapping("/admin/challenges/{id}/update")
-    public String challengeUpdate(@PathVariable Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) {
-        challengeService.adminUpdate(id, reqDTO, period);
+    public String challengeUpdate(@PathVariable Integer id, ChallengeRequest.AdminUpdateDTO reqDTO) {
+        challengeService.adminUpdate(id, reqDTO);
 
         return "redirect:/admin/challenges";
     }

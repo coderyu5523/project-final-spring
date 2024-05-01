@@ -5,15 +5,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
-import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtVO;
-import shop.mtcoding.projoctbodykey._core.utils.MyDateUtil;
+
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @RestController
 public class UserController {
     private final UserService userService;
     private final HttpSession session;
+
+    @GetMapping("/api/users/myPage")
+    public ResponseEntity<?> myPage() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.MyPageDTO respDTO = userService.myPage(user);
+
+        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody UserRequest.JoinDTO reqDTO) {
@@ -28,7 +36,7 @@ public class UserController {
         // jwt 생성
         return ResponseEntity.ok()
                 .header(JwtVO.HEADER, JwtVO.PREFIX + user.accessToken())
-                .body(new ApiUtil(user));
+                .body(new ApiUtil<>(user));
     }
 
     //todo @GetMapping("/logout") 로그아웃
@@ -39,17 +47,21 @@ public class UserController {
 //        return ResponseEntity.ok(new ApiUtil<>(null));
 //    }
 
-    //todo  메인페이지 마이페이지 주소 고민
     //todo @GetMapping("/api/users") 메인페이지
-//    @GetMapping("/api/myPage/{userId}")
-//    public ResponseEntity<?> myPage(@PathVariable Integer userId) {
-//        User user = (User) session.getAttribute("SessionUser");
-//
-//        UserResponse.MyPageDTO respDTO =  userService.myPage(userId);
-//
-//        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
-//    }
 
-    //todo @PutMapping("/api/users/{userId} 회원정보 수정
+    @GetMapping("/api/users/update-form")
+    public ResponseEntity<?> updateForm() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.UpdateFormDTO respDTO = userService.updateForm(user);
 
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @PutMapping("/api/users/update")
+    public ResponseEntity<?> update(@RequestBody UserRequest.UpdateDTO reqDTO) throws IOException {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.UpdateDTO respDTO = userService.update(reqDTO, user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
 }

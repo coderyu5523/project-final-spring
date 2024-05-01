@@ -17,6 +17,23 @@ import java.util.stream.Collectors;
 public class ChallengeResponse {
 
     @Data
+    public static class OngoingChallengeDTO {
+        private Integer id;
+        private String  challengeName;
+        private String subtitle;
+        private Integer total_walking;
+        private Integer walking;
+
+        public OngoingChallengeDTO(Object[] ongoingChallenge) {
+            this.id = (Integer) ongoingChallenge[0];
+            this.challengeName = (String) ongoingChallenge[1];
+            this.subtitle = (String) ongoingChallenge[2];
+            this.total_walking = (Integer) ongoingChallenge[3];
+            this.walking = (Integer) ongoingChallenge[4];
+        }
+    }
+
+    @Data
     public static class ChallengesDTO {
         private Integer id;
         private String challengeName; // 챌린지명
@@ -36,7 +53,7 @@ public class ChallengeResponse {
             this.closingTime = (Timestamp) ongoingChallenges[3];
             this.coin = (Integer) ongoingChallenges[4];
             try {
-                this.backImg = ImageUtil.imageBase64Encode((String) ongoingChallenges[5]);
+                this.backImg = ImageUtil.encode((String) ongoingChallenges[5]);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -58,7 +75,7 @@ public class ChallengeResponse {
                 this.challengeName = (String) upcomingChallenge[1];
                 this.distance = (String) upcomingChallenge[2];
                 try {
-                    this.badgeImg = ImageUtil.imageBase64Encode(badgeImg);
+                    this.badgeImg = ImageUtil.encode(badgeImg);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -79,7 +96,7 @@ public class ChallengeResponse {
                 this.challengeName = (String) partChallenges[1];
                 this.distance = (String) partChallenges[2];
                 try {
-                    this.badgeImg = ImageUtil.imageBase64Encode(badgeImg);
+                    this.badgeImg = ImageUtil.encode(badgeImg);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

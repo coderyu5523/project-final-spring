@@ -11,6 +11,7 @@ import shop.mtcoding.projoctbodykey.user.UserService;
 
 import java.util.List;
 
+// 처음 시작할 때 실행됨, 실행해서 더미에 있는 유저 패스워드를 암호화해서 업데이트 해줌
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -28,7 +29,7 @@ public class DataLoader implements ApplicationRunner {
         for (User user : users) {
             String originalPassword = user.getPassword(); // 더미 사용자의 비밀번호 가져오기
             String encPassword = PasswordUtil.encode(originalPassword); // 비밀번호 암호화
-            userService.saveUser(user, encPassword); // 사용자 정보 저장
+            userService.updateUserPassword(user, encPassword); // 사용자 정보 저장
         }
     }
 }

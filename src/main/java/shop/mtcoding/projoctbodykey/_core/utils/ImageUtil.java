@@ -86,8 +86,7 @@ public class ImageUtil {
      * @return Base64로 인코딩된 이미지 데이터
      * @throws IOException 이미지 파일을 읽어오는 도중 발생한 예외
      */
-    public static String imageBase64Encode(String img) throws IOException {
-        // 이미지 파일을 읽어서 byte 배열로 변환
+    public static String encode(String img) throws IOException {
         String imagePath = "./upload/" + img;
         File file = new File(imagePath);
 
@@ -103,6 +102,20 @@ public class ImageUtil {
             throw new FileNotFoundException("파일을 찾을 수 없습니다: " + imagePath);
         }
     }
+
+//    public static String decode(String img) {
+//        byte[] imageData = Base64.getDecoder().decode(img);
+//        String imagePath = "./upload/" + img;
+//        File file = new File(imagePath);
+//
+//        try {
+//            OutputStream outputStream = new FileOutputStream(file);
+//            outputStream.write(imageData);
+//            outputStream.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * 이미지 파일의 UUID를 생성하는 메서드

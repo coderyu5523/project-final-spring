@@ -1,14 +1,22 @@
 INSERT INTO user_tb(username, password, phone, name, birth, gender, height, user_img, total_coin, goal_muscle, goal_fat,
                     created_at)
-VALUES ('ssar', '1234', '010-0100-0100', '김백미', '1994-04-22', 'F', 178.5, null, 500, 35.0, 12.0, now()),
-       ('cos', '1234', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, null, 500, 25.7, 15.0, now()),
-       ('love', '1234', '010-0033-0033', '홍길동', '1997-04-02', 'M', 173.4, null, 500, 30.0, 18.0, now());
+VALUES ('ssar', '1234', '010-0100-0100', '류재성', '1994-04-22', 'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, now())
+--        ('cos', '1234', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, null, 500, 25.7, 15.0, now()),
+--        ('love', '1234', '010-0033-0033', '홍길동', '1997-04-02', 'M', 173.4, null, 500, 30.0, 18.0, now());
+;
 
 INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
-VALUES (1, 2222, 500, now());
+VALUES (1, 2222, 500, now())
+--        (2, 0, 0, now()),
+--        (3, 0, 0, now())
+;
 
 INSERT INTO bodydata_tb(user_id, weight, muscle, fat, created_at)
-VALUES (1, 75.8, 27.6, 20.1, now());
+VALUES (1, 75.8, 22.5, 20.3, '2024-04-28'),
+       (1, 75.5, 23.5, 19.3, '2024-04-29'),
+       (1, 75.1, 24.5, 18.3, '2024-04-30'),
+       (1, 74.8, 25.5, 17.3, '2024-05-01')
+;
 
 insert into challenge_tb(challenge_name, background_img, sub_title, walking, badge_img, content, coin, period, distance, created_at)
 values ('에베레스트', 'abf1c607-62c7-429d-9601-6edb1a3e4965_everest.png', '히말라야-네팔\n8848.0m(약 2.7천층 올라감)', 350000, 'abf1c607-62c7-429d-9601-6edb1a3e4965_everest.png', '세계에서 가장 높은 산을 오르세요! 해발 고도 8,848m(29029피트)에 있는 에베레스트산은 가장 상징적이고 도전적인 탐험지 중 하나로, 산봉우리의 험난한 조건과 높은 고도 뿐 아니라 험준하고 가파른 지형을 견디는 산악인들의 신체적, 정신적 한계를 시험하고 있습니다. 네팔과 티베트 사이의 국경에 자리하고 있으며 많은 현지인들에게 성스러운 문화재이자 신성한 장소입니다.', 2, 30, '8848m', now()),
@@ -38,7 +46,7 @@ values ('에베레스트', 'abf1c607-62c7-429d-9601-6edb1a3e4965_everest.png', '
        ('올림푸스', '282416ba-af4c-460c-93e1-33014e52838b_olympus.png', '올림푸스산맥-그리스 에비아섬\n2,917.0m(약 885층 올라감)', 190000, '282416ba-af4c-460c-93e1-33014e52838b_olympus.png', '올림푸스산은 그리스 북부, 테살로니키라는 도시 근처에 있습니다. 이는 그리스에서 가장 높은 산으로, 그중 가장 큰 산봉우리인 미티카스는 해발 고도 2,917미터(9,570피트)에 달할 뿐만 아니라, 고대 그리스 종교와 신화에서 가장 중요한 산봉우리로 여겨지기도 합니다. 이는 제우스, 헤라, 아폴로, 아테나 등 12명의 올림피아 신들의 고향으로 믿어졌습니다. 이 클라이밍을 하다 보면 주변 산봉우리와 에게해의 절경이 펼쳐지며, 정상에서 작은 예배당을 발견하게 됩니다.', 2, 30, '2917m', now()),
        ('투브칼 서킷', 'e1288507-5bc8-4821-b6f7-4d23d75d7610_toubkal.png', '아틀라스산맥-모로코\n60.0km(약 8.4만개의 계단)', 110000, 'e1288507-5bc8-4821-b6f7-4d23d75d7610_toubkal.png', '모로코의 아틀라스 산맥에서 북아프리카 최고봉인 투브칼산을 하이킹하세요. 투브칼 서킷 탐험은 붐비는 시장이 서는 소도시인 임릴(Inlil)에서 시작됩니다. 바위투성이 지형과 무성한 초목을 거치고, 정상이 가까워지면서 맨 바위와 눈이 보이며 트레일이 마무리됩니다. 이 루트는 길을 따라 마을들을 지나기 때문에 하이커들이 베르베르족의 일상생활과 문화를 경험할 수 있습니다.', 2, 30, '60K', now()),
        ('파타고니아 서킷', '51676235-202e-4f61-b9ce-f4e58ac5c229_patagonia.png', '안데스-파타고니아, 아르헨티나, 칠레\n120.0km(약 17만개의 계단)', 140000, '51676235-202e-4f61-b9ce-f4e58ac5c229_patagonia.png', '남미의 야생 자연, 파타고니아 서킷을 탐험하세요.', 2, 30, '120K', now()),
-       ('그로스글로크너', 'a79e04fc-31b8-4c5b-9729-fa1192dc7c76_grossglock.png', '알프스-오스트리아\n3,798.0m(약 1.2천층 올라감)', 140000, 'c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png', '알프스 오스트리아에서 그로스글로크너를 탐험하세요.', 2, 30, '3798m', now());
+       ('그로스글로크너', 'a79e04fc-31b8-4c5b-9729-fa1192dc7c76_grossglock.png', '알프스-오스트리아\n3,798.0m(약 1.2천층 올라감)', 100000, 'c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png', '알프스 오스트리아에서 그로스글로크너를 탐험하세요.', 2, 30, '3798m', now());
 
 insert into attend_challenge_tb(user_id, total_walking, challenge_id, opening_time, closing_time, status, created_at)
 values (1, 132, 1, '2024-05-22', '2024-06-21', false, now()),
@@ -56,19 +64,55 @@ values (1, 132, 1, '2024-05-22', '2024-06-21', false, now()),
        (1, 2500, 25, '2024-03-23', '2024-04-22', true, now()),
        (1, 2500, 26, '2024-03-23', '2024-04-22', true, now()),
        (1, 2500, 27, '2024-03-23', '2024-04-22', false, now()),
-       (1, 2500, 28, '2024-03-23', '2024-04-22', null, now())
+       (1, 50000, 28, '2024-03-23', '2024-04-22', null, now())
 ;
 
 INSERT INTO food_tb(name, carbo, protein, fat, kcal, gram, created_at)
-VALUES ('바나나', 22.84, 1.09, 0.33, 88,100,now()),
-       ('땅콩', 22.84, 1.09, 0.33, 88,100,now()),
-       ('사과', 22.84, 1.09, 0.33, 88,100,now()),
-       ('닭가슴살', 22.84, 1.09, 0.33, 88,100,now());
-;
+VALUES
+    ('바나나', 22.84, 1.09, 0.33, 88, 100, now()),
+    ('땅콩', 22.84, 1.09, 0.33, 88, 100, now()),
+    ('사과', 22.84, 1.09, 0.33, 88, 100, now()),
+    ('닭가슴살', 22.84, 1.09, 0.33, 88, 100, now()),
+    ('달걀', 1.1, 12.6, 10.6, 155, 100, now()),
+    ('토마토', 3.9, 0.9, 0.2, 18, 100, now()),
+    ('브로콜리', 6, 2.8, 0.4, 34, 100, now()),
+    ('양배추', 5.8, 1.3, 0.1, 25, 100, now()),
+    ('케일', 8.75, 4.28, 0.93, 50, 100, now()),
+    ('당근', 9.6, 0.6, 0.2, 41, 100, now()),
+    ('삶은 닭가슴살', 0, 29, 1.4, 135, 100, now()),
+    ('홍삼', 72.58, 3.03, 0.55, 298, 100, now()),
+    ('퀴노아', 64.0, 14.0, 6.0, 368, 100, now()),
+    ('연어', 0.0, 20.0, 13.0, 177, 100, now()),
+    ('아보카도', 8.53, 2.0, 14.66, 160, 100, now()),
+    ('파슬리', 6.33, 3.3, 0.79, 36, 100, now()),
+    ('피스타치오', 27.17, 20.16, 45.97, 562, 100, now()),
+    ('양파', 9.34, 1.1, 0.1, 40, 100, now()),
+    ('아몬드', 21.15, 21.15, 49.42, 579, 100, now()),
+    ('프로틴 바', 20.0, 15.0, 10.0, 250, 100, now()),
+    ('계란후라이', 1.0, 6.0, 5.0, 80, 100, now()),
+    ('크림치즈', 4.0, 5.0, 10.0, 120, 100, now()),
+    ('피클', 10.0, 0.5, 0.1, 20, 100, now()),
+    ('프로틴 쉐이크', 10.0, 30.0, 3.0, 200, 100, now()),
+    ('야채 스프', 7.0, 2.0, 1.0, 50, 100, now()),
+    ('닭가슴살 샐러드', 5.0, 20.0, 3.0, 150, 100, now()),
+    ('허니', 82.0, 0.3, 0.0, 304, 100, now()),
+    ('토마토 스프', 8.2, 2.5, 1.8, 60, 100, now()),
+    ('그린 스무디', 25.6, 5.2, 2.4, 120, 100, now()),
+    ('양배추 김치', 4.3, 1.9, 0.5, 30, 100, now()),
+    ('요거트 파프리카', 10.8, 4.2, 1.5, 90, 100, now()),
+    ('아몬드 버터', 5.6, 21.0, 49.0, 590, 100, now());
 
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사1', now(), now(),now());
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사2', now(), now(),now());
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사3', now(), now(),now());
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사4', now(), now(),now());
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사5', now(), now(),now());
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사6', now(), now(),now());
+
+INSERT INTO survey_tb(title, created_at, opening_time, closing_time)
+VALUES ('설문조사1', now(), now(),now()),
+       ('설문조사2', now(), now(),now()),
+       ('설문조사3', now(), now(),now()),
+       ('설문조사4', now(), now(),now()),
+       ('설문조사5', now(), now(),now()),
+       ('설문조사6', now(), now(),now())
+;
+-- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사2', now(), now(),now());
+-- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사3', now(), now(),now());
+-- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사4', now(), now(),now());
+-- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사5', now(), now(),now());
+-- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사6', now(), now(),now());

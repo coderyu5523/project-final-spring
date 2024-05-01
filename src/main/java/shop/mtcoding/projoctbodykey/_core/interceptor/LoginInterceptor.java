@@ -14,7 +14,7 @@ import shop.mtcoding.projoctbodykey.user.SessionUser;
 
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println("preHandle............");
 
         // Bearer jwt 토큰 으로 들어오는 것이 프로토콜이다.

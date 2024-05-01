@@ -17,8 +17,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/login", "/join");
-//                .addPathPatterns("/admin/**")
-//                .excludePathPatterns("/admin", "/admin/login");
     }
 
     @Override

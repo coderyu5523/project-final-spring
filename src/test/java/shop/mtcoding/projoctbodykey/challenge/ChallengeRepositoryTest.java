@@ -24,7 +24,8 @@ public class ChallengeRepositoryTest {
     public void findByUserChallenge_test() {
         int userId = 1;
 
-        System.out.println(challengeQueryRepository.ongoingChallenges(userId));
+        Object[] a = challengeQueryRepository.ongoingChallenges(userId);
+        System.out.println(a[0]); // 28
     }
 
     @Test
@@ -32,5 +33,13 @@ public class ChallengeRepositoryTest {
         int userId = 1;
 
         System.out.println(challengeQueryRepository.partChallenges(userId));
+    }
+
+    @Test
+    public void ongoingChallengesWalking_test() {
+        int userId = 1;
+
+        Object[] a = challengeQueryRepository.ongoingChallengesWalking(userId);
+        System.out.println(a[0]); // 28
     }
 }
