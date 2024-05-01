@@ -20,14 +20,21 @@ public class ChallengeController {
 
     @GetMapping("/api/challenges/{id}")
     public ResponseEntity<?> challengeDetail(@PathVariable("id") Integer id) throws IOException {
-        ChallengeResponse.DetailDTO reqDTO = challengeService.detail(id);
-        return ResponseEntity.ok(new ApiUtil(reqDTO));
+        ChallengeResponse.DetailDTO respDTO = challengeService.detail(id);
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/api/challenges")
     public ResponseEntity<?> challenges() throws IOException {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        ChallengeResponse.ChallengesDTO reqDTO = challengeService.challenges(user);
-        return ResponseEntity.ok(new ApiUtil(reqDTO));
+        ChallengeResponse.ChallengesDTO respDTO = challengeService.challenges(user);
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @GetMapping("/api/challenges/ongoingChallenge")
+    public ResponseEntity<?> ongoingChallenge() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        ChallengeResponse.OngoingChallengeDTO respDTO = challengeService.ongoingChallenge(user);
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 }

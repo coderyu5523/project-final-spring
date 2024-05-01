@@ -29,18 +29,46 @@ public class ChallengeQueryRepository {
         return (Object[]) query.getSingleResult();
     }
 
+    public Object[] ongoingChallengesWalking(Integer userId) {
+        String q = """
+            SELECT c.id, c.challenge_name, c.sub_title, a.total_walking, c.walking
+            FROM challenge_tb c
+            LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id
+            WHERE a.user_id = ? AND a.status IS NULL;
+            """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, userId);
+
+        return (Object[]) query.getSingleResult();
+    }
+
     public List<Object[]> partChallenges(Integer userId) {
         String q = """
-            SELECT c.id, c.challenge_name, c.distance, c.badge_img,  a.status
-            FROM challenge_tb c
-            LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id AND a.user_id = ?
-            WHERE a.status IS NOT NULL;
+                SELECT c.id, c.challenge_name, c.distance, c.badge_img, a.status
+                FROM challenge_tb c
+                LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id AND a.user_id = ?
+                WHERE a.status IS NOT NULL
+                ORDER BY CASE WHEN a.status = true THEN 0 ELSE 1 END, a.status DESC;
             """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, userId);
 
         return query.getResultList();
     }
+
+    public List<Object[]> conqueredChallenge(Integer userId) {
+        String q = """
+            SELECT c.id, c.challenge_name, c.distance, a.status, c.badge_img
+            FROM challenge_tb c
+            LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id AND a.user_id = ?
+            WHERE a.status IS true;
+            """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, userId);
+
+        return query.getResultList();
+    }
+
 
     public List<Object[]> upcomingChallenges(Integer userId) {
         String q = """

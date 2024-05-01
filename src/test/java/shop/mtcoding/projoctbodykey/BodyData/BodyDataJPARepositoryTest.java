@@ -1,4 +1,4 @@
-package shop.mtcoding.projoctbodykey.Body;
+package shop.mtcoding.projoctbodykey.BodyData;
 
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import shop.mtcoding.projoctbodykey.bodydata.BodydataJPARepository;
 import java.util.List;
 
 @DataJpaTest
-public class BodydataJPARepositoryTest {
+public class BodyDataJPARepositoryTest {
     @Autowired
     private BodydataJPARepository bodydataJPARepository;
     @Autowired
@@ -30,5 +30,12 @@ public class BodydataJPARepositoryTest {
         // eye
         System.out.println("bodys = " + bodydata);
         // then
+    }
+
+    @Test
+    public void findByUserOrderDesc_test() {
+        int userId = 1;
+        Bodydata bodydata = bodydataJPARepository.findByUserOrderDesc(userId).orElseThrow();
+        System.out.println(bodydata);
     }
 }

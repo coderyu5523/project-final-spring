@@ -34,11 +34,21 @@ public class ChallengeService {
         return new ChallengeResponse.ChallengesDTO(ongoingChallenges, upcomingChallenges, pastChallenges);
     }
 
+    public ChallengeResponse.OngoingChallengeDTO ongoingChallenge(SessionUser user) {
+        if (user == null) {
+            throw new Exception403("챌린지를 조회할 권한이 없어요");
+        }
+
+        Object[] ongoingChallenges = challengeResponse.ongoingChallengesWalking(user.getId());
+
+        return new ChallengeResponse.OngoingChallengeDTO(ongoingChallenges);
+    }
+
     public ChallengeResponse.DetailDTO detail(Integer id) throws IOException {
         Challenge challenge = challengeJPARepository.findById(id).orElseThrow(() ->
                 new Exception404("해당 챌린지를 찾을 수 없습니다."));
 
-        String backgroundImg = ImageUtil.imageBase64Encode(challenge.getBackgroundImg());
+        String backgroundImg = ImageUtil.encode(challenge.getBackgroundImg());
 
         return new ChallengeResponse.DetailDTO(backgroundImg, challenge);
     }
@@ -107,7 +117,7 @@ public class ChallengeService {
     }
 
     @Transactional
-    public void adminUpdate(Integer id, ChallengeRequest.AdminUpdateDTO reqDTO, String period) {
+    public void adminUpdate(Integer id, ChallengeRequest.AdminUpdateDTO reqDTO) {
         try {
             Challenge challenge = challengeJPARepository.findById(id)
                     .orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
