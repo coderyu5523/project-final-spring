@@ -10,7 +10,6 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception401;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception500;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
-import shop.mtcoding.projoctbodykey.user.User;
 
 
 public class LoginInterceptor implements HandlerInterceptor {

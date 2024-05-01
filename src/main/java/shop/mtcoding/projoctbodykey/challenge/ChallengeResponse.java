@@ -6,62 +6,83 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
+import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ChallengeResponse {
 
     @Data
-    public static class ChallengeDTO {
+    public static class ChallengesDTO {
         private Integer id;
         private String challengeName; // 챌린지명
         private String subtitle;
         private Timestamp closingTime;
         private Integer coin;
-        private List<NonPartChallengesDTO> nonPartChallenges;
-        private List<PartChallengesDTO> partChallenges;
+        private String backImg;
+        private Boolean status;
+        private List<UpcomingChallengesDTO> upcomingChallenges;
+        private List<PastChallengesDTO> partChallenges;
 
 
-        public ChallengeDTO(Object[] challenge, List<Challenge> nonPartChallenges, List<Object[]> partChallenges) {
-            this.id = (Integer) challenge[0];
-            this.challengeName = (String) challenge[1];
-            this.subtitle = (String) challenge[2];
-            this.closingTime = (Timestamp) challenge[3];
-            this.coin = (Integer) challenge[4];
-            this.nonPartChallenges = nonPartChallenges.stream().map(NonPartChallengesDTO::new).toList();
-            this.partChallenges = partChallenges.stream().map(objects -> new PartChallengesDTO(objects)).toList();
+        public ChallengesDTO(Object[] ongoingChallenges, List<Object[]> upcomingChallenges, List<Object[]> partChallenges) {
+            this.id = (Integer) ongoingChallenges[0];
+            this.challengeName = (String) ongoingChallenges[1];
+            this.subtitle = (String) ongoingChallenges[2];
+            this.closingTime = (Timestamp) ongoingChallenges[3];
+            this.coin = (Integer) ongoingChallenges[4];
+            try {
+                this.backImg = ImageUtil.imageBase64Encode((String) ongoingChallenges[5]);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            this.status = (Boolean) ongoingChallenges[6];
+            this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
+            this.partChallenges = partChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
         }
 
         @Data
-        public static class NonPartChallengesDTO {
+        public static class UpcomingChallengesDTO {
             private Integer id;
             private String challengeName; // 챌린지명
             private String distance; // 거리
-            private String badgeImg; // 뱃지 사진 경로
+            private String badgeImg;
+            private Boolean status;
 
-            public NonPartChallengesDTO(Challenge challenge) {
-                this.id = challenge.getId();
-                this.challengeName = challenge.getChallengeName();
-                this.distance = challenge.getDistance();
-                this.badgeImg = challenge.getBadgeImg();
+            public UpcomingChallengesDTO(Object[] upcomingChallenge, String badgeImg) {
+                this.id = (Integer) upcomingChallenge[0];
+                this.challengeName = (String) upcomingChallenge[1];
+                this.distance = (String) upcomingChallenge[2];
+                try {
+                    this.badgeImg = ImageUtil.imageBase64Encode(badgeImg);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                this.status = (Boolean) upcomingChallenge[4];
             }
         }
 
         @Data
-        public static class PartChallengesDTO {
+        public static class PastChallengesDTO {
             private Integer id;
             private String challengeName; // 챌린지명
             private String distance; // 거리
             private String badgeImg; // 뱃지 사진 경로
             private Boolean status;
 
-            public PartChallengesDTO(Object[] partChallenges) {
+            public PastChallengesDTO(Object[] partChallenges, String badgeImg) {
                 this.id = (Integer) partChallenges[0];
                 this.challengeName = (String) partChallenges[1];
                 this.distance = (String) partChallenges[2];
-                this.badgeImg = (String) partChallenges[3];
+                try {
+                    this.badgeImg = ImageUtil.imageBase64Encode(badgeImg);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 this.status = (Boolean) partChallenges[4];
             }
         }

@@ -31,7 +31,7 @@ public interface ChallengeJPARepository extends JpaRepository<Challenge, Integer
     @Query("select a.challenge from AttendChallenge a where a.user.id = :userId and a.status is null")
     Optional<Challenge> findByUserChallenge(@Param("userId") Integer userId);
 
-    @Query("SELECT c, a.status " +
+    @Query("SELECT c " +
             "FROM Challenge c " +
             "LEFT JOIN AttendChallenge a ON c.id = a.challenge.id AND a.user.id = :userId " +
             "WHERE a.status is Not null")

@@ -15,8 +15,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         // 로그인 인증
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("")
-                .excludePathPatterns("");
+                .addPathPatterns("/api/**")
+                .excludePathPatterns("/login", "/join");
 //                .addPathPatterns("/admin/**")
 //                .excludePathPatterns("/admin", "/admin/login");
     }

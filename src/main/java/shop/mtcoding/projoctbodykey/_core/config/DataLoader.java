@@ -31,10 +31,4 @@ public class DataLoader implements ApplicationRunner {
             userService.saveUser(user, encPassword); // 사용자 정보 저장
         }
     }
-
-    private String encryptPassword(String password) {
-        // 비밀번호를 암호화하는 로직을 구현합니다. 예를 들어 BCryptPasswordEncoder를 사용할 수 있습니다.
-        // 여기서는 가상의 암호화 메서드로 가정합니다.
-        return "encrypted_" + password;
-    }
 }
