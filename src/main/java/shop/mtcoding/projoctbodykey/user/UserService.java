@@ -198,7 +198,7 @@ public class UserService {
         User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요."));
 
-        List<Bodydata> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
+        List<Bodydata> bodydataList = bodydataJPARepository.findByUserAndBodyData(sessionUser.getId());
 
         return new UserResponse.MyChangeFatDTO(user, bodydataList);
     }

@@ -23,16 +23,16 @@ public class UserController {
         return  ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
-    @GetMapping("/api/users/my-muscle-fat")
-    public ResponseEntity<?> myMuscleFat() {
+    @GetMapping("/api/users/my-change-muscle")
+    public ResponseEntity<?> myChangeMuscle() {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyChangeMuscleDTO respDTO = userService.myChangeMuscle(user);
 
         return  ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
-    @GetMapping("/api/users/my-weight-fat")
-    public ResponseEntity<?> myWeightFat() {
+    @GetMapping("/api/users/my-change-weight")
+    public ResponseEntity<?> myChangeWeight() {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyChangeWeightDTO respDTO = userService.myChangeWeight(user);
 

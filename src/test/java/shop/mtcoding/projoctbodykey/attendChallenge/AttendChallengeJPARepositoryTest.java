@@ -35,4 +35,16 @@ public class AttendChallengeJPARepositoryTest {
         // eye
         System.out.println(attendChallenge.get(1).getStatus());
     }
+
+    @Test
+    public void partChallenges_test(){
+        // given
+        Integer userId = 1;
+
+        // when
+        List<AttendChallenge> attendChallenge = attendChallengeJPARepository.partChallenges(userId);
+
+        // eye
+        System.out.println(attendChallenge.toString());
+    }
 }

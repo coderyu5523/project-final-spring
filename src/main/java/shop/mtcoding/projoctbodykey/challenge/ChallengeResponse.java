@@ -45,7 +45,6 @@ public class ChallengeResponse {
         private List<UpcomingChallengesDTO> upcomingChallenges;
         private List<PastChallengesDTO> partChallenges;
 
-
         public ChallengesDTO(Object[] ongoingChallenges, List<Object[]> upcomingChallenges, List<Object[]> partChallenges) {
             this.id = (Integer) ongoingChallenges[0];
             this.challengeName = (String) ongoingChallenges[1];
