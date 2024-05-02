@@ -35,7 +35,7 @@ public class BodyDataJPARepositoryTest {
     @Test
     public void findByUserOrderDesc_test() {
         int userId = 1;
-        Bodydata bodydata = bodydataJPARepository.findByUserOrderDesc(userId).orElseThrow();
+        Bodydata bodydata = bodydataJPARepository.findByUserIdOrderDesc(userId).orElseThrow();
         System.out.println(bodydata);
     }
 }

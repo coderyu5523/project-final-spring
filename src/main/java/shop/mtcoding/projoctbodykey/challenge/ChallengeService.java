@@ -23,14 +23,14 @@ public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
     private final ChallengeQueryRepository challengeResponse;
 
-    public ChallengeResponse.ChallengesDTO challenges(SessionUser user) throws IOException {
-        if (user == null) {
+    public ChallengeResponse.ChallengesDTO challenges(SessionUser sessionUser) throws IOException {
+        if (sessionUser == null) {
             throw new Exception403("챌린지를 조회할 권한이 없어요");
         }
 
-        List<Object[]> pastChallenges = challengeResponse.partChallenges(user.getId());
-        Object[] ongoingChallenges = challengeResponse.ongoingChallenges(user.getId());
-        List<Object[]> upcomingChallenges = challengeResponse.upcomingChallenges(user.getId());
+        List<Object[]> pastChallenges = challengeResponse.partChallenges(sessionUser.getId());
+        Object[] ongoingChallenges = challengeResponse.ongoingChallenges(sessionUser.getId());
+        List<Object[]> upcomingChallenges = challengeResponse.upcomingChallenges(sessionUser.getId());
         return new ChallengeResponse.ChallengesDTO(ongoingChallenges, upcomingChallenges, pastChallenges);
     }
 

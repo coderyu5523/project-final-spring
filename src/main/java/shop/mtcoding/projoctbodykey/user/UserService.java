@@ -40,12 +40,12 @@ public class UserService {
     private final ChallengeQueryRepository challengeQueryRepository;
 
     @Transactional
-    public UserResponse.UpdateDTO update(UserRequest.UpdateDTO reqDTO, SessionUser user) throws IOException {
-        if(user == null) {
+    public UserResponse.UpdateDTO update(UserRequest.UpdateDTO reqDTO, SessionUser SessionUser) throws IOException {
+        if(SessionUser == null) {
             throw new Exception403("로그인 하셔야 해요.");
         }
 
-        User my = userJPARepository.findById(user.getId()).orElseThrow(() ->
+        User user = userJPARepository.findById(SessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요"));
 
         // 유저패스워드 암호화
@@ -55,13 +55,13 @@ public class UserService {
         String imgUUID = ImageUtil.decodeReturnUUID(reqDTO.getUserImg());
 
         // 이미지 파일로 저장
-        my.setName(reqDTO.getName());
-        my.setPassword(encPassword);
-        my.setPhone(reqDTO.getPhone());
-        my.setHeight(reqDTO.getHeight());
-        my.setUserImg(imgUUID);
+        user.setName(reqDTO.getName());
+        user.setPassword(encPassword);
+        user.setPhone(reqDTO.getPhone());
+        user.setHeight(reqDTO.getHeight());
+        user.setUserImg(imgUUID);
 
-        return new UserResponse.UpdateDTO(my, reqDTO.getUserImg());
+        return new UserResponse.UpdateDTO(user, reqDTO.getUserImg());
     }
 
     @Transactional
@@ -103,32 +103,47 @@ public class UserService {
         return new UserResponse.LoginDTO(jwt, userPS);
     }
 
-    public UserResponse.MyPageDTO myPage(SessionUser user) {
-        if(user == null) {
+    public UserResponse.MyPageDTO myPage(SessionUser sessionUser) {
+        if(sessionUser == null) {
             throw new Exception403("로그인 하셔야 해요.");
         }
 
-        User my = userJPARepository.findById(user.getId()).orElseThrow(() ->
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요"));
 
-        Bodydata bodydata = bodydataJPARepository.findByUserOrderDesc(user.getId()).orElseThrow(() ->
+        Bodydata bodydata = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요."));
 
-        List<Object[]> conqueredChallenge = challengeQueryRepository.conqueredChallenge(user.getId());
+        List<Object[]> conqueredChallenge = challengeQueryRepository.conqueredChallenge(sessionUser.getId());
 
-        return new UserResponse.MyPageDTO(my, bodydata, conqueredChallenge);
+        return new UserResponse.MyPageDTO(user, bodydata, conqueredChallenge);
     }
 
-    public UserResponse.UpdateFormDTO updateForm(SessionUser user) {
-        if(user == null) {
+    public UserResponse.UpdateFormDTO updateForm(SessionUser sessionUser) {
+        if(sessionUser == null) {
             throw new Exception403("로그인 하셔야 해요.");
         }
 
-        User my = userJPARepository.findById(user.getId()).orElseThrow(() ->
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요"));
 
-        return new UserResponse.UpdateFormDTO(my);
+        return new UserResponse.UpdateFormDTO(user);
     }
 
 
+    public UserResponse.MainPageDTO mainPage(SessionUser sessionUser) {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요."));
+
+        Bodydata bodydata = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요."));
+
+        List<Bodydata> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
+
+        return new UserResponse.MainPageDTO(user, bodydata, bodydataList);
+    }
 }
