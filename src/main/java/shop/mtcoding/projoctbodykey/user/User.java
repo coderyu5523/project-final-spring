@@ -25,12 +25,14 @@ public class User {
     private String name; // 이름
     private Timestamp birth; //생년월일
     private Character gender; //성별 M,F
-    private double height; // 키
+    private Double height; // 키
 //    private double weight ;//몸무게
     private String userImg; // 사진파일경로
     private Integer totalCoin; // 보상 받은 코인 합산
-    private double goalMuscle;
-    private double goalFat;
+    private Double goalMuscle;
+    private Double goalFat;
+    private Double goalWeight;
+
     @CreationTimestamp
     private Timestamp createdAt;
 

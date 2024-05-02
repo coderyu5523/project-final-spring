@@ -1,6 +1,7 @@
 package shop.mtcoding.projoctbodykey.user;
 
 import lombok.Data;
+
 import java.sql.Timestamp;
 
 public class UserRequest {
@@ -24,7 +25,7 @@ public class UserRequest {
         private String phone;
         private double height;
 
-        public User toEntity (String encPassword) {
+        public User toEntity(String encPassword) {
             return User.builder()
                     .name(name)
                     .username(username)
@@ -38,7 +39,7 @@ public class UserRequest {
     }
 
     @Data
-    public static class LoginDTO{
+    public static class LoginDTO {
         private String username;
         private String password;
 
@@ -46,5 +47,20 @@ public class UserRequest {
             this.username = username;
             this.password = password;
         }
+    }
+
+    @Data
+    public static class GoalFatUpdateDTO {
+        private Double goalFat;
+    }
+
+    @Data
+    public static class GoalMuscleUpdateDTO {
+        private Double goalMuscle;
+    }
+
+    @Data
+    public static class GoalWeightUpdateDTO {
+        private Double goalWeight;
     }
 }

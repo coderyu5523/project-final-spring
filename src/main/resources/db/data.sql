@@ -1,6 +1,6 @@
-INSERT INTO user_tb(username, password, phone, name, birth, gender, height, user_img, total_coin, goal_muscle, goal_fat, created_at)
-VALUES ('ssar', '1234', '010-0100-0100', '류재성', '1994-04-22', 'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, now()),
-       ('cos', '1234', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, null, 500, 25.7, 15.0, now())
+INSERT INTO user_tb(username, password, phone, name, birth, gender, height, user_img, total_coin, goal_muscle, goal_fat, goal_weight, created_at)
+VALUES ('ssar', '1234', '010-0100-0100', '류재성', '1994-04-22', 'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, 70.0, now()),
+       ('cos', '1234', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, null, 500, 25.7, 15.0, 70.0, now())
 --        ('love', '1234', '010-0033-0033', '홍길동', '1997-04-02', 'M', 173.4, null, 500, 30.0, 18.0, now());
 ;
 
