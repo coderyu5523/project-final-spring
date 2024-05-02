@@ -1,8 +1,11 @@
 package shop.mtcoding.projoctbodykey.survey;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest;
+import shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyResponse;
 import shop.mtcoding.projoctbodykey.choiceanswer.ChoiceAnswerJPARepository;
 import shop.mtcoding.projoctbodykey.food.Food;
 import shop.mtcoding.projoctbodykey.food.FoodResponse;
@@ -14,6 +17,7 @@ import shop.mtcoding.projoctbodykey.surveyquestion.SurveyQuestionJPARepository;
 import shop.mtcoding.projoctbodykey.surveyquestion.SurveyQuestionRequest;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -49,5 +53,23 @@ public class SurveyService {
     public List<SurveyResponse.SurveysDTO> findAll() {
         List<Survey> surveys = surveyJPARepository.findAll();
         return surveys.stream().map(SurveyResponse.SurveysDTO::new).toList();
+    }
+
+    public AdminSurveyResponse.DetailDTO surveyDetail(int id) {
+        Survey survey=surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
+        List<SurveyQuestion> surveyQuestion=surveyQuestionJPARepository.findBySurveyId(survey.getId());
+        
+        List<AdminSurveyResponse.DetailDTO.questionElements> questionElements = new ArrayList<>();
+        for (SurveyQuestion question:surveyQuestion){
+            List<QuestionChoice> questionChoices=questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
+
+            AdminSurveyResponse.DetailDTO.questionElements questionElement = new AdminSurveyResponse.DetailDTO.questionElements(question.getQuestionItem(), questionChoices.stream().map(questionChoice -> questionChoice.getChoiceItem()).toList());
+
+            questionElements.add(questionElement);
+        }
+
+        AdminSurveyResponse.DetailDTO detailDTO = new AdminSurveyResponse.DetailDTO(survey.getTitle(), questionElements);
+
+        return detailDTO;
     }
 }

@@ -49,10 +49,10 @@ public class AdminSurveyController {
 
     //설문조사 디테일
     @GetMapping("/admin/surveys/{id}")
-    public String surveyDetail(HttpServletRequest request) {
-//        List<FoodResponse.FoodsDTO> respDTO = surveyService.findAll();
-//        request.setAttribute("foods", respDTO);
-        return "surveys";
+    public String surveyDetail(@PathVariable int id, HttpServletRequest request) {
+        AdminSurveyResponse.DetailDTO respDTO=surveyService.surveyDetail(id);
+        request.setAttribute("survey",respDTO);
+        return "survey/detail-form";
     }
 
     //설문조사 리스트
