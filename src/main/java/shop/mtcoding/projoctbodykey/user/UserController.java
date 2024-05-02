@@ -47,7 +47,13 @@ public class UserController {
 //        return ResponseEntity.ok(new ApiUtil<>(null));
 //    }
 
-    //todo @GetMapping("/api/users") 메인페이지
+    @GetMapping("/api/users")
+    public ResponseEntity<?> mainPage() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.MainPageDTO respDTO = userService.mainPage(user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
 
     @GetMapping("/api/users/update-form")
     public ResponseEntity<?> updateForm() {

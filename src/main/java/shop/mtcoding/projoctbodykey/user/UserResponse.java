@@ -117,4 +117,46 @@ public class UserResponse {
             this.userImg = userImg;
         }
     }
+
+    @Data
+    public static class MainPageDTO {
+        private Integer id;
+        private String name;
+        private Double goalFat; // 사용자의 목표 지방량
+        private Double goalMuscle; // 사용자의 목표 근육량
+
+        // 가장 최근 지방량, 근육량, 체중
+        private Double fat;
+        private Double muscle;
+        private Double weight;
+        private List<BodyDataDTO> bodyData;
+
+        public MainPageDTO(User user, Bodydata bodyData, List<Bodydata> bodyDataList) {
+            this.id = user.getId();
+            this.name = user.getName();
+            this.goalFat = user.getGoalFat();
+            this.goalMuscle = user.getGoalMuscle();
+            this.fat = bodyData.getFat();
+            this.muscle = bodyData.getMuscle();
+            this.weight = bodyData.getWeight();
+            this.bodyData = bodyDataList.stream().map(BodyDataDTO::new).toList();
+        }
+
+        @Data
+        public static class BodyDataDTO {
+            private Integer id;
+            private Double fat;
+            private Double muscle;
+            private Double weight;
+            private Timestamp createdAt;
+
+            public BodyDataDTO(Bodydata bodyData) {
+                this.id = bodyData.getId();
+                this.fat = bodyData.getFat();
+                this.muscle = bodyData.getMuscle();
+                this.weight = bodyData.getWeight();
+                this.createdAt = bodyData.getCreatedAt();
+            }
+        }
+    }
 }
