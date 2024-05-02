@@ -1,0 +1,39 @@
+{{> layout/header}}
+<div class="container d-flex">
+    <div class="justify-content-center mx-2 pb-4 w-100">
+        <div class="border border-tertiary p-5">
+            <h1 class="d-inline-flex">설문지 등록하기</h1>
+            <hr>
+            <form id="save-form">
+                <label for="question"><b>설문지 제목 입력하기</b></label>
+                <input class="form-control Survey" type="text" value="설문지 제목" required>
+                <div class="px-5 mt-5">
+                    div class="question-element-item">
+                    <div class="container d-flex mb-3">
+                        <div class="justify-content-center mx-2 pb-4 w-100">
+                            <div class="border border-tertiary p-5">
+                                <label for="question"><b>질문</b></label>
+                                <input class="form-control question" type="text" value="질문" required>
+                                <hr>
+                                <div class="choice-element">
+                                    <label for="choice"><b>선택문항</b></label>
+                                    <button type="button" class="btn btn-primary" onclick="deleteChoiceElement(this)">
+                                        선택항목 삭제하기
+                                    </button>
+                                    <input class="form-control choice" type="text" value="선택항목" required>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" onclick="saveElement()" class="btn btn-primary form-control"
+                        style="width: 50%">등록하기
+                </button>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+

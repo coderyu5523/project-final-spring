@@ -5,6 +5,9 @@
             <h1 class="d-inline-flex">설문지 등록하기</h1>
             <hr>
             <form id="save-form">
+                <label for="question"><b>설문지 제목 입력하기</b></label>
+                <input class="form-control Survey" type="text" value="설문지 제목" required>
+
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn btn-primary" style="width: 50%"
                             onclick="addQuestionElement()">질문 추가하기
@@ -26,6 +29,7 @@
 
 <script>
     function saveElement() {
+        let surveyName = $(".Survey:first").val();
         let questionElements = [];
         let items = $("#element-input-box .question-element-item");
         items.each(function (index, element) {
@@ -43,12 +47,17 @@
             questionElements.push(questionElement);
         });
 
-        console.log(questionElements);
+        let requestData = {
+            surveyName: surveyName,
+            questionElements: questionElements
+        }
+
+        console.log(requestData);
 
         $.ajax({
             url: `/admin/surveys/save`,
             method: "post",
-            data: JSON.stringify(questionElements),
+            data: JSON.stringify(requestData),
             contentType: "application/json; charset=utf-8"
         }).done((res) => {
             location.href = `/admin/surveys`;
