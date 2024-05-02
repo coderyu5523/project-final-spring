@@ -40,21 +40,63 @@ public class UserService {
     private final ChallengeQueryRepository challengeQueryRepository;
 
     @Transactional
-    public UserResponse.UpdateDTO update(UserRequest.UpdateDTO reqDTO, SessionUser SessionUser) throws IOException {
-        if(SessionUser == null) {
+    public UserResponse.GoalFatUpdateDTO goalFatUpdate(UserRequest.GoalFatUpdateDTO reqDTO, SessionUser sessionUser) {
+        if(sessionUser == null) {
             throw new Exception403("로그인 하셔야 해요.");
         }
 
-        User user = userJPARepository.findById(SessionUser.getId()).orElseThrow(() ->
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요"));
+
+        user.setGoalFat(reqDTO.getGoalFat());
+
+        return new UserResponse.GoalFatUpdateDTO(user);
+    }
+
+    @Transactional
+    public UserResponse.GoalMuscleUpdateDTO goalMuscleUpdate(UserRequest.GoalMuscleUpdateDTO reqDTO, SessionUser sessionUser) {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요"));
+
+        user.setGoalMuscle(reqDTO.getGoalMuscle());
+
+        return new UserResponse.GoalMuscleUpdateDTO(user);
+    }
+
+    @Transactional
+    public UserResponse.GoalWeightUpdateDTO goalWeightUpdate(UserRequest.GoalWeightUpdateDTO reqDTO, SessionUser sessionUser) {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요"));
+
+        user.setGoalWeight(reqDTO.getGoalWeight());
+
+        return new UserResponse.GoalWeightUpdateDTO(user);
+    }
+
+    @Transactional
+    public UserResponse.UpdateDTO update(UserRequest.UpdateDTO reqDTO, SessionUser sessionUser) throws IOException {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요"));
 
         // 유저패스워드 암호화
         String encPassword = PasswordUtil.encode(reqDTO.getPassword());
 
-        // 이미지를 디코딩하여 저장하고 파일명 생성
+        // 이미지에 UUID 붙힘
         String imgUUID = ImageUtil.decodeReturnUUID(reqDTO.getUserImg());
 
-        // 이미지 파일로 저장
+        // 업데이트 처리
         user.setName(reqDTO.getName());
         user.setPassword(encPassword);
         user.setPhone(reqDTO.getPhone());
@@ -145,5 +187,45 @@ public class UserService {
         List<Bodydata> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
 
         return new UserResponse.MainPageDTO(user, bodydata, bodydataList);
+    }
+
+
+    public UserResponse.MyChangeFatDTO myChangeFat(SessionUser sessionUser) {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요."));
+
+        List<Bodydata> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
+
+        return new UserResponse.MyChangeFatDTO(user, bodydataList);
+    }
+
+    public UserResponse.MyChangeMuscleDTO myChangeMuscle(SessionUser sessionUser) {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요."));
+
+        List<Bodydata> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
+
+        return new UserResponse.MyChangeMuscleDTO(user, bodydataList);
+    }
+
+    public UserResponse.MyChangeWeightDTO myChangeWeight(SessionUser sessionUser) {
+        if(sessionUser == null) {
+            throw new Exception403("로그인 하셔야 해요.");
+        }
+
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요."));
+
+        List<Bodydata> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
+
+        return new UserResponse.MyChangeWeightDTO(user, bodydataList);
     }
 }

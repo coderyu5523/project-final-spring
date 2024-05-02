@@ -18,4 +18,11 @@ public class UserJPARepositoryTest {
         User user = userJPARepository.findByUsernameAndPassword(username, password).orElseThrow();
         System.out.println(user.getUsername());
     }
+
+    @Test
+    public void findByGoalFat_test() {
+        int userId = 1;
+        User user = userJPARepository.findById(userId).orElseThrow();
+        System.out.println(user.getGoalFat());
+    }
 }

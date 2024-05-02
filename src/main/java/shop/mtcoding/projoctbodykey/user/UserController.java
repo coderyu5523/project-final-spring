@@ -15,12 +15,52 @@ public class UserController {
     private final UserService userService;
     private final HttpSession session;
 
+    @GetMapping("/api/users/my-change-fat")
+    public ResponseEntity<?> myChangeFat() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.MyChangeFatDTO respDTO = userService.myChangeFat(user);
+
+        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @GetMapping("/api/users/my-muscle-fat")
+    public ResponseEntity<?> myMuscleFat() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.MyChangeMuscleDTO respDTO = userService.myChangeMuscle(user);
+
+        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @GetMapping("/api/users/my-weight-fat")
+    public ResponseEntity<?> myWeightFat() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.MyChangeWeightDTO respDTO = userService.myChangeWeight(user);
+
+        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
     @GetMapping("/api/users/myPage")
     public ResponseEntity<?> myPage() {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyPageDTO respDTO = userService.myPage(user);
 
         return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @GetMapping("/api/users")
+    public ResponseEntity<?> mainPage() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.MainPageDTO respDTO = userService.mainPage(user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @GetMapping("/api/users/update-form")
+    public ResponseEntity<?> updateForm() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.UpdateFormDTO respDTO = userService.updateForm(user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @PostMapping("/join")
@@ -39,30 +79,6 @@ public class UserController {
                 .body(new ApiUtil<>(user));
     }
 
-    //todo @GetMapping("/logout") 로그아웃
-//    @PostMapping("/logout")
-//    public ResponseEntity<?> logout() {
-//        session.invalidate();
-//
-//        return ResponseEntity.ok(new ApiUtil<>(null));
-//    }
-
-    @GetMapping("/api/users")
-    public ResponseEntity<?> mainPage() {
-        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        UserResponse.MainPageDTO respDTO = userService.mainPage(user);
-
-        return ResponseEntity.ok(new ApiUtil<>(respDTO));
-    }
-
-    @GetMapping("/api/users/update-form")
-    public ResponseEntity<?> updateForm() {
-        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        UserResponse.UpdateFormDTO respDTO = userService.updateForm(user);
-
-        return ResponseEntity.ok(new ApiUtil<>(respDTO));
-    }
-
     @PutMapping("/api/users/update")
     public ResponseEntity<?> update(@RequestBody UserRequest.UpdateDTO reqDTO) throws IOException {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
@@ -70,4 +86,37 @@ public class UserController {
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
+
+    @PutMapping("/api/users/goalFat-update")
+    public ResponseEntity<?> goalFatUpdate(@RequestBody UserRequest.GoalFatUpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.GoalFatUpdateDTO respDTO = userService.goalFatUpdate(reqDTO, user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @PutMapping("/api/users/goalMuscle-update")
+    public ResponseEntity<?> goalMuscleUpdate(@RequestBody UserRequest.GoalMuscleUpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.GoalMuscleUpdateDTO respDTO = userService.goalMuscleUpdate(reqDTO, user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @PutMapping("/api/users/goalWeight-update")
+    public ResponseEntity<?> goalWeightUpdate(@RequestBody UserRequest.GoalWeightUpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.GoalWeightUpdateDTO respDTO = userService.goalWeightUpdate(reqDTO, user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+
+    //todo @GetMapping("/logout") 로그아웃
+//    @PostMapping("/logout")
+//    public ResponseEntity<?> logout() {
+//        session.invalidate();
+//
+//        return ResponseEntity.ok(new ApiUtil<>(null));
+//    }
 }
