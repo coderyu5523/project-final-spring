@@ -34,7 +34,7 @@ public class AttendChallenge {
     private Timestamp createdAt;
 
     @Builder
-    public AttendChallenge(Integer id, User user, Integer totalWalking, shop.mtcoding.projoctbodykey.challenge.Challenge challenge, Timestamp openingTime, Timestamp closingTime, Boolean status, Timestamp createdAt) {
+    public AttendChallenge(Integer id, User user, Integer totalWalking, Challenge challenge, Timestamp openingTime, Timestamp closingTime, Boolean status, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.totalWalking = totalWalking;

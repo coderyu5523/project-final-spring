@@ -49,7 +49,11 @@ public class UserResponse {
 
         public MyPageDTO(User user, Bodydata bodydata, List<Object[]> conqueredChallenge) {
             this.id = user.getId();
-            this.userImg = user.getUserImg();
+            try {
+                this.userImg = ImageUtil.encode(user.getUserImg());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             this.name = user.getName();
             this.fat = bodydata.getFat();
             this.muscle = bodydata.getMuscle();
