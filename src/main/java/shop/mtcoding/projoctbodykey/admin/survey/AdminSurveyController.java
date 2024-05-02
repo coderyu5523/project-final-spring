@@ -34,9 +34,9 @@ public class AdminSurveyController {
 
     //설문조사 업데이트 폼
     @GetMapping("/admin/surveys/{id}/update-form")
-    public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request) {
-//        FoodResponse.FoodDTO respDTO = surveyService.findById(id);
-//        request.setAttribute("food", respDTO);
+    public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request, @RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
+        AdminSurveyResponse.DetailDTO respDTO=surveyService.surveyDetail(id);
+        request.setAttribute("survey",respDTO);
         return "survey/update-form";
     }
 
