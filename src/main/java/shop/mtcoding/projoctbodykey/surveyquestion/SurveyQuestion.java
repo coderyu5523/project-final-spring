@@ -1,6 +1,7 @@
 package shop.mtcoding.projoctbodykey.surveyquestion;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.projoctbodykey.survey.Survey;
@@ -21,4 +22,11 @@ public class SurveyQuestion {
     private String questionItem;
     private Timestamp createdAt;
 
+    @Builder
+    public SurveyQuestion(Integer id, Survey survey, String questionItem, Timestamp createdAt) {
+        this.id = id;
+        this.survey = survey;
+        this.questionItem = questionItem;
+        this.createdAt = createdAt;
+    }
 }

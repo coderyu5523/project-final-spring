@@ -108,16 +108,12 @@ VALUES
     ('아몬드 버터', 5.6, 21.0, 49.0, 590, 100, now());
 
 
-INSERT INTO survey_tb(title, created_at, opening_time, closing_time)
-VALUES ('설문조사1', now(), now(),now()),
-       ('설문조사2', now(), now(),now()),
-       ('설문조사3', now(), now(),now()),
-       ('설문조사4', now(), now(),now()),
-       ('설문조사5', now(), now(),now()),
-       ('설문조사6', now(), now(),now())
+INSERT INTO survey_tb(title, created_at)
+VALUES ('설문조사1',now()),
+       ('설문조사2',now()),
+       ('설문조사3',now()),
+       ('설문조사4',now()),
+       ('설문조사5',now()),
+       ('설문조사6',now())
 ;
--- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사2', now(), now(),now());
--- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사3', now(), now(),now());
--- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사4', now(), now(),now());
--- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사5', now(), now(),now());
--- INSERT INTO survey_tb(title, created_at, opening_time, closing_time) VALUES ('설문조사6', now(), now(),now());
+

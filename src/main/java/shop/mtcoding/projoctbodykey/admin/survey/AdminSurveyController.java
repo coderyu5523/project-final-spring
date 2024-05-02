@@ -18,19 +18,21 @@ public class AdminSurveyController {
 
     private final SurveyService surveyService;
 
-    //식단 관련
+    //설문조사 저장 폼
     @GetMapping("/admin/surveys/save-form")
     public String surveySaveForm() {
         return "survey/save-form";
     }
 
+    //설문조사 저장
     @PostMapping("/admin/surveys/save")
-    public String surveySave(@RequestBody List<AdminSurveyRequest.SaveDTO> reqDTOs) {
+    public String surveySave(@RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
         System.out.println("reqDTOs = " + reqDTOs);
+        surveyService.save(reqDTOs);
         return "redirect:/admin/surveys";
     }
 
-
+    //설문조사 업데이트 폼
     @GetMapping("/admin/surveys/{id}/update-form")
     public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request) {
 //        FoodResponse.FoodDTO respDTO = surveyService.findById(id);
@@ -38,12 +40,14 @@ public class AdminSurveyController {
         return "survey/update-form";
     }
 
+    //설문조사 업데이트
     @PostMapping("/admin/surveys/{id}/update")
     public String surveyUpdate(@PathVariable int id, FoodRequest.UpdateDTO reqDTO) {
 //        FoodResponse.UpdateDTO respDTO=surveyService.update(id, reqDTO);
         return "redirect:/admin/surveys";
     }
 
+    //설문조사 디테일
     @GetMapping("/admin/surveys/{id}")
     public String surveyDetail(HttpServletRequest request) {
 //        List<FoodResponse.FoodsDTO> respDTO = surveyService.findAll();
@@ -51,6 +55,7 @@ public class AdminSurveyController {
         return "surveys";
     }
 
+    //설문조사 리스트
     @GetMapping("/admin/surveys")
     public String surveys(HttpServletRequest request) {
         List<SurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
@@ -58,6 +63,7 @@ public class AdminSurveyController {
         return "survey/survey";
     }
 
+    //설문조사 삭제
     @PostMapping("/admin/surveys/{id}/delete")
     public String surveyDelete(@PathVariable int id) {
 //        surveyService.delete(id);
