@@ -4,93 +4,107 @@
         <div class="border border-tertiary p-5">
             <h1 class="d-inline-flex">설문지 등록하기</h1>
             <hr>
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-danger mb-3" style="width: 50%" onclick="addQuestionInput()">질문 추가하기</button>
-            </div>
-
-            <form action="/admin/surveys/save" method="post">
-
-                <div class="px-5 mt-5"></div>
-
-                <!-- 이 부분에 추가된 질문들이 들어갈 공간 -->
-                <div class="mt-5" id="additionalQuestions"></div>
-
-
-                <div class="d-flex justify-content-center mt-5">
-                    <button type="submit" class="btn btn-outline-danger mb-3" style="width: 100%">등록하기</button>
+            <form id="save-form">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" style="width: 50%"
+                            onclick="addQuestionElement()">질문 추가하기
+                    </button>
+                </div>
+                <div class="px-5 mt-5">
+                    <div id="element-input-box">
+                    </div>
+                    <div class="d-flex justify-content-center mt-5">
+                        <button type="submit" onclick="saveElement()" class="btn btn-primary form-control"
+                                style="width: 50%">등록하기
+                        </button>
+                    </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
 
 <script>
-    var questions = []; // 질문 배열
-    var questionId = 0;
-    var choiceId = 0;
+    function saveElement() {
+        let questionElements = [];
+        let items = $("#element-input-box .question-element-item");
+        items.each(function (index, element) {
+            let question = $(element).find(".question:first").val();
+            let choices = [];
 
-    function addQuestionInput() {
-        var additionalQuestionsDiv = document.getElementById("additionalQuestions");
-        var questionInputDiv = document.createElement("div");
-        questionInputDiv.classList.add("mt-4");
+            $(element).find(".choice").each(function (index, choiceElement) {
+                choices.push($(choiceElement).val());
+            });
+            let questionElement = {
+                question: question,
+                choices: choices
+            }
 
-        // 각 질문을 객체로 만들어 배열에 저장
-        var questionObj = {
-            id: questionId,
-            choices: [] // 해당 질문의 선택문항 배열
-        };
+            questionElements.push(questionElement);
+        });
 
-        questionInputDiv.innerHTML = `
-            <div class="container d-flex">
-            <div class="justify-content-center mx-2 pb-4 w-100">
-            <div class="border border-tertiary p-5">
-            <label for="question"><b>질문</b></label>
-            <button type="button" class="btn btn-outline-danger mb-1"  onclick="addChoiceInput(${questionId})">선택문항 추가하기</button>
-            <input class="form-control" type="text" name="question${questionId}" required>
-            <hr>
-            <div id="additionalChoices${questionId}"></div>
-            </div>
-            </div>
-            </div>
-        `;
+        console.log(questionElements);
 
-        questions.push(questionObj); // 배열에 질문 추가
-
-        additionalQuestionsDiv.appendChild(questionInputDiv);
-        questionId++; // 다음 질문 ID 증가
+        $.ajax({
+            url: `/admin/surveys/save`,
+            method: "post",
+            data: JSON.stringify(questionElements),
+            contentType: "application/json; charset=utf-8"
+        }).done((res) => {
+            location.href = `/admin/surveys`;
+        }).fail((res)=>{
+            //실패하면 할거
+            console.log("안됨");
+        })
     }
 
-    function addChoiceInput(questionId) {
-        var additionalChoicesDiv = document.getElementById("additionalChoices" + questionId);
-        var choiceInputDiv = document.createElement("div");
-        choiceInputDiv.classList.add("mt-2");
-
-        // 해당 질문의 선택문항 배열에 추가
-        questions[questionId].choices.push(choiceId);
-
-        choiceInputDiv.innerHTML = `
-            <label for="choice"><b>선택문항</b></label>
-            <button type="button" class="btn btn-outline-danger mb-3" onclick="removeChoiceInput(${questionId}, ${choiceId})">삭제</button>
-            <input class="form-control" type="text" name="choice${choiceId}" required>
-
-        `;
-
-        additionalChoicesDiv.appendChild(choiceInputDiv);
-        choiceId++; // 다음 선택문항 ID 증가
+    function addQuestionElement() {
+        $("#element-input-box").append(makeQuestionElement());
     }
 
-    function removeChoiceInput(questionId, choiceId) {
-        // 해당 선택문항을 선택문항 배열에서 삭제
-        var index = questions[questionId].choices.indexOf(choiceId);
-        if (index !== -1) {
-            questions[questionId].choices.splice(index, 1);
-        }
+    function deleteQuestionElement(element) {
+        $(element).closest(".question-element-item").remove();
+    }
 
-        // 해당 선택문항의 HTML 요소 제거
-        var choiceInputDiv = document.getElementById("additionalChoices" + questionId);
-        var choiceToRemove = document.getElementsByName(`choice${choiceId}`)[0].parentNode;
-        choiceInputDiv.removeChild(choiceToRemove);
+    function addChoiceElement(element) {
+        $(element).siblings("#element-choice-input-box").append(makeChoiceElement());
+    }
+
+    function deleteChoiceElement(element) {
+        //closest : 해당요소를 시작으로 부모요소를 검색하여, 클래스가 "choice-element"인 가장 가까운 부모 요소를 찾습니다
+        $(element).closest(".choice-element").remove();
+    }
+
+    function makeQuestionElement() {
+        return `<div class="question-element-item">
+                    <div class="container d-flex mb-3">
+                        <div class="justify-content-center mx-2 pb-4 w-100">
+                            <div class="border border-tertiary p-5">
+                                <label for="question"><b>질문</b></label>
+                                <button type="button" class="btn btn-primary" onclick="addChoiceElement(this)">
+                                    선택항목 추가하기
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="deleteQuestionElement(this)">
+                                    질문 삭제하기
+                                </button>
+                                <input class="form-control question" type="text" value="질문" required>
+                                <hr>
+                                <div id="element-choice-input-box">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+    }
+
+    function makeChoiceElement() {
+        return `<div class="choice-element">
+                    <label for="choice"><b>선택문항</b></label>
+                    <button type="button" class="btn btn-primary" onclick="deleteChoiceElement(this)">
+                        선택항목 삭제하기
+                    </button>
+                    <input class="form-control choice" type="text" value="선택항목" required>
+               </div>`;
     }
 
 </script>

@@ -3,10 +3,7 @@ package shop.mtcoding.projoctbodykey.admin.survey;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey.food.FoodRequest;
 import shop.mtcoding.projoctbodykey.food.FoodResponse;
 import shop.mtcoding.projoctbodykey.food.FoodService;
@@ -28,8 +25,8 @@ public class AdminSurveyController {
     }
 
     @PostMapping("/admin/surveys/save")
-    public String surveySave() {
-
+    public String surveySave(@RequestBody List<AdminSurveyRequest.SaveDTO> reqDTOs) {
+        System.out.println("reqDTOs = " + reqDTOs);
         return "redirect:/admin/surveys";
     }
 
