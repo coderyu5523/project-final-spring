@@ -4,7 +4,7 @@ import java.util.List;
 public class AdminSurveyRequest {
     @Data
     public static class SaveDTO {
-        private String surveyName;
+        private String title;
         private List<questionElements> questionElements;
         @Data
         public static class questionElements {

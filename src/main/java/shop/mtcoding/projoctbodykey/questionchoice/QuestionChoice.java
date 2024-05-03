@@ -32,4 +32,6 @@ public class QuestionChoice {
         this.choiceItem = choiceItem;
         this.createdAt = createdAt;
     }
+
+
 }

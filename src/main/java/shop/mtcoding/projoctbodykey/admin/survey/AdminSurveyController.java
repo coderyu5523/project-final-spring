@@ -32,19 +32,20 @@ public class AdminSurveyController {
         return "redirect:/admin/surveys";
     }
 
-    //설문조사 업데이트 폼
+    //설문조사 업데이트 폼 TODO : DTO다 따로 만들기!!!!!!service도!
     @GetMapping("/admin/surveys/{id}/update-form")
     public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request) {
-//        FoodResponse.FoodDTO respDTO = surveyService.findById(id);
-//        request.setAttribute("food", respDTO);
+        AdminSurveyResponse.DetailDTO respDTO=surveyService.surveyDetail(id);
+        request.setAttribute("survey",respDTO);
         return "survey/update-form";
     }
 
     //설문조사 업데이트
     @PostMapping("/admin/surveys/{id}/update")
-    public String surveyUpdate(@PathVariable int id, FoodRequest.UpdateDTO reqDTO) {
-//        FoodResponse.UpdateDTO respDTO=surveyService.update(id, reqDTO);
-        return "redirect:/admin/surveys";
+    public void surveyUpdate(@PathVariable int id, @RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
+        System.out.println("reqDTOs = " + reqDTOs);
+        surveyService.update(id, reqDTOs);
+        //return "redirect:/admin/{id}/surveys";
     }
 
     //설문조사 디테일
