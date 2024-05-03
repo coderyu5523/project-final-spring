@@ -18,7 +18,7 @@ public class ChallengeQueryRepository {
 
     public Object[] ongoingChallenges(Integer userId) {
         String q = """
-            SELECT c.id, c.challenge_name, c.sub_title, a.closing_time, c.coin, c.background_img, a.status
+            SELECT c.id, c.challenge_name, c.sub_title, a.closing_time, c.coin, c.background_img
             FROM challenge_tb c
             LEFT JOIN attend_challenge_tb a ON c.id = a.challenge_id
             WHERE a.user_id = ? AND a.status IS NULL;

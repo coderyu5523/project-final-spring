@@ -41,7 +41,6 @@ public class ChallengeResponse {
         private Timestamp closingTime;
         private Integer coin;
         private String backImg;
-        private Boolean status;
         private List<UpcomingChallengesDTO> upcomingChallenges;
         private List<PastChallengesDTO> pastChallenges;
 
@@ -56,7 +55,6 @@ public class ChallengeResponse {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            this.status = (Boolean) ongoingChallenges[6];
             this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
             this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
         }

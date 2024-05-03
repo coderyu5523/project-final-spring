@@ -23,7 +23,7 @@ public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
     private final ChallengeQueryRepository challengeResponse;
 
-    public ChallengeResponse.ChallengesDTO challenges(SessionUser sessionUser) throws IOException {
+    public ChallengeResponse.ChallengesDTO challenges(SessionUser sessionUser) {
         if (sessionUser == null) {
             throw new Exception403("챌린지를 조회할 권한이 없어요");
         }
