@@ -113,10 +113,10 @@ public class UserController {
 
 
     //todo @GetMapping("/logout") 로그아웃
-//    @PostMapping("/logout")
-//    public ResponseEntity<?> logout() {
-//        session.invalidate();
-//
-//        return ResponseEntity.ok(new ApiUtil<>(null));
-//    }
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        session.invalidate();
+
+        return ResponseEntity.ok(new ApiUtil<>(null));
+    }
 }

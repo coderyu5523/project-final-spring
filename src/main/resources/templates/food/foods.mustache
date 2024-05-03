@@ -11,25 +11,7 @@
 
 <div class="container-fluid">
     <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-        <aside class="col-md-3" style="text-align: center; margin-top: 60px; width: 180px;">
-            <div class="card" style="border-radius: 10px;">
-                <div style="width: 100%;">
-                    <div>
-                        <h6 class="card-subtitle text-muted"></h6>
-                        <ul class="nav flex-column nav-pills">
-                            <li class="nav-item">
-                                <a id="userHome" class="nav-link sub-menu a p-1 mb-1" href="/admin/challenges">챌린지
-                                    관리</a>
-                            </li>
-                            <li class="nav-item" style="border-top: 1px solid rgba(0, 0, 0, 0.5);">
-                                <a href="admin/foods" style="background-color: green; color: white" class="nav-link sub-menu a p-1">음식
-                                    관리</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </aside>
+        {{> layout/side}}
         <!-- 표 및 페이지네이션 -->
         <div style="width: 1200px">
             <div class="container p-5">

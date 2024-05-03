@@ -43,9 +43,9 @@ public class ChallengeResponse {
         private String backImg;
         private Boolean status;
         private List<UpcomingChallengesDTO> upcomingChallenges;
-        private List<PastChallengesDTO> partChallenges;
+        private List<PastChallengesDTO> pastChallenges;
 
-        public ChallengesDTO(Object[] ongoingChallenges, List<Object[]> upcomingChallenges, List<Object[]> partChallenges) {
+        public ChallengesDTO(Object[] ongoingChallenges, List<Object[]> upcomingChallenges, List<Object[]> pastChallenges) {
             this.id = (Integer) ongoingChallenges[0];
             this.challengeName = (String) ongoingChallenges[1];
             this.subtitle = (String) ongoingChallenges[2];
@@ -58,7 +58,7 @@ public class ChallengeResponse {
             }
             this.status = (Boolean) ongoingChallenges[6];
             this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
-            this.partChallenges = partChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
+            this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
         }
 
         @Data
@@ -90,16 +90,16 @@ public class ChallengeResponse {
             private String badgeImg; // 뱃지 사진 경로
             private Boolean status;
 
-            public PastChallengesDTO(Object[] partChallenges, String badgeImg) {
-                this.id = (Integer) partChallenges[0];
-                this.challengeName = (String) partChallenges[1];
-                this.distance = (String) partChallenges[2];
+            public PastChallengesDTO(Object[] pastChallenges, String badgeImg) {
+                this.id = (Integer) pastChallenges[0];
+                this.challengeName = (String) pastChallenges[1];
+                this.distance = (String) pastChallenges[2];
                 try {
                     this.badgeImg = ImageUtil.encode(badgeImg);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                this.status = (Boolean) partChallenges[4];
+                this.status = (Boolean) pastChallenges[4];
             }
         }
     }

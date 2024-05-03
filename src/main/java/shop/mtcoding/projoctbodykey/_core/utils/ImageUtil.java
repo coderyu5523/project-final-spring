@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class ImageUtil {
 
-    public static String decodeReturnUUID(String img) throws IOException {
+    public static String decodeAsUUID(String img) throws IOException {
         // 이미지를 디코딩하여 저장하고 파일명 생성
         byte[] imageData = Base64.getDecoder().decode(img);
         String imgUUID = UUID.randomUUID() + ".jpg";

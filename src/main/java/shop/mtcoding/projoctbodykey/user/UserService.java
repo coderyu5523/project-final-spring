@@ -94,7 +94,7 @@ public class UserService {
         String encPassword = PasswordUtil.encode(reqDTO.getPassword());
 
         // 이미지에 UUID 붙힘
-        String imgUUID = ImageUtil.decodeReturnUUID(reqDTO.getUserImg());
+        String imgUUID = ImageUtil.decodeAsUUID(reqDTO.getUserImg());
 
         // 업데이트 처리
         user.setName(reqDTO.getName());
