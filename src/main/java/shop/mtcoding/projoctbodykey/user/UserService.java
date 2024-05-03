@@ -228,4 +228,9 @@ public class UserService {
 
         return new UserResponse.MyChangeWeightDTO(user, bodydataList);
     }
+
+    public User findById(Integer id) {
+        return userJPARepository.findById(id).orElseThrow(() ->
+                new Exception401("로그인이 필요한 서비스입니다."));
+    }
 }
