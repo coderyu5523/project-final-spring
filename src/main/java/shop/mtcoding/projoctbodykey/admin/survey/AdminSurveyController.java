@@ -67,7 +67,7 @@ public class AdminSurveyController {
     //설문조사 삭제
     @PostMapping("/admin/surveys/{id}/delete")
     public String surveyDelete(@PathVariable int id) {
-//        surveyService.delete(id);
+        surveyService.delete(id);
         return "redirect:/admin/surveys";
     }
 }

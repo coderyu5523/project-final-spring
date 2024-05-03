@@ -99,4 +99,14 @@ public class SurveyService {
 
         return detailDTO;
     }
+
+    @Transactional
+    public void delete(int id) {
+        Survey survey=surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
+
+        questionChoiceJPARepository.deleteBySurveyId(survey.getId());
+        surveyQuestionJPARepository.deleteBySurveyId(survey.getId());
+        surveyJPARepository.deleteById(survey.getId());
+
+    }
 }
