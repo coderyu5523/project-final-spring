@@ -29,7 +29,7 @@
 
 <script>
     function saveElement() {
-        let surveyName = $(".Survey:first").val();
+        let title = $(".Survey:first").val();
         let questionElements = [];
         let items = $("#element-input-box .question-element-item");
         items.each(function (index, element) {
@@ -48,7 +48,7 @@
         });
 
         let requestData = {
-            surveyName: surveyName,
+            title: title,
             questionElements: questionElements
         }
 

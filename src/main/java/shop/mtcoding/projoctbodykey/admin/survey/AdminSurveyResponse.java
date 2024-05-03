@@ -19,7 +19,8 @@ public class AdminSurveyResponse {
 
     @Data
     public static class DetailDTO {
-        private String surveyName;
+        private Integer id;
+        private String title;
         private List<questionElements> questionElements;
 
         @Data
@@ -34,8 +35,9 @@ public class AdminSurveyResponse {
 
         }
 
-        public DetailDTO(String surveyName, List<DetailDTO.questionElements> questionElements) {
-            this.surveyName = surveyName;
+        public DetailDTO(Integer id, String title, List<DetailDTO.questionElements> questionElements) {
+            this.id=id;
+            this.title = title;
             this.questionElements = questionElements;
         }
     }

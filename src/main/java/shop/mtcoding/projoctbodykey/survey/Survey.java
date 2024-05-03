@@ -27,4 +27,9 @@ public class Survey {
         this.createdAt = createdAt;
 
     }
+
+    public void update(String title, Timestamp createdAt){
+        this.title = title;
+        this.createdAt = createdAt;
+    }
 }
