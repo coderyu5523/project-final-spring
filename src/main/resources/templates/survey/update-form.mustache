@@ -19,14 +19,16 @@
                                 <div class="justify-content-center mx-2 pb-4 w-100">
                                     <div class="border border-tertiary p-5">
                                         <label for="question"><b>질문</b></label>
-                                        <button type="button" class="btn btn-primary" onclick="addChoiceElement(this)">
+                                        <button type="button" class="btn btn-primary"
+                                                onclick="addChoiceElement(this)">
                                             선택항목 추가하기
                                         </button>
                                         <button type="button" class="btn btn-primary"
                                                 onclick="deleteQuestionElement(this)">
                                             질문 삭제하기
                                         </button>
-                                        <input class="form-control question" type="text" value="{{question}}" required>
+                                        <input class="form-control question" type="text" value="{{question}}"
+                                               required>
                                         <hr>
                                         {{#choices}}
                                             <div class="choice-element">
@@ -35,7 +37,8 @@
                                                         onclick="deleteChoiceElement(this)">
                                                     선택항목 삭제하기
                                                 </button>
-                                                <input class="form-control choice" type="text" value="{{.}}" required>
+                                                <input class="form-control choice" type="text" value="{{.}}"
+                                                       required>
                                             </div>
                                         {{/choices}}
                                         <div id="element-choice-input-box">
@@ -63,10 +66,11 @@
 
 <script>
     const surveyId = {{survey.id}};
+
     function saveElement() {
         let title = $(".Survey:first").val();
         let questionElements = [];
-        let items = $("#element-input-box .question-element-item");
+        let items = $(".question-element-item");
         items.each(function (index, element) {
             let question = $(element).find(".question:first").val();
             let choices = [];
