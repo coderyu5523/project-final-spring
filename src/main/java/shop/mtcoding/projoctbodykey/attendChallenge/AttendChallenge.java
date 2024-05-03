@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import shop.mtcoding.projoctbodykey.challenge.Challenge;
 import shop.mtcoding.projoctbodykey.user.User;
 
@@ -31,6 +32,8 @@ public class AttendChallenge {
     private Timestamp openingTime; // 챌린지 시작 시간
     private Timestamp closingTime; // 챌린지 마감 시간
     private Boolean status ; // 성공 실패 참여 중
+
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder

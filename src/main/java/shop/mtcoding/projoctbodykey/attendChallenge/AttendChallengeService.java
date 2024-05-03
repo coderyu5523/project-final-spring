@@ -4,17 +4,34 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
+import shop.mtcoding.projoctbodykey.user.User;
+
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 @RequiredArgsConstructor
 @Service
 public class AttendChallengeService {
     private final AttendChallengeJPARepository attendChallengeJPARepository;
 
-//    @Transactional
-//    public AttendChallengeResponse.SaveDTO save(SessionUser sessionUser, AttendChallengeRequest.SaveDTO reqDTO) {
-//
-//        AttendChallenge attendChallenge = attendChallengeJPARepository.save(reqDTO.toEntity(sessionUser.getId()));
-//
-//        return new AttendChallengeResponse.SaveDTO(attendChallenge);
-//    }
+    @Transactional
+    public AttendChallengeResponse.SaveDTO save(User sessionUser, AttendChallengeRequest.SaveDTO reqDTO) {
+
+        // 현재 시간을 가져옴
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+
+        // Calendar 인스턴스를 생성하고 현재 시간을 설정합니다.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(currentTimestamp.getTime());
+
+        // 30일을 더함
+        calendar.add(Calendar.DATE, 30);
+
+        // 타임스탬프에 저장해줘야함
+        Timestamp closingTime = new Timestamp(calendar.getTime().getTime());
+
+        AttendChallenge attendChallenge = attendChallengeJPARepository.save(reqDTO.toEntity(closingTime, reqDTO, sessionUser));
+
+        return new AttendChallengeResponse.SaveDTO(attendChallenge);
+    }
 }
