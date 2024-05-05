@@ -12,6 +12,7 @@ public class QuestionChoiceRequest {
     public static class SaveDTO {
         private Survey survey;
         private SurveyQuestion surveyQuestion;
+        private Integer choiceNumber;
         private String choiceItem;
         private Timestamp timestamp;
 
@@ -19,14 +20,16 @@ public class QuestionChoiceRequest {
             return QuestionChoice.builder()
                     .survey(survey)
                     .surveyQuestion(surveyQuestion)
+                    .choiceNumber(choiceNumber)
                     .choiceItem(choiceItem)
                     .createdAt(timestamp)
                     .build();
         }
 
-        public SaveDTO(Survey survey, SurveyQuestion surveyQuestion, String choiceItem, Timestamp timestamp) {
+        public SaveDTO(Survey survey, Integer choiceNumber,SurveyQuestion surveyQuestion, String choiceItem, Timestamp timestamp) {
             this.survey = survey;
             this.surveyQuestion = surveyQuestion;
+            this.choiceNumber = choiceNumber;
             this.choiceItem = choiceItem;
             this.timestamp = timestamp;
         }

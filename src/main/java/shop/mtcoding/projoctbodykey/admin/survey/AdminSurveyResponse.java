@@ -21,21 +21,23 @@ public class AdminSurveyResponse {
     public static class DetailDTO {
         private Integer id;
         private String title;
-        private List<questionElements> questionElements;
+        private List<QuestionDTO> questionElements;
 
         @Data
-        public static class questionElements {
+        public static class QuestionDTO {
             private String question;
-            private List<String> choices;
+            private List<ChoiceDTO> choices;
 
-            public questionElements(String question, List<String> choices) {
+            @Data
+            public static class ChoiceDTO
+            public QuestionDTO(String question, List<String> choices) {
                 this.question = question;
                 this.choices = choices;
             }
 
         }
 
-        public DetailDTO(Integer id, String title, List<DetailDTO.questionElements> questionElements) {
+        public DetailDTO(Integer id, String title, List<DetailDTO.QuestionDTO> questionElements) {
             this.id=id;
             this.title = title;
             this.questionElements = questionElements;

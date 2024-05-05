@@ -41,11 +41,10 @@ public class SurveyService {
             String question=reqDTOs.getQuestionElements().get(i).getQuestion();
             SurveyQuestionRequest.SaveDTO saveQuestionDTO= new SurveyQuestionRequest.SaveDTO(survey,question,timestamp);
             SurveyQuestion surveyQuestion=surveyQuestionJPARepository.save(saveQuestionDTO.toEntity());
-
             //설문지 질문 선택 항목 저장
             for (int j=0; j<reqDTOs.getQuestionElements().get(i).getChoices().size();j++){
                 String choice=reqDTOs.getQuestionElements().get(i).getChoices().get(j);
-                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey,surveyQuestion, choice, timestamp);
+                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey, j+1, surveyQuestion, choice, timestamp);
                 QuestionChoice questionChoice=questionChoiceJPARepository.save(saveChoiceDTO.toEntity());
             }
         }
@@ -71,7 +70,7 @@ public class SurveyService {
             //설문지 질문 선택 항목 저장
             for (int j=0; j<reqDTOs.getQuestionElements().get(i).getChoices().size();j++){
                 String choice=reqDTOs.getQuestionElements().get(i).getChoices().get(j);
-                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey,surveyQuestion, choice, timestamp);
+                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey, j+1, surveyQuestion, choice, timestamp);
                 QuestionChoice questionChoice=questionChoiceJPARepository.save(saveChoiceDTO.toEntity());
             }
         }
