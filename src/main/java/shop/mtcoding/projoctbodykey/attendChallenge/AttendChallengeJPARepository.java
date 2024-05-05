@@ -10,6 +10,9 @@ import java.util.Optional;
 
 public interface AttendChallengeJPARepository extends JpaRepository<AttendChallenge, Integer> {
 
+    @Query("select a from AttendChallenge a where a.user.id = :userId and a.challenge.id = :challengeId")
+    Optional<AttendChallenge> findByChallengeIdAndUserId(@Param("userId") Integer userId, @Param("challengeId") Integer challengeId);
+
     @Query("select a from AttendChallenge a where a.user.id = :userId and a.status is null")
     Optional<AttendChallenge> closingTime(@Param("userId") Integer userId);
 

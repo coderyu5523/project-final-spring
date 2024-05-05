@@ -106,29 +106,31 @@ public class ChallengeResponse {
     public static class DetailDTO {
         private Integer id;
         private String challengeName; // 챌린지명
-        private String backgroundImg;// 챌린지 배경사진
         private String subTitle; // 부 제목
 //        private String distance; // 거리
         private Integer walking; // 걸어야할 걸음수
 //        private String badgeImg; // 뱃지 사진 경로
         private String content;  // 챌린지 내용
+        private Boolean state;  // 챌린지 내용
 //        private Integer coin; // 보상 코인
 //        private Timestamp period; //챌린지 기간
 //        private Timestamp createdAt;
+private String backgroundImg;// 챌린지 배경사진
 
         @Builder
-        public DetailDTO(String backgroundImg, Challenge challenge) {
+        public DetailDTO(Boolean state, String backgroundImg, Challenge challenge) {
             this.id = challenge.getId();
             this.challengeName = challenge.getChallengeName();
-            this.backgroundImg = backgroundImg;
             this.subTitle = challenge.getSubTitle();
 //            this.distance = challenge.getDistance();
             this.walking = challenge.getWalking();
 //            this.badgeImg = challenge.getBadgeImg();
             this.content = challenge.getContent();
+            this.state = state;
 //            this.coin = challenge.getCoin();
 //            this.period = challenge.getPeriod();
 //            this.createdAt = challenge.getCreatedAt();
+            this.backgroundImg = backgroundImg;
         }
     }
 
