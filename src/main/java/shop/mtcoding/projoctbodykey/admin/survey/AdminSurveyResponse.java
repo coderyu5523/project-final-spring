@@ -3,15 +3,17 @@ package shop.mtcoding.projoctbodykey.admin.survey;
 import lombok.Data;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class AdminSurveyResponse {
 
     @Data
     public static class SaveDTO {
         private String surveyName;
-        private List<questionElements> questionElements;
+        private List<QuestionDTO> questionElements;
         @Data
-        public class questionElements {
+        public class QuestionDTO {
             private String question;
             private List<String> choices;
         }
@@ -29,10 +31,21 @@ public class AdminSurveyResponse {
             private List<ChoiceDTO> choices;
 
             @Data
-            public static class ChoiceDTO
-            public QuestionDTO(String question, List<String> choices) {
+            public static class ChoiceDTO{
+                String choiceItem;
+                Integer choiceNumber;
+
+                public ChoiceDTO(String choiceItem, Integer choiceNumber) {
+                    this.choiceItem = choiceItem;
+                    this.choiceNumber = choiceNumber;
+                }
+            }
+
+            public QuestionDTO(String question, List<String> choices, List<Integer> choiceNumbers) {
                 this.question = question;
-                this.choices = choices;
+                this.choices = IntStream.range(0, choices.size())
+                        .mapToObj(i -> new ChoiceDTO(choices.get(i), choiceNumbers.get(i)))
+                        .collect(Collectors.toList());
             }
 
         }

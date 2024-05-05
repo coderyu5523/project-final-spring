@@ -85,11 +85,16 @@ public class SurveyService {
         Survey survey=surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
         List<SurveyQuestion> surveyQuestion=surveyQuestionJPARepository.findBySurveyId(survey.getId());
         
-        List<AdminSurveyResponse.DetailDTO.questionElements> questionElements = new ArrayList<>();
+        List<AdminSurveyResponse.DetailDTO.QuestionDTO> questionElements = new ArrayList<>();
         for (SurveyQuestion question:surveyQuestion){
             List<QuestionChoice> questionChoices=questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
 
-            AdminSurveyResponse.DetailDTO.questionElements questionElement = new AdminSurveyResponse.DetailDTO.questionElements(question.getQuestionItem(), questionChoices.stream().map(questionChoice -> questionChoice.getChoiceItem()).toList());
+            AdminSurveyResponse.DetailDTO.QuestionDTO questionElement =
+                    new AdminSurveyResponse.DetailDTO.QuestionDTO(
+                            question.getQuestionItem(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceItem).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceNumber).toList()
+                    );
 
             questionElements.add(questionElement);
         }
