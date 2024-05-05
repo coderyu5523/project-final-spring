@@ -47,4 +47,17 @@ public class AttendChallengeJPARepositoryTest {
         // eye
         System.out.println(attendChallenge.toString());
     }
+
+    @Test
+    public void findByChallengeIdAndUserId_test(){
+        // given
+        Integer userId = 1;
+        Integer challengeId = 1;
+
+        // when
+        AttendChallenge attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(challengeId, userId).orElseThrow();
+
+        // eye
+        System.out.println(attendChallenge.getStatus());
+    }
 }

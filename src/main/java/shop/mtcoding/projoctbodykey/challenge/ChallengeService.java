@@ -11,16 +11,15 @@ import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeJPARepository;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
-import shop.mtcoding.projoctbodykey.user.User;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
+    private final AttendChallengeJPARepository attendChallengeJPARepository;
     private final ChallengeQueryRepository challengeResponse;
 
     public ChallengeResponse.ChallengesDTO challenges(SessionUser sessionUser) {
@@ -44,13 +43,16 @@ public class ChallengeService {
         return new ChallengeResponse.OngoingChallengeDTO(ongoingChallenges);
     }
 
-    public ChallengeResponse.DetailDTO detail(Integer id) throws IOException {
+    public ChallengeResponse.DetailDTO detail(SessionUser sessionUser, Integer id) throws IOException {
         Challenge challenge = challengeJPARepository.findById(id).orElseThrow(() ->
+                new Exception404("해당 챌린지를 찾을 수 없습니다."));
+
+        AttendChallenge attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(id, sessionUser.getId()).orElseThrow(() ->
                 new Exception404("해당 챌린지를 찾을 수 없습니다."));
 
         String backgroundImg = ImageUtil.encode(challenge.getBackgroundImg());
 
-        return new ChallengeResponse.DetailDTO(backgroundImg, challenge);
+        return new ChallengeResponse.DetailDTO(attendChallenge.getStatus(), backgroundImg, challenge);
     }
 
     // 검색 없는 관리자 페이지 챌린지 리스트

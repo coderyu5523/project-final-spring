@@ -3,8 +3,10 @@ package shop.mtcoding.projoctbodykey.attendChallenge;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
+import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -13,9 +15,11 @@ import java.util.Calendar;
 @Service
 public class AttendChallengeService {
     private final AttendChallengeJPARepository attendChallengeJPARepository;
+    private final UserJPARepository userJPARepository;
 
     @Transactional
-    public AttendChallengeResponse.SaveDTO save(User sessionUser, AttendChallengeRequest.SaveDTO reqDTO) {
+    public AttendChallengeResponse.SaveDTO save(SessionUser sessionUser, AttendChallengeRequest.SaveDTO reqDTO) {
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
 
         // 현재 시간을 가져옴
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
@@ -30,7 +34,7 @@ public class AttendChallengeService {
         // 타임스탬프에 저장해줘야함
         Timestamp closingTime = new Timestamp(calendar.getTime().getTime());
 
-        AttendChallenge attendChallenge = attendChallengeJPARepository.save(reqDTO.toEntity(closingTime, reqDTO, sessionUser));
+        AttendChallenge attendChallenge = attendChallengeJPARepository.save(reqDTO.toEntity(closingTime, reqDTO, user));
 
         return new AttendChallengeResponse.SaveDTO(attendChallenge);
     }

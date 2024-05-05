@@ -20,8 +20,7 @@ public class AttendChallengeController {
 
     @PostMapping("/api/attend-challenge-save")
     public ResponseEntity<?> save(@RequestBody AttendChallengeRequest.SaveDTO reqDTO) {
-        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        User sessionUser = userService.findById(user.getId());
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         AttendChallengeResponse.SaveDTO respDTO = attendChallengeService.save(sessionUser, reqDTO);
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }

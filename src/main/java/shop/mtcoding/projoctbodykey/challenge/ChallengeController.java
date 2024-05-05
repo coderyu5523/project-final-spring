@@ -20,7 +20,8 @@ public class ChallengeController {
 
     @GetMapping("/api/challenges/{id}")
     public ResponseEntity<?> challengeDetail(@PathVariable("id") Integer id) throws IOException {
-        ChallengeResponse.DetailDTO respDTO = challengeService.detail(id);
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        ChallengeResponse.DetailDTO respDTO = challengeService.detail(user, id);
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
