@@ -1,0 +1,31 @@
+{{> layout/header}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<div class="container d-flex mt-5 justify-content-center">
+    <div class="mx-2 pb-4 w-100">
+        <div class="border border-tertiary p-5">
+            <div class="w-50 mx-auto">
+                <div class="justify-content-center">
+                    <h1 class="text-center">설문조사 이름</h1>
+                    <hr>
+                    <h3 class="mt-5">1. 하루 평균 수면 시간은 얼마나 되십니까?</h3>
+                    <canvas id="doughnut-chart" width="300" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+            labels: ["6시간 미만", "6시간 - 8시간", "8시간 이상", "불규칙"],
+            datasets: [
+                {
+                    label: "Population (millions)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                    data: [2, 1, 1, 1]
+                }
+            ]
+        },
+    });
+</script>

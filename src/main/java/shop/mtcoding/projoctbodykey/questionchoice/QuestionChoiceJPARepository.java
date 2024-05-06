@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface QuestionChoiceJPARepository extends JpaRepository<QuestionChoice, Integer> {
+
+
     @Query("select qc from QuestionChoice qc where qc.survey.id = :surveyId and qc.surveyQuestion.id= :surveyQuestionId")
     List<QuestionChoice> findBySurveyIdAndQuestionId(@Param("surveyId") Integer surveyId, @Param("surveyQuestionId") Integer surveyQuestionId);
 

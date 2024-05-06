@@ -12,4 +12,14 @@ public class AdminSurveyRequest {
             private List<String> choices;
         }
     }
+    @Data
+    public static class ChoiceCountDTO {
+        private Integer choiceId;
+        private Integer choiceCount;
+
+        public ChoiceCountDTO(Integer choiceId, Integer choiceCount) {
+            this.choiceId = choiceId;
+            this.choiceCount = choiceCount;
+        }
+    }
 }
