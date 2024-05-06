@@ -47,12 +47,11 @@ public class ChallengeService {
         Challenge challenge = challengeJPARepository.findById(id).orElseThrow(() ->
                 new Exception404("해당 챌린지를 찾을 수 없습니다."));
 
-        AttendChallenge attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(sessionUser.getId(), id).orElseThrow(() ->
-                new Exception404("해당 챌린지를 찾을 수 없습니다."));
+        Boolean attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(sessionUser.getId(), id);
 
         String backgroundImg = ImageUtil.encode(challenge.getBackgroundImg());
 
-        return new ChallengeResponse.DetailDTO(attendChallenge.getStatus(), backgroundImg, challenge);
+        return new ChallengeResponse.DetailDTO(attendChallenge, backgroundImg, challenge);
     }
 
     // 검색 없는 관리자 페이지 챌린지 리스트

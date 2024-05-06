@@ -52,12 +52,11 @@ public class AttendChallengeJPARepositoryTest {
     public void findByChallengeIdAndUserId_test(){
         // given
         Integer userId = 1;
-        Integer challengeId = 1;
+        Integer challengeId = 9;
 
         // when
-        AttendChallenge attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(challengeId, userId).orElseThrow();
+        Boolean attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(challengeId, userId);
 
-        // eye
-        System.out.println(attendChallenge.getStatus());
+        System.out.println(attendChallenge);
     }
 }

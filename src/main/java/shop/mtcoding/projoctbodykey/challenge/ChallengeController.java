@@ -26,7 +26,7 @@ public class ChallengeController {
     }
 
     @GetMapping("/api/challenges")
-    public ResponseEntity<?> challenges() throws IOException {
+    public ResponseEntity<?> challenges() {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         ChallengeResponse.ChallengesDTO respDTO = challengeService.challenges(user);
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
