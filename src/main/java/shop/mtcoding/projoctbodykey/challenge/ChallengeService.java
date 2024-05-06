@@ -47,7 +47,7 @@ public class ChallengeService {
         Challenge challenge = challengeJPARepository.findById(id).orElseThrow(() ->
                 new Exception404("해당 챌린지를 찾을 수 없습니다."));
 
-        AttendChallenge attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(id, sessionUser.getId()).orElseThrow(() ->
+        AttendChallenge attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(sessionUser.getId(), id).orElseThrow(() ->
                 new Exception404("해당 챌린지를 찾을 수 없습니다."));
 
         String backgroundImg = ImageUtil.encode(challenge.getBackgroundImg());
