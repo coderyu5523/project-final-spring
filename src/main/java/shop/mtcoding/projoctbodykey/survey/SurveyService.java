@@ -27,6 +27,36 @@ public class SurveyService {
     private final SurveyJPARepository surveyJPARepository ;
     private final SurveyQuestionJPARepository surveyQuestionJPARepository ;
     private final QuestionChoiceJPARepository questionChoiceJPARepository;
+    private final ChoiceAnswerJPARepository choiceAnswerJPARepository;
+
+    public  AdminSurveyResponse.ChartDTO chart(int id) {
+        Survey survey=surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
+        List<SurveyQuestion> questions = surveyQuestionJPARepository.findBySurveyId(survey.getId());
+
+        List<AdminSurveyResponse.ChartDTO.QuestionDTO> questionElements = new ArrayList<>();
+
+        for (SurveyQuestion question : questions){
+            List<QuestionChoice> choices=questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(),question.getId());
+            for (QuestionChoice choice : choices) {
+                List<QuestionChoice> questionChoices =
+                        questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
+                List<AdminSurveyRequest.ChoiceCountDTO> choiceCount = choiceAnswerJPARepository.findWithChoiceCount(question.getId());
+                AdminSurveyResponse.ChartDTO.QuestionDTO questionElement =
+                        new AdminSurveyResponse.ChartDTO.QuestionDTO(
+                                question,
+                                questionChoices.stream().map(QuestionChoice::getId).toList(),
+                                questionChoices.stream().map(QuestionChoice::getChoiceItem).toList(),
+                                questionChoices.stream().map(QuestionChoice::getChoiceNumber).toList(),
+                                choiceCount.stream().map(AdminSurveyRequest.ChoiceCountDTO::getChoiceCount).toList()
+                        );
+
+                questionElements.add(questionElement);
+            }
+        }
+        AdminSurveyResponse.ChartDTO chartDTO = new AdminSurveyResponse.ChartDTO(survey.getId(), survey.getTitle(), questionElements);
+
+        return chartDTO;
+    }
 
     @Transactional
     public void save(AdminSurveyRequest.SaveDTO reqDTOs) {
@@ -41,11 +71,10 @@ public class SurveyService {
             String question=reqDTOs.getQuestionElements().get(i).getQuestion();
             SurveyQuestionRequest.SaveDTO saveQuestionDTO= new SurveyQuestionRequest.SaveDTO(survey,question,timestamp);
             SurveyQuestion surveyQuestion=surveyQuestionJPARepository.save(saveQuestionDTO.toEntity());
-
             //설문지 질문 선택 항목 저장
             for (int j=0; j<reqDTOs.getQuestionElements().get(i).getChoices().size();j++){
                 String choice=reqDTOs.getQuestionElements().get(i).getChoices().get(j);
-                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey,surveyQuestion, choice, timestamp);
+                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey, j+1, surveyQuestion, choice, timestamp);
                 QuestionChoice questionChoice=questionChoiceJPARepository.save(saveChoiceDTO.toEntity());
             }
         }
@@ -71,7 +100,7 @@ public class SurveyService {
             //설문지 질문 선택 항목 저장
             for (int j=0; j<reqDTOs.getQuestionElements().get(i).getChoices().size();j++){
                 String choice=reqDTOs.getQuestionElements().get(i).getChoices().get(j);
-                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey,surveyQuestion, choice, timestamp);
+                QuestionChoiceRequest.SaveDTO saveChoiceDTO= new QuestionChoiceRequest.SaveDTO(survey, j+1, surveyQuestion, choice, timestamp);
                 QuestionChoice questionChoice=questionChoiceJPARepository.save(saveChoiceDTO.toEntity());
             }
         }
@@ -82,15 +111,24 @@ public class SurveyService {
         return surveys.stream().map(SurveyResponse.SurveysDTO::new).toList();
     }
 
-    public AdminSurveyResponse.DetailDTO surveyDetail(int id) {
+
+
+    public AdminSurveyResponse.DetailDTO findById(int id) {
         Survey survey=surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
         List<SurveyQuestion> surveyQuestion=surveyQuestionJPARepository.findBySurveyId(survey.getId());
         
-        List<AdminSurveyResponse.DetailDTO.questionElements> questionElements = new ArrayList<>();
+        List<AdminSurveyResponse.DetailDTO.QuestionDTO> questionElements = new ArrayList<>();
         for (SurveyQuestion question:surveyQuestion){
-            List<QuestionChoice> questionChoices=questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
+            List<QuestionChoice> questionChoices=
+                    questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
 
-            AdminSurveyResponse.DetailDTO.questionElements questionElement = new AdminSurveyResponse.DetailDTO.questionElements(question.getQuestionItem(), questionChoices.stream().map(questionChoice -> questionChoice.getChoiceItem()).toList());
+            AdminSurveyResponse.DetailDTO.QuestionDTO questionElement =
+                    new AdminSurveyResponse.DetailDTO.QuestionDTO(
+                            question,
+                            questionChoices.stream().map(QuestionChoice::getId).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceItem).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceNumber).toList()
+                    );
 
             questionElements.add(questionElement);
         }

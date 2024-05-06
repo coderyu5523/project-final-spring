@@ -21,17 +21,17 @@ public class QuestionChoice {
     private Survey survey;
     @ManyToOne(fetch = FetchType.LAZY)
     private SurveyQuestion surveyQuestion;
+    private Integer choiceNumber;
     private String choiceItem;
     private Timestamp createdAt;
 
     @Builder
-    public QuestionChoice(Integer id, Survey survey, SurveyQuestion surveyQuestion, String choiceItem, Timestamp createdAt) {
+    public QuestionChoice(Integer id, Survey survey, SurveyQuestion surveyQuestion, Integer choiceNumber, String choiceItem, Timestamp createdAt) {
         this.id = id;
         this.survey = survey;
         this.surveyQuestion = surveyQuestion;
+        this.choiceNumber = choiceNumber;
         this.choiceItem = choiceItem;
         this.createdAt = createdAt;
     }
-
-
 }
