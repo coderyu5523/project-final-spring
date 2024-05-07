@@ -1,6 +1,6 @@
 INSERT INTO user_tb(username, password, phone, name, birth, gender, height, user_img, total_coin, goal_muscle, goal_fat, goal_weight, created_at)
-VALUES ('ssar', '1234', '010-0100-0100', '류재성', '1994-04-22', 'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, 70.0, now()),
-       ('cos', '1234', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, null, 500, 25.7, 15.0, 70.0, now())
+VALUES ('ssar', '$2a$10$5Z2/Wx9Lc8jCDSOz9pd6FOSFa3rou4lkf9gzFFrSzddRibYJAafau', '010-0100-0100', '류재성', '1994-04-22', 'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, 70.0, now()),
+       ('cos', '$2a$10$M119OnzkM1HHpZLCDIhrne4mYR9bwQWvRoHXvZMfh1Yxamf8UbmHq', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 25.7, 15.0, 70.0, now())
 --        ('love', '1234', '010-0033-0033', '홍길동', '1997-04-02', 'M', 173.4, null, 500, 30.0, 18.0, now());
 ;
 
@@ -20,7 +20,7 @@ VALUES (1, 76.3, 21.5, 21.3, '2024-04-27'),
        (2, 75.8, 22.5, 20.3, '2024-04-28'),
        (2, 75.5, 23.5, 19.3, '2024-04-29'),
        (2, 75.1, 24.5, 18.3, '2024-04-30'),
-       (2, 74.8, 25.5, 17.3, '2024-05-01')
+       (2, 75.8, 26.5, 16.3, '2024-05-01')
 ;
 
 insert into challenge_tb(challenge_name, background_img, sub_title, walking, badge_img, content, coin, period, distance, created_at)

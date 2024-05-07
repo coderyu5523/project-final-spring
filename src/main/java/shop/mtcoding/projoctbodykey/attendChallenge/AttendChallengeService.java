@@ -3,6 +3,7 @@ package shop.mtcoding.projoctbodykey.attendChallenge;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
@@ -19,7 +20,15 @@ public class AttendChallengeService {
 
     @Transactional
     public AttendChallengeResponse.SaveDTO save(SessionUser sessionUser, AttendChallengeRequest.SaveDTO reqDTO) {
-        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
+        User user = userJPARepository.
+                findById(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
+
+        AttendChallenge findByStatusNull = attendChallengeJPARepository.
+                findByStatusNull(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
+
+        if (findByStatusNull.getStatus() == null) {
+            throw new Exception400("진행중인 챌린지가 존재합니다.");
+        }
 
         // 현재 시간을 가져옴
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());

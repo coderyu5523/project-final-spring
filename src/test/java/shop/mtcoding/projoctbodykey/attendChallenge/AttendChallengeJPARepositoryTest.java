@@ -18,10 +18,10 @@ public class AttendChallengeJPARepositoryTest {
         Integer userId = 1;
 
         // when
-        AttendChallenge attendChallenge = attendChallengeJPARepository.closingTime(userId).orElseThrow();
+        AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(userId).orElseThrow();
 
         // eye
-        System.out.println(attendChallenge.getClosingTime());
+        System.out.println(attendChallenge);
     }
 
     @Test
