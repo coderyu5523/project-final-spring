@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Data
 @Table(name = "bodydata_tb")
 @Entity
-public class Bodydata {
+public class BodyData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,7 +29,7 @@ public class Bodydata {
     private Timestamp createdAt;
 
     @Builder
-    public Bodydata(Integer id, User user, double weight, double muscle, double fat, Timestamp createdAt) {
+    public BodyData(Integer id, User user, double weight, double muscle, double fat, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.weight = weight;

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
@@ -30,17 +31,24 @@ public class ChallengeService {
         List<Object[]> pastChallenges = challengeResponse.partChallenges(sessionUser.getId());
         Object[] ongoingChallenges = challengeResponse.ongoingChallenges(sessionUser.getId());
         List<Object[]> upcomingChallenges = challengeResponse.upcomingChallenges(sessionUser.getId());
-        return new ChallengeResponse.ChallengesDTO(ongoingChallenges, upcomingChallenges, pastChallenges);
+        try {
+            return new ChallengeResponse.ChallengesDTO(ongoingChallenges, upcomingChallenges, pastChallenges);
+        } catch (NullPointerException e) {
+            return new ChallengeResponse.ChallengesDTO(upcomingChallenges, pastChallenges);
+        }
     }
 
-    public ChallengeResponse.OngoingChallengeDTO ongoingChallenge(SessionUser user) {
-        if (user == null) {
+    public ChallengeResponse.OngoingChallengeDTO ongoingChallenge(SessionUser sessionUser) {
+        if (sessionUser == null) {
             throw new Exception403("챌린지를 조회할 권한이 없어요");
         }
 
-        Object[] ongoingChallenges = challengeResponse.ongoingChallengesWalking(user.getId());
-
-        return new ChallengeResponse.OngoingChallengeDTO(ongoingChallenges);
+        Object[] ongoingChallenges = challengeResponse.ongoingChallengesWalking(sessionUser.getId());
+        try {
+            return new ChallengeResponse.OngoingChallengeDTO(ongoingChallenges);
+        } catch (NullPointerException e) {
+           throw new Exception400(sessionUser.getUsername() + " 님은 현재 진행중인 챌린지가 없어요");
+        }
     }
 
     public ChallengeResponse.DetailDTO detail(SessionUser sessionUser, Integer id) throws IOException {

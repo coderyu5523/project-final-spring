@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class BodydataQueryRepository {
+public class BodyDataQueryRepository {
     private final EntityManager em;
 }

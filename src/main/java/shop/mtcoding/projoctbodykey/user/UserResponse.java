@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.MyDateUtil;
-import shop.mtcoding.projoctbodykey.bodydata.Bodydata;
+import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -47,7 +47,7 @@ public class UserResponse {
         private List<ConqueredChallengeDTO> conqueredChallenge;
         private String userImg;
 
-        public MyPageDTO(User user, Bodydata bodydata, List<Object[]> conqueredChallenge) {
+        public MyPageDTO(User user, BodyData bodydata, List<Object[]> conqueredChallenge) {
             this.id = user.getId();
             this.name = user.getName();
             this.fat = bodydata.getFat();
@@ -134,7 +134,7 @@ public class UserResponse {
         private Double weight;
         private List<BodyDataDTO> bodyData;
 
-        public MainPageDTO(User user, Bodydata bodyData, List<Bodydata> bodyDataList) {
+        public MainPageDTO(User user, BodyData bodyData, List<BodyData> bodyDataList) {
             this.id = user.getId();
             this.name = user.getName();
             this.goalFat = user.getGoalFat();
@@ -154,7 +154,7 @@ public class UserResponse {
             private Double weight;
             private Timestamp date;
 
-            public BodyDataDTO(Bodydata bodyData) {
+            public BodyDataDTO(BodyData bodyData) {
                 this.id = bodyData.getId();
                 this.fat = bodyData.getFat();
                 this.muscle = bodyData.getMuscle();
@@ -170,7 +170,7 @@ public class UserResponse {
         private Double golFat;
         private List<fatDataListDTO> fatDataList;
 
-        public MyChangeFatDTO(User user, List<Bodydata> fatDataList) {
+        public MyChangeFatDTO(User user, List<BodyData> fatDataList) {
             this.id = user.getId();
             this.golFat = user.getGoalFat();
             this.fatDataList = fatDataList.stream().map(fatDataListDTO::new).toList();
@@ -182,7 +182,7 @@ public class UserResponse {
             private Double fat;
             private Timestamp date;
 
-            public fatDataListDTO(Bodydata fatDataList) {
+            public fatDataListDTO(BodyData fatDataList) {
                 this.id = fatDataList.getId();
                 this.fat = fatDataList.getFat();
                 this.date = fatDataList.getCreatedAt();
@@ -196,7 +196,7 @@ public class UserResponse {
         private Double golMuscle;
         private List<MuscleDataListDTO> muscleDataList;
 
-        public MyChangeMuscleDTO(User user, List<Bodydata> muscleDataList) {
+        public MyChangeMuscleDTO(User user, List<BodyData> muscleDataList) {
             this.id = user.getId();
             this.golMuscle = user.getGoalMuscle();
             this.muscleDataList = muscleDataList.stream().map(MuscleDataListDTO::new).toList();
@@ -208,7 +208,7 @@ public class UserResponse {
             private Double muscle;
             private Timestamp date;
 
-            public MuscleDataListDTO(Bodydata muscleDataList) {
+            public MuscleDataListDTO(BodyData muscleDataList) {
                 this.id = muscleDataList.getId();
                 this.muscle = muscleDataList.getMuscle();
                 this.date = muscleDataList.getCreatedAt();
@@ -222,7 +222,7 @@ public class UserResponse {
         private Double golWeight;
         private List<WeightDataListDTO> weightDataList;
 
-        public MyChangeWeightDTO(User user, List<Bodydata> weightDataList) {
+        public MyChangeWeightDTO(User user, List<BodyData> weightDataList) {
             this.id = user.getId();
             this.golWeight = user.getGoalWeight();
             this.weightDataList = weightDataList.stream().map(WeightDataListDTO::new).toList();
@@ -234,7 +234,7 @@ public class UserResponse {
             private Double weight;
             private Timestamp date;
 
-            public WeightDataListDTO(Bodydata muscleDataList) {
+            public WeightDataListDTO(BodyData muscleDataList) {
                 this.id = muscleDataList.getId();
                 this.weight = muscleDataList.getWeight();
                 this.date = muscleDataList.getCreatedAt();

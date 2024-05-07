@@ -23,6 +23,7 @@ public class ChallengeResponse {
         private String subtitle;
         private Integer total_walking;
         private Integer walking;
+        private String error;
 
         public OngoingChallengeDTO(Object[] ongoingChallenge) {
             this.id = (Integer) ongoingChallenge[0];
@@ -30,6 +31,10 @@ public class ChallengeResponse {
             this.subtitle = (String) ongoingChallenge[2];
             this.total_walking = (Integer) ongoingChallenge[3];
             this.walking = (Integer) ongoingChallenge[4];
+        }
+
+        public OngoingChallengeDTO(String error) {
+            this.error = error;
         }
     }
 
@@ -58,6 +63,12 @@ public class ChallengeResponse {
             this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
             this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
         }
+
+        public ChallengesDTO(List<Object[]> upcomingChallenges, List<Object[]> pastChallenges) {
+            this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
+            this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
+        }
+
 
         @Data
         public static class UpcomingChallengesDTO {

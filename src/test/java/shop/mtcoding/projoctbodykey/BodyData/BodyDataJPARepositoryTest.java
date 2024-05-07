@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import shop.mtcoding.projoctbodykey.bodydata.Bodydata;
-import shop.mtcoding.projoctbodykey.bodydata.BodydataJPARepository;
+import shop.mtcoding.projoctbodykey.bodydata.BodyData;
+import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
 
 import java.util.List;
 
 @DataJpaTest
 public class BodyDataJPARepositoryTest {
     @Autowired
-    private BodydataJPARepository bodydataJPARepository;
+    private BodyDataJPARepository bodydataJPARepository;
     @Autowired
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class BodyDataJPARepositoryTest {
         Pageable pageable = PageRequest.of(0, 7);
 
         // when
-        List<Bodydata> bodydata = bodydataJPARepository.findBodySevenByUserId(userId, pageable).get();
+        List<BodyData> bodydata = bodydataJPARepository.findBodySevenByUserId(userId, pageable).get();
 
         // eye
         System.out.println("bodys = " + bodydata);
@@ -35,14 +35,14 @@ public class BodyDataJPARepositoryTest {
     @Test
     public void findByUserOrderDesc_test() {
         int userId = 1;
-        Bodydata bodydata = bodydataJPARepository.findByUserIdOrderDesc(userId).orElseThrow();
+        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(userId).orElseThrow();
         System.out.println(bodydata);
     }
 
     @Test
     public void findByUserAndBodyData_test() {
         int userId = 1;
-        List<Bodydata> bodyData = bodydataJPARepository.findByUserAndBodyData(userId);
+        List<BodyData> bodyData = bodydataJPARepository.findByUserAndBodyData(userId);
         System.out.println(bodyData.get(1).getUser().getUsername());
     }
 }
