@@ -17,11 +17,22 @@ import java.util.List;
 public class AdminSurveyController {
 
     private final SurveyService surveyService;
+    //설문조사 차트 리스트
+    @GetMapping("/admin/surveyscharts")
+    public String surveycharts(HttpServletRequest request) {
+//        AdminSurveyResponse.statsDTO respDTO = surveyService.chartList();
+//        request.setAttribute("stats", respDTO);
+        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
+        request.setAttribute("surveys", respDTO);
+        return "survey/chart-list";
+    }
 
-    @GetMapping("/admin/surveys/{id}/chart")
+    //설문조사 차트 디테일 보기
+    @GetMapping("/admin/surveyscharts/{id}")
     public String surveyChart(@PathVariable int id, HttpServletRequest request) {
-        //AdminSurveyResponse.ChartDTO respDTO = surveyService.chart(id);
-        //request.setAttribute("survey", respDTO);
+        AdminSurveyResponse.ChartDTO respDTO = surveyService.chart(id);
+        System.out.println("respDTO = " + respDTO);
+        request.setAttribute("survey", respDTO);
         return "survey/chart";
     }
 
@@ -66,7 +77,7 @@ public class AdminSurveyController {
     //설문조사 리스트
     @GetMapping("/admin/surveys")
     public String surveys(HttpServletRequest request) {
-        List<SurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
+        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
         request.setAttribute("surveys", respDTO);
         return "survey/survey";
     }

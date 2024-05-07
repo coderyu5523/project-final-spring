@@ -1,31 +1,49 @@
 {{> layout/header}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <div class="container d-flex mt-5 justify-content-center">
-    <div class="mx-2 pb-4 w-100">
+    <div class="mx-2 pb-4 w-90">
         <div class="border border-tertiary p-5">
             <div class="w-50 mx-auto">
                 <div class="justify-content-center">
-                    <h1 class="text-center">설문조사 이름</h1>
+                    <h1 class="text-center">{{survey.title}}</h1>
                     <hr>
-                    <h3 class="mt-5">1. 하루 평균 수면 시간은 얼마나 되십니까?</h3>
-                    <canvas id="doughnut-chart" width="300" height="250"></canvas>
+                    <div class="row justify-content-center">
+                        {{#survey.questionElements}}
+                            <div class="col-md-12 mb-4">
+                                <div class="border border-tertiary p-4">
+                                    <h3 class="text-center">{{questionId}}. {{question}}</h3>
+                                    <canvas id="chart-{{questionId}}" width="400" height="300"></canvas>
+                                </div>
+                            </div>
+                        {{/survey.questionElements}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    new Chart(document.getElementById("doughnut-chart"), {
-        type: 'doughnut',
-        data: {
-            labels: ["6시간 미만", "6시간 - 8시간", "8시간 이상", "불규칙"],
-            datasets: [
-                {
+    var chartData = [
+        {{#survey.questionElements}}
+            {
+                labels: [{{#choices}}"{{choiceItem}}"{{^@last}},{{/@last}}{{/choices}}],
+                data: [{{#choices}}{{choiceCount}}{{^@last}},{{/@last}}{{/choices}}]
+            }
+            {{^@last}},{{/@last}}
+        {{/survey.questionElements}}
+    ];
+    chartData.forEach(function (data, index) {
+        var canvas = document.getElementById("chart-" + (index + 1));
+        new Chart(canvas, {
+            type: 'doughnut',
+            data: {
+                labels: data.labels,
+                datasets: [{
                     label: "Population (millions)",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                    data: [2, 1, 1, 1]
-                }
-            ]
-        },
+                    backgroundColor: ["#CEB1AB", "#F0B859", "#6388E2", "#ED75C0", "#46523F", "#FBEC61", "#4D2C54", "#e8c3b9"],
+                    data: data.data
+                }]
+            }
+        });
     });
 </script>
