@@ -120,13 +120,13 @@ public class UserResponse {
         }
     }
 
-
     @Data
     public static class MainPageDTO {
         private Integer id;
         private String name;
         private Double goalFat; // 사용자의 목표 지방량
         private Double goalMuscle; // 사용자의 목표 근육량
+        private Double goalWeight; // 사용자의 목표 근육량
 
         // 가장 최근 지방량, 근육량, 체중
         private Double fat;
@@ -139,6 +139,7 @@ public class UserResponse {
             this.name = user.getName();
             this.goalFat = user.getGoalFat();
             this.goalMuscle = user.getGoalMuscle();
+            this.goalWeight = user.getGoalWeight();
             this.fat = bodyData.getFat();
             this.muscle = bodyData.getMuscle();
             this.weight = bodyData.getWeight();
