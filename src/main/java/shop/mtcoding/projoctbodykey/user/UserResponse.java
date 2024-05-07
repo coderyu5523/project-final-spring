@@ -40,25 +40,25 @@ public class UserResponse {
     @Data
     public static class MyPageDTO {
         private Integer id;
-        private String userImg;
         private String name;
         private Double fat;
         private Double muscle;
         private Double weight;
         private List<ConqueredChallengeDTO> conqueredChallenge;
+        private String userImg;
 
         public MyPageDTO(User user, Bodydata bodydata, List<Object[]> conqueredChallenge) {
             this.id = user.getId();
-            try {
-                this.userImg = ImageUtil.encode(user.getUserImg());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             this.name = user.getName();
             this.fat = bodydata.getFat();
             this.muscle = bodydata.getMuscle();
             this.weight = bodydata.getWeight();
             this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
+            try {
+                this.userImg = ImageUtil.encode(user.getUserImg());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         @Data
