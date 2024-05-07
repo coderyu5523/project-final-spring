@@ -17,7 +17,7 @@ public class AttendChallengeResponse {
         public SaveDTO(AttendChallenge attendChallenge) {
             this.userId = attendChallenge.getUser().getId();
             this.challengeId = attendChallenge.getChallenge().getId();
-            this.openingTime = attendChallenge.getOpeningTime();
+            this.openingTime = attendChallenge.getCreatedAt();
             this.closingTime = attendChallenge.getClosingTime();
             this.status = attendChallenge.getStatus();
         }
