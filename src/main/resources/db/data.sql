@@ -249,11 +249,13 @@ VALUES
 ;
 
 
-INSERT INTO choiceanswer_tb (user_id, survey_id, survey_question_id, question_choice_id, created_at)
+INSERT INTO choice_answer_tb (user_id, survey_id, survey_question_id, question_choice_id, created_at)
 VALUES
     (1, 1, 1, 1, now()),
     (1, 1, 1, 2, now()),
     (1, 1, 1, 3, now()),
+    (1, 1, 1, 4, now()),
+    (1, 1, 1, 4, now()),
     (1, 1, 1, 4, now()),
     (1, 1, 2, 5, now()),
     (1, 1, 2, 6, now()),

@@ -15,11 +15,24 @@ public class AdminSurveyRequest {
     @Data
     public static class ChoiceCountDTO {
         private Integer choiceId;
-        private Integer choiceCount;
+        private Long choiceCount;
 
-        public ChoiceCountDTO(Integer choiceId, Integer choiceCount) {
+        public ChoiceCountDTO(Integer choiceId, Long choiceCount) {
             this.choiceId = choiceId;
             this.choiceCount = choiceCount;
+        }
+    }
+
+    @Data
+    public static class UserStatsDTO {
+        private Integer surveyId;
+        private String surveyTitle;
+        private Integer count;
+
+        public UserStatsDTO(Integer surveyId, String surveyTitle, Integer count) {
+            this.surveyId = surveyId;
+            this.surveyTitle = surveyTitle;
+            this.count = count;
         }
     }
 }
