@@ -1,7 +1,7 @@
 package shop.mtcoding.projoctbodykey.activity;
 
 import lombok.Data;
-import shop.mtcoding.projoctbodykey.bodydata.Bodydata;
+import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class ActivityResponse {
         private Integer mealCount;
         private List<BodydataDTO> bodys = new ArrayList<>();
 
-        public mainDTO(List<Bodydata> bodyList) {
+        public mainDTO(List<BodyData> bodyList) {
             this.username = username;
             this.goalfat = goalfat;
             this.fat = fat;
@@ -39,7 +39,7 @@ public class ActivityResponse {
             private double fat;
             private String createdAt;
 
-            public BodydataDTO(Bodydata body) {
+            public BodydataDTO(BodyData body) {
                 this.weight = body.getWeight();
                 this.muscle = body.getMuscle();
                 this.fat = body.getFat();

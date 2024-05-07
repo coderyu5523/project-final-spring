@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class BodydataService {
-    private final BodydataJPARepository bodydataJPARepository;
+public class BodyDataService {
+    private final BodyDataJPARepository bodydataJPARepository;
 }

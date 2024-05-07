@@ -1,6 +1,7 @@
 package shop.mtcoding.projoctbodykey.challenge;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,11 @@ public class ChallengeQueryRepository {
         Query query = em.createNativeQuery(q);
         query.setParameter(1, userId);
 
-        return (Object[]) query.getSingleResult();
+        try {
+            return (Object[]) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public Object[] ongoingChallengesWalking(Integer userId) {
@@ -39,7 +44,11 @@ public class ChallengeQueryRepository {
         Query query = em.createNativeQuery(q);
         query.setParameter(1, userId);
 
-        return (Object[]) query.getSingleResult();
+        try {
+            return (Object[]) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public List<Object[]> partChallenges(Integer userId) {

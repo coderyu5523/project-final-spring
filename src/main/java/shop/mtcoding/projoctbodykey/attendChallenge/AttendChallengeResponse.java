@@ -1,7 +1,6 @@
 package shop.mtcoding.projoctbodykey.attendChallenge;
 
 import lombok.Data;
-import shop.mtcoding.projoctbodykey.bodydata.Bodydata;
 
 import java.sql.Timestamp;
 
