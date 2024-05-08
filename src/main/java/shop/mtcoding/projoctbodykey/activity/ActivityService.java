@@ -21,6 +21,7 @@ public class ActivityService {
     private final ActivityJPARepository activityJPARepository;
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
+
     //메인 페이지
     public void getActivity(int userId) {
         User user = userJPARepository.findById(userId).orElseThrow(() -> new Exception403("권한이 없습니다"));
@@ -30,6 +31,5 @@ public class ActivityService {
         //최신 7개의 바디 결과만 가져오게 하기
         Pageable pageable = PageRequest.of(0, 7);
         List<BodyData> bodyList = bodydataJPARepository.findBodySevenByUserId(userId, pageable).orElseThrow(() -> new Exception404("바디값이 없습니다"));
-
     }
 }

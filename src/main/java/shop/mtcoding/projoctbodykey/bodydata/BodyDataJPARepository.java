@@ -20,8 +20,11 @@ public interface BodyDataJPARepository extends JpaRepository<BodyData, Integer> 
     Optional<List<BodyData>> findBodySevenByUserId(@Param("userId") Integer userId, Pageable pageable);
 
     @Query("select b from BodyData b where b.user.id = :userId order by b.createdAt desc limit 1")
-    Optional<BodyData> findByUserIdOrderDesc(@Param("userId") Integer userId);
+    BodyData findByUserIdOrderDesc(@Param("userId") Integer userId);
 
     @Query("select b from BodyData b where b.user.id = :userId")
     List<BodyData> findByUserId(@Param("userId") Integer userId);
+
+    @Query("select b from BodyData b where b.user.id = :userId order by b.id desc")
+    List<BodyData> findByUserIdDesc(@Param("userId") Integer userId);
 }

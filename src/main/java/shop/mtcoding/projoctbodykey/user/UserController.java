@@ -20,7 +20,7 @@ public class UserController {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyChangeFatDTO respDTO = userService.myChangeFat(user);
 
-        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/api/users/my-change-muscle")
@@ -28,7 +28,7 @@ public class UserController {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyChangeMuscleDTO respDTO = userService.myChangeMuscle(user);
 
-        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/api/users/my-change-weight")
@@ -36,7 +36,7 @@ public class UserController {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyChangeWeightDTO respDTO = userService.myChangeWeight(user);
 
-        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/api/users/myPage")
@@ -44,7 +44,7 @@ public class UserController {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyPageDTO respDTO = userService.myPage(user);
 
-        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/api/users")
