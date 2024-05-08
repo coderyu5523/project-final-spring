@@ -109,13 +109,22 @@ public class UserResponse {
         private String name;
         private String phone;
         private Double height;
-        private String userImg;
 
-        public UpdateDTO(User user, String userImg) {
+        public UpdateDTO(User user) {
             this.id = user.getId();
             this.name = user.getName();
             this.phone = user.getPhone();
             this.height = user.getHeight();
+        }
+    }
+
+    @Data
+    public static class ImgUpdateDTO {
+        private Integer id;
+        private String userImg;
+
+        public ImgUpdateDTO(Integer userId ,String userImg) {
+            this.id = userId;
             this.userImg = userImg;
         }
     }

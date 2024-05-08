@@ -87,6 +87,14 @@ public class UserController {
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
+    @PutMapping("/api/users/img-update")
+    public ResponseEntity<?> imgUpdate(@RequestBody UserRequest.ImgUpdateDTO reqDTO) throws IOException {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        UserResponse.ImgUpdateDTO respDTO = userService.imgUpdate(reqDTO, user);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
     @PutMapping("/api/users/goalFat-update")
     public ResponseEntity<?> goalFatUpdate(@RequestBody UserRequest.GoalFatUpdateDTO reqDTO) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");

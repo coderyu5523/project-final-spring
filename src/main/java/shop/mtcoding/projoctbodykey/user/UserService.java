@@ -62,17 +62,25 @@ public class UserService {
         // 유저패스워드 암호화
         String encPassword = PasswordUtil.encode(reqDTO.getPassword());
 
-        // 이미지에 UUID 붙힘
-        String imgUUID = ImageUtil.decodeAsUUID(reqDTO.getUserImg());
-
         // 업데이트 처리
         user.setName(reqDTO.getName());
         user.setPassword(encPassword);
         user.setPhone(reqDTO.getPhone());
         user.setHeight(reqDTO.getHeight());
+
+        return new UserResponse.UpdateDTO(user);
+    }
+
+    @Transactional
+    public UserResponse.ImgUpdateDTO imgUpdate(UserRequest.ImgUpdateDTO reqDTO, SessionUser sessionUser) throws IOException {
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
+                new Exception404("유저 정보를 찾을 수 없어요"));
+
+        // 이미지에 UUID 붙힘
+        String imgUUID = ImageUtil.decodeAsUUID(reqDTO.getUserImg());
         user.setUserImg(imgUUID);
 
-        return new UserResponse.UpdateDTO(user, reqDTO.getUserImg());
+        return new UserResponse.ImgUpdateDTO(user.getId(), imgUUID);
     }
 
     @Transactional
