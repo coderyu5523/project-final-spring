@@ -12,6 +12,10 @@ public class UserRequest {
         private String password;
         private String phone;
         private Double height;
+    }
+
+    @Data
+    public static class ImgUpdateDTO {
         private String userImg;
     }
 
