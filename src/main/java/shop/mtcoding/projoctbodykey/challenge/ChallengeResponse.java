@@ -10,6 +10,7 @@ import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class ChallengeResponse {
     @Data
     public static class OngoingChallengeDTO {
         private Integer id;
-        private String  challengeName;
+        private String challengeName;
         private String subtitle;
         private Integer total_walking;
         private Integer walking;
@@ -66,9 +67,13 @@ public class ChallengeResponse {
 
         public ChallengesDTO(List<Object[]> upcomingChallenges, List<Object[]> pastChallenges) {
             this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
-            this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
+            if (pastChallenges.isEmpty()) {
+                this.pastChallenges = new ArrayList<>();
+                this.pastChallenges.add(new PastChallengesDTO(1, "진행한 챌린지가 없어요", "진행한 챌린지가 없어요", "진행한 챌린지가 없어요", false));
+            } else {
+                this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
+            }
         }
-
 
         @Data
         public static class UpcomingChallengesDTO {
@@ -110,6 +115,14 @@ public class ChallengeResponse {
                 }
                 this.status = (Boolean) pastChallenges[4];
             }
+
+            public PastChallengesDTO(Integer id, String challengeName, String distance, String badgeImg, Boolean status) {
+                this.id = id;
+                this.challengeName = challengeName;
+                this.distance = distance;
+                this.badgeImg = badgeImg;
+                this.status = status;
+            }
         }
     }
 
@@ -118,15 +131,15 @@ public class ChallengeResponse {
         private Integer id;
         private String challengeName; // 챌린지명
         private String subTitle; // 부 제목
-//        private String distance; // 거리
+        //        private String distance; // 거리
         private Integer walking; // 걸어야할 걸음수
-//        private String badgeImg; // 뱃지 사진 경로
+        //        private String badgeImg; // 뱃지 사진 경로
         private String content;  // 챌린지 내용
         private Boolean state;  // 챌린지 내용
-//        private Integer coin; // 보상 코인
+        //        private Integer coin; // 보상 코인
 //        private Timestamp period; //챌린지 기간
 //        private Timestamp createdAt;
-private String backgroundImg;// 챌린지 배경사진
+        private String backgroundImg;// 챌린지 배경사진
 
         @Builder
         public DetailDTO(Boolean state, String backgroundImg, Challenge challenge) {
@@ -197,7 +210,7 @@ private String backgroundImg;// 챌린지 배경사진
         private String keyword;
         private List<AdminChallengeSearchList> challengeList;
 
-        public AdminChallengeSearchListDTO(Boolean first, Boolean last,  Integer prev, Integer next, String keyword, Page<Challenge> challengeList) {
+        public AdminChallengeSearchListDTO(Boolean first, Boolean last, Integer prev, Integer next, String keyword, Page<Challenge> challengeList) {
             this.first = first;
             this.last = last;
             this.prev = prev;
