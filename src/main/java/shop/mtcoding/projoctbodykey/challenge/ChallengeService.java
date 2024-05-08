@@ -33,6 +33,7 @@ public class ChallengeService {
         // 내가 지금까지 진행한 챌린지
         List<Object[]> pastChallenges = challengeResponse.partChallenges(sessionUser.getId());
 
+
         // 현재 진행중인 챌린지
         Object[] ongoingChallenges = challengeResponse.ongoingChallenges(sessionUser.getId());
 

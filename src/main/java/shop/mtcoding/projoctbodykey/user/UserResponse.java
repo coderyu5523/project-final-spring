@@ -53,20 +53,23 @@ public class UserResponse {
         public MyPageDTO(User user, BodyData bodyData, List<Object[]> conqueredChallenge) {
             this.id = user.getId();
             this.name = user.getName();
-            if(bodyData != null) {
+            if (bodyData != null) {
                 this.fat = bodyData.getFat();
                 this.muscle = bodyData.getMuscle();
                 this.weight = bodyData.getWeight();
+                this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
+                try {
+                    this.userImg = ImageUtil.encode(user.getUserImg());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 this.fat = 0.0d;
                 this.muscle = 0.0d;
                 this.weight = 0.0d;
-            }
-            this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
-            try {
-                this.userImg = ImageUtil.encode(user.getUserImg());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                this.conqueredChallenge = new ArrayList<>();
+                this.conqueredChallenge.add(new ConqueredChallengeDTO(1, "성공한 챌린지가 없어요", "성공한 챌린지가 없어요", false, "성공한 챌린지가 없어요"));
+                this.userImg = "프로필 이미지가 없어요";
             }
         }
 
@@ -77,6 +80,7 @@ public class UserResponse {
             private String distance; // 거리
             private Boolean status;
             private String badgeImg;
+
             public ConqueredChallengeDTO(Object[] conqueredChallenge, String badgeImg) {
                 this.id = (Integer) conqueredChallenge[0];
                 this.challengeName = (String) conqueredChallenge[1];
@@ -87,6 +91,14 @@ public class UserResponse {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+            }
+
+            public ConqueredChallengeDTO(Integer id, String challengeName, String distance, Boolean status, String badgeImg) {
+                this.id = id;
+                this.challengeName = challengeName;
+                this.distance = distance;
+                this.status = status;
+                this.badgeImg = badgeImg;
             }
         }
     }
@@ -104,10 +116,14 @@ public class UserResponse {
             this.name = user.getName();
             this.phone = user.getPhone();
             this.height = user.getHeight();
-            try {
-                this.userImg = ImageUtil.encode(user.getUserImg());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (user.getUserImg() != null) {
+                try {
+                    this.userImg = ImageUtil.encode(user.getUserImg());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                this.userImg = "프로필 이미지가 없어요";
             }
         }
     }
@@ -132,7 +148,7 @@ public class UserResponse {
         private Integer id;
         private String userImg;
 
-        public ImgUpdateDTO(Integer userId ,String userImg) {
+        public ImgUpdateDTO(Integer userId, String userImg) {
             this.id = userId;
             this.userImg = userImg;
         }
@@ -158,7 +174,7 @@ public class UserResponse {
             this.goalFat = Optional.ofNullable(user.getGoalFat()).orElse(0.0);
             this.goalMuscle = Optional.ofNullable(user.getGoalMuscle()).orElse(0.0);
             this.goalWeight = Optional.ofNullable(user.getGoalWeight()).orElse(0.0);
-            if(bodyData != null) {
+            if (bodyData != null) {
                 this.fat = Optional.ofNullable(bodyData.getFat()).orElse(0.0);
                 this.muscle = Optional.ofNullable(bodyData.getMuscle()).orElse(0.0);
                 this.weight = Optional.ofNullable(bodyData.getWeight()).orElse(0.0);
@@ -208,13 +224,17 @@ public class UserResponse {
 
         public MyChangeFatDTO(User user, List<BodyData> fatDataList) {
             this.id = user.getId();
-            this.golFat = user.getGoalFat();
-            if(fatDataList != null) {
-                this.fatDataList = fatDataList.stream().map(fatDataListDTO::new).toList();
+            if (user.getGoalFat() != null) {
+                this.golFat = user.getGoalFat();
             } else {
+                this.golFat = 0.0d;
+            }
+            if (fatDataList.isEmpty()) {
                 this.fatDataList = new ArrayList<>();
                 // 배열 초기화 및 요소 추가
                 this.fatDataList.add(new fatDataListDTO(1, 0.0d, user.getCreatedAt()));
+            } else {
+                this.fatDataList = fatDataList.stream().map(fatDataListDTO::new).toList();
             }
         }
 
@@ -246,13 +266,17 @@ public class UserResponse {
 
         public MyChangeMuscleDTO(User user, List<BodyData> muscleDataList) {
             this.id = user.getId();
-            this.golMuscle = user.getGoalMuscle();
-            if(muscleDataList != null) {
-                this.muscleDataList = muscleDataList.stream().map(MuscleDataListDTO::new).toList();
+            if (user.getGoalMuscle() != null) {
+                this.golMuscle = user.getGoalMuscle();
             } else {
+                this.golMuscle = 0.0d;
+            }
+            if (muscleDataList.isEmpty()) {
                 this.muscleDataList = new ArrayList<>();
                 // 배열 초기화 및 요소 추가
                 this.muscleDataList.add(new MuscleDataListDTO(1, 0.0d, user.getCreatedAt()));
+            } else {
+                this.muscleDataList = muscleDataList.stream().map(MuscleDataListDTO::new).toList();
             }
         }
 
@@ -284,13 +308,17 @@ public class UserResponse {
 
         public MyChangeWeightDTO(User user, List<BodyData> weightDataList) {
             this.id = user.getId();
-            this.golWeight = user.getGoalWeight();
-            if(weightDataList != null) {
-                this.weightDataList = weightDataList.stream().map(WeightDataListDTO::new).toList();
+            if (user.getGoalWeight() != null) {
+                this.golWeight = user.getGoalWeight();
             } else {
+                this.golWeight = 0.0d;
+            }
+            if (weightDataList.isEmpty()) {
                 this.weightDataList = new ArrayList<>();
                 // 배열 초기화 및 요소 추가
                 this.weightDataList.add(new WeightDataListDTO(1, 0.0d, user.getCreatedAt()));
+            } else {
+                this.weightDataList = weightDataList.stream().map(WeightDataListDTO::new).toList();
             }
         }
 
@@ -301,15 +329,9 @@ public class UserResponse {
             private Timestamp date;
 
             public WeightDataListDTO(BodyData muscleDataList) {
-                if(muscleDataList != null) {
-                    this.id = muscleDataList.getId();
-                    this.weight = muscleDataList.getWeight();
-                    this.date = muscleDataList.getCreatedAt();
-                } else {
-                    this.id = null;
-                    this.weight = 0.0d;
-                    this.date = null;
-                }
+                this.id = muscleDataList.getId();
+                this.weight = muscleDataList.getWeight();
+                this.date = muscleDataList.getCreatedAt();
             }
 
             public WeightDataListDTO(Integer id, Double weight, Timestamp date) {
