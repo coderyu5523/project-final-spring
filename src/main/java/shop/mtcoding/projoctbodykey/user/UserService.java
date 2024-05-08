@@ -118,8 +118,7 @@ public class UserService {
         User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요"));
 
-        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId()).orElseThrow(() ->
-                new Exception404("유저 정보를 찾을 수 없어요."));
+        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
 
         List<Object[]> conqueredChallenge = challengeQueryRepository.conqueredChallenge(sessionUser.getId());
 
@@ -137,8 +136,7 @@ public class UserService {
         User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() ->
                 new Exception404("유저 정보를 찾을 수 없어요."));
 
-        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId()).orElseThrow(() ->
-                new Exception404("유저 정보를 찾을 수 없어요."));
+        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
 
         List<BodyData> bodydataList = bodydataJPARepository.findByUserId(sessionUser.getId());
 

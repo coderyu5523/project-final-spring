@@ -9,6 +9,8 @@ import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
 import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class BodyDataService {
@@ -23,5 +25,13 @@ public class BodyDataService {
         BodyData bodyData = bodydataJPARepository.save(reqDTO.toEntity(user));
 
         return new BodyDataResponse.SaveDTO(bodyData);
+    }
+
+    public BodyDataResponse.BodyDateDTO activitiesBodyDate(SessionUser sessionUser) {
+        User user = userJPARepository.findById(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
+        BodyData bodyData = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
+        List<BodyData> bodyDataList = bodydataJPARepository.findByUserIdDesc(sessionUser.getId());
+
+        return new BodyDataResponse.BodyDateDTO(user ,bodyData, bodyDataList);
     }
 }

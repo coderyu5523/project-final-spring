@@ -22,14 +22,14 @@ public class BodyData {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    private double weight;
-    private double muscle;
-    private double fat;
+    private Double weight;
+    private Double muscle;
+    private Double fat;
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public BodyData(Integer id, User user, double weight, double muscle, double fat, Timestamp createdAt) {
+    public BodyData(Integer id, User user, Double weight, Double muscle, Double fat, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.weight = weight;

@@ -35,7 +35,29 @@ public class BodyDataJPARepositoryTest {
     @Test
     public void findByUserOrderDesc_test() {
         int userId = 1;
-        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(userId).orElseThrow();
+        BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(userId);
         System.out.println(bodydata);
+    }
+
+    @Test
+    public void findByUserIdDesc_test() {
+        int userId = 1;
+        List<BodyData> bodyData = bodydataJPARepository.findByUserIdDesc(userId);
+
+        // 정렬된 bodyData 출력
+        for (BodyData data : bodyData) {
+            System.out.println(data);
+        }
+    }
+
+    @Test
+    public void findByUserId_test() {
+        int userId = 1;
+        List<BodyData> bodyData = bodydataJPARepository.findByUserId(userId);
+
+        // 정렬된 bodyData 출력
+        for (BodyData data : bodyData) {
+            System.out.println(data);
+        }
     }
 }
