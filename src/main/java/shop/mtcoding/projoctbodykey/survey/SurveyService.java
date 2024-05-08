@@ -85,6 +85,7 @@ public class SurveyService {
         survey.update(reqDTOs.getTitle(), timestamp);
         System.out.println("survey = " + survey);
 
+//        choiceAnswerJPARepository.deleteBySurveyId(survey.getId());
         questionChoiceJPARepository.deleteBySurveyId(survey.getId());
         surveyQuestionJPARepository.deleteBySurveyId(survey.getId());
 
