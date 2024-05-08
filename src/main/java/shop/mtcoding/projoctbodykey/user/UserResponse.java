@@ -57,16 +57,19 @@ public class UserResponse {
                 this.fat = bodyData.getFat();
                 this.muscle = bodyData.getMuscle();
                 this.weight = bodyData.getWeight();
+                this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
+                try {
+                    this.userImg = ImageUtil.encode(user.getUserImg());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 this.fat = 0.0d;
                 this.muscle = 0.0d;
                 this.weight = 0.0d;
-            }
-            this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
-            try {
-                this.userImg = ImageUtil.encode(user.getUserImg());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                this.conqueredChallenge = new ArrayList<>();
+                this.conqueredChallenge.add(new ConqueredChallengeDTO(1, "성공한 챌린지가 없어요", "성공한 챌린지가 없어요",false,"성공한 챌린지가 없어요"));
+                this.userImg = "프로필 이미지가 없어요";
             }
         }
 
@@ -88,6 +91,14 @@ public class UserResponse {
                     throw new RuntimeException(e);
                 }
             }
+
+            public ConqueredChallengeDTO(Integer id, String challengeName, String distance, Boolean status, String badgeImg) {
+                this.id = id;
+                this.challengeName = challengeName;
+                this.distance = distance;
+                this.status = status;
+                this.badgeImg = badgeImg;
+            }
         }
     }
 
@@ -104,10 +115,14 @@ public class UserResponse {
             this.name = user.getName();
             this.phone = user.getPhone();
             this.height = user.getHeight();
-            try {
-                this.userImg = ImageUtil.encode(user.getUserImg());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if(user.getUserImg() != null) {
+                try {
+                    this.userImg = ImageUtil.encode(user.getUserImg());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                this.userImg = "프로필 이미지가 없어요";
             }
         }
     }
