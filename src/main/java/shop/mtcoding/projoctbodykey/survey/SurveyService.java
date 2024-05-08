@@ -108,14 +108,14 @@ public class SurveyService {
         return surveys.stream().map(AdminSurveyResponse.SurveysDTO::new).toList();
     }
 
-//    public AdminSurveyResponse.statsDTO chartList() {
-//        List<Survey> surveys = surveyJPARepository.findAll();
-//        List<AdminSurveyRequest.UserStatsDTO> userStats=choiceAnswerJPARepository.findWithChoiceCount();
-//        AdminSurveyResponse.statsDTO stats=new AdminSurveyResponse.statsDTO(
-//                surveys.stream().map(AdminSurveyResponse.statsDTO.SurveysDTO::new).toList(),
-//                userStats.stream().map(userStatsDTO -> new AdminSurveyResponse.statsDTO.ChartDTO(userStatsDTO)).toList());
-//        return stats;
-//    }
+    public AdminSurveyResponse.statsDTO chartList() {
+        List<Survey> surveys = surveyJPARepository.findAll();
+        List<AdminSurveyRequest.UserStatsDTO> userStats=choiceAnswerJPARepository.findWithChoiceCount();
+        AdminSurveyResponse.statsDTO stats=new AdminSurveyResponse.statsDTO(
+                surveys.stream().map(AdminSurveyResponse.statsDTO.SurveysDTO::new).toList(),
+                userStats.stream().map(userStatsDTO -> new AdminSurveyResponse.statsDTO.ChartDTO(userStatsDTO)).toList());
+        return stats;
+    }
 
 
     public AdminSurveyResponse.DetailDTO findById(int id) {

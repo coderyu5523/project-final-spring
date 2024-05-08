@@ -20,10 +20,11 @@ public class AdminSurveyController {
     //설문조사 차트 리스트
     @GetMapping("/admin/surveyscharts")
     public String surveycharts(HttpServletRequest request) {
-//        AdminSurveyResponse.statsDTO respDTO = surveyService.chartList();
-//        request.setAttribute("stats", respDTO);
-        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
-        request.setAttribute("surveys", respDTO);
+        AdminSurveyResponse.statsDTO respDTO = surveyService.chartList();
+        request.setAttribute("stats", respDTO);
+        System.out.println("respDTO = " + respDTO);
+//        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
+//        request.setAttribute("surveys", respDTO);
         return "survey/chart-list";
     }
 

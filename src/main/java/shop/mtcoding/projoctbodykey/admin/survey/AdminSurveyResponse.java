@@ -28,6 +28,7 @@ public class AdminSurveyResponse {
     public static class statsDTO {
         private List<ChartDTO> charts;
         private List<SurveysDTO> surveys;
+        @Data
         public static class SurveysDTO {
             private Integer surveyId;
             private String surveyTitle;
@@ -42,10 +43,11 @@ public class AdminSurveyResponse {
             }
         }
 
+        @Data
         public static class ChartDTO {
             private Integer surveyId;
             private String surveyTitle;
-            private Integer count;
+            private Long count;
 
             public ChartDTO(AdminSurveyRequest.UserStatsDTO userStatsDTO) {
                 this.surveyId = userStatsDTO.getSurveyId();
