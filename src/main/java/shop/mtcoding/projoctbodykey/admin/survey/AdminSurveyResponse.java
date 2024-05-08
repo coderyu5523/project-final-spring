@@ -14,12 +14,39 @@ public class AdminSurveyResponse {
     public static class SurveysDTO {
         private Integer id;
         private String title;
+        private String status;
         private Timestamp createdAt;
 
 
         public SurveysDTO(Survey survey) {
             this.id = survey.getId();
             this.title = survey.getTitle();
+            if(survey.getStatus()==null) {
+                this.status = "진행전";
+            } else if (survey.getStatus()==true) {
+                this.status = "진행중";
+            } else if (survey.getStatus()==false) {
+                this.status = "진행종료";
+            }
+            this.createdAt = survey.getCreatedAt();
+
+        }
+    }
+
+    @Data
+    public static class SurveyListDTO {
+        private Integer id;
+        private String title;
+        private Integer totalQuestion;
+        private Boolean status;
+        private Timestamp createdAt;
+
+
+        public SurveyListDTO(int totalQuestion,Survey survey) {
+            this.id = survey.getId();
+            this.title = survey.getTitle();
+            this.totalQuestion = totalQuestion;
+            this.status= survey.getStatus();
             this.createdAt = survey.getCreatedAt();
 
         }

@@ -35,4 +35,15 @@ public class AdminSurveyRequest {
             this.count = count;
         }
     }
+
+    @Data
+    public static class TotalQuestion {
+        private Integer surveyId;
+        private Long count;
+
+        public TotalQuestion(Integer surveyId, Long count) {
+            this.surveyId = surveyId;
+            this.count = count;
+        }
+    }
 }

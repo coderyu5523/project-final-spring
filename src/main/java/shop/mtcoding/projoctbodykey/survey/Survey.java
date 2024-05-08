@@ -17,15 +17,15 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    private Boolean status;
     private Timestamp createdAt;
 
-
     @Builder
-    public Survey(Integer id, String title, Timestamp createdAt) {
+    public Survey(Integer id, String title, Boolean status, Timestamp createdAt) {
         this.id = id;
         this.title = title;
+        this.status = status;
         this.createdAt = createdAt;
-
     }
 
     public void update(String title, Timestamp createdAt){

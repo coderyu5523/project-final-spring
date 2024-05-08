@@ -85,6 +85,7 @@ public class SurveyService {
         survey.update(reqDTOs.getTitle(), timestamp);
         System.out.println("survey = " + survey);
 
+//        choiceAnswerJPARepository.deleteBySurveyId(survey.getId());
         questionChoiceJPARepository.deleteBySurveyId(survey.getId());
         surveyQuestionJPARepository.deleteBySurveyId(survey.getId());
 
@@ -107,6 +108,16 @@ public class SurveyService {
         List<Survey> surveys = surveyJPARepository.findAll();
         return surveys.stream().map(AdminSurveyResponse.SurveysDTO::new).toList();
     }
+//    public List<> surveyList() {
+//        List<Survey> surveys = surveyJPARepository.findAll();
+//        for (Survey survey : surveys){
+//            surveyQuestionJPARepository.
+//            AdminSurveyResponse.SurveyListDTO surveyListDTO =
+//                    new AdminSurveyResponse.SurveyListDTO(,survey)
+//        }
+//        List<>
+//        return surveys.stream().map(AdminSurveyResponse.SurveysDTO::new).toList();
+//    }
 
     public AdminSurveyResponse.statsDTO chartList() {
         List<Survey> surveys = surveyJPARepository.findAll();

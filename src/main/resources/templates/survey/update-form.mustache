@@ -3,69 +3,74 @@
     <div class="justify-content-center mx-2 pb-4 w-100">
         <div class="border border-tertiary p-5">
             <h1 class="d-inline-flex">설문지 수정하기</h1>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Open this select menu</option>
+                <option value="">진행전</option>
+                <option value="1">진행중</option>
+                <option value="0">진행종료</option>
+            </select>
             <hr>
-            <form id="save-form">
-                <label for="question"><b>설문지 제목 입력하기</b></label>
-                <input class="form-control Survey" type="text" value="{{survey.title}}" required>
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary" style="width: 50%"
-                            onclick="addQuestionElement()">질문 추가하기
-                    </button>
-                </div>
-                <div class="px-5 mt-5">
-                    {{#survey.questionElements}}
-                        <div class="question-element-item">
-                            <div class="container d-flex mb-3">
-                                <div class="justify-content-center mx-2 pb-4 w-100">
-                                    <div class="border border-tertiary p-5">
-                                        <label for="question"><b>질문</b></label>
-                                        <button type="button" class="btn btn-primary"
-                                                onclick="addChoiceElement(this)">
-                                            선택항목 추가하기
-                                        </button>
-                                        <button type="button" class="btn btn-primary"
-                                                onclick="deleteQuestionElement(this)">
-                                            질문 삭제하기
-                                        </button>
-                                        <input class="form-control question" type="text" value="{{question}}"
-                                               required>
-                                        <hr>
-                                        {{#choices}}
-                                            <div class="choice-element">
-                                                <label for="choice"><b>선택문항</b></label>
-                                                <button type="button" class="btn btn-primary"
-                                                        onclick="deleteChoiceElement(this)">
-                                                    선택항목 삭제하기
-                                                </button>
-                                                <input class="form-control choice" type="text" value="{{choiceItem}}"
-                                                       required>
-                                            </div>
-                                        {{/choices}}
-                                        <div id="element-choice-input-box">
+            <!--            <form id="save-form">-->
+            <label for="question"><b>설문지 제목 입력하기</b></label>
+            <input class="form-control Survey" type="text" value="{{survey.title}}" required>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" style="width: 50%"
+                        onclick="addQuestionElement()">질문 추가하기
+                </button>
+            </div>
+            <div class="px-5 mt-5">
+                {{#survey.questionElements}}
+                    <div class="question-element-item">
+                        <div class="container d-flex mb-3">
+                            <div class="justify-content-center mx-2 pb-4 w-100">
+                                <div class="border border-tertiary p-5">
+                                    <label for="question"><b>질문</b></label>
+                                    <button type="button" class="btn btn-primary"
+                                            onclick="addChoiceElement(this)">
+                                        선택항목 추가하기
+                                    </button>
+                                    <button type="button" class="btn btn-primary"
+                                            onclick="deleteQuestionElement(this)">
+                                        질문 삭제하기
+                                    </button>
+                                    <input class="form-control question" type="text" value="{{question}}"
+                                           required>
+                                    <hr>
+                                    {{#choices}}
+                                        <div class="choice-element">
+                                            <label for="choice"><b>선택문항</b></label>
+                                            <button type="button" class="btn btn-primary"
+                                                    onclick="deleteChoiceElement(this)">
+                                                선택항목 삭제하기
+                                            </button>
+                                            <input class="form-control choice" type="text" value="{{choiceItem}}"
+                                                   required>
                                         </div>
+                                    {{/choices}}
+                                    <div id="element-choice-input-box">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {{/survey.questionElements}}
-                    <div id="element-input-box">
                     </div>
+                {{/survey.questionElements}}
+                <div id="element-input-box">
                 </div>
+            </div>
 
-                <div class="d-flex justify-content-center mt-5">
-                    <button type="submit" onclick="saveElement()" class="btn btn-primary form-control"
-                            style="width: 50%">등록하기
-                    </button>
-                </div>
-            </form>
+            <div class="d-flex justify-content-center mt-5">
+                <button type="button" onclick="saveElement()" class="btn btn-primary form-control"
+                        style="width: 50%">등록하기
+                </button>
+            </div>
+            <!--            </form>-->
         </div>
-        </form>
+        <!--        </form>-->
     </div>
-</div>
 </div>
 
 <script>
-    const surveyId = {{survey.id}};
+    let surveyId = {{survey.surveyId}};
 
     function saveElement() {
         let title = $(".Survey:first").val();
@@ -99,6 +104,7 @@
             data: JSON.stringify(requestData),
             contentType: "application/json; charset=utf-8"
         }).done((res) => {
+            console.log('Ajax 요청 성공!');
             location.href = `/admin/surveys`;
         }).fail((res) => {
             //실패하면 할거

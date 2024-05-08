@@ -1,6 +1,7 @@
 package shop.mtcoding.projoctbodykey.choiceanswer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest;
@@ -14,4 +15,5 @@ public interface ChoiceAnswerJPARepository extends JpaRepository<ChoiceAnswer, I
 
     @Query("SELECT new shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest$UserStatsDTO(s.id, s.title, COUNT(DISTINCT ca.user.id)) FROM ChoiceAnswer ca right JOIN  ca.survey s GROUP BY s.id")
     List<AdminSurveyRequest.UserStatsDTO> findWithChoiceCount();
+
 }

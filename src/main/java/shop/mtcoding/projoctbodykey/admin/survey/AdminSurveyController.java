@@ -61,10 +61,10 @@ public class AdminSurveyController {
 
     //설문조사 업데이트
     @PostMapping("/admin/surveys/{id}/update")
-    public void surveyUpdate(@PathVariable int id, @RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
+    public String surveyUpdate(@PathVariable int id, @RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
         System.out.println("reqDTOs = " + reqDTOs);
         surveyService.update(id, reqDTOs);
-        //return "redirect:/admin/{id}/surveys";
+        return "redirect:/admin/surveys";
     }
 
     //설문조사 디테일
