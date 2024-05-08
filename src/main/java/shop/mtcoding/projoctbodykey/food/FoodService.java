@@ -84,4 +84,9 @@ public class FoodService {
         Food food = foodJPARepository.findById(foodId).orElseThrow(() -> new Exception404("찾는 음식이 없습니다"));
         foodJPARepository.delete(food);
     }
+
+    public FoodResponse.FoodListDTO foodList() {
+
+        return new FoodResponse.FoodListDTO(null);
+    }
 }
