@@ -54,6 +54,7 @@ public class AdminSurveyController {
     //설문조사 업데이트 폼 TODO : DTO다 따로 만들기!!!!!!service도!
     @GetMapping("/admin/surveys/{id}/update-form")
     public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request) {
+//        AdminSurveyResponse.UpdateDTO respDTO=surveyService.UpdateForm(id);
         AdminSurveyResponse.DetailDTO respDTO=surveyService.findById(id);
         request.setAttribute("survey",respDTO);
         return "survey/update-form";

@@ -99,6 +99,51 @@ public class AdminSurveyResponse {
             private List<String> choices;
         }
     }
+
+    @Data
+    public static class UpdateDTO {
+        private Integer surveyId;
+        private String title;
+        private boolean status;
+        private List<QuestionDTO> questionElements;
+
+        @Data
+        public static class QuestionDTO {
+            private Integer questionId;
+            private String question;
+            private List<ChoiceDTO> choices;
+
+            @Data
+            public static class ChoiceDTO{
+                private Integer choiceId;
+                String choiceItem;
+                Integer choiceNumber;
+
+                public ChoiceDTO(Integer choiceId, String choiceItem, Integer choiceNumber) {
+                    this.choiceId = choiceId;
+                    this.choiceItem = choiceItem;
+                    this.choiceNumber = choiceNumber;
+                }
+            }
+
+            public QuestionDTO(SurveyQuestion question, List<Integer> choiceId, List<String> choices, List<Integer> choiceNumbers) {
+                this.questionId=question.getId();
+                this.question = question.getQuestionItem();
+                this.choices = IntStream.range(0, choices.size())
+                        .mapToObj(i -> new ChoiceDTO(choiceId.get(i),choices.get(i), choiceNumbers.get(i)))
+                        .collect(Collectors.toList());
+            }
+
+        }
+
+        public UpdateDTO(Integer surveyId, String title, Boolean status, List<QuestionDTO> questionElements) {
+            this.surveyId=surveyId;
+            this.title = title;
+            this.status = status;
+            this.questionElements = questionElements;
+        }
+    }
+
     @Data
     public static class DetailDTO {
         private Integer surveyId;
