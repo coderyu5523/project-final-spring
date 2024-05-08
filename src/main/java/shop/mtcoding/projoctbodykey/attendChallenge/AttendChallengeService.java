@@ -23,10 +23,9 @@ public class AttendChallengeService {
         User user = userJPARepository.
                 findById(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
 
-        AttendChallenge findByStatusNull = attendChallengeJPARepository.
-                findByStatusNull(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
+        AttendChallenge findByStatusNull = attendChallengeJPARepository.findByStatusNull(sessionUser.getId());
 
-        if (findByStatusNull.getStatus() == null) {
+        if (findByStatusNull != null) {
             throw new Exception400("진행중인 챌린지가 존재합니다.");
         }
 

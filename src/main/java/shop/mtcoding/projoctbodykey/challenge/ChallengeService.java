@@ -6,12 +6,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception401;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeJPARepository;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
+import shop.mtcoding.projoctbodykey.user.User;
+import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
 import java.io.*;
 import java.util.*;
@@ -21,16 +24,22 @@ import java.util.*;
 public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
     private final AttendChallengeJPARepository attendChallengeJPARepository;
+    private final UserJPARepository userJPARepository;
     private final ChallengeQueryRepository challengeResponse;
 
+    // 챌린지 페이지
     public ChallengeResponse.ChallengesDTO challenges(SessionUser sessionUser) {
-        if (sessionUser == null) {
-            throw new Exception403("챌린지를 조회할 권한이 없어요");
-        }
 
+        // 내가 지금까지 진행한 챌린지
         List<Object[]> pastChallenges = challengeResponse.partChallenges(sessionUser.getId());
+
+        // 현재 진행중인 챌린지
         Object[] ongoingChallenges = challengeResponse.ongoingChallenges(sessionUser.getId());
+
+        // 진행을 하지 않은 챌린지
         List<Object[]> upcomingChallenges = challengeResponse.upcomingChallenges(sessionUser.getId());
+
+        // 현재 진행중인 챌린지가 없는 경우 ongoingChallenges를 null을 넘기는 처리
         try {
             return new ChallengeResponse.ChallengesDTO(ongoingChallenges, upcomingChallenges, pastChallenges);
         } catch (NullPointerException e) {
@@ -38,11 +47,8 @@ public class ChallengeService {
         }
     }
 
+    // 챌린지
     public ChallengeResponse.OngoingChallengeDTO ongoingChallenge(SessionUser sessionUser) {
-        if (sessionUser == null) {
-            throw new Exception403("챌린지를 조회할 권한이 없어요");
-        }
-
         Object[] ongoingChallenges = challengeResponse.ongoingChallengesWalking(sessionUser.getId());
         try {
             return new ChallengeResponse.OngoingChallengeDTO(ongoingChallenges);

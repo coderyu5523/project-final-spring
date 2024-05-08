@@ -110,13 +110,4 @@ public class UserController {
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
-
-
-    //todo @GetMapping("/logout") 로그아웃
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
-        session.invalidate();
-
-        return ResponseEntity.ok(new ApiUtil<>(null));
-    }
 }

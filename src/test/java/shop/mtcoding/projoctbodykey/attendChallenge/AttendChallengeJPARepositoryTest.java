@@ -18,7 +18,7 @@ public class AttendChallengeJPARepositoryTest {
         Integer userId = 1;
 
         // when
-        AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(userId).orElseThrow();
+        AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(userId);
 
         // eye
         System.out.println(attendChallenge);

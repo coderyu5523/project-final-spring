@@ -20,7 +20,6 @@ public class BodyDataService {
         User user = userJPARepository.
                 findById(sessionUser.getId()).orElseThrow(() -> new Exception404("유저 정보가 없습니다."));
 
-
         BodyData bodyData = bodydataJPARepository.save(reqDTO.toEntity(user));
 
         return new BodyDataResponse.SaveDTO(bodyData);
