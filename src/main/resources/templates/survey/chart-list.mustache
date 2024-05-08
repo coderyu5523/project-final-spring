@@ -1,5 +1,5 @@
 {{> layout/header}}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <div class="container-fluid">
     <div class="row">
 
@@ -9,6 +9,10 @@
 
             <!-- 표 및 페이지네이션 -->
             <div style="width: 1200px">
+                <div class="justify-content-center" style="width: 50%">
+                    <h3 class="text-center">설문자 참여 현황</h3>
+                    <canvas id="bar-chart" width="300" height="200"></canvas>
+                </div>
                 <div class="container p-5">
                     <!-- 표 시작 -->
                     <table class="table">
@@ -23,19 +27,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{#surveys}}
+                        {{#stats.surveys}}
                             <tr>
-                                <th scope="row">{{id}}</th>
-                                <td>{{title}}</td>
+                                <th scope="row">{{surveyId}}</th>
+                                <td>{{surveyTitle}}</td>
                                 <td>총 문항 수</td>
                                 <td>{{createdAt}}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
-                                        <a href="/admin/surveyscharts/{{id}}" class="btn btn-primary me-1">차트보기</a>
+                                        <a href="/admin/surveyscharts/{{surveyId}}" class="btn btn-primary me-1">차트보기</a>
                                     </div>
                                 </td>
                             </tr>
-                        {{/surveys}}
+                        {{/stats.surveys}}
                         </tbody>
                     </table>
                     <!-- 표 끝 -->
@@ -51,3 +55,27 @@
 
     </div>
 </div>
+
+<script>
+
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+            labels:[{{#stats.charts}}"{{surveyTitle}}"{{^@last}},{{/@last}}{{/stats.charts}}],
+            datasets: [
+                {
+                    label: "Population (millions)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#c45850", "#c45850", "#c45850"],
+                    data: [{{#stats.charts}}{{count}}{{^@last}},{{/@last}}{{/stats.charts}}]
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Predicted world population (millions) in 2050'
+            }
+        }
+    });
+</script>

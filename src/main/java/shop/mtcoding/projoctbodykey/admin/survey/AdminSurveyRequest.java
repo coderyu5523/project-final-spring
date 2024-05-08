@@ -27,9 +27,9 @@ public class AdminSurveyRequest {
     public static class UserStatsDTO {
         private Integer surveyId;
         private String surveyTitle;
-        private Integer count;
+        private Long count;
 
-        public UserStatsDTO(Integer surveyId, String surveyTitle, Integer count) {
+        public UserStatsDTO(Integer surveyId, String surveyTitle, Long count) {
             this.surveyId = surveyId;
             this.surveyTitle = surveyTitle;
             this.count = count;
