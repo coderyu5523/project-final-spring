@@ -13,6 +13,49 @@ import java.util.stream.Collectors;
 public class FoodResponse {
 
     @Data
+    public static class FoodListDTO {
+        private List<FoodNameListDTO> FoodNameList;
+        private List<FoodContentListDTO> FoodContentList;
+
+        public FoodListDTO(List<Food> foods) {
+            FoodNameList = foods.stream().map(FoodNameListDTO::new).toList();
+            FoodContentList = foods.stream().map(FoodContentListDTO::new).toList();
+        }
+
+        @Data
+        public static class FoodNameListDTO {
+            private Integer id;
+            private String name;
+
+            public FoodNameListDTO(Food food) {
+                this.id = food.getId();
+                this.name = food.getName();
+            }
+        }
+
+        @Data
+        public static class FoodContentListDTO {
+            private Integer id;
+            private String name;
+            private Double carbo; //탄수화물
+            private Double protein; // 단백질
+            private Double fat;// 지방
+            private Integer kcal; // 칼로리
+            private Integer gram; // 먹은 그램양
+
+            public FoodContentListDTO(Food food) {
+                this.id = food.getId();
+                this.name = food.getName();
+                this.carbo = food.getCarbo();
+                this.protein = food.getProtein();
+                this.fat = food.getFat();
+                this.kcal = food.getKcal();
+                this.gram = food.getGram();
+            }
+        }
+    }
+
+    @Data
     public static class AdminFoodListDTO {
         private Boolean first;
         private Boolean last;
