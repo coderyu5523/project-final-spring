@@ -38,11 +38,4 @@ public class BodyDataJPARepositoryTest {
         BodyData bodydata = bodydataJPARepository.findByUserIdOrderDesc(userId).orElseThrow();
         System.out.println(bodydata);
     }
-
-    @Test
-    public void findByUserAndBodyData_test() {
-        int userId = 1;
-        List<BodyData> bodyData = bodydataJPARepository.findByUserAndBodyData(userId);
-        System.out.println(bodyData.get(1).getUser().getUsername());
-    }
 }

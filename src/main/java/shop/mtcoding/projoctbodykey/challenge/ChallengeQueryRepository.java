@@ -52,6 +52,8 @@ public class ChallengeQueryRepository {
     }
 
     public List<Object[]> partChallenges(Integer userId) {
+
+        // status 값이 null이 아닌 값을 찾아서 true -> false 순으로 정렬
         String q = """
                 SELECT c.id, c.challenge_name, c.distance, c.badge_img, a.status
                 FROM challenge_tb c

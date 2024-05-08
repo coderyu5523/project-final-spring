@@ -24,7 +24,4 @@ public interface BodyDataJPARepository extends JpaRepository<BodyData, Integer> 
 
     @Query("select b from BodyData b where b.user.id = :userId")
     List<BodyData> findByUserId(@Param("userId") Integer userId);
-
-    @Query("select b from BodyData b join fetch User u on b.user.id = u.id where b.user.id = :userId")
-    List<BodyData> findByUserAndBodyData(@Param("userId") Integer userId);
 }
