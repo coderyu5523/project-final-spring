@@ -9,6 +9,7 @@ import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public class UserResponse {
 
@@ -146,12 +147,18 @@ public class UserResponse {
         public MainPageDTO(User user, BodyData bodyData, List<BodyData> bodyDataList) {
             this.id = user.getId();
             this.name = user.getName();
-            this.goalFat = user.getGoalFat();
-            this.goalMuscle = user.getGoalMuscle();
-            this.goalWeight = user.getGoalWeight();
-            this.fat = bodyData.getFat();
-            this.muscle = bodyData.getMuscle();
-            this.weight = bodyData.getWeight();
+            this.goalFat = Optional.ofNullable(user.getGoalFat()).orElse(0.0);
+            this.goalMuscle = Optional.ofNullable(user.getGoalMuscle()).orElse(0.0);
+            this.goalWeight = Optional.ofNullable(user.getGoalWeight()).orElse(0.0);
+            if(bodyData != null) {
+                this.fat = Optional.ofNullable(bodyData.getFat()).orElse(0.0);
+                this.muscle = Optional.ofNullable(bodyData.getMuscle()).orElse(0.0);
+                this.weight = Optional.ofNullable(bodyData.getWeight()).orElse(0.0);
+            } else {
+                this.fat = 0.0d;
+                this.muscle = 0.0d;
+                this.weight = 0.0d;
+            }
             this.bodyData = bodyDataList.stream().map(BodyDataDTO::new).toList();
         }
 

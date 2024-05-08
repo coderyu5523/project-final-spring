@@ -32,23 +32,27 @@ public class BodyDataResponse {
         private Double fat;
         private Double muscle;
         private Double weight;
-        private Double golFat;
-        private Double golMuscle;
-        private Double golWeight;
+        private Double goalFat;
+        private Double goalMuscle;
+        private Double goalWeight;
         private List<FatTimeLineDTO> fatTimeLine;
         private List<MuscleTimeLineDTO> muscleTimeLine;
         private List<WeightTimeLineDTO> weightTimeLine;
 
         public BodyDateDTO(User user, BodyData bodyData, List<BodyData> bodyDataTimeLine) {
             this.userId = user.getId();
+            this.goalFat = Optional.ofNullable(user.getGoalFat()).orElse(0.0);
+            this.goalMuscle = Optional.ofNullable(user.getGoalMuscle()).orElse(0.0);
+            this.goalWeight = Optional.ofNullable(user.getGoalWeight()).orElse(0.0);
             if(bodyData != null) {
-                this.fat = Optional.ofNullable(bodyData.getFat()).orElse(null);
-                this.muscle = Optional.ofNullable(bodyData.getMuscle()).orElse(null);
-                this.weight = Optional.ofNullable(bodyData.getWeight()).orElse(null);
+                this.fat = bodyData.getFat();
+                this.muscle = bodyData.getMuscle();
+                this.weight = bodyData.getWeight();
+            } else {
+                this.fat = 0.0d;
+                this.muscle = 0.0d;
+                this.weight = 0.0d;
             }
-            this.golFat = user.getGoalFat();
-            this.golMuscle = user.getGoalMuscle();
-            this.golWeight = user.getGoalWeight();
             this.fatTimeLine = bodyDataTimeLine.stream().map(FatTimeLineDTO::new).toList();
             this.muscleTimeLine = bodyDataTimeLine.stream().map(MuscleTimeLineDTO::new).toList();
             this.weightTimeLine = bodyDataTimeLine.stream().map(WeightTimeLineDTO::new).toList();
