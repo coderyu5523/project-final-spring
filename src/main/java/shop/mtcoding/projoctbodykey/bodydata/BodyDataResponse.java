@@ -54,6 +54,7 @@ public class BodyDataResponse {
             this.weightTimeLine = bodyDataTimeLine.stream().map(WeightTimeLineDTO::new).toList();
         }
 
+
         @Data
         public static class FatTimeLineDTO {
             private Integer bodyDateId;
