@@ -16,7 +16,4 @@ public interface ChoiceAnswerJPARepository extends JpaRepository<ChoiceAnswer, I
     @Query("SELECT new shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest$UserStatsDTO(s.id, s.title, COUNT(DISTINCT ca.user.id)) FROM ChoiceAnswer ca right JOIN  ca.survey s GROUP BY s.id")
     List<AdminSurveyRequest.UserStatsDTO> findWithChoiceCount();
 
-//    @Modifying
-//    @Query("delete from ChoiceAnswer ca where ca.survey.id = :surveyId and")
-//    void deleteBySurveyId(@Param("surveyId") Integer surveyId);
 }
