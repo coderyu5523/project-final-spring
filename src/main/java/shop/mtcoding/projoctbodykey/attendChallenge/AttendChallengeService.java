@@ -47,3 +47,4 @@ public class AttendChallengeService {
         return new AttendChallengeResponse.SaveDTO(attendChallenge);
     }
 }
+
