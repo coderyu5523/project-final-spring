@@ -3,8 +3,10 @@ package shop.mtcoding.projoctbodykey.bodydata;
 import lombok.Builder;
 import lombok.Data;
 import shop.mtcoding.projoctbodykey.user.User;
+import shop.mtcoding.projoctbodykey.user.UserResponse;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,16 +50,24 @@ public class BodyDataResponse {
                 this.fat = bodyData.getFat();
                 this.muscle = bodyData.getMuscle();
                 this.weight = bodyData.getWeight();
+                this.fatTimeLine = bodyDataTimeLine.stream().map(FatTimeLineDTO::new).toList();
+                this.muscleTimeLine = bodyDataTimeLine.stream().map(MuscleTimeLineDTO::new).toList();
+                this.weightTimeLine = bodyDataTimeLine.stream().map(WeightTimeLineDTO::new).toList();
             } else {
                 this.fat = 0.0d;
                 this.muscle = 0.0d;
                 this.weight = 0.0d;
+                this.fatTimeLine = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.fatTimeLine.add(new FatTimeLineDTO(1, 0.0d, user.getCreatedAt()));
+                this.muscleTimeLine = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.muscleTimeLine.add(new MuscleTimeLineDTO(1, 0.0d, user.getCreatedAt()));
+                this.weightTimeLine = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.weightTimeLine.add(new WeightTimeLineDTO(1, 0.0d, user.getCreatedAt()));
             }
-            this.fatTimeLine = bodyDataTimeLine.stream().map(FatTimeLineDTO::new).toList();
-            this.muscleTimeLine = bodyDataTimeLine.stream().map(MuscleTimeLineDTO::new).toList();
-            this.weightTimeLine = bodyDataTimeLine.stream().map(WeightTimeLineDTO::new).toList();
         }
-
 
         @Data
         public static class FatTimeLineDTO {
@@ -66,9 +76,21 @@ public class BodyDataResponse {
             private Timestamp fatTimeLine;
 
             public FatTimeLineDTO(BodyData bodyData) {
-                this.bodyDateId = bodyData.getId();
-                this.fat = bodyData.getFat();
-                this.fatTimeLine = bodyData.getCreatedAt();
+                if(bodyData != null) {
+                    this.bodyDateId = bodyData.getId();
+                    this.fat = bodyData.getFat();
+                    this.fatTimeLine = bodyData.getCreatedAt();
+                } else {
+                    this.bodyDateId = null;
+                    this.fat = 0.0d;
+                    this.fatTimeLine = null;
+                }
+            }
+
+            public FatTimeLineDTO(Integer bodyDateId, Double fat, Timestamp fatTimeLine) {
+                this.bodyDateId = bodyDateId;
+                this.fat = fat;
+                this.fatTimeLine = fatTimeLine;
             }
         }
 
@@ -79,9 +101,21 @@ public class BodyDataResponse {
             private Timestamp muscleTimeLine;
 
             public MuscleTimeLineDTO(BodyData bodyData) {
-                this.bodyDateId = bodyData.getId();
-                this.muscle = bodyData.getMuscle();
-                this.muscleTimeLine = bodyData.getCreatedAt();
+                if(bodyData != null) {
+                    this.bodyDateId = bodyData.getId();
+                    this.muscle = bodyData.getMuscle();
+                    this.muscleTimeLine = bodyData.getCreatedAt();
+                } else {
+                    this.bodyDateId = null;
+                    this.muscle = 0.0d;
+                    this.muscleTimeLine = null;
+                }
+            }
+
+            public MuscleTimeLineDTO(Integer bodyDateId, Double muscle, Timestamp muscleTimeLine) {
+                this.bodyDateId = bodyDateId;
+                this.muscle = muscle;
+                this.muscleTimeLine = muscleTimeLine;
             }
         }
 
@@ -92,9 +126,21 @@ public class BodyDataResponse {
             private Timestamp weightTimeLine;
 
             public WeightTimeLineDTO(BodyData bodyData) {
-                this.bodyDateId = bodyData.getId();
-                this.weight = bodyData.getWeight();
-                this.weightTimeLine = bodyData.getCreatedAt();
+                if(bodyData != null) {
+                    this.bodyDateId = bodyData.getId();
+                    this.weight = bodyData.getWeight();
+                    this.weightTimeLine = bodyData.getCreatedAt();
+                } else {
+                    this.bodyDateId = null;
+                    this.weight = 0.0d;
+                    this.weightTimeLine = null;
+                }
+            }
+
+            public WeightTimeLineDTO(Integer bodyDateId, Double weight, Timestamp weightTimeLine) {
+                this.bodyDateId = bodyDateId;
+                this.weight = weight;
+                this.weightTimeLine = weightTimeLine;
             }
         }
     }
