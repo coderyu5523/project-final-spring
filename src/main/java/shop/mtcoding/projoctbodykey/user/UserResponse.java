@@ -8,6 +8,8 @@ import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,7 @@ public class UserResponse {
         private String username;
         private String birth;
         private Character gender;
-        private double height;
+        private Double height;
 
         public JoinDTO(User user) {
             this.id = user.getId();
@@ -48,12 +50,18 @@ public class UserResponse {
         private List<ConqueredChallengeDTO> conqueredChallenge;
         private String userImg;
 
-        public MyPageDTO(User user, BodyData bodydata, List<Object[]> conqueredChallenge) {
+        public MyPageDTO(User user, BodyData bodyData, List<Object[]> conqueredChallenge) {
             this.id = user.getId();
             this.name = user.getName();
-            this.fat = bodydata.getFat();
-            this.muscle = bodydata.getMuscle();
-            this.weight = bodydata.getWeight();
+            if(bodyData != null) {
+                this.fat = bodyData.getFat();
+                this.muscle = bodyData.getMuscle();
+                this.weight = bodyData.getWeight();
+            } else {
+                this.fat = 0.0d;
+                this.muscle = 0.0d;
+                this.weight = 0.0d;
+            }
             this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
             try {
                 this.userImg = ImageUtil.encode(user.getUserImg());
@@ -154,12 +162,15 @@ public class UserResponse {
                 this.fat = Optional.ofNullable(bodyData.getFat()).orElse(0.0);
                 this.muscle = Optional.ofNullable(bodyData.getMuscle()).orElse(0.0);
                 this.weight = Optional.ofNullable(bodyData.getWeight()).orElse(0.0);
+                this.bodyData = bodyDataList.stream().map(BodyDataDTO::new).toList();
             } else {
                 this.fat = 0.0d;
                 this.muscle = 0.0d;
                 this.weight = 0.0d;
+                this.bodyData = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.bodyData.add(new BodyDataDTO(1, 0.0d, 0.0d, 0.0d, user.getCreatedAt()));
             }
-            this.bodyData = bodyDataList.stream().map(BodyDataDTO::new).toList();
         }
 
         @Data
@@ -177,8 +188,17 @@ public class UserResponse {
                 this.weight = bodyData.getWeight();
                 this.date = bodyData.getCreatedAt();
             }
+
+            public BodyDataDTO(Integer id, Double fat, Double muscle, Double weight, Timestamp date) {
+                this.id = id;
+                this.fat = fat;
+                this.muscle = muscle;
+                this.weight = weight;
+                this.date = date;
+            }
         }
     }
+
 
     @Data
     public static class MyChangeFatDTO {
@@ -189,7 +209,13 @@ public class UserResponse {
         public MyChangeFatDTO(User user, List<BodyData> fatDataList) {
             this.id = user.getId();
             this.golFat = user.getGoalFat();
-            this.fatDataList = fatDataList.stream().map(fatDataListDTO::new).toList();
+            if(fatDataList != null) {
+                this.fatDataList = fatDataList.stream().map(fatDataListDTO::new).toList();
+            } else {
+                this.fatDataList = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.fatDataList.add(new fatDataListDTO(1, 0.0d, user.getCreatedAt()));
+            }
         }
 
         @Data
@@ -203,6 +229,12 @@ public class UserResponse {
                 this.fat = fatDataList.getFat();
                 this.date = fatDataList.getCreatedAt();
             }
+
+            public fatDataListDTO(Integer id, Double fat, Timestamp date) {
+                this.id = id;
+                this.fat = fat;
+                this.date = date;
+            }
         }
     }
 
@@ -215,7 +247,13 @@ public class UserResponse {
         public MyChangeMuscleDTO(User user, List<BodyData> muscleDataList) {
             this.id = user.getId();
             this.golMuscle = user.getGoalMuscle();
-            this.muscleDataList = muscleDataList.stream().map(MuscleDataListDTO::new).toList();
+            if(muscleDataList != null) {
+                this.muscleDataList = muscleDataList.stream().map(MuscleDataListDTO::new).toList();
+            } else {
+                this.muscleDataList = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.muscleDataList.add(new MuscleDataListDTO(1, 0.0d, user.getCreatedAt()));
+            }
         }
 
         @Data
@@ -229,6 +267,12 @@ public class UserResponse {
                 this.muscle = muscleDataList.getMuscle();
                 this.date = muscleDataList.getCreatedAt();
             }
+
+            public MuscleDataListDTO(Integer id, Double muscle, Timestamp date) {
+                this.id = id;
+                this.muscle = muscle;
+                this.date = date;
+            }
         }
     }
 
@@ -241,7 +285,13 @@ public class UserResponse {
         public MyChangeWeightDTO(User user, List<BodyData> weightDataList) {
             this.id = user.getId();
             this.golWeight = user.getGoalWeight();
-            this.weightDataList = weightDataList.stream().map(WeightDataListDTO::new).toList();
+            if(weightDataList != null) {
+                this.weightDataList = weightDataList.stream().map(WeightDataListDTO::new).toList();
+            } else {
+                this.weightDataList = new ArrayList<>();
+                // 배열 초기화 및 요소 추가
+                this.weightDataList.add(new WeightDataListDTO(1, 0.0d, user.getCreatedAt()));
+            }
         }
 
         @Data
@@ -251,9 +301,21 @@ public class UserResponse {
             private Timestamp date;
 
             public WeightDataListDTO(BodyData muscleDataList) {
-                this.id = muscleDataList.getId();
-                this.weight = muscleDataList.getWeight();
-                this.date = muscleDataList.getCreatedAt();
+                if(muscleDataList != null) {
+                    this.id = muscleDataList.getId();
+                    this.weight = muscleDataList.getWeight();
+                    this.date = muscleDataList.getCreatedAt();
+                } else {
+                    this.id = null;
+                    this.weight = 0.0d;
+                    this.date = null;
+                }
+            }
+
+            public WeightDataListDTO(Integer id, Double weight, Timestamp date) {
+                this.id = id;
+                this.weight = weight;
+                this.date = date;
             }
         }
     }
