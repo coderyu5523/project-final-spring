@@ -15,6 +15,7 @@ public class SurveyRequest {
         public Survey toEntity () {
             return Survey.builder()
                     .title(title)
+                    .status("진행전")
                     .createdAt(createdAt)
                     .build();
         }

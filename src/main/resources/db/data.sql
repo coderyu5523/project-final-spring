@@ -141,13 +141,13 @@ VALUES
     ('그린 스무디', 25.6, 5.2, 2.4, 120, 100, now());
 
 
-INSERT INTO survey_tb(title, created_at)
-VALUES ('설문조사1',now()),
-       ('설문조사2',now()),
-       ('설문조사3',now()),
-       ('설문조사4',now()),
-       ('설문조사5',now()),
-       ('설문조사6',now())
+INSERT INTO survey_tb(title, status, created_at)
+VALUES  ('설문조사1','진행전',now()),
+        ('설문조사2','진행전',now()),
+        ('설문조사3','진행전',now()),
+        ('설문조사4','진행전',now()),
+        ('설문조사5','진행전',now()),
+        ('설문조사6','진행전',now())
 ;
 
 INSERT INTO survey_question_tb (survey_id, question_item, created_at)

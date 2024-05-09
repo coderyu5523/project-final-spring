@@ -21,7 +21,8 @@
                             <th scope="col">#</th>
                             <th scope="col">설문지 제목</th>
                             <th scope="col">총 문항 수</th>
-                            <th scope="col">상태</th>
+                            <th scope="col">진행 상태</th>
+                            <th scope="col">진행 상태 변경</th>
                             <th scope="col">생성 날짜</th>
                             <th scope="col" class="text-center">작업</th>
                         </tr>
@@ -31,19 +32,39 @@
                             <tr>
                                 <th scope="row">{{id}}</th>
                                 <td>{{title}}</td>
-                                <td>총 문항 수</td>
+                                <td>{{questionCount}}</td>
                                 <td>{{status}}</td>
+                                <td>
+                                    <form id="status-{{id}}" action="/admin/surveys/{{id}}/status/update" method="POST">
+                                        <select id="statusSelect-{{id}}" name="status" class="form-select" aria-label="Default select example">
+                                            <option selected disabled>진행 상태 선택</option>
+                                            {{#isPre}}
+                                                <option value="진행전">진행전</option>
+                                            {{/isPre}}
+                                            <option value="진행중">진행중</option>
+                                            <option value="진행종료">진행종료</option>
+                                        </select>
+                                    </form>
+                                </td>
                                 <td>{{createdAt}}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
                                         <a href="/admin/surveys/{{id}}" class="btn btn-primary me-1">상세보기</a>
-                                        <a href="/admin/surveys/{{id}}/update-form" class="btn btn-success me-1">수정</a>
+                                        {{#isPre}}
+                                            <a href="/admin/surveys/{{id}}/update-form"
+                                               class="btn btn-success me-1">수정</a>
+                                        {{/isPre}}
                                         <form action="/admin/surveys/{{id}}/delete" method="post">
                                             <button class="btn btn-danger">삭제</button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
+                            <script>
+                                document.getElementById("statusSelect-{{id}}").addEventListener("change", function () {
+                                    document.getElementById("status-{{id}}").submit();
+                                });
+                            </script>
                         {{/surveys}}
                         </tbody>
                     </table>
@@ -60,3 +81,4 @@
 
     </div>
 </div>
+

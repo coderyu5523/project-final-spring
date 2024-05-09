@@ -10,35 +10,35 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class AdminSurveyResponse {
+
     @Data
     public static class SurveysDTO {
         private Integer id;
         private String title;
         private String status;
+        private boolean isPre;
         private Timestamp createdAt;
+        private Long questionCount;
 
 
-        public SurveysDTO(Survey survey) {
-            this.id = survey.getId();
-            this.title = survey.getTitle();
-            if(survey.getStatus()==null) {
-                this.status = "진행전";
-            } else if (survey.getStatus()==true) {
-                this.status = "진행중";
-            } else if (survey.getStatus()==false) {
-                this.status = "진행종료";
-            }
-            this.createdAt = survey.getCreatedAt();
+        public SurveysDTO(AdminSurveyRequest.SurveyAndQuestionCount reqDTO) {
+            this.id = reqDTO.getSurvey().getId();
+            this.title = reqDTO.getSurvey().getTitle();
+            this.status = reqDTO.getSurvey().getStatus();
+            this.isPre= (reqDTO.getSurvey().getStatus().equals("진행전")) ? true : false;
+            this.createdAt = reqDTO.getSurvey().getCreatedAt();
+            this.questionCount = reqDTO.getQuestionCount();
 
         }
     }
+
 
     @Data
     public static class SurveyListDTO {
         private Integer id;
         private String title;
         private Integer totalQuestion;
-        private Boolean status;
+        private String status;
         private Timestamp createdAt;
 
 
@@ -60,12 +60,13 @@ public class AdminSurveyResponse {
             private Integer surveyId;
             private String surveyTitle;
             private Timestamp createdAt;
+            private Long questionCount;
 
-
-            public SurveysDTO(Survey survey) {
-                this.surveyId = survey.getId();
-                this.surveyTitle = survey.getTitle();
-                this.createdAt = survey.getCreatedAt();
+            public SurveysDTO(AdminSurveyRequest.SurveyAndQuestionCount surveys) {
+                this.surveyId = surveys.getSurvey().getId();
+                this.surveyTitle = surveys.getSurvey().getTitle();
+                this.createdAt = surveys.getSurvey().getCreatedAt();
+                this.questionCount=surveys.getQuestionCount();
 
             }
         }
@@ -97,6 +98,50 @@ public class AdminSurveyResponse {
         public class QuestionDTO {
             private String question;
             private List<String> choices;
+        }
+    }
+
+    @Data
+    public static class DetailStatusDTO {
+        private Integer surveyId;
+        private String title;
+        private String status;
+        private List<QuestionDTO> questionElements;
+
+        @Data
+        public static class QuestionDTO {
+            private Integer questionId;
+            private String question;
+            private List<ChoiceDTO> choices;
+
+            @Data
+            public static class ChoiceDTO{
+                private Integer choiceId;
+                String choiceItem;
+                Integer choiceNumber;
+
+                public ChoiceDTO(Integer choiceId, String choiceItem, Integer choiceNumber) {
+                    this.choiceId = choiceId;
+                    this.choiceItem = choiceItem;
+                    this.choiceNumber = choiceNumber;
+                }
+            }
+
+            public QuestionDTO(SurveyQuestion question, List<Integer> choiceId, List<String> choices, List<Integer> choiceNumbers) {
+                this.questionId=question.getId();
+                this.question = question.getQuestionItem();
+                this.choices = IntStream.range(0, choices.size())
+                        .mapToObj(i -> new ChoiceDTO(choiceId.get(i),choices.get(i), choiceNumbers.get(i)))
+                        .collect(Collectors.toList());
+            }
+
+        }
+
+        public DetailStatusDTO(Survey survey, List<QuestionDTO> questionElements) {
+            this.surveyId=survey.getId();
+            this.title = survey.getTitle();
+            this.status = survey.getStatus();
+            this.questionElements = questionElements;
         }
     }
     @Data
@@ -134,9 +179,9 @@ public class AdminSurveyResponse {
 
         }
 
-        public DetailDTO(Integer surveyId, String title, List<DetailDTO.QuestionDTO> questionElements) {
-            this.surveyId=surveyId;
-            this.title = title;
+        public DetailDTO(Survey survey, List<DetailDTO.QuestionDTO> questionElements) {
+            this.surveyId=survey.getId();
+            this.title = survey.getTitle();
             this.questionElements = questionElements;
         }
     }

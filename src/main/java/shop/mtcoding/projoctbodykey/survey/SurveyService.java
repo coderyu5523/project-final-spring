@@ -78,14 +78,13 @@ public class SurveyService {
     }
 
     @Transactional
-    public void update(int id, AdminSurveyRequest.SaveDTO reqDTOs) {
+    public void update(int id, AdminSurveyRequest.UpdateDTO reqDTOs) {
         //설문지 제목 저장
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
-        survey.update(reqDTOs.getTitle(), timestamp);
+        survey.update(reqDTOs.getTitle(), reqDTOs.getStatus(),timestamp);
         System.out.println("survey = " + survey);
 
-//        choiceAnswerJPARepository.deleteBySurveyId(survey.getId());
         questionChoiceJPARepository.deleteBySurveyId(survey.getId());
         surveyQuestionJPARepository.deleteBySurveyId(survey.getId());
 
@@ -104,30 +103,44 @@ public class SurveyService {
         }
     }
 
-    public List<AdminSurveyResponse.SurveysDTO> findAll() {
-        List<Survey> surveys = surveyJPARepository.findAll();
+
+    public List<AdminSurveyResponse.SurveysDTO> findWithQuestionCount() {
+        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCount();
         return surveys.stream().map(AdminSurveyResponse.SurveysDTO::new).toList();
     }
-//    public List<> surveyList() {
-//        List<Survey> surveys = surveyJPARepository.findAll();
-//        for (Survey survey : surveys){
-//            surveyQuestionJPARepository.
-//            AdminSurveyResponse.SurveyListDTO surveyListDTO =
-//                    new AdminSurveyResponse.SurveyListDTO(,survey)
-//        }
-//        List<>
-//        return surveys.stream().map(AdminSurveyResponse.SurveysDTO::new).toList();
-//    }
 
     public AdminSurveyResponse.statsDTO chartList() {
-        List<Survey> surveys = surveyJPARepository.findAll();
+        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCount();
         List<AdminSurveyRequest.UserStatsDTO> userStats=choiceAnswerJPARepository.findWithChoiceCount();
         AdminSurveyResponse.statsDTO stats=new AdminSurveyResponse.statsDTO(
                 surveys.stream().map(AdminSurveyResponse.statsDTO.SurveysDTO::new).toList(),
-                userStats.stream().map(userStatsDTO -> new AdminSurveyResponse.statsDTO.ChartDTO(userStatsDTO)).toList());
+                userStats.stream().map(AdminSurveyResponse.statsDTO.ChartDTO::new).toList());
         return stats;
     }
+    public AdminSurveyResponse.DetailStatusDTO findByIdWithStatus(int id) {
+        Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
+        List<SurveyQuestion> surveyQuestion = surveyQuestionJPARepository.findBySurveyId(survey.getId());
 
+        List<AdminSurveyResponse.DetailStatusDTO.QuestionDTO> questionElements = new ArrayList<>();
+        for (SurveyQuestion question : surveyQuestion) {
+            List<QuestionChoice> questionChoices =
+                    questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
+
+            AdminSurveyResponse.DetailStatusDTO.QuestionDTO questionElement =
+                    new AdminSurveyResponse.DetailStatusDTO.QuestionDTO(
+                            question,
+                            questionChoices.stream().map(QuestionChoice::getId).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceItem).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceNumber).toList()
+                    );
+
+            questionElements.add(questionElement);
+        }
+
+        AdminSurveyResponse.DetailStatusDTO detailDTO = new AdminSurveyResponse.DetailStatusDTO(survey, questionElements);
+
+        return detailDTO;
+    }
 
     public AdminSurveyResponse.DetailDTO findById(int id) {
         Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
@@ -149,7 +162,7 @@ public class SurveyService {
             questionElements.add(questionElement);
         }
 
-        AdminSurveyResponse.DetailDTO detailDTO = new AdminSurveyResponse.DetailDTO(survey.getId(), survey.getTitle(), questionElements);
+        AdminSurveyResponse.DetailDTO detailDTO = new AdminSurveyResponse.DetailDTO(survey, questionElements);
 
         return detailDTO;
     }
@@ -161,6 +174,13 @@ public class SurveyService {
         questionChoiceJPARepository.deleteBySurveyId(survey.getId());
         surveyQuestionJPARepository.deleteBySurveyId(survey.getId());
         surveyJPARepository.deleteById(survey.getId());
+
+    }
+
+    @Transactional
+    public void statusUpdate(int id, String status) {
+        Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
+        survey.statusUpdate(status);
 
     }
 }
