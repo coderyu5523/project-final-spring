@@ -8,10 +8,12 @@
 
 
             <!-- 표 및 페이지네이션 -->
-            <div style="width: 1200px">
-                <div class="justify-content-center" style="width: 50%">
-                    <h3 class="text-center">설문자 참여 현황</h3>
-                    <canvas id="bar-chart" width="300" height="200"></canvas>
+            <div class="mt-5" style="width: 1200px; justify-content: center;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <div style="width: 70%">
+                        <h3 class="text-center">설문자 참여 현황</h3>
+                        <canvas id="bar-chart" width="300" height="100"></canvas>
+                    </div>
                 </div>
                 <div class="container p-5">
                     <!-- 표 시작 -->
@@ -35,7 +37,8 @@
                                 <td>{{createdAt}}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
-                                        <a href="/admin/surveyscharts/{{surveyId}}" class="btn btn-primary me-1">차트보기</a>
+                                        <a href="/admin/surveyscharts/{{surveyId}}"
+                                           class="btn btn-primary me-1">차트보기</a>
                                     </div>
                                 </td>
                             </tr>
@@ -61,17 +64,17 @@
     new Chart(document.getElementById("bar-chart"), {
         type: 'bar',
         data: {
-            labels:[{{#stats.charts}}"{{surveyTitle}}"{{^@last}},{{/@last}}{{/stats.charts}}],
+            labels: [{{#stats.charts}}"{{surveyTitle}}"{{^@last}},{{/@last}}{{/stats.charts}}],
             datasets: [
                 {
                     label: "Population (millions)",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#c45850", "#c45850", "#c45850"],
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c45850", "#c45850", "#c45850"],
                     data: [{{#stats.charts}}{{count}}{{^@last}},{{/@last}}{{/stats.charts}}]
                 }
             ]
         },
         options: {
-            legend: { display: false },
+            legend: {display: false},
             title: {
                 display: true,
                 text: 'Predicted world population (millions) in 2050'
