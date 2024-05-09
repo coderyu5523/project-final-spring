@@ -71,12 +71,7 @@ public class ChallengeResponse {
 
         public ChallengesDTO(List<Object[]> upcomingChallenges, List<Object[]> pastChallenges) {
             this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
-            if (pastChallenges.isEmpty()) {
-                this.pastChallenges = new ArrayList<>();
-                this.pastChallenges.add(new PastChallengesDTO(1, "진행한 챌린지가 없어요", "진행한 챌린지가 없어요", "진행한 챌린지가 없어요", false));
-            } else {
-                this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
-            }
+            this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
         }
 
         @Data
