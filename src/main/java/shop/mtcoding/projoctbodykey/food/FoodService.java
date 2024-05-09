@@ -86,7 +86,8 @@ public class FoodService {
     }
 
     public FoodResponse.FoodListDTO foodList() {
+        List<Food> food = foodJPARepository.findAll();
 
-        return new FoodResponse.FoodListDTO(null);
+        return new FoodResponse.FoodListDTO(food);
     }
 }
