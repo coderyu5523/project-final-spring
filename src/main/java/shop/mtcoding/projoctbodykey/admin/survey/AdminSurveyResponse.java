@@ -25,7 +25,7 @@ public class AdminSurveyResponse {
             this.id = reqDTO.getSurvey().getId();
             this.title = reqDTO.getSurvey().getTitle();
             this.status = reqDTO.getSurvey().getStatus();
-            this.isPre= (this.id.equals("진행전")) ? true : false;
+            this.isPre= (reqDTO.getSurvey().getStatus().equals("진행전")) ? true : false;
             this.createdAt = reqDTO.getSurvey().getCreatedAt();
             this.questionCount = reqDTO.getQuestionCount();
 
