@@ -23,8 +23,6 @@ public class AdminSurveyController {
         AdminSurveyResponse.statsDTO respDTO = surveyService.chartList();
         request.setAttribute("stats", respDTO);
         System.out.println("respDTO = " + respDTO);
-//        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
-//        request.setAttribute("surveys", respDTO);
         return "survey/chart-list";
     }
 
@@ -51,17 +49,17 @@ public class AdminSurveyController {
         return "redirect:/admin/surveys";
     }
 
-    //설문조사 업데이트 폼 TODO : DTO다 따로 만들기!!!!!!service도!
     @GetMapping("/admin/surveys/{id}/update-form")
     public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request) {
-        AdminSurveyResponse.DetailDTO respDTO=surveyService.findById(id);
+        AdminSurveyResponse.DetailStatusDTO respDTO=surveyService.findByIdWithStatus(id);
+        System.out.println("respDTO = " + respDTO);
         request.setAttribute("survey",respDTO);
         return "survey/update-form";
     }
 
     //설문조사 업데이트
     @PostMapping("/admin/surveys/{id}/update")
-    public String surveyUpdate(@PathVariable int id, @RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
+    public String surveyUpdate(@PathVariable int id, @RequestBody AdminSurveyRequest.UpdateDTO reqDTOs) {
         System.out.println("reqDTOs = " + reqDTOs);
         surveyService.update(id, reqDTOs);
         return "redirect:/admin/surveys";
@@ -78,9 +76,16 @@ public class AdminSurveyController {
     //설문조사 리스트
     @GetMapping("/admin/surveys")
     public String surveys(HttpServletRequest request) {
-        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findAll();
+        List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findWithQuestionCount();
+        System.out.println("respDTO = " + respDTO);
         request.setAttribute("surveys", respDTO);
         return "survey/survey";
+    }
+
+    @PostMapping("/admin/surveys/{id}/status/update")
+    public String statusUpdate(@PathVariable int id, AdminSurveyRequest.UpdateStatusDTO statusDTO) {
+        surveyService.statusUpdate(id, statusDTO.getStatus());
+        return "redirect:/admin/surveys";
     }
 
     //설문조사 삭제

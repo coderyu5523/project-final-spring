@@ -2,17 +2,20 @@
 <div class="container d-flex">
     <div class="justify-content-center mx-2 pb-4 w-100">
         <div class="border border-tertiary p-5">
-            <h1 class="d-inline-flex">설문지 수정하기</h1>
-            <select class="form-select" aria-label="Default select example">
-                <option selected disabled>Open this select menu</option>
-                <option value="">진행전</option>
-                <option value="1">진행중</option>
-                <option value="0">진행종료</option>
-            </select>
+            <div class="d-flex align-items-center">
+                <h1 class="d-inline-flex">설문지 수정하기</h1>
+                <select class="form-select w-30 status" aria-label="Default select example" style="width: 20%;">
+                    <option selected disabled>진행 상태 선택</option>
+                    <option value="진행전">진행전</option>
+                    <option value="진행중">진행중</option>
+                    <option value="진행종료">진행종료</option>
+                </select>
+            </div>
+
             <hr>
             <!--            <form id="save-form">-->
             <label for="question"><b>설문지 제목 입력하기</b></label>
-            <input class="form-control Survey" type="text" value="{{survey.title}}" required>
+            <input class="form-control title" type="text" value="{{survey.title}}" required>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" style="width: 50%"
                         onclick="addQuestionElement()">질문 추가하기
@@ -73,7 +76,8 @@
     let surveyId = {{survey.surveyId}};
 
     function saveElement() {
-        let title = $(".Survey:first").val();
+        let title = $(".title:first").val();
+        let status = $(".status:first").val();
         let questionElements = [];
         let items = $(".question-element-item");
         items.each(function (index, element) {
@@ -93,6 +97,7 @@
 
         let requestData = {
             title: title,
+            status: status,
             questionElements: questionElements
         }
 
