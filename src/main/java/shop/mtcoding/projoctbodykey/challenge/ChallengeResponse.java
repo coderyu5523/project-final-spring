@@ -46,6 +46,8 @@ public class ChallengeResponse {
         private String subtitle;
         private Timestamp closingTime;
         private Integer coin;
+        private Integer walking;
+        private Integer totalWalking;
         private String backImg;
         private List<UpcomingChallengesDTO> upcomingChallenges;
         private List<PastChallengesDTO> pastChallenges;
@@ -56,6 +58,8 @@ public class ChallengeResponse {
             this.subtitle = (String) ongoingChallenges[2];
             this.closingTime = (Timestamp) ongoingChallenges[3];
             this.coin = (Integer) ongoingChallenges[4];
+            this.walking = (Integer) ongoingChallenges[6];
+            this.totalWalking = (Integer) ongoingChallenges[7];
             try {
                 this.backImg = ImageUtil.encode((String) ongoingChallenges[5]);
             } catch (IOException e) {
