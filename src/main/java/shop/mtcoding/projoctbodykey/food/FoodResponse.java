@@ -14,12 +14,12 @@ public class FoodResponse {
 
     @Data
     public static class FoodListDTO {
-        private List<FoodNameListDTO> FoodNameList;
-        private List<FoodContentListDTO> FoodContentList;
+        private List<FoodNameListDTO> foodNameList;
+        private List<FoodContentListDTO> foodContentList;
 
         public FoodListDTO(List<Food> foods) {
-            FoodNameList = foods.stream().map(FoodNameListDTO::new).toList();
-            FoodContentList = foods.stream().map(FoodContentListDTO::new).toList();
+            foodNameList = foods.stream().map(FoodNameListDTO::new).toList();
+            foodContentList = foods.stream().map(FoodContentListDTO::new).toList();
         }
 
         @Data
