@@ -61,6 +61,7 @@ public class SurveyService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SurveyRequest.SaveDTO saveSurveyDTO = new SurveyRequest.SaveDTO(reqDTOs.getTitle(), timestamp);
         Survey survey = surveyJPARepository.save(saveSurveyDTO.toEntity());
+        System.out.println("survey = " + survey);
 
         //설문지 질문 저장
         for (int i = 0; i < reqDTOs.getQuestionElements().size(); i++) {
