@@ -151,6 +151,11 @@ public class UserResponse {
         public ImgUpdateDTO(Integer userId, String userImg) {
             this.id = userId;
             this.userImg = userImg;
+                try {
+                    this.userImg = ImageUtil.encode(userImg);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
         }
     }
 
