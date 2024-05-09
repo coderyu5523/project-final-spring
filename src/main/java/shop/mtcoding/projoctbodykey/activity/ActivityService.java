@@ -9,9 +9,11 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
+import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
 import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +23,16 @@ public class ActivityService {
     private final ActivityJPARepository activityJPARepository;
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
+
+    public ActivityResponse.activitiesDateDTO activitiesDate(Timestamp timestamp, SessionUser sessionUser) {
+        Activity activity = activityJPARepository
+                .findByUserIdAndDate(sessionUser.getId(), timestamp);
+
+        BodyData bodyData = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
+
+
+        return new ActivityResponse.activitiesDateDTO(activity, 0, bodyData);
+    }
 
     //메인 페이지
     public void getActivity(int userId) {

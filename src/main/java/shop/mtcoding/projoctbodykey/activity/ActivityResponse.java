@@ -1,8 +1,12 @@
 package shop.mtcoding.projoctbodykey.activity;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +14,44 @@ import java.util.List;
 public class ActivityResponse {
 
     @Data
-    static class mainDTO{
+    public static class activitiesDateDTO {
+        private Timestamp createdAt;
+        private Integer walking;
+        private Integer drinkWater;
+        private Integer kcal;
+        private Double weight;
+
+        public activitiesDateDTO(Activity activity, Integer kcal, BodyData bodyData) {
+            if (activity != null) {
+                Timestamp timestamp = activity.getCreatedAt();
+
+                // UTC 기준의 Timestamp를 LocalDateTime으로 변환합니다.
+                LocalDateTime utcDateTime = timestamp.toLocalDateTime();
+
+                // LocalDateTime을 한국 표준시(KST)로 변환합니다.
+                LocalDateTime kstDateTime = utcDateTime.atZone(ZoneId.of("UTC")).withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+
+                // 한국 표준시(KST)로 변환한 LocalDateTime을 Timestamp로 다시 변환합니다.
+                this.createdAt = Timestamp.valueOf(kstDateTime);
+                this.walking = activity.getWalking();
+                this.drinkWater = activity.getDrinkWater();
+            } else {
+                LocalDateTime now = LocalDateTime.now();
+                this.createdAt = Timestamp.valueOf(now);
+                this.walking = 0;
+                this.drinkWater = 0;
+            }
+            this.kcal = kcal;
+            if (bodyData != null) {
+                this.weight = bodyData.getWeight();
+            } else {
+                this.weight = 0.0d;
+            }
+        }
+    }
+
+    @Data
+    static class mainDTO {
         private String username;
         private double goalfat;
         private double fat;
@@ -33,7 +74,7 @@ public class ActivityResponse {
             this.bodys = bodyList.stream().map(BodydataDTO::new).toList();
         }
 
-        static class BodydataDTO{
+        static class BodydataDTO {
             private double weight;
             private double muscle;
             private double fat;
@@ -45,7 +86,7 @@ public class ActivityResponse {
                 this.fat = body.getFat();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 String Date = body.getCreatedAt().toLocalDateTime().format(formatter);
-                this.createdAt =Date;
+                this.createdAt = Date;
             }
         }
     }
