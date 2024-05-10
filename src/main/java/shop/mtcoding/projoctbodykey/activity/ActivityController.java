@@ -32,4 +32,10 @@ public class ActivityController {
 
         return ResponseEntity.ok(new ApiUtil<>(null));
     }
+
+    @GetMapping("/api/activities/")
+    public ResponseEntity<?> page() {
+        //ActivityResponse.MainResumesDTO> respDTO = mainService.mainResumes();
+        return ResponseEntity.ok(new ApiUtil<>(null));
+    }
 }
