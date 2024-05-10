@@ -29,7 +29,6 @@ public class ActivityController {
         // LocalDate를 Timestamp로 변환
         Timestamp createdAtTimestamp = Timestamp.valueOf(createdAt.atStartOfDay());
 
-
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         ActivityResponse.activitiesDateDTO respDTO = activityService.activitiesDate(createdAtTimestamp, user);
 

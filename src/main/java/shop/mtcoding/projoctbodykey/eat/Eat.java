@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 import shop.mtcoding.projoctbodykey.food.Food;
 import shop.mtcoding.projoctbodykey.meal.Meal;
 
-@NoArgsConstructor
+
 @Data
 @Table(name = "eat_tb")
 @Entity
+@NoArgsConstructor
 public class Eat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

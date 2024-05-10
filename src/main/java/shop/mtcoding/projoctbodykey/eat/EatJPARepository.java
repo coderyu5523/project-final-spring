@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface EatJPARepository extends JpaRepository<Eat, Integer> {
 
-    @Query("select e from Eat e where e.meal.activity.user.id = :userId and e.meal.eatTime = :eatTime")
-    List<Eat> findByUserIdAnbEatTime(@Param("userId") Integer userId, @Param("eatTime") Timestamp eatTime);
+    @Query("SELECT f.kcal FROM Eat e JOIN e.food f JOIN e.meal m JOIN m.activity a JOIN a.user u WHERE u.id = :userId AND m.createdAt = :createdAt")
+    List<Integer> findKcalByUserIdAndEatTime(@Param("userId") Integer userId, @Param("createdAt") Timestamp createdAt);
 }

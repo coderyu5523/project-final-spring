@@ -10,6 +10,7 @@ import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Import(BodyDataJPARepositoryTest.class)
@@ -30,5 +31,20 @@ public class DateFormatTest {
             String myData = MyDateUtil.timestampFormat(timestamp);
             System.out.println(myData);
         }
+    }
+
+    @Test
+    public void zero_test() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        // Timestamp를 LocalDateTime으로 변환합니다.
+        LocalDateTime localDateTime = timestamp.toLocalDateTime();
+
+        // 시간과 분을 0으로 설정합니다.
+        LocalDateTime resultDateTime = localDateTime.withHour(0).withMinute(0).withSecond(0).withNano(0);
+
+        // 변경된 LocalDateTime을 Timestamp로 다시 변환합니다.
+        Timestamp resultTimestamp = Timestamp.valueOf(resultDateTime);
+        System.out.println("Modified Timestamp: " + resultTimestamp);
     }
 }
