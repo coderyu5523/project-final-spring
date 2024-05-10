@@ -33,9 +33,11 @@ public class ActivityController {
         return ResponseEntity.ok(new ApiUtil<>(null));
     }
 
-    @GetMapping("/api/activities/")
+    //워킹 디테일 페이지
+    @GetMapping("/activities/walking/detail")
     public ResponseEntity<?> page() {
-        //ActivityResponse.MainResumesDTO> respDTO = mainService.mainResumes();
-        return ResponseEntity.ok(new ApiUtil<>(null));
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        ActivityResponse.WalkingDetail respDTO = activityService.getWalkingDetail(user.getId());
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 }

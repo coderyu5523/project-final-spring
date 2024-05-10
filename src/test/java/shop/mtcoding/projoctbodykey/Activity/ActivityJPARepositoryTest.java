@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import shop.mtcoding.projoctbodykey.activity.Activity;
 import shop.mtcoding.projoctbodykey.activity.ActivityJPARepository;
+import shop.mtcoding.projoctbodykey.activity.ActivityRequest;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class ActivityJPARepositoryTest {
         int userId = 1;
         LocalDate createdAt = LocalDate.now();
         // when
-        Activity activity = activityJPARepository.findByUserIdAndCreatedAt(userId, createdAt).get();
+        Activity activity = activityJPARepository.findByUserIdAndCreatedAt(userId, createdAt).orElse(null);
         //eye
         System.out.println("activity = " + activity);
         // then
@@ -46,4 +47,6 @@ public class ActivityJPARepositoryTest {
         System.out.println("strDate = " + strDate);
         // then
     }
+
+
 }

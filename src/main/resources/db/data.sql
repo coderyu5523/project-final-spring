@@ -5,9 +5,16 @@ VALUES ('ssar', '$2a$10$5Z2/Wx9Lc8jCDSOz9pd6FOSFa3rou4lkf9gzFFrSzddRibYJAafau', 
 ;
 
 INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
-VALUES (1, 2222, 500, now())
---        (2, 0, 0, now()),
---        (3, 0, 0, now())
+VALUES (1, 1000, 100, '2024-05-05'),
+       (1, 2000, 200, '2024-05-06'),
+       (1, 3000, 300, '2024-05-07'),
+       (1, 3000, 300, '2024-05-08'),
+       (1, 10000, 300, '2024-05-09'),
+       (1, 10000, 300, '2024-05-10'),
+       (1, 3000, 300, '2024-04-07'),
+       (2, 1111, 100, '2024-05-05'),
+       (2, 2222, 200, '2024-05-06'),
+       (2, 3333, 300, '2024-05-07')
 ;
 
 INSERT INTO bodydata_tb(user_id, weight, muscle, fat, created_at)
