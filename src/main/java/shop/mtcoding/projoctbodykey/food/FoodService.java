@@ -85,9 +85,17 @@ public class FoodService {
         foodJPARepository.delete(food);
     }
 
-    public FoodResponse.FoodListDTO foodList() {
-        List<Food> food = foodJPARepository.findAll();
+    public FoodResponse.FoodListDTO foodList(Pageable pageable) {
+        Page<Food> foods = foodJPARepository.findAll(pageable);
 
-        return new FoodResponse.FoodListDTO(food);
+
+        return new FoodResponse.FoodListDTO(foods);
+    }
+
+    public FoodResponse.FoodSearchListDTO foodSearchList(String keyword, Pageable pageable) {
+        Page<Food> foods = foodJPARepository.findAllKeyword(keyword, pageable);
+
+
+        return new FoodResponse.FoodSearchListDTO(foods);
     }
 }
