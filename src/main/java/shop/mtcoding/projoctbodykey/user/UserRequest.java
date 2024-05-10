@@ -67,4 +67,9 @@ public class UserRequest {
     public static class GoalWeightUpdateDTO {
         private Double goalWeight;
     }
+
+    @Data
+    public static class UsernameCheckDTO {
+        private String username;
+    }
 }
