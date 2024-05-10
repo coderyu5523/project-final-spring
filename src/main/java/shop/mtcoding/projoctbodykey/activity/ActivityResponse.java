@@ -18,10 +18,10 @@ public class ActivityResponse {
 //        private Timestamp createdAt;
         private Integer walking;
         private Integer drinkWater;
-        private Integer kcal;
+//        private Integer kcal;
         private Double weight;
 
-        public activitiesDateDTO(Activity activity, Integer kcal, BodyData bodyData) {
+        public activitiesDateDTO(Activity activity, BodyData bodyData) {
             if (activity != null) {
 //                Timestamp timestamp = activity.getCreatedAt();
 //
@@ -41,7 +41,7 @@ public class ActivityResponse {
                 this.walking = 0;
                 this.drinkWater = 0;
             }
-            this.kcal = kcal;
+//            this.kcal = kcal;
             if (bodyData != null) {
                 this.weight = bodyData.getWeight();
             } else {

@@ -23,8 +23,11 @@ public class EatJPARepositoryTest {
         // LocalDateTime 객체를 Timestamp 객체로 변환합니다.
         Timestamp timestamp = Timestamp.valueOf(dateTime);
 
-        List<Eat> eatList = eatJPARepository.findByUserIdAnbEatTime(userId, timestamp);
+        List<Integer> eatList = eatJPARepository.findKcalByUserIdAndEatTime(userId, timestamp);
 
         System.out.println(eatList);
+
+        int totalKcal = eatList.stream().reduce(0, Integer::sum);
+        System.out.println("총 칼로리: " + totalKcal);
     }
 }

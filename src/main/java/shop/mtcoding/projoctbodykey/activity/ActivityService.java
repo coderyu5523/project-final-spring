@@ -9,12 +9,14 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
+import shop.mtcoding.projoctbodykey.eat.EatJPARepository;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
 import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,6 +25,7 @@ public class ActivityService {
     private final ActivityJPARepository activityJPARepository;
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
+    private final EatJPARepository eatJPARepository;
 
     public ActivityResponse.activitiesDateDTO activitiesDate(Timestamp timestamp, SessionUser sessionUser) {
         Activity activity = activityJPARepository
@@ -30,8 +33,11 @@ public class ActivityService {
 
         BodyData bodyData = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
 
+//        List<Integer> eatList = eatJPARepository.findKcalByUserIdAndEatTime(sessionUser.getId(), timestamp);
+//
+//        Integer totalKcal = eatList.stream().reduce(0, Integer::sum);
 
-        return new ActivityResponse.activitiesDateDTO(activity, 0, bodyData);
+        return new ActivityResponse.activitiesDateDTO(activity, bodyData);
     }
 
     //메인 페이지

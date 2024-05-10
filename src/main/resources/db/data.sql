@@ -8,12 +8,12 @@ VALUES ('ssar', '$2a$10$5Z2/Wx9Lc8jCDSOz9pd6FOSFa3rou4lkf9gzFFrSzddRibYJAafau', 
 ;
 
 INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
-VALUES (1, 1111, 100, '2024-05-05'),
-       (1, 2222, 200, '2024-05-06'),
-       (1, 3333, 300, '2024-05-07'),
-       (2, 1111, 100, '2024-05-05'),
-       (2, 2222, 200, '2024-05-06'),
-       (2, 3333, 300, '2024-05-07')
+VALUES (1, 1111, 100, '2024-05-10'),
+       (1, 2222, 200, '2024-05-11'),
+       (1, 3333, 300, '2024-05-12'),
+       (2, 1111, 100, '2024-05-10'),
+       (2, 2222, 200, '2024-05-11'),
+       (2, 3333, 300, '2024-05-12')
 ;
 
 INSERT INTO bodydata_tb(user_id, weight, muscle, fat, created_at)
@@ -161,27 +161,6 @@ values (1, 132, 1, '2024-05-22', '2024-06-21', false, now()),
        (1, 50000, 28, '2024-03-23', '2024-04-22', null, now())
 ;
 
-INSERT INTO meal_tb(activity_id, eat_time, created_at)
-VALUES (1, '2024-05-05', now()),
-       (1, '2024-05-05', now());
-
--- INSERT INTO eat_tb(meal_id, food_id, quantity)
--- VALUES (1, 1, 1),
---        (1, 3, 2),
---        (1, 4, 1),
---        (2, 5, 2),
---        (2, 6, 1),
---        (2, 8, 1);
-
--- INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
--- VALUES (1, 1111, 100, '2024-05-05'),
---        (1, 2222, 200, '2024-05-06'),
---        (1, 3333, 300, '2024-05-07'),
---        (2, 1111, 100, '2024-05-05'),
---        (2, 2222, 200, '2024-05-06'),
---        (2, 3333, 300, '2024-05-07')
--- ;
-
 INSERT INTO food_tb(name, carbo, protein, fat, kcal, gram, created_at)
 VALUES ('바나나', 22.84, 1.09, 0.33, 88, 100, now()),
        ('땅콩', 22.84, 1.09, 0.33, 88, 100, now()),
@@ -248,6 +227,27 @@ VALUES ('바나나', 22.84, 1.09, 0.33, 88, 100, now()),
        ('고구마', 20.0, 1.6, 0.2, 86, 100, now()),
        ('감자', 17.5, 2.0, 0.1, 77, 100, now()),
        ('그린 스무디', 25.6, 5.2, 2.4, 120, 100, now());
+
+INSERT INTO meal_tb(activity_id, created_at)
+VALUES (1, now()),
+       (4, now());
+
+INSERT INTO eat_tb(meal_id, food_id, quantity)
+VALUES (1, 1, 1),
+       (1, 3, 2),
+       (1, 4, 1),
+       (2, 5, 2),
+       (2, 6, 1),
+       (2, 8, 1);
+
+-- INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
+-- VALUES (1, 1111, 100, '2024-05-05'),
+--        (1, 2222, 200, '2024-05-06'),
+--        (1, 3333, 300, '2024-05-07'),
+--        (2, 1111, 100, '2024-05-05'),
+--        (2, 2222, 200, '2024-05-06'),
+--        (2, 3333, 300, '2024-05-07')
+-- ;
 
 
 INSERT INTO survey_tb(title, status, created_at)
