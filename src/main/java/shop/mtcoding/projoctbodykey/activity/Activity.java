@@ -8,10 +8,10 @@ import shop.mtcoding.projoctbodykey.user.User;
 
 import java.sql.Timestamp;
 
-@NoArgsConstructor
 @Data
 @Table(name = "activity_tb")
 @Entity
+@NoArgsConstructor
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

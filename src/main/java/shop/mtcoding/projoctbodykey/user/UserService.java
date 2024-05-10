@@ -178,4 +178,13 @@ public class UserService {
 
         return new UserResponse.MyChangeWeightDTO(user, bodydataList);
     }
+
+    public void usernameCheck(String username) {
+        Optional<User> userOP = userJPARepository.findByUsername(username);
+        if (userOP.isPresent()) {
+            throw new Exception400("유저네임이 중복되었습니다.");
+        }else if(!userOP.isPresent()){
+            throw  new Exception400("사용가능한 유저네임입니다.");
+        }
+    }
 }
