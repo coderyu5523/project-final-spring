@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import shop.mtcoding.projoctbodykey.food.Food;
+import shop.mtcoding.projoctbodykey.meal.Meal;
 
 @NoArgsConstructor
 @Data
@@ -13,15 +15,20 @@ public class Eat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer mealId;  // 식단 id
-    private Integer foodId; // 음식 id
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Meal meal;  // 식단 id
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Food food; // 음식 id
+
     private Integer quantity; // 먹은 양
 
     @Builder
-    public Eat(Integer id, Integer mealId, Integer foodId, Integer quantity) {
+    public Eat(Integer id, Meal meal, Food food, Integer quantity) {
         this.id = id;
-        this.mealId = mealId;
-        this.foodId = foodId;
+        this.meal = meal;
+        this.food = food;
         this.quantity = quantity;
     }
 }

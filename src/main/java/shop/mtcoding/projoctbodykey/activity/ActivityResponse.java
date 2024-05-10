@@ -15,7 +15,7 @@ public class ActivityResponse {
 
     @Data
     public static class activitiesDateDTO {
-        private Timestamp createdAt;
+//        private Timestamp createdAt;
         private Integer walking;
         private Integer drinkWater;
         private Integer kcal;
@@ -23,21 +23,21 @@ public class ActivityResponse {
 
         public activitiesDateDTO(Activity activity, Integer kcal, BodyData bodyData) {
             if (activity != null) {
-                Timestamp timestamp = activity.getCreatedAt();
-
-                // UTC 기준의 Timestamp를 LocalDateTime으로 변환합니다.
-                LocalDateTime utcDateTime = timestamp.toLocalDateTime();
-
-                // LocalDateTime을 한국 표준시(KST)로 변환합니다.
-                LocalDateTime kstDateTime = utcDateTime.atZone(ZoneId.of("UTC")).withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDateTime();
-
-                // 한국 표준시(KST)로 변환한 LocalDateTime을 Timestamp로 다시 변환합니다.
-                this.createdAt = Timestamp.valueOf(kstDateTime);
+//                Timestamp timestamp = activity.getCreatedAt();
+//
+//                // UTC 기준의 Timestamp를 LocalDateTime으로 변환합니다.
+//                LocalDateTime utcDateTime = timestamp.toLocalDateTime();
+//
+//                // LocalDateTime을 한국 표준시(KST)로 변환합니다.
+//                LocalDateTime kstDateTime = utcDateTime.atZone(ZoneId.of("UTC")).withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+//
+//                // 한국 표준시(KST)로 변환한 LocalDateTime을 Timestamp로 다시 변환합니다.
+//                this.createdAt = Timestamp.valueOf(kstDateTime);
                 this.walking = activity.getWalking();
                 this.drinkWater = activity.getDrinkWater();
             } else {
-                LocalDateTime now = LocalDateTime.now();
-                this.createdAt = Timestamp.valueOf(now);
+//                LocalDateTime now = LocalDateTime.now();
+//                this.createdAt = Timestamp.valueOf(now);
                 this.walking = 0;
                 this.drinkWater = 0;
             }
