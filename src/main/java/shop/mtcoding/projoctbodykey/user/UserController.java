@@ -118,4 +118,9 @@ public class UserController {
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
-}
+    @GetMapping("/users/username-check")
+    public ResponseEntity<?> usernameCheck(@RequestBody UserRequest.UsernameCheckDTO reqDTO) {
+        userService.usernameCheck(reqDTO.getUsername());
+
+        return ResponseEntity.ok(new ApiUtil<>(null));
+    }}
