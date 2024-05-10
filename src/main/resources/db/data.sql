@@ -1,19 +1,20 @@
-INSERT INTO user_tb(username, password, phone, name, birth, gender, height, user_img, total_coin, goal_muscle, goal_fat,
-                    goal_weight, created_at)
-VALUES ('ssar', '$2a$10$5Z2/Wx9Lc8jCDSOz9pd6FOSFa3rou4lkf9gzFFrSzddRibYJAafau', '010-0100-0100', '류재성', '1994-04-22',
-        'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, 70.0, now()),
-       ('cos', '$2a$10$M119OnzkM1HHpZLCDIhrne4mYR9bwQWvRoHXvZMfh1Yxamf8UbmHq', '010-0022-0022', '하승진', '1994-12-26',
-        'M', 169.8, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 25.7, 15.0, 70.0, now())
+INSERT INTO user_tb(username, password, phone, name, birth, gender, height, user_img, total_coin, goal_muscle, goal_fat, goal_weight, created_at)
+VALUES ('ssar', '$2a$10$5Z2/Wx9Lc8jCDSOz9pd6FOSFa3rou4lkf9gzFFrSzddRibYJAafau', '010-0100-0100', '류재성', '1994-04-22', 'M', 178.5, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 35.0, 12.0, 70.0, now()),
+       ('cos', '$2a$10$M119OnzkM1HHpZLCDIhrne4mYR9bwQWvRoHXvZMfh1Yxamf8UbmHq', '010-0022-0022', '하승진', '1994-12-26', 'M', 169.8, '86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png', 500, 25.7, 15.0, 70.0, now())
 --        ('love', '1234', '010-0033-0033', '홍길동', '1997-04-02', 'M', 173.4, null, 500, 30.0, 18.0, now());
 ;
 
 INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
-VALUES (1, 1111, 100, '2024-05-10'),
-       (1, 2222, 200, '2024-05-11'),
-       (1, 3333, 300, '2024-05-12'),
-       (2, 1111, 100, '2024-05-10'),
-       (2, 2222, 200, '2024-05-11'),
-       (2, 3333, 300, '2024-05-12')
+VALUES (1, 1000, 100, '2024-05-05'),
+       (1, 2000, 200, '2024-05-06'),
+       (1, 3000, 300, '2024-05-07'),
+       (1, 3000, 300, '2024-05-08'),
+       (1, 10000, 300, '2024-05-09'),
+       (1, 10000, 300, '2024-05-10'),
+       (1, 3000, 300, '2024-04-07'),
+       (2, 1111, 100, '2024-05-05'),
+       (2, 2222, 200, '2024-05-06'),
+       (2, 3333, 300, '2024-05-07')
 ;
 
 INSERT INTO bodydata_tb(user_id, weight, muscle, fat, created_at)

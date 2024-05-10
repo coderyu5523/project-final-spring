@@ -62,4 +62,6 @@ public class ActivityJPARepositoryTest {
         System.out.println("strDate = " + strDate);
         // then
     }
+
+
 }
