@@ -78,11 +78,27 @@ public class ActivityService {
 
         //일주일 걸음 수
         LocalDate startDate = today.minusDays(7);
-        List<Activity> weakWorking= activityJPARepository.findWithWeakWorking(Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
-        List<ActivityRequest.findWithWeakWorking> weakWalking = weakWorking.stream().map(ActivityRequest.findWithWeakWorking::new).toList();
+        List<Activity> weakActivity= activityJPARepository.findWithWeakActivity(Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
+        List<ActivityRequest.WeakWalking> weakWalking = weakActivity.stream().map(ActivityRequest.WeakWalking::new).toList();
         System.out.println("weakWalking = " + weakWalking);
 
 
         return new ActivityResponse.WalkingDetail(activity.getWalking(), WalkingToatalAndAVG, rateAvg, maxWalking, weakWalking);
+    }
+
+    public ActivityResponse.WaterDetail getWaterDetail(Integer userId) {
+        LocalDate today = LocalDate.now();
+
+        //당일 물
+        Activity activity = activityJPARepository.findByUserIdAndCreatedAt(userId, today).orElseThrow(() -> new Exception404("원하시는 날짜에 활동이 없습니다"));
+
+        //일주일간 물
+        LocalDate startDate = today.minusDays(7);
+        List<Activity> weakActivity= activityJPARepository.findWithWeakActivity
+                        (Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
+        List<ActivityRequest.WeakWater> weakWaters = weakActivity.stream().map(ActivityRequest.WeakWater::new).toList();
+
+        return new ActivityResponse.WaterDetail(activity.getDrinkWater(), weakWaters);
+
     }
 }

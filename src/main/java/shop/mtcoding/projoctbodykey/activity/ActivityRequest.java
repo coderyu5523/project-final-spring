@@ -9,11 +9,22 @@ import java.util.List;
 
 public class ActivityRequest {
     @Data
-    public static class findWithWeakWorking {
+    public static class WeakWater{
+        private Integer water;
+        private Timestamp date;
+
+        public WeakWater(Activity activity) {
+            this.water = activity.getDrinkWater();
+            this.date = activity.getCreatedAt();
+        }
+    }
+
+    @Data
+    public static class WeakWalking {
         private Integer walking;
         private Timestamp date;
 
-        public findWithWeakWorking(Activity activity) {
+        public WeakWalking(Activity activity) {
             this.walking = activity.getWalking();
             this.date = activity.getCreatedAt();
         }

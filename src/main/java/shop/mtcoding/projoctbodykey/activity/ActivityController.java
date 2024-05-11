@@ -51,10 +51,18 @@ public class ActivityController {
     }
 
     //워킹 디테일 페이지
-    @GetMapping("/activities/walking/detail")
-    public ResponseEntity<?> page() {
+    @GetMapping("/api/activities/walking/detail")
+    public ResponseEntity<?> walkingDetail() {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         ActivityResponse.WalkingDetail respDTO = activityService.getWalkingDetail(user.getId());
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    //물 디테일 페이지
+    @GetMapping("/api/activities/water/detail")
+    public ResponseEntity<?> waterDetail() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        ActivityResponse.WaterDetail respDTO=activityService.getWaterDetail(user.getId());
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 }
