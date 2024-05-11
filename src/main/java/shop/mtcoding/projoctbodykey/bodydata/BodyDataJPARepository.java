@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,9 @@ public interface BodyDataJPARepository extends JpaRepository<BodyData, Integer> 
 
     @Query("select b from BodyData b where b.user.id = :userId order by b.createdAt desc limit 1")
     BodyData findByUserIdOrderDesc(@Param("userId") Integer userId);
+
+    @Query("select b from BodyData b where b.user.id = :userId and CAST(b.createdAt AS date) = CAST(:createdAt AS date)")
+    BodyData findByUserIdAndCreatedAt(@Param("userId") Integer userId, @Param("createdAt") Timestamp createdAt);
 
     @Query("select b from BodyData b where b.user.id = :userId")
     List<BodyData> findByUserId(@Param("userId") Integer userId);

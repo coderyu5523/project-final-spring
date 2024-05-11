@@ -30,7 +30,7 @@ public class ActivityService {
         Activity activity = activityJPARepository
                 .findByUserIdAndDate(sessionUser.getId(), timestamp);
 
-        BodyData bodyData = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
+        BodyData bodyData = bodydataJPARepository.findByUserIdAndCreatedAt(sessionUser.getId(), timestamp);
 
 //        List<Integer> eatList = eatJPARepository.findKcalByUserIdAndEatTime(sessionUser.getId(), timestamp);
 //
