@@ -50,5 +50,5 @@ public interface ActivityJPARepository extends JpaRepository<Activity, Integer> 
             from Activity a
             where a.user.id = :userId and a.createdAt Between :startDate and :endDate
             """)
-    List<Activity> findWithWeakWorking(@Param("startDate") Timestamp startDate, @Param("endDate") Timestamp endDate, @Param("userId") Integer userId);
+    List<Activity> findWithWeakActivity(@Param("startDate") Timestamp startDate, @Param("endDate") Timestamp endDate, @Param("userId") Integer userId);
 }
