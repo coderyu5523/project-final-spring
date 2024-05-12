@@ -18,6 +18,7 @@ public class BodyDataResponse {
         private Double fat;
         private Double muscle;
         private Double weight;
+        private Timestamp date;
 
         @Builder
         public SaveDTO(BodyData bodyData) {
@@ -25,6 +26,7 @@ public class BodyDataResponse {
             this.fat = bodyData.getFat();
             this.muscle = bodyData.getMuscle();
             this.weight = bodyData.getWeight();
+            this.date = bodyData.getCreatedAt();
         }
     }
 
