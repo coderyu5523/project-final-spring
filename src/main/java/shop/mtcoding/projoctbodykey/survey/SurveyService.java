@@ -8,6 +8,8 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest;
 import shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyResponse;
 import shop.mtcoding.projoctbodykey.choiceanswer.ChoiceAnswerJPARepository;
+import shop.mtcoding.projoctbodykey.dosurvey.DoSurvey;
+import shop.mtcoding.projoctbodykey.dosurvey.DoSurveyJPARepository;
 import shop.mtcoding.projoctbodykey.food.Food;
 import shop.mtcoding.projoctbodykey.food.FoodResponse;
 import shop.mtcoding.projoctbodykey.questionchoice.QuestionChoice;
@@ -28,6 +30,19 @@ public class SurveyService {
     private final SurveyQuestionJPARepository surveyQuestionJPARepository;
     private final QuestionChoiceJPARepository questionChoiceJPARepository;
     private final ChoiceAnswerJPARepository choiceAnswerJPARepository;
+    private final DoSurveyJPARepository doSurveyJPARepository;
+
+    public List<SurveyResponse.SurveyDTO> surveyList(Integer userId){
+        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCount();
+        List<SurveyResponse.SurveyDTO> surveysSatus = new ArrayList<>();
+
+        for (AdminSurveyRequest.SurveyAndQuestionCount survey : surveys){
+            DoSurvey doSurvey = doSurveyJPARepository.findByUserIdAndSurveyId(userId, survey.getSurvey().getId()).orElse(null);
+            SurveyResponse.SurveyDTO surveysDTO = new SurveyResponse.SurveyDTO(survey, doSurvey);
+            surveysSatus.add(surveysDTO);
+        }
+        return surveysSatus;
+    }
 
     public AdminSurveyResponse.ChartDTO chart(int id) {
         Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
