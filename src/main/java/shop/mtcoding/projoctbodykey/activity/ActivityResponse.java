@@ -94,6 +94,7 @@ public class ActivityResponse {
 
     @Data
     static class WalkingDetail {
+        private Integer dayAcitivityId;
         private Integer dayWalking;
         private Long totalMonthWalking;
         private double avgMonthWalking;
@@ -113,9 +114,10 @@ public class ActivityResponse {
             }
         }
 
-        public WalkingDetail(Integer dayWalking, ActivityRequest.WalkingToatalAndAVG  WalkingToatalAndAVG,
+        public WalkingDetail(Activity activity, ActivityRequest.WalkingToatalAndAVG  WalkingToatalAndAVG,
                              double rateAvgWalking, ActivityRequest.MaxWalkingDay maxWalking, List<ActivityRequest.WeakWalking> weakWalkings) {
-            this.dayWalking = dayWalking;
+            this.dayAcitivityId = activity.getId();
+            this.dayWalking = activity.getWalking();
             this.totalMonthWalking = WalkingToatalAndAVG.getTotalMonthWalking();
             this.avgMonthWalking = (int) (WalkingToatalAndAVG.getAvgMonthWalking()* 100) / 100.0;
             this.rateAvgWalking = (int) (rateAvgWalking * 100) / 100.0;
@@ -127,6 +129,7 @@ public class ActivityResponse {
 
     @Data
     static class WaterDetail {
+        private Integer dayAcitivityId;
         private Integer dayWater;
         private List<WeakWaterDTO> weakWater;
 
@@ -141,8 +144,9 @@ public class ActivityResponse {
             }
         }
 
-        public WaterDetail(Integer dayWater, List<ActivityRequest.WeakWater> weakWater) {
-            this.dayWater = dayWater;
+        public WaterDetail(Activity activity, List<ActivityRequest.WeakWater> weakWater) {
+            this.dayAcitivityId = activity.getId();
+            this.dayWater = activity.getDrinkWater();
             this.weakWater = weakWater.stream().map(WeakWaterDTO::new).toList();
         }
     }
