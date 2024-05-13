@@ -266,7 +266,7 @@ VALUES (1, 1, 1),
 
 
 INSERT INTO survey_tb(title, status, created_at)
-VALUES ('설문조사1', '진행전', now()),
+VALUES ('설문조사1', '진행중', now()),
        ('설문조사2', '진행전', now()),
        ('설문조사3', '진행전', now()),
        ('설문조사4', '진행전', now()),

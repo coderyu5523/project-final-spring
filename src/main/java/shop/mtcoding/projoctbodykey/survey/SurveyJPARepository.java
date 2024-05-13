@@ -15,4 +15,7 @@ public interface SurveyJPARepository extends JpaRepository<Survey, Integer> {
     @Query("SELECT new shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest$SurveyAndQuestionCount(s, COUNT(DISTINCT sq.id)) from Survey s left join SurveyQuestion sq on s.id=sq.survey.id group by s.id")
     List<AdminSurveyRequest.SurveyAndQuestionCount> findWithQuestionCount();
 
+    @Query("SELECT new shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest$SurveyAndQuestionCount(s, COUNT(DISTINCT sq.id)) from Survey s left join SurveyQuestion sq on s.id=sq.survey.id group by s.id having s.status='진행중'")
+    List<AdminSurveyRequest.SurveyAndQuestionCount> findWithQuestionCountAndAgress();
+
 }

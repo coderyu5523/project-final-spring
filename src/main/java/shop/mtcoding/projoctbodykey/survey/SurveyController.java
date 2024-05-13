@@ -29,4 +29,12 @@ public class SurveyController {
         List<SurveyResponse.SurveyDTO> respDTO = surveyService.surveyList(user.getId());
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
+
+    //설문조사 리스트 폼
+    @GetMapping("/api/survey/{id}")
+    public ResponseEntity<?> surveyDetail() {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        List<SurveyResponse.SurveyDTO> respDTO = surveyService.surveyList(user.getId());
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
 }

@@ -33,7 +33,7 @@ public class SurveyService {
     private final DoSurveyJPARepository doSurveyJPARepository;
 
     public List<SurveyResponse.SurveyDTO> surveyList(Integer userId){
-        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCount();
+        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCountAndAgress();
         List<SurveyResponse.SurveyDTO> surveysSatus = new ArrayList<>();
 
         for (AdminSurveyRequest.SurveyAndQuestionCount survey : surveys){
