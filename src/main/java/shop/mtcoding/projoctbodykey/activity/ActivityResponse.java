@@ -42,7 +42,7 @@ public class ActivityResponse {
                 this.walking = 0;
                 this.drinkWater = 0;
             }
-            this.kcal = kcal;
+            this.kcal = 0;
             if (bodyData != null) {
                 this.weight = bodyData.getWeight();
             } else {
@@ -150,5 +150,4 @@ public class ActivityResponse {
             this.weakWater = weakWater.stream().map(WeakWaterDTO::new).toList();
         }
     }
-
 }

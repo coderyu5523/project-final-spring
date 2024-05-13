@@ -18,6 +18,11 @@ public class SessionUser {
     }
 
     @Builder
+    public SessionUser(String username) {
+        this.username = username;
+    }
+
+    @Builder
     public SessionUser(User user) {
         this.id = user.getId();
         this.username = user.getUsername();

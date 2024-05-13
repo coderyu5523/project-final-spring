@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @DataJpaTest
@@ -59,5 +61,20 @@ public class BodyDataJPARepositoryTest {
         for (BodyData data : bodyData) {
             System.out.println(data);
         }
+    }
+
+    @Test
+    public void findByUserIdAndCreatedAt_test() {
+        int userId = 1;
+
+        LocalDateTime dateTime = LocalDateTime.of(2024, 4, 27, 0, 0, 0);
+
+        // LocalDateTime 객체를 Timestamp 객체로 변환합니다.
+        Timestamp timestamp = Timestamp.valueOf(dateTime);
+
+
+        BodyData bodyData = bodydataJPARepository.findByUserIdAndCreatedAt(userId, timestamp);
+
+        System.out.println(bodyData);
     }
 }
