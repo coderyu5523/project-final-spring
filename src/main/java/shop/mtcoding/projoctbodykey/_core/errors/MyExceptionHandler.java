@@ -2,6 +2,7 @@ package shop.mtcoding.projoctbodykey._core.errors;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,6 +43,12 @@ public class MyExceptionHandler {
         log.error(e.getMessage());
 
         return new ResponseEntity<>(e.body(), e.status());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public String DataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest request){
+        request.setAttribute("msg", "삭제할 수 없는 챌린지입니다. 관련된 참여자가 있습니다.");
+        return "err/500";
     }
 
 //    @ExceptionHandler(Exception.class)

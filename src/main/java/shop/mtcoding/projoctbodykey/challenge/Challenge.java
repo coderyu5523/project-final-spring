@@ -33,7 +33,6 @@ public class Challenge {
     private Timestamp createdAt;
 
     @Builder
-
     public Challenge(Integer id, String challengeName, String backgroundImg, String subTitle, String distance, Integer walking, String badgeImg, String content, Integer coin, Integer period, Timestamp createdAt) {
         this.id = id;
         this.challengeName = challengeName;
