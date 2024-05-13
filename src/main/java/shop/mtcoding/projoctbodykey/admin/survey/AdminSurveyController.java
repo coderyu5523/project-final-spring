@@ -73,6 +73,8 @@ public class AdminSurveyController {
         return "survey/detail-form";
     }
 
+
+
     //설문조사 리스트
     @GetMapping("/admin/surveys")
     public String surveys(HttpServletRequest request) {

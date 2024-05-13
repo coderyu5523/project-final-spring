@@ -83,7 +83,7 @@ public class ActivityService {
         System.out.println("weakWalking = " + weakWalking);
 
 
-        return new ActivityResponse.WalkingDetail(activity.getWalking(), WalkingToatalAndAVG, rateAvg, maxWalking, weakWalking);
+        return new ActivityResponse.WalkingDetail(activity, WalkingToatalAndAVG, rateAvg, maxWalking, weakWalking);
     }
 
     public ActivityResponse.WaterDetail getWaterDetail(Integer userId) {
@@ -98,7 +98,7 @@ public class ActivityService {
                         (Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
         List<ActivityRequest.WeakWater> weakWaters = weakActivity.stream().map(ActivityRequest.WeakWater::new).toList();
 
-        return new ActivityResponse.WaterDetail(activity.getDrinkWater(), weakWaters);
+        return new ActivityResponse.WaterDetail(activity, weakWaters);
 
     }
 }
