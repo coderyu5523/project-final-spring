@@ -14,6 +14,7 @@ public class SurveyResponse {
         private Integer id;
         private String title;
         private String isAttend;
+        private String progress;
         private Long questionCount;
 
 
@@ -21,6 +22,7 @@ public class SurveyResponse {
             this.id = reqDTO.getSurvey().getId();
             this.title = reqDTO.getSurvey().getTitle();
             this.isAttend= (doSurvey != null) ? "참여완료":"참여가능";
+            this.progress= reqDTO.getSurvey().getStatus();
             this.questionCount = reqDTO.getQuestionCount();
 
         }
