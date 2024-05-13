@@ -33,7 +33,7 @@ public class SurveyService {
     private final DoSurveyJPARepository doSurveyJPARepository;
 
     public List<SurveyResponse.SurveyDTO> surveyList(Integer userId){
-        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCount();
+        List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCountAndAgress();
         List<SurveyResponse.SurveyDTO> surveysSatus = new ArrayList<>();
 
         for (AdminSurveyRequest.SurveyAndQuestionCount survey : surveys){
@@ -178,6 +178,31 @@ public class SurveyService {
         }
 
         AdminSurveyResponse.DetailDTO detailDTO = new AdminSurveyResponse.DetailDTO(survey, questionElements);
+
+        return detailDTO;
+    }
+
+    public SurveyResponse.DetailDTO findByIdApp(int id) {
+        Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
+        List<SurveyQuestion> surveyQuestion = surveyQuestionJPARepository.findBySurveyId(survey.getId());
+
+        List<SurveyResponse.DetailDTO.QuestionDTO> questionElements = new ArrayList<>();
+        for (SurveyQuestion question : surveyQuestion) {
+            List<QuestionChoice> questionChoices =
+                    questionChoiceJPARepository.findBySurveyIdAndQuestionId(survey.getId(), question.getId()).stream().toList();
+
+            SurveyResponse.DetailDTO.QuestionDTO questionElement =
+                    new SurveyResponse.DetailDTO.QuestionDTO(
+                            question,
+                            questionChoices.stream().map(QuestionChoice::getId).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceItem).toList(),
+                            questionChoices.stream().map(QuestionChoice::getChoiceNumber).toList()
+                    );
+
+            questionElements.add(questionElement);
+        }
+
+        SurveyResponse.DetailDTO detailDTO = new SurveyResponse.DetailDTO(survey, questionElements);
 
         return detailDTO;
     }
