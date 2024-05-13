@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 public class AdminSurveyResponse {
 
+
     @Data
     public static class SurveysDTO {
         private Integer id;

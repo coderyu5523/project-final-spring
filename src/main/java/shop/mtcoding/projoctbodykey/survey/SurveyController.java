@@ -32,9 +32,9 @@ public class SurveyController {
 
     //설문조사 리스트 폼
     @GetMapping("/api/survey/{id}")
-    public ResponseEntity<?> surveyDetail() {
+    public ResponseEntity<?> surveyDetail(@PathVariable Integer id) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        List<SurveyResponse.SurveyDTO> respDTO = surveyService.surveyList(user.getId());
+        SurveyResponse.DetailDTO respDTO = surveyService.findByIdApp(id);
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 }
