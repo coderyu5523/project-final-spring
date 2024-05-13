@@ -5,7 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
+import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtVO;
+import shop.mtcoding.projoctbodykey.activity.Activity;
+import shop.mtcoding.projoctbodykey.activity.ActivityService;
 
 import java.io.IOException;
 
@@ -14,6 +17,7 @@ import java.io.IOException;
 public class UserController {
     private final UserService userService;
     private final HttpSession session;
+    private final ActivityService activityService;
 
     @GetMapping("/api/users/my-change-fat")
     public ResponseEntity<?> myChangeFat() {
@@ -66,12 +70,17 @@ public class UserController {
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody UserRequest.JoinDTO reqDTO) {
 
+
         return ResponseEntity.ok(new ApiUtil<>(userService.join(reqDTO)));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO reqDTO) {
         UserResponse.LoginDTO user = userService.login(reqDTO);
+
+
+        // jwt 생성 및 헤더에 설정
+        activityService.save(user.id());
 
         // jwt 생성
         return ResponseEntity.ok()

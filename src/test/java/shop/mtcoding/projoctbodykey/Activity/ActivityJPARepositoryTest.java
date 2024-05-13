@@ -36,8 +36,8 @@ public class ActivityJPARepositoryTest {
     @Test
     public void findByUserIdAndDate_test() {
         // given
-        int userId = 3;
-        LocalDateTime dateTime = LocalDateTime.of(2024, 5, 6, 0, 0, 0);
+        int userId = 1;
+        LocalDateTime dateTime = LocalDateTime.of(2024, 4, 27, 0, 0, 0);
 
         // LocalDateTime 객체를 Timestamp 객체로 변환합니다.
         Timestamp timestamp = Timestamp.valueOf(dateTime);
@@ -62,6 +62,4 @@ public class ActivityJPARepositoryTest {
         System.out.println("strDate = " + strDate);
         // then
     }
-
-
 }

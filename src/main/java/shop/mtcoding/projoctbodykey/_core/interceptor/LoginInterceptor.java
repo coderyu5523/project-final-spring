@@ -5,18 +5,31 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception401;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception500;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
+import shop.mtcoding.projoctbodykey.activity.ActivityService;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
 
 
+@RequiredArgsConstructor
 public class LoginInterceptor implements HandlerInterceptor {
+
+    private final ActivityService activityService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println("preHandle............");
+
+//        String requestURI = request.getRequestURI();
+//        if ("/login".equals(requestURI)) {
+//            SessionUser sessionUser = new SessionUser("ssar");
+//            activityService.save(sessionUser);
+//            return true;
+//        }
 
         // Bearer jwt 토큰 으로 들어오는 것이 프로토콜이다.
         String jwt = request.getHeader("Authorization");

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
@@ -15,6 +16,7 @@ import shop.mtcoding.projoctbodykey.user.SessionUser;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,13 +26,13 @@ public class ActivityController {
     private final HttpSession session;
 
     @GetMapping("/api/activities/date/{createdAt}")
-    public ResponseEntity<?> activitiesDate(@PathVariable("createdAt") LocalDate createdAt) {
+    public ResponseEntity<?> activitiesDate(@PathVariable("createdAt") String createdAt) {
 
-        // LocalDate를 Timestamp로 변환
-        Timestamp createdAtTimestamp = Timestamp.valueOf(createdAt.atStartOfDay());
+        // createdAtString을 LocalDateTime으로 변환
+        LocalDateTime time = LocalDateTime.parse(createdAt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        ActivityResponse.activitiesDateDTO respDTO = activityService.activitiesDate(createdAtTimestamp, user);
+        ActivityResponse.activitiesDateDTO respDTO = activityService.activitiesDate(time, user);
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }

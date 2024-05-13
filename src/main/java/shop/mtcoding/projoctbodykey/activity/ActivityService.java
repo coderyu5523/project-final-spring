@@ -1,5 +1,7 @@
 package shop.mtcoding.projoctbodykey.activity;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -8,14 +10,13 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
 import shop.mtcoding.projoctbodykey.eat.EatJPARepository;
-import shop.mtcoding.projoctbodykey.user.SessionUser;
-import shop.mtcoding.projoctbodykey.user.User;
-import shop.mtcoding.projoctbodykey.user.UserJPARepository;
+import shop.mtcoding.projoctbodykey.user.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -25,8 +26,12 @@ public class ActivityService {
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
     private final EatJPARepository eatJPARepository;
+    private final HttpSession session;
 
-    public ActivityResponse.activitiesDateDTO activitiesDate(Timestamp timestamp, SessionUser sessionUser) {
+    public ActivityResponse.activitiesDateDTO activitiesDate(LocalDateTime createdAt, SessionUser sessionUser) {
+        // LocalDate를 Timestamp로 변환
+        Timestamp timestamp = Timestamp.valueOf(createdAt);
+
         Activity activity = activityJPARepository
                 .findByUserIdAndDate(sessionUser.getId(), timestamp);
 
@@ -100,5 +105,34 @@ public class ActivityService {
 
         return new ActivityResponse.WaterDetail(activity, weakWaters);
 
+    }
+
+    @Transactional
+    public void save(Integer userId) {
+        if(userId != null) {
+            User user = userJPARepository.findById(userId).orElseThrow();
+
+            // 현재 날짜와 시간을 가져옵니다.
+            LocalDateTime now = LocalDateTime.now();
+
+            // 시분초를 0으로 초기화합니다.
+            LocalDateTime startOfDay = now.withHour(0).withMinute(0).withSecond(0).withNano(0);
+
+            // 로컬 날짜와 시간을 타임스탬프로 변환합니다.
+            Timestamp timestamp = Timestamp.valueOf(startOfDay);
+
+            Activity activity = activityJPARepository.findByUserIdAndDate(userId, timestamp);
+
+            if(activity == null) {
+                Activity newActivity = new Activity();
+                Timestamp time = Timestamp.valueOf(startOfDay);
+                newActivity.setCreatedAt(time);
+                newActivity.setUser(user);
+                newActivity.setWalking(0);
+                newActivity.setDrinkWater(0);
+
+                activityJPARepository.save(newActivity);
+            }
+        }
     }
 }
