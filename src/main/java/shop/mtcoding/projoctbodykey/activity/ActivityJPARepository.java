@@ -22,6 +22,7 @@ public interface ActivityJPARepository extends JpaRepository<Activity, Integer> 
 
     @Query("select a from Activity a where a.user.id = :userId and a.createdAt = :createdAt")
     Activity findByUserIdAndDate(@Param("userId") Integer userId, @Param("createdAt") Timestamp createdAt);
+
     @Query("""
             select new shop.mtcoding.projoctbodykey.activity.ActivityRequest$WalkingToatalAndAVG(sum(a.walking) as totalMonthWalking, avg(a.walking) as avgMonthWalking)
             from Activity a
