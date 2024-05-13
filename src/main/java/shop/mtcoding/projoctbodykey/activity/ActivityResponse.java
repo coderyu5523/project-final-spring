@@ -24,7 +24,15 @@ public class ActivityResponse {
 
         public activitiesDateDTO(Activity activity, BodyData bodyData) {
             if (activity != null) {
-                Timestamp timestamp = activity.getCreatedAt();
+                this.walking = activity.getWalking();
+                this.drinkWater = activity.getDrinkWater();
+            } else {
+                this.walking = 0;
+                this.drinkWater = 0;
+            }
+            this.kcal = 0;
+            if (bodyData != null) {
+                Timestamp timestamp = bodyData.getCreatedAt();
 
                 // UTC 기준의 Timestamp를 LocalDateTime으로 변환합니다.
                 LocalDateTime utcDateTime = timestamp.toLocalDateTime();
@@ -34,18 +42,10 @@ public class ActivityResponse {
 
                 // 한국 표준시(KST)로 변환한 LocalDateTime을 Timestamp로 다시 변환합니다.
                 this.createdAt = Timestamp.valueOf(kstDateTime);
-                this.walking = activity.getWalking();
-                this.drinkWater = activity.getDrinkWater();
+                this.weight = bodyData.getWeight();
             } else {
                 LocalDateTime now = LocalDateTime.now();
                 this.createdAt = Timestamp.valueOf(now);
-                this.walking = 0;
-                this.drinkWater = 0;
-            }
-            this.kcal = 0;
-            if (bodyData != null) {
-                this.weight = bodyData.getWeight();
-            } else {
                 this.weight = 0.0d;
             }
         }

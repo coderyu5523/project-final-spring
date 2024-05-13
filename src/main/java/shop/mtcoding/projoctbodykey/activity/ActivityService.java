@@ -25,12 +25,11 @@ public class ActivityService {
     private final ActivityJPARepository activityJPARepository;
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
-    private final EatJPARepository eatJPARepository;
-    private final HttpSession session;
 
-    public ActivityResponse.activitiesDateDTO activitiesDate(LocalDateTime createdAt, SessionUser sessionUser) {
+    public ActivityResponse.activitiesDateDTO activitiesDate(LocalDate createdAt, SessionUser sessionUser) {
+
         // LocalDate를 Timestamp로 변환
-        Timestamp timestamp = Timestamp.valueOf(createdAt);
+        Timestamp timestamp = Timestamp.valueOf(createdAt.atStartOfDay());
 
         Activity activity = activityJPARepository
                 .findByUserIdAndDate(sessionUser.getId(), timestamp);

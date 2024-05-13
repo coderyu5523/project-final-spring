@@ -26,13 +26,10 @@ public class ActivityController {
     private final HttpSession session;
 
     @GetMapping("/api/activities/date/{createdAt}")
-    public ResponseEntity<?> activitiesDate(@PathVariable("createdAt") String createdAt) {
-
-        // createdAtString을 LocalDateTime으로 변환
-        LocalDateTime time = LocalDateTime.parse(createdAt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    public ResponseEntity<?> activitiesDate(@PathVariable("createdAt") LocalDate createdAt) {
 
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-        ActivityResponse.activitiesDateDTO respDTO = activityService.activitiesDate(time, user);
+        ActivityResponse.activitiesDateDTO respDTO = activityService.activitiesDate(createdAt, user);
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
