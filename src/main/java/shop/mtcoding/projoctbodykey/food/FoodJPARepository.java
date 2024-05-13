@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface FoodJPARepository extends JpaRepository<Food,Integer> {
 
-    @Query("select f from Food f where f.name like %:keyword%")
+    @Query("SELECT f FROM Food f WHERE LOWER(f.name) LIKE CONCAT('%', LOWER(:keyword), '%')")
     Page<Food> findAllKeyword(@Param("keyword") String keyword, Pageable pageable);
 
     Page<Food> findAll(Pageable pageable);
