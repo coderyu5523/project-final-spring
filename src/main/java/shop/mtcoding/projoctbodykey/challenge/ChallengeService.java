@@ -5,15 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
-import shop.mtcoding.projoctbodykey._core.errors.exception.Exception401;
-import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
-import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
+import shop.mtcoding.projoctbodykey._core.errors.exception.*;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
-import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeJPARepository;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
-import shop.mtcoding.projoctbodykey.user.User;
 import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
 import java.io.*;
@@ -165,8 +160,12 @@ public class ChallengeService {
 
     @Transactional
     public void adminDelete(Integer id) {
-        Challenge challenge = challengeJPARepository.findById(id)
-                .orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
-        challengeJPARepository.delete(challenge);
+        try {
+            Challenge challenge = challengeJPARepository.findById(id)
+                    .orElseThrow(() -> new Exception404("해당 챌린지를 찾을 수 없습니다."));
+            challengeJPARepository.deleteById(challenge.getId());
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("");
+        }
     }
 }
