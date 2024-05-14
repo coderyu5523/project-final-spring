@@ -30,4 +30,13 @@ public class ChoiceAnswer {
     private QuestionChoice questionChoice;
     private Timestamp createdAt;
 
+    @Builder
+    public ChoiceAnswer(Integer id, User user, Survey survey, SurveyQuestion surveyQuestion, QuestionChoice questionChoice, Timestamp createdAt) {
+        this.id = id;
+        this.user = user;
+        this.survey = survey;
+        this.surveyQuestion = surveyQuestion;
+        this.questionChoice = questionChoice;
+        this.createdAt = createdAt;
+    }
 }
