@@ -40,7 +40,7 @@ public class FoodResponse {
             private Double carbo; //탄수화물
             private Double protein; // 단백질
             private Double fat;// 지방
-            private Integer kcal; // 칼로리
+            private Double kcal; // 칼로리
             private Integer gram; // 먹은 그램양
 
             public FoodContentListDTO(Food food) {
@@ -82,7 +82,7 @@ public class FoodResponse {
             private Double carbo;
             private Double protein;
             private Double fat;
-            private Integer kcal;
+            private Double kcal;
             private Integer gram;
 
             @Builder
@@ -128,7 +128,7 @@ public class FoodResponse {
             private Double carbo;
             private Double protein;
             private Double fat;
-            private Integer kcal;
+            private Double kcal;
             private Integer gram;
 
             @Builder
@@ -151,7 +151,7 @@ public class FoodResponse {
         private Double carbo;
         private Double protein;
         private Double fat;
-        private Integer kcal;
+        private Double kcal;
         private Integer gram;
 
         public SaveDTO(Food food) {
@@ -172,7 +172,7 @@ public class FoodResponse {
         private Double carbo;
         private Double protein;
         private Double fat;
-        private Integer kcal;
+        private Double kcal;
         private Integer gram;
 
         public FoodDTO(Food food) {
@@ -193,7 +193,7 @@ public class FoodResponse {
         private Double carbo;
         private Double protein;
         private Double fat;
-        private Integer kcal;
+        private Double kcal;
         private Integer gram;
 
         public FoodsDTO(Food food) {
@@ -214,7 +214,7 @@ public class FoodResponse {
         private Double carbo;
         private Double protein;
         private Double fat;
-        private Integer kcal;
+        private Double kcal;
         private Integer gram;
 
         public UpdateDTO(Food food) {
@@ -247,7 +247,7 @@ public class FoodResponse {
             private Double carbo;
             private Double protein;
             private Double fat;
-            private Integer kcal;
+            private Double kcal;
             private Integer gram;
 
             @Builder

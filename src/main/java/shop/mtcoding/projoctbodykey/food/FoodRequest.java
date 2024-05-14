@@ -9,7 +9,7 @@ public class FoodRequest {
         private Double carbo;
         private Double protein;
         private Double fat;
-        private Integer kcal;
+        private Double kcal;
         private Integer gram;
 
         public Food toEntity() {
@@ -30,7 +30,7 @@ public class FoodRequest {
         private Double carbo;
         private Double protein;
         private Double fat;
-        private Integer kcal;
+        private Double kcal;
         private Integer gram;
 
     }
