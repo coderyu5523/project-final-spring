@@ -62,4 +62,15 @@ public class ActivityJPARepositoryTest {
         System.out.println("strDate = " + strDate);
         // then
     }
+
+    @Test
+    public void findByUserIdOrderDesc_test() {
+        // given
+        int userId = 1;
+        // when
+        Activity activity = activityJPARepository.findByUserIdOrderDesc(userId);
+        //eye
+        System.out.println("activity = " + activity.getWalking());
+        // then
+    }
 }
