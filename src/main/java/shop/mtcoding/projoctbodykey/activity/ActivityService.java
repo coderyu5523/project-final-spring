@@ -36,11 +36,17 @@ public class ActivityService {
 
         BodyData bodyData = bodydataJPARepository.findByUserIdAndCreatedAt(sessionUser.getId(), timestamp);
 
+        // 칼로리 더해주는 코드
 //        List<Integer> eatList = eatJPARepository.findKcalByUserIdAndEatTime(sessionUser.getId(), timestamp);
 //
 //        Integer totalKcal = eatList.stream().reduce(0, Integer::sum);
 
-        return new ActivityResponse.activitiesDateDTO(activity, bodyData);
+        if(bodyData != null) {
+            return new ActivityResponse.activitiesDateDTO(activity, bodyData);
+        } else {
+            BodyData bodyDataLimit = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
+            return new ActivityResponse.activitiesDateDTO(activity, bodyDataLimit);
+        }
     }
 
     //메인 페이지
@@ -133,5 +139,10 @@ public class ActivityService {
                 activityJPARepository.save(newActivity);
             }
         }
+    }
+
+    public ActivityResponse.UpdateDTO update(SessionUser user, ActivityRequest.UpdateDTO reqDTO) {
+
+        return new ActivityResponse.UpdateDTO();
     }
 }

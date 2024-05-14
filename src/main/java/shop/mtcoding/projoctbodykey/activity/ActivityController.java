@@ -3,10 +3,7 @@ package shop.mtcoding.projoctbodykey.activity;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataResponse;
@@ -62,6 +59,15 @@ public class ActivityController {
     public ResponseEntity<?> waterDetail() {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         ActivityResponse.WaterDetail respDTO=activityService.getWaterDetail(user.getId());
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    @PutMapping("/api/activities/update")
+    public ResponseEntity<?> update(@RequestBody ActivityRequest.UpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+
+        ActivityResponse.UpdateDTO respDTO = activityService.update(user, reqDTO);
+
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 }
