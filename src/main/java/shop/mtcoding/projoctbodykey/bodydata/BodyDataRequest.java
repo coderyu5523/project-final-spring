@@ -7,7 +7,7 @@ import shop.mtcoding.projoctbodykey.user.User;
 public class BodyDataRequest {
 
     @Data
-    public static class SaveDTO {
+    public static class UpdateDTO {
         private Double fat;
         private Double muscle;
         private Double weight;

@@ -47,4 +47,21 @@ public class ActivityRequest {
         private Timestamp maxWalkingDay;
 
     }
+
+    @Data
+    public static class UpdateDTO {
+        private Integer walking;
+        private Integer water;
+    }
+
+    // 아래는 걷기, 물 따로 업데이트 하는거
+//    @Data
+//    public static class WalkingUpdateDTO {
+//        private Integer walking;
+//    }
+//
+//    @Data
+//    public static class WaterUpdateDTO {
+//        private Integer water;
+//    }
 }

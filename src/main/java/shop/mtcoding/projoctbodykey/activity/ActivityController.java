@@ -3,10 +3,7 @@ package shop.mtcoding.projoctbodykey.activity;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataResponse;
@@ -64,4 +61,30 @@ public class ActivityController {
         ActivityResponse.WaterDetail respDTO=activityService.getWaterDetail(user.getId());
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
+
+    @PutMapping("/api/activities/update")
+    public ResponseEntity<?> update(@RequestBody ActivityRequest.UpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+        ActivityResponse.UpdateDTO respDTO = activityService.update(user, reqDTO);
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
+    // 아래는 걷기, 물 따로 업데이트 하는거
+//    @PutMapping("/api/activities/walking-update")
+//    public ResponseEntity<?> walkingUpdate(@RequestBody ActivityRequest.WalkingUpdateDTO reqDTO) {
+//        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+//
+//        ActivityResponse.WalkingUpdateDTO respDTO = activityService.walkingUpdate(user, reqDTO);
+//
+//        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+//    }
+//
+//    @PutMapping("/api/activities/water-update")
+//    public ResponseEntity<?> waterUpdate(@RequestBody ActivityRequest.WaterUpdateDTO reqDTO) {
+//        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+//
+//        ActivityResponse.WaterUpdateDTO respDTO = activityService.waterUpdate(user, reqDTO);
+//
+//        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+//    }
 }

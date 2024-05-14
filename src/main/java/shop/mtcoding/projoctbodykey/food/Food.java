@@ -21,12 +21,12 @@ public class Food {
     private Double carbo; //탄수화물
     private Double protein; // 단백질
     private Double fat;// 지방
-    private Integer kcal; // 칼로리
+    private Double kcal; // 칼로리
     private Integer gram; // 먹은 그램양
     private Timestamp createdAt;
 
     @Builder
-    public Food(Integer id, String name, Double carbo, Double protein, Double fat, Integer kcal, Integer gram, Timestamp createdAt) {
+    public Food(Integer id, String name, Double carbo, Double protein, Double fat, Double kcal, Integer gram, Timestamp createdAt) {
         this.id = id;
         this.name = name;
         this.carbo = carbo;

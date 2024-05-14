@@ -52,4 +52,7 @@ public interface ActivityJPARepository extends JpaRepository<Activity, Integer> 
             where a.user.id = :userId and a.createdAt Between :startDate and :endDate
             """)
     List<Activity> findWithWeakActivity(@Param("startDate") Timestamp startDate, @Param("endDate") Timestamp endDate, @Param("userId") Integer userId);
+
+    @Query("select a from Activity a where a.user.id = :userId order by a.createdAt desc limit 1")
+    Activity findByUserIdOrderDesc(@Param("userId") Integer userId);
 }
