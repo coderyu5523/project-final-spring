@@ -1,6 +1,7 @@
 package shop.mtcoding.projoctbodykey.dosurvey;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.projoctbodykey.survey.Survey;
@@ -22,5 +23,11 @@ public class DoSurvey {
     private Survey survey;
     private Timestamp createdAt;
 
-
+    @Builder
+    public DoSurvey(Integer id, User user, Survey survey, Timestamp createdAt) {
+        this.id = id;
+        this.user = user;
+        this.survey = survey;
+        this.createdAt = createdAt;
+    }
 }
