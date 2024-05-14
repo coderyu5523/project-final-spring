@@ -23,7 +23,7 @@ public class ChoiceAnswerController {
 
     @PostMapping("/api/survey/{id}")
     public ResponseEntity<?> save(@PathVariable Integer id, @RequestBody List<ChoiceAnswerRequest.AnswerDTO> reqDTO) {
-        SessionUser sessionUser = (SessionUser) session.getAttribute("git sessionUser");
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         ChoiceAnswerResponse.GetChoiceAnswer respDTO = choiceAnswerService.save(sessionUser.getId(), id, reqDTO);
 
         return  ResponseEntity.ok(new ApiUtil<>(respDTO));
