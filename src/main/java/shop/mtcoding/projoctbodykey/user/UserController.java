@@ -18,8 +18,7 @@ import java.io.IOException;
 public class UserController {
     private final UserService userService;
     private final HttpSession session;
-    private final ActivityService activityService;
-    private final BodyDataService bodyDataService;
+
 
     @GetMapping("/api/users/my-change-fat")
     public ResponseEntity<?> myChangeFat() {
@@ -79,11 +78,6 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO reqDTO) {
         UserResponse.LoginDTO user = userService.login(reqDTO);
-
-
-        // jwt 생성 및 헤더에 설정
-        activityService.save(user.id());
-        bodyDataService.save(user.id());
 
         // jwt 생성
         return ResponseEntity.ok()
