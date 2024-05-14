@@ -13,7 +13,7 @@ import java.util.Optional;
 public class BodyDataResponse {
 
     @Data
-    public static class SaveDTO {
+    public static class UpdateDTO {
         private Integer userId;
         private Double fat;
         private Double muscle;
@@ -21,7 +21,7 @@ public class BodyDataResponse {
         private Timestamp date;
 
         @Builder
-        public SaveDTO(BodyData bodyData) {
+        public UpdateDTO(BodyData bodyData) {
             this.userId = bodyData.getUser().getId();
             this.fat = bodyData.getFat();
             this.muscle = bodyData.getMuscle();

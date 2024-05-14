@@ -47,4 +47,8 @@ public class ActivityRequest {
         private Timestamp maxWalkingDay;
 
     }
+
+    @Data
+    public static class UpdateDTO {
+    }
 }

@@ -150,4 +150,10 @@ public class ActivityResponse {
             this.weakWater = weakWater.stream().map(WeakWaterDTO::new).toList();
         }
     }
+
+    @Data
+    public static class UpdateDTO {
+
+
+    }
 }
