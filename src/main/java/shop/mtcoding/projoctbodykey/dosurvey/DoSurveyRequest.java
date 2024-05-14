@@ -7,6 +7,10 @@ import shop.mtcoding.projoctbodykey.survey.Survey;
 import shop.mtcoding.projoctbodykey.surveyquestion.SurveyQuestion;
 import shop.mtcoding.projoctbodykey.user.User;
 
+import java.sql.Timestamp;
+
+import static java.time.LocalTime.now;
+
 public class DoSurveyRequest {
     @Data
     public static class SaveDTO {
@@ -17,6 +21,7 @@ public class DoSurveyRequest {
             return DoSurvey.builder()
                     .user(user)
                     .survey(survey)
+                    .createdAt(new Timestamp(System.currentTimeMillis()))
                     .build();
         }
 

@@ -37,6 +37,7 @@ public class ChoiceAnswerRequest {
                     .survey(survey)
                     .surveyQuestion(surveyQuestion)
                     .questionChoice(questionChoice)
+                    .createdAt(new Timestamp(System.currentTimeMillis()))
                     .build();
         }
 
