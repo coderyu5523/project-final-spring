@@ -153,7 +153,37 @@ public class ActivityResponse {
 
     @Data
     public static class UpdateDTO {
+        private Integer userId;
+        private Integer walking;
+        private Integer water;
 
-
+        public UpdateDTO(Integer userId, Activity activity) {
+            this.userId = userId;
+            this.walking = activity.getWalking();
+            this.water = activity.getDrinkWater();
+        }
     }
+
+    // 아래는 걷기, 물 따로 업데이트 하는거
+//    @Data
+//    public static class WalkingUpdateDTO {
+//        private Integer userId;
+//        private Integer walking;
+//
+//        public WalkingUpdateDTO(Integer userId, Integer walking) {
+//            this.userId = userId;
+//            this.walking = walking;
+//        }
+//    }
+//
+//    @Data
+//    public static class WaterUpdateDTO {
+//        private Integer userId;
+//        private Integer water;
+//
+//        public WaterUpdateDTO(Integer userId, Integer water) {
+//            this.userId = userId;
+//            this.water = water;
+//        }
+//    }
 }

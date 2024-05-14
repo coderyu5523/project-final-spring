@@ -5,8 +5,8 @@ VALUES ('ssar', '$2a$10$5Z2/Wx9Lc8jCDSOz9pd6FOSFa3rou4lkf9gzFFrSzddRibYJAafau', 
 ;
 
 INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
-VALUES (1, 5325, 100, '2024-05-13'),
-       (1, 7028, 200, '2024-05-14'),
+VALUES (1, 5325, 100, '2024-05-12'),
+       (1, 7028, 200, '2024-05-13'),
 --        (1, 8303, 200, '2024-05-15'),
 --        (1, 9008, 250, '2024-05-16'),
 --        (1, 9782, 240, '2024-05-17'),
