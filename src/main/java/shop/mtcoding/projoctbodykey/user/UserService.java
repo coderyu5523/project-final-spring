@@ -10,8 +10,10 @@ import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey._core.utils.PasswordUtil;
+import shop.mtcoding.projoctbodykey.activity.ActivityService;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
+import shop.mtcoding.projoctbodykey.bodydata.BodyDataService;
 import shop.mtcoding.projoctbodykey.challenge.ChallengeQueryRepository;
 
 import java.io.IOException;
@@ -23,6 +25,8 @@ public class UserService {
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
     private final ChallengeQueryRepository challengeQueryRepository;
+    private final ActivityService activityService;
+    private final BodyDataService bodyDataService;
 
     @Transactional
     public UserResponse.GoalFatUpdateDTO goalFatUpdate(UserRequest.GoalFatUpdateDTO reqDTO, SessionUser sessionUser) {
@@ -115,6 +119,11 @@ public class UserService {
 
         if (!PasswordUtil.verify(reqDTO.getPassword(), userPS.getPassword())) {
             throw new Exception401("패스워드가 일치하지 않습니다");
+        }
+
+        synchronized (this) {
+            activityService.save(userPS.getId());
+            bodyDataService.save(userPS.getId());
         }
 
         String jwt = JwtUtil.create(userPS);
