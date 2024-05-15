@@ -1,42 +1,41 @@
 {{> layout/header}}
-<div class="container d-flex mt-5">
-    {{> layout/side}}
-    <div class="justify-content-center mx-2 pb-4 w-100">
-        <div class="border border-tertiary p-5 ">
-            <h1 class="d-inline-flex">음식 등록하기</h1>
-            <hr>
-            <form action="/admin/foods/save" method="post">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="border border-tertiary p-5 rounded">
+                <h1 class="text-center mb-4">음식 등록하기</h1>
+                <hr>
+                <form action="/admin/foods/save" method="post">
 
-                <div class="px-5 mt-5">
-                </div>
-                <label for="name"><b>음식 이름</b></label>
-                <input class="form-control" type="text" name="name" id="name" required>
-                <div class="mt-4">
-                    <label for="carbo"><b>칼로리</b></label>
-                    <input class="form-control" type="text" name="kcal" id="kcal" required>
-                </div>
-                <div class="mt-4">
-                    <label for="carbo"><b>탄수화물</b></label>
-                    <input class="form-control" type="text" name="carbo" id="carbo" required>
-                </div>
-                <div class="mt-4">
-                    <label for="protein"><b>단백질</b></label>
-                    <input class="form-control" type="text" name="protein" id="protein" required>
-                </div>
-                <div class="mt-4">
-                    <label for="fat"><b>지방</b></label>
-                    <input class="form-control" type="text" name="fat" id="fat" required>
-                </div>
-                <div class="mt-4 mb-5">
-                    <label for="fat"><b>양</b></label>
-                    <input class="form-control" type="text" name="gram" id="gram" required>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-outline-danger mb-3"
-                            style="width: 100%">등록하기
-                    </button>
-                </div>
-            </form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">음식 이름</label>
+                        <input class="form-control" type="text" name="name" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kcal" class="form-label">칼로리</label>
+                        <input class="form-control" type="text" name="kcal" id="kcal" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="carbo" class="form-label">탄수화물</label>
+                        <input class="form-control" type="text" name="carbo" id="carbo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="protein" class="form-label">단백질</label>
+                        <input class="form-control" type="text" name="protein" id="protein" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fat" class="form-label">지방</label>
+                        <input class="form-control" type="text" name="fat" id="fat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gram" class="form-label">양</label>
+                        <input class="form-control" type="text" name="gram" id="gram" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-danger" style="width: 100px">등록하기</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

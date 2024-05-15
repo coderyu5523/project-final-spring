@@ -5,13 +5,13 @@
             <input class="form-control me-2" type="text" placeholder="Search" name="keyword">
             <button class="btn-m btn-mint form-control" style="width:100px">Search</button>
         </form>
-        <a href="/admin/challenges/save-form" class="btn btn-success" style="margin-left: 64%; margin-top: 3%">챌린지 작성</a>
+        <a href="/admin/challenges/save-form" class="btn btn-outline-success" style="margin-left: 64%; margin-top: 3%">챌린지 작성</a>
     </div>
 </div>
 
 <div class="container-fluid">
     <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-        {{> layout/side}}
+
 
         <!-- 표 및 페이지네이션 -->
         <div style="width: 1200px">
@@ -43,10 +43,10 @@
                                 <td>{{period}}일</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
-                                        <a href="/admin/challenges/{{id}}/detail" class="btn btn-primary me-1" style="width: 98px">상세보기</a>
-                                        <a href="/admin/challenges/{{id}}/update-form" class="btn btn-success me-1" style="width: 60px;">수정</a>
+                                        <a href="/admin/challenges/{{id}}/detail" class="btn btn-outline-primary me-1" style="width: 98px">상세보기</a>
+                                        <a href="/admin/challenges/{{id}}/update-form" class="btn btn-outline-success me-1" style="width: 60px;">수정</a>
                                         <form action="/admin/challenges/{{id}}/delete" method="post">
-                                            <button class="btn btn-danger" style="width: 60px;">삭제</button>
+                                            <button class="btn btn-outline-danger" style="width: 60px;">삭제</button>
                                         </form>
                                     </div>
                                 </td>
@@ -66,10 +66,10 @@
                             <td>{{period}}일</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    <a href="/admin/challenges/{{id}}/detail" class="btn btn-primary me-1" style="width: 98px;">상세보기</a>
-                                    <a href="/admin/challenges/{{id}}/update-form" class="btn btn-success me-1" style="width: 60px">수정</a>
+                                    <a href="/admin/challenges/{{id}}/detail" class="btn btn-outline-primary me-1" style="width: 98px;">상세보기</a>
+                                    <a href="/admin/challenges/{{id}}/update-form" class="btn btn-outline-success me-1" style="width: 60px">수정</a>
                                     <form action="/admin/challenges/{{id}}/delete" method="post">
-                                        <button class="btn btn-danger" style="width: 60px">삭제</button>
+                                        <button class="btn btn-outline-danger" style="width: 60px">삭제</button>
                                     </form>
                                 </div>
                             </td>
@@ -81,16 +81,25 @@
                 <!-- 표 끝 -->
                 {{#challenges}}
                     <ul class="pagination d-flex justify-content-center">
-                        <li class="page-item {{#challenges.first}}disabled{{/challenges.first}}"><a class="page-link" href="?page={{challenges.prev}}">Previous</a></li>
-                        <li class="page-item {{#challenges.last}}disabled{{/challenges.last}}"><a class="page-link" href="?page={{challenges.next}}">Next</a></li>
+                        <li class="page-item {{#challenges.first}}disabled{{/challenges.first}}">
+                        <a class="page-link" href="{{^challenges.first}}?page={{challenges.prev}}{{/challenges.first}}">Previous</a>
+                        </li>
+                        <li class="page-item {{#challenges.last}}disabled{{/challenges.last}}">
+                        <a class="page-link" href="{{^challenges.last}}?page={{challenges.next}}{{/challenges.last}}">Next</a>
+                        </li>
                     </ul>
                 {{/challenges}}
                 {{#challengeSearchList}}
-                <ul class="pagination d-flex justify-content-center">
-                    <li class="page-item {{#challengeSearchList.first}}disabled{{/challengeSearchList.first}}"><a class="page-link" href="?page={{challengeSearchList.prev}}&keyword={{challengeSearchList.keyword}}">Previous</a></li>
-                    <li class="page-item {{#challengeSearchList.last}}disabled{{/challengeSearchList.last}}"><a class="page-link" href="?page={{challengeSearchList.next}}&keyword={{challengeSearchList.keyword}}">Next</a></li>
-                </ul>
+                    <ul class="pagination d-flex justify-content-center">
+                        <li class="page-item {{#challengeSearchList.first}}disabled{{/challengeSearchList.first}}">
+                        <a class="page-link" href="{{^challengeSearchList.first}}?page={{challengeSearchList.prev}}&keyword={{challengeSearchList.keyword}}{{/challengeSearchList.first}}">Previous</a>
+                        </li>
+                        <li class="page-item {{#challengeSearchList.last}}disabled{{/challengeSearchList.last}}">
+                        <a class="page-link" href="{{^challengeSearchList.last}}?page={{challengeSearchList.next}}&keyword={{challengeSearchList.keyword}}{{/challengeSearchList.last}}">Next</a>
+                        </li>
+                    </ul>
                 {{/challengeSearchList}}
+
             </div>
         </div>
     </div>

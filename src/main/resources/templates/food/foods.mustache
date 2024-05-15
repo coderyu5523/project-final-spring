@@ -5,13 +5,12 @@
             <input class="form-control me-2" type="text" placeholder="Search" name="keyword">
             <button class="btn-m btn-mint form-control" style="width:100px">Search</button>
         </form>
-        <a href="/admin/foods/save-form" class="btn btn-success" style="margin-left: 69%; margin-top: 3%">음식 작성</a>
+        <a href="/admin/foods/save-form" class="btn btn-outline-success" style="margin-left: 69%; margin-top: 3%">음식 작성</a>
     </div>
 </div>
 
 <div class="container-fluid">
     <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-        {{> layout/side}}
         <!-- 표 및 페이지네이션 -->
         <div style="width: 1200px">
             <div class="container p-5">
@@ -42,9 +41,9 @@
                             <td>{{gram}}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    <a href="/admin/foods/{{id}}/update-form" class="btn btn-warning me-1">수정</a>
+                                    <a href="/admin/foods/{{id}}/update-form" class="btn btn-outline-success me-1">수정</a>
                                     <form action="/admin/foods/{{id}}/delete" method="post">
-                                        <button class="btn btn-danger">삭제</button>
+                                        <button class="btn btn-outline-danger">삭제</button>
                                     </form>
                                 </div>
                             </td>
@@ -63,9 +62,9 @@
                             <td>{{gram}}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    <a href="/admin/foods/{{id}}/update-form" class="btn btn-warning me-1">수정</a>
+                                    <a href="/admin/foods/{{id}}/update-form" class="btn btn-outline-success me-1">수정</a>
                                     <form action="/admin/foods/{{id}}/delete" method="post">
-                                        <button class="btn btn-danger">삭제</button>
+                                        <button class="btn btn-outline-danger">삭제</button>
                                     </form>
                                 </div>
                             </td>
@@ -78,14 +77,22 @@
                 <!-- 표 끝 -->
                 {{#foods}}
                     <ul class="pagination d-flex justify-content-center">
-                        <li class="page-item {{#foods.first}}disabled{{/foods.first}}"><a class="page-link" href="?page={{foods.prev}}">Previous</a></li>
-                        <li class="page-item {{#foods.last}}disabled{{/foods.last}}"><a class="page-link" href="?page={{foods.next}}">Next</a></li>
+                        <li class="page-item {{#foods.first}}disabled{{/foods.first}}">
+                        <a class="page-link" href="{{^foods.first}}?page={{foods.prev}}{{/foods.first}}">Previous</a>
+                        </li>
+                        <li class="page-item {{#foods.last}}disabled{{/foods.last}}">
+                        <a class="page-link" href="{{^foods.last}}?page={{foods.next}}{{/foods.last}}">Next</a>
+                        </li>
                     </ul>
                 {{/foods}}
                 {{#foodSearchList}}
                     <ul class="pagination d-flex justify-content-center">
-                        <li class="page-item {{#foodSearchList.first}}disabled{{/foodSearchList.first}}"><a class="page-link" href="?page={{foodSearchList.prev}}&keyword={{foodSearchList.keyword}}">Previous</a></li>
-                        <li class="page-item {{#foodSearchList.last}}disabled{{/foodSearchList.last}}"><a class="page-link" href="?page={{foodSearchList.next}}&keyword={{foodSearchList.keyword}}">Next</a></li>
+                        <li class="page-item {{#foodSearchList.first}}disabled{{/foodSearchList.first}}">
+                        <a class="page-link" href="{{^foodSearchList.first}}?page={{foodSearchList.prev}}&keyword={{foodSearchList.keyword}}{{/foodSearchList.first}}">Previous</a>
+                        </li>
+                        <li class="page-item {{#foodSearchList.last}}disabled{{/foodSearchList.last}}">
+                        <a class="page-link" href="{{^foodSearchList.last}}?page={{foodSearchList.next}}&keyword={{foodSearchList.keyword}}{{/foodSearchList.last}}">Next</a>
+                        </li>
                     </ul>
                 {{/foodSearchList}}
             </div>
