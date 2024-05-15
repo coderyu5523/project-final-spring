@@ -152,14 +152,14 @@ public class ActivityService {
     }
 
     // 아래는 걷기, 물 따로 업데이트 하는거
-//    @Transactional
-//    public ActivityResponse.WalkingUpdateDTO walkingUpdate(SessionUser user, ActivityRequest.WalkingUpdateDTO reqDTO) {
-//        Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
-//
-//        activity.setWalking(reqDTO.getWalking());
-//
-//        return new ActivityResponse.WalkingUpdateDTO(user.getId(), reqDTO.getWalking());
-//    }
+    @Transactional
+    public ActivityResponse.WalkingUpdateDTO walkingUpdate(SessionUser user, ActivityRequest.WalkingUpdateDTO reqDTO) {
+        Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
+
+        activity.setWalking(reqDTO.getWalking());
+
+        return new ActivityResponse.WalkingUpdateDTO(user.getId(), reqDTO.getWalking());
+    }
 //
 //    @Transactional
 //    public ActivityResponse.WaterUpdateDTO waterUpdate(SessionUser user, ActivityRequest.WaterUpdateDTO reqDTO) {

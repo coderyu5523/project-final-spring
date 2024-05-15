@@ -55,10 +55,10 @@ public class ActivityRequest {
     }
 
     // 아래는 걷기, 물 따로 업데이트 하는거
-//    @Data
-//    public static class WalkingUpdateDTO {
-//        private Integer walking;
-//    }
+    @Data
+    public static class WalkingUpdateDTO {
+        private Integer walking;
+    }
 //
 //    @Data
 //    public static class WaterUpdateDTO {

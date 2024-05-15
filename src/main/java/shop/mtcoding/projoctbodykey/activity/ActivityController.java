@@ -70,15 +70,15 @@ public class ActivityController {
     }
 
     // 아래는 걷기, 물 따로 업데이트 하는거
-//    @PutMapping("/api/activities/walking-update")
-//    public ResponseEntity<?> walkingUpdate(@RequestBody ActivityRequest.WalkingUpdateDTO reqDTO) {
-//        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-//
-//        ActivityResponse.WalkingUpdateDTO respDTO = activityService.walkingUpdate(user, reqDTO);
-//
-//        return ResponseEntity.ok(new ApiUtil<>(respDTO));
-//    }
-//
+    @PutMapping("/api/activities/walking-update")
+    public ResponseEntity<?> walkingUpdate(@RequestBody ActivityRequest.WalkingUpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+
+        ActivityResponse.WalkingUpdateDTO respDTO = activityService.walkingUpdate(user, reqDTO);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
+
 //    @PutMapping("/api/activities/water-update")
 //    public ResponseEntity<?> waterUpdate(@RequestBody ActivityRequest.WaterUpdateDTO reqDTO) {
 //        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
@@ -87,4 +87,7 @@ public class ActivityController {
 //
 //        return ResponseEntity.ok(new ApiUtil<>(respDTO));
 //    }
+
+
+
 }
