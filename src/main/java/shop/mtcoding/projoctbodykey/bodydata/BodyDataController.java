@@ -1,8 +1,10 @@
 package shop.mtcoding.projoctbodykey.bodydata;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,7 @@ public class BodyDataController {
     private final HttpSession session;
 
     @PutMapping("/api/body-date/update")
-    public ResponseEntity<?> update(@RequestBody BodyDataRequest.UpdateDTO reqDTO) {
+    public ResponseEntity<?> update(@Valid @RequestBody BodyDataRequest.UpdateDTO reqDTO, Errors errors) {
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         BodyDataResponse.UpdateDTO respDTO = bodydataService.update(sessionUser, reqDTO);
 

@@ -1,8 +1,10 @@
 package shop.mtcoding.projoctbodykey.user;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
@@ -69,7 +71,7 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<?> join(@RequestBody UserRequest.JoinDTO reqDTO) {
+    public ResponseEntity<?> join(@Valid @RequestBody UserRequest.JoinDTO reqDTO, Errors errors) {
 
 
         return ResponseEntity.ok(new ApiUtil<>(userService.join(reqDTO)));
@@ -86,7 +88,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/update")
-    public ResponseEntity<?> update(@RequestBody UserRequest.UpdateDTO reqDTO) throws IOException {
+    public ResponseEntity<?> update(@Valid @RequestBody UserRequest.UpdateDTO reqDTO, Errors errors) throws IOException {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.UpdateDTO respDTO = userService.update(reqDTO, user);
 

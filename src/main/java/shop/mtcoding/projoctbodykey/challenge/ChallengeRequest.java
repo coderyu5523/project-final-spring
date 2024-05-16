@@ -17,7 +17,7 @@ public class ChallengeRequest {
         private String badgeImg; // 뱃지 사진 경로
         private String content;  // 챌린지 내용
         private Integer coin; // 보상 코인
-        private Integer period; // 보상 코인
+        private Integer period;
         private MultipartFile backgroundImgFile; // 챌린지 배경사진 파일
         private MultipartFile badgeImgFile; // 뱃지 사진 파일
 
