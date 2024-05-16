@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
+import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
+import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeJPARepository;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataJPARepository;
 import shop.mtcoding.projoctbodykey.eat.EatJPARepository;
@@ -23,6 +25,7 @@ import java.util.List;
 @Service
 public class ActivityService {
     private final ActivityJPARepository activityJPARepository;
+    private final AttendChallengeJPARepository attendChallengeJPARepository;
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
 
@@ -156,6 +159,19 @@ public class ActivityService {
     public ActivityResponse.WalkingUpdateDTO walkingUpdate(SessionUser user, ActivityRequest.WalkingUpdateDTO reqDTO) {
         Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
 
+        // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
+        int walkingM = reqDTO.getWalking() - activity.getWalking();
+
+        // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
+        AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(user.getId());
+
+        // 찾아온 현재 진행중인 챌린지의 걸음 수에 빼준 값을 더함
+        int walkingSum = attendChallenge.getTotalWalking() + walkingM;
+
+        // 진행중인 챌린지의 걸음 수를 walkingSum으로 업데이트
+        attendChallenge.setTotalWalking(walkingSum);
+
+        // 오늘의 activity 걸음수를 업데이트
         activity.setWalking(reqDTO.getWalking());
 
         return new ActivityResponse.WalkingUpdateDTO(user.getId(), reqDTO.getWalking());

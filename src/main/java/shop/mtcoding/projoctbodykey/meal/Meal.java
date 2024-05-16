@@ -22,7 +22,7 @@ public class Meal {
     @ManyToOne(fetch = FetchType.LAZY)
     private Activity activity;
 
-    private String mealImg; // 식단 사진명
+    private String mealImg;
     private LocalDateTime eatTime; // 먹은 시간
     private Timestamp createdAt; // 변경된 부분: LocalDateTime 대신 Timestamp 사용
 

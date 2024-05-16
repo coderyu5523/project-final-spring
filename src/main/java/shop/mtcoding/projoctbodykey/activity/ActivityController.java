@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
+import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeService;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataResponse;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataService;
@@ -19,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class ActivityController {
     private final ActivityService activityService;
+    private final AttendChallengeService attendChallengeService;
     private final BodyDataService bodyDataService;
     private final HttpSession session;
 
@@ -75,6 +77,8 @@ public class ActivityController {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
 
         ActivityResponse.WalkingUpdateDTO respDTO = activityService.walkingUpdate(user, reqDTO);
+
+        // attendChallengeService.walkingUpdate(reqDTO, user);
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }

@@ -20,20 +20,19 @@ public class ChallengeService {
     private final ChallengeJPARepository challengeJPARepository;
     private final AttendChallengeJPARepository attendChallengeJPARepository;
     private final UserJPARepository userJPARepository;
-    private final ChallengeQueryRepository challengeResponse;
+    private final ChallengeQueryRepository challengeQueryRepository;
 
     // 챌린지 페이지
     public ChallengeResponse.ChallengesDTO challenges(SessionUser sessionUser) {
 
         // 내가 지금까지 진행한 챌린지
-        List<Object[]> pastChallenges = challengeResponse.partChallenges(sessionUser.getId());
-
+        List<Object[]> pastChallenges = challengeQueryRepository.partChallenges(sessionUser.getId());
 
         // 현재 진행중인 챌린지
-        Object[] ongoingChallenges = challengeResponse.ongoingChallenges(sessionUser.getId());
+        Object[] ongoingChallenges = challengeQueryRepository.ongoingChallenges(sessionUser.getId());
 
         // 진행을 하지 않은 챌린지
-        List<Object[]> upcomingChallenges = challengeResponse.upcomingChallenges(sessionUser.getId());
+        List<Object[]> upcomingChallenges = challengeQueryRepository.upcomingChallenges(sessionUser.getId());
 
         // 현재 진행중인 챌린지가 없는 경우 ongoingChallenges를 null을 넘기는 처리
         try {
@@ -45,7 +44,8 @@ public class ChallengeService {
 
     // 챌린지
     public ChallengeResponse.OngoingChallengeDTO ongoingChallenge(SessionUser sessionUser) {
-        Object[] ongoingChallenges = challengeResponse.ongoingChallengesWalking(sessionUser.getId());
+        Object[] ongoingChallenges = challengeQueryRepository.ongoingChallengesWalking(sessionUser.getId());
+
         try {
             return new ChallengeResponse.OngoingChallengeDTO(ongoingChallenges);
         } catch (NullPointerException e) {

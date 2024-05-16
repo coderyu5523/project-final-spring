@@ -26,4 +26,9 @@ public class AttendChallengeRequest {
                     .build();
         }
     }
+
+    @Data
+    public static class StatusUpdateDTO {
+        private Boolean status;
+    }
 }

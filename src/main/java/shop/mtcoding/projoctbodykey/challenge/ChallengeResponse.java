@@ -24,7 +24,6 @@ public class ChallengeResponse {
         private String subtitle;
         private Integer total_walking;
         private Integer walking;
-        private String error;
 
         public OngoingChallengeDTO(Object[] ongoingChallenge) {
             this.id = (Integer) ongoingChallenge[0];
@@ -32,10 +31,6 @@ public class ChallengeResponse {
             this.subtitle = (String) ongoingChallenge[2];
             this.total_walking = (Integer) ongoingChallenge[3];
             this.walking = (Integer) ongoingChallenge[4];
-        }
-
-        public OngoingChallengeDTO(String error) {
-            this.error = error;
         }
     }
 
@@ -113,6 +108,27 @@ public class ChallengeResponse {
                     throw new RuntimeException(e);
                 }
                 this.status = (Boolean) pastChallenges[4];
+            }
+        }
+    }
+
+    @Data
+    public static class UpcomingChallengesDTO {
+        private Integer id;
+        private Boolean status;
+        private String challengeName;
+        private String distance;
+        private String badgeImg;
+
+        public UpcomingChallengesDTO(Object[] upcomingChallenge, Boolean status) {
+            this.id = (Integer) upcomingChallenge[0];
+            this.status = status;
+            this.challengeName = (String) upcomingChallenge[2];
+            this.distance = (String) upcomingChallenge[3];
+            try {
+                this.badgeImg = ImageUtil.encode((String) upcomingChallenge[4]);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
