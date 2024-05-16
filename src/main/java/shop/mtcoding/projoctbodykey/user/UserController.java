@@ -78,7 +78,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO reqDTO) {
+    public ResponseEntity<?> login(@Valid @RequestBody UserRequest.LoginDTO reqDTO, Errors errors) {
         UserResponse.LoginDTO user = userService.login(reqDTO);
 
         // jwt 생성
@@ -96,7 +96,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/img-update")
-    public ResponseEntity<?> imgUpdate(@RequestBody UserRequest.ImgUpdateDTO reqDTO) throws IOException {
+    public ResponseEntity<?> imgUpdate(@Valid @RequestBody UserRequest.ImgUpdateDTO reqDTO, Errors errors) throws IOException {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.ImgUpdateDTO respDTO = userService.imgUpdate(reqDTO, user);
 
@@ -104,7 +104,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/goalFat-update")
-    public ResponseEntity<?> goalFatUpdate(@RequestBody UserRequest.GoalFatUpdateDTO reqDTO) {
+    public ResponseEntity<?> goalFatUpdate(@Valid @RequestBody UserRequest.GoalFatUpdateDTO reqDTO, Errors errors) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.GoalFatUpdateDTO respDTO = userService.goalFatUpdate(reqDTO, user);
 
@@ -112,7 +112,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/goalMuscle-update")
-    public ResponseEntity<?> goalMuscleUpdate(@RequestBody UserRequest.GoalMuscleUpdateDTO reqDTO) {
+    public ResponseEntity<?> goalMuscleUpdate(@Valid @RequestBody UserRequest.GoalMuscleUpdateDTO reqDTO, Errors errors) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.GoalMuscleUpdateDTO respDTO = userService.goalMuscleUpdate(reqDTO, user);
 
@@ -120,7 +120,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/goalWeight-update")
-    public ResponseEntity<?> goalWeightUpdate(@RequestBody UserRequest.GoalWeightUpdateDTO reqDTO) {
+    public ResponseEntity<?> goalWeightUpdate(@Valid @RequestBody UserRequest.GoalWeightUpdateDTO reqDTO, Errors errors) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.GoalWeightUpdateDTO respDTO = userService.goalWeightUpdate(reqDTO, user);
 

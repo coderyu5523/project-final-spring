@@ -21,7 +21,7 @@ public class UserResponse {
         private String name;
         private String username;
         private String birth;
-        private Character gender;
+        private String gender;
         private Double height;
 
         public JoinDTO(User user) {

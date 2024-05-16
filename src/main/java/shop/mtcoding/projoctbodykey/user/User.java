@@ -23,7 +23,7 @@ public class User {
     private String phone; // 전화번호
     private String name; // 이름
     private Timestamp birth; //생년월일
-    private Character gender; //성별 M,F
+    private String gender; //성별 M,F
     private Double height; // 키
     private String userImg; // 사진파일경로
     private Integer totalCoin; // 보상 받은 코인 합산
@@ -35,7 +35,7 @@ public class User {
     private Timestamp createdAt;
 
     @Builder
-    public User(Integer id, String username, String password, String phone, String name, Timestamp birth, Character gender, Double height, String userImg, Integer totalCoin, Double goalMuscle, Double goalFat, Double goalWeight, Timestamp createdAt) {
+    public User(Integer id, String username, String password, String phone, String name, Timestamp birth, String gender, Double height, String userImg, Integer totalCoin, Double goalMuscle, Double goalFat, Double goalWeight, Timestamp createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
