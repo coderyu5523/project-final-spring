@@ -1,8 +1,10 @@
 package shop.mtcoding.projoctbodykey.activity;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallengeService;
@@ -65,7 +67,7 @@ public class ActivityController {
     }
 
     @PutMapping("/api/activities/update")
-    public ResponseEntity<?> update(@RequestBody ActivityRequest.UpdateDTO reqDTO) {
+    public ResponseEntity<?> update(@Valid @RequestBody ActivityRequest.UpdateDTO reqDTO, Errors errors) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         ActivityResponse.UpdateDTO respDTO = activityService.update(user, reqDTO);
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
@@ -73,7 +75,7 @@ public class ActivityController {
 
     // 아래는 걷기, 물 따로 업데이트 하는거
     @PutMapping("/api/activities/walking-update")
-    public ResponseEntity<?> walkingUpdate(@RequestBody ActivityRequest.WalkingUpdateDTO reqDTO) {
+    public ResponseEntity<?> walkingUpdate(@Valid @RequestBody ActivityRequest.WalkingUpdateDTO reqDTO, Errors errors) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
 
         ActivityResponse.WalkingUpdateDTO respDTO = activityService.walkingUpdate(user, reqDTO);

@@ -1,5 +1,9 @@
 package shop.mtcoding.projoctbodykey.activity;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.sql.Time;
@@ -50,14 +54,24 @@ public class ActivityRequest {
 
     @Data
     public static class UpdateDTO {
+
+        @Min(value = 0, message = "0 이상의 값만 입력하여 주세요")
+        @Max(value = 100000, message = "걸음수가 너무 많이 들어왔어요")
         private Integer walking;
+
+        @Min(value = 0, message = "0 이상의 값만 입력하여 주세요")
+        @Max(value = 2100, message = "2100 이하의 값만 입력하여 주세요")
         private Integer water;
     }
 
     // 아래는 걷기, 물 따로 업데이트 하는거
     @Data
     public static class WalkingUpdateDTO {
+
+        @Min(value = 0, message = "0 이상의 값만 입력하여 주세요")
+        @Max(value = 100000, message = "걸음수가 너무 많이 들어왔어요")
         private Integer walking;
+
     }
 //
 //    @Data

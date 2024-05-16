@@ -159,21 +159,24 @@ public class ActivityService {
     public ActivityResponse.WalkingUpdateDTO walkingUpdate(SessionUser user, ActivityRequest.WalkingUpdateDTO reqDTO) {
         Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
 
+
         // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
         int walkingM = reqDTO.getWalking() - activity.getWalking();
 
         // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
         AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(user.getId());
 
-        // 찾아온 현재 진행중인 챌린지의 걸음 수에 빼준 값을 더함
-        int walkingSum = attendChallenge.getTotalWalking() + walkingM;
+        if(attendChallenge != null) {
+            // 찾아온 현재 진행중인 챌린지의 걸음 수에 빼준 값을 더함
+            int walkingSum = attendChallenge.getTotalWalking() + walkingM;
 
-        // 진행중인 챌린지의 걸음 수를 walkingSum으로 업데이트
-        attendChallenge.setTotalWalking(walkingSum);
+            // 진행중인 챌린지의 걸음 수를 walkingSum으로 업데이트
+            attendChallenge.setTotalWalking(walkingSum);
 
-        // 오늘의 activity 걸음수를 업데이트
-        activity.setWalking(reqDTO.getWalking());
+            // 오늘의 activity 걸음수를 업데이트
+            activity.setWalking(reqDTO.getWalking());
 
+        }
         return new ActivityResponse.WalkingUpdateDTO(user.getId(), reqDTO.getWalking());
     }
 //

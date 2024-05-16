@@ -32,6 +32,5 @@ public class FoodRequest {
         private Double fat;
         private Double kcal;
         private Integer gram;
-
     }
 }
