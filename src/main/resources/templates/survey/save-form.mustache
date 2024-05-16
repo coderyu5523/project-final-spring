@@ -1,35 +1,66 @@
 {{> layout/header}}
-<div class="container d-flex">
+<div class="container d-flex mt-5">
     <div class="justify-content-center mx-2 pb-4 w-100">
         <div class="border border-tertiary p-5">
-            <h1 class="d-inline-flex">설문지 등록하기</h1>
-            <hr>
-<!--            <form id="save-form">-->
-                <label for="question"><b>설문지 제목 입력하기</b></label>
-                <input class="form-control Survey" type="text" placeholder="설문지 제목" required>
 
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary" style="width: 50%"
-                            onclick="addQuestionElement()">질문 추가하기
+            <div style="text-align: center">
+                <h1 class="d-inline-flex justify-content-center" style="text-align: center">설문지 등록하기</h1>
+            </div>
+            <hr>
+            <div style="
+            width: 70px; /* 퀵버튼의 너비 설정 */
+            height: 150px; /* 퀵버튼의 높이 설정 */
+            background-color: darkseagreen; /* 퀵버튼의 배경색 설정 */
+            border-radius: 10%; /* 원 모양으로 설정 */
+            position: fixed; /* 퀵버튼을 고정 위치로 설정 */
+            right: 40px; /* 화면 오른쪽으로부터의 거리 설정 */
+            transition: bottom 0.3s; /* 스크롤에 따라 부드럽게 움직이도록 설정 */
+            display: flex; /* 내부 아이콘을 가운데 정렬하기 위해 필요 */
+            align-items: center; /* 내부 아이콘을 가운데 정렬하기 위해 필요 */
+            justify-content: center; /* 내부 아이콘을 가운데 정렬하기 위해 필요 */
+            cursor: pointer; /* 마우스 커서를 손가락으로 변경 */
+            z-index: 999; /* 다른 요소 위에 나타나도록 설정 */flex-direction: column;">
+                <div class="mt-1">
+                    <button type="button" class="btn btn-success" onclick="addQuestionElement()">
+                        +
                     </button>
                 </div>
-                <div class="px-5 mt-5">
-                    <div id="element-input-box">
-                    </div>
-                    <div class="d-flex justify-content-center mt-5">
-                        <button type="button" onclick="saveElement()" class="btn btn-primary form-control"
-                                style="width: 50%">등록하기
-                        </button>
+                <div class="mt-1">
+                    <button type="button" class="btn btn-success" onclick="scrollToTop()">
+                        ↑
+                    </button>
+                </div>
+                <div class="mt-1">
+                    <button type="button" class="btn btn-success" onclick="scrollToBottom()">
+                        ↓
+                    </button>
+                </div>
+
+            </div>
+            <div class="container px-5 mt-5">
+                <div class="d-flex justify-content-center mx-2 pb-4 w-100">
+                    <div class="border border-tertiary p-5 w-100">
+                        <h4><label for="question">설문지 제목 입력하기</label></h4>
+                        <input class="form-control Survey" type="text" placeholder="설문지 제목" required>
                     </div>
                 </div>
-<!--            </form>-->
+            </div>
+            <div class="px-5 mt-5">
+                <div id="element-input-box">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" onclick="saveElement()" class="btn btn-success form-control"
+                            style="width: 50%">등록하기
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
 <script>
     function saveElement() {
-        let title = $(".Survey:first").val();
         let questionElements = [];
         let items = $("#element-input-box .question-element-item");
         items.each(function (index, element) {
@@ -47,21 +78,16 @@
             questionElements.push(questionElement);
         });
 
-        let requestData = {
-            title: title,
-            questionElements: questionElements
-        }
-
-        console.log(requestData);
+        console.log(questionElements);
 
         $.ajax({
             url: `/admin/surveys/save`,
             method: "post",
-            data: JSON.stringify(requestData),
+            data: JSON.stringify(questionElements),
             contentType: "application/json; charset=utf-8"
         }).done((res) => {
             location.href = `/admin/surveys`;
-        }).fail((res)=>{
+        }).fail((res) => {
             //실패하면 할거
             console.log("안됨");
         })
@@ -85,21 +111,23 @@
     }
 
     function makeQuestionElement() {
-        return `<div class="question-element-item">
-                    <div class="container d-flex mb-3">
-                        <div class="justify-content-center mx-2 pb-4 w-100">
-                            <div class="border border-tertiary p-5">
+        return `<div class="container mt-5">
+                    <div class="question-element-item">
+                        <div class="d-flex justify-content-center mx-2 pb-4 w-100">
+                            <div class="border border-tertiary p-5 w-100">
                                 <label for="question"><b>질문</b></label>
-                                <button type="button" class="btn btn-primary" onclick="addChoiceElement(this)">
-                                    선택항목 추가하기
-                                </button>
-                                <button type="button" class="btn btn-primary" onclick="deleteQuestionElement(this)">
-                                    질문 삭제하기
-                                </button>
-                                <input class="form-control question" type="text" placeholder="질문" required>
-                                <hr>
-                                <div id="element-choice-input-box">
+                                <div class="d-flex align-items-center mt-2">
+                                    <input class="form-control question mr-2" type="text" placeholder="질문" required>
+                                    <button type="button" class="btn btn-success" onclick="deleteQuestionElement(this)">
+                                        ➖
+                                    </button>
                                 </div>
+                                <hr>
+                                <div id="element-choice-input-box"></div>
+                                <button type="button" class="btn btn-outline-success" onclick="addChoiceElement(this)">
+                                    ➕
+                                </button>
+                                선택문항 추가하기
                             </div>
                         </div>
                     </div>
@@ -107,13 +135,29 @@
     }
 
     function makeChoiceElement() {
-        return `<div class="choice-element">
-                    <label for="choice"><b>선택문항</b></label>
-                    <button type="button" class="btn btn-primary" onclick="deleteChoiceElement(this)">
-                        선택항목 삭제하기
-                    </button>
-                    <input class="form-control choice" type="text" placeholder="선택문항" required>
-               </div>`;
+        return `<div class="choice-element mb-3">
+                    <div class="d-flex align-items-center">
+                        <input class="form-control choice mr-2" type="text" placeholder="선택문항" required>
+                        <button type="button" class="btn btn-success" onclick="deleteChoiceElement(this)">
+                            ➖
+                        </button>
+                    </div>
+                </div>`;
     }
 
+    // 맨 위로 스크롤하는 함수
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // 부드러운 스크롤 효과를 위해 'smooth' 옵션 사용
+        });
+    }
+
+    // 맨 아래로 스크롤하는 함수
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth' // 부드러운 스크롤 효과를 위해 'smooth' 옵션 사용
+        });
+    }
 </script>
