@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import shop.mtcoding.projoctbodykey._core.errors.exception.Exception400;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception403;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
 import shop.mtcoding.projoctbodykey.attendChallenge.AttendChallenge;
@@ -156,28 +157,87 @@ public class ActivityService {
 
     // 아래는 걷기, 물 따로 업데이트 하는거
     @Transactional
-    public ActivityResponse.WalkingUpdateDTO walkingUpdate(SessionUser user, ActivityRequest.WalkingUpdateDTO reqDTO) {
-        Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
+    public ActivityResponse.WalkingUpdateDTO walkingUpdate(SessionUser sessionUser, ActivityRequest.WalkingUpdateDTO reqDTO) {
+        LocalDate today = LocalDate.now();
 
+        Activity activity = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
 
-        // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
-        int walkingM = reqDTO.getWalking() - activity.getWalking();
+        if(activity == null) {
+            User user = userJPARepository.findById(sessionUser.getId()).orElseThrow();
 
-        // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
-        AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(user.getId());
+            // 현재 날짜와 시간을 가져옵니다.
+            LocalDateTime now = LocalDateTime.now();
 
-        if(attendChallenge != null) {
-            // 찾아온 현재 진행중인 챌린지의 걸음 수에 빼준 값을 더함
-            int walkingSum = attendChallenge.getTotalWalking() + walkingM;
+            // 시분초를 0으로 초기화합니다.
+            LocalDateTime startOfDay = now.withHour(0).withMinute(0).withSecond(0).withNano(0);
 
-            // 진행중인 챌린지의 걸음 수를 walkingSum으로 업데이트
-            attendChallenge.setTotalWalking(walkingSum);
+            // 로컬 날짜와 시간을 타임스탬프로 변환합니다.
+            Timestamp timestamp = Timestamp.valueOf(startOfDay);
 
-            // 오늘의 activity 걸음수를 업데이트
-            activity.setWalking(reqDTO.getWalking());
+            Activity ac = activityJPARepository.findByUserIdAndDate(sessionUser.getId(), timestamp);
 
+            if(ac == null) {
+                Activity newActivity = new Activity();
+                Timestamp time = Timestamp.valueOf(startOfDay);
+                newActivity.setCreatedAt(time);
+                newActivity.setUser(user);
+                newActivity.setWalking(0);
+                newActivity.setDrinkWater(0);
+
+                activityJPARepository.save(newActivity);
+
+                // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
+                AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(sessionUser.getId());
+
+                if(attendChallenge != null) {
+                    Activity activity2 = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
+
+                    // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
+                    int walkingM = reqDTO.getWalking() - activity2.getWalking();
+
+                    // 찾아온 현재 진행중인 챌린지의 걸음 수에 빼준 값을 더함
+                    int walkingSum = attendChallenge.getTotalWalking() + walkingM;
+
+                    // 진행중인 챌린지의 걸음 수를 walkingSum으로 업데이트
+                    attendChallenge.setTotalWalking(walkingSum);
+
+                    // 오늘의 activity 걸음수를 업데이트
+                    activity2.setWalking(reqDTO.getWalking());
+                } else {
+                    Activity activity2 = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
+
+                    // 오늘의 activity 걸음수를 업데이트
+                    activity2.setWalking(reqDTO.getWalking());
+                }
+            }
+        } else {
+            Activity activity2 = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
+            if(activity2.getWalking() < reqDTO.getWalking()) {
+                // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
+                AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(sessionUser.getId());
+
+                if(attendChallenge != null) {
+                    // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
+                    int walkingM = reqDTO.getWalking() - activity.getWalking();
+
+                    // 찾아온 현재 진행중인 챌린지의 걸음 수에 빼준 값을 더함
+                    int walkingSum = attendChallenge.getTotalWalking() + walkingM;
+
+                    // 진행중인 챌린지의 걸음 수를 walkingSum으로 업데이트
+                    attendChallenge.setTotalWalking(walkingSum);
+
+                    // 오늘의 activity 걸음수를 업데이트
+                    activity.setWalking(reqDTO.getWalking());
+                } else {
+                    // 오늘의 activity 걸음수를 업데이트
+                    activity.setWalking(reqDTO.getWalking());
+                }
+            } else {
+                throw new Exception400("저장 하고자 하는 걸음 수 값이 저장된 걸음 수 보다 적을 수 없어요.");
+            }
         }
-        return new ActivityResponse.WalkingUpdateDTO(user.getId(), reqDTO.getWalking());
+
+        return new ActivityResponse.WalkingUpdateDTO(sessionUser.getId(), reqDTO.getWalking());
     }
 //
 //    @Transactional

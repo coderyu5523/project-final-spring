@@ -20,6 +20,14 @@ public interface ActivityJPARepository extends JpaRepository<Activity, Integer> 
             """)
     Optional<Activity> findByUserIdAndCreatedAt(@Param("userId") Integer userId, @Param("createdAt") LocalDate createdAt);
 
+    @Query("""
+            select a
+            from Activity a
+            join fetch a.user
+            where CAST(a.createdAt AS date) = CAST(:createdAt AS date) and a.user.id = :userId
+            """)
+    Activity findByUserIdAndToDay(@Param("userId") Integer userId, @Param("createdAt") LocalDate createdAt);
+
     @Query("select a from Activity a where a.user.id = :userId and a.createdAt = :createdAt")
     Activity findByUserIdAndDate(@Param("userId") Integer userId, @Param("createdAt") Timestamp createdAt);
 
