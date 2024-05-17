@@ -33,9 +33,10 @@ public class MealController {
         return  ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
-//    @DeleteMapping("/api/meal/{date}")
-//    public ResponseEntity<?> delete(@PathVariable("createdAt") LocalDate createdAt) {
-//        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
-//        return  ResponseEntity.ok(new ApiUtil<>(respDTO));
-//    }
+    @DeleteMapping("/api/meal/{date}/{mealId}")
+    public ResponseEntity<?> delete(@PathVariable("date") LocalDate date, @PathVariable("mealId") Integer mealId){
+        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
+        mealService.delete(date,mealId);
+        return  ResponseEntity.ok(new ApiUtil<>(null));
+    }
 }

@@ -53,6 +53,7 @@ public class MealService {
                 eats.stream().map(eat -> new MealResponse.SaveDTO.EatDTO(eat)).toList());
     }
 
+    @Transactional
     public MealResponse.MaealListAndRecommendCalDTO mealList(Integer userId, LocalDate createdAt) {
         User user = userJPARepository.findById(userId).orElseThrow(() -> new Exception404("사용자가 없습니다"));
 
@@ -80,5 +81,13 @@ public class MealService {
             meals.add(mealDTO);
         }
         return new MealResponse.MaealListAndRecommendCalDTO(reconmandCal, meals);
+    }
+
+    @Transactional
+    public void delete(LocalDate date, Integer mealId) {
+        Meal meal = mealJPARepository.findById(mealId).orElseThrow(() -> new Exception404("식단이 없습니다"));
+
+        eatJPARepository.deleteAllByMealId(meal.getId());
+        mealJPARepository.deleteById(meal.getId());
     }
 }
