@@ -73,9 +73,9 @@ public class ActivityRequest {
         private Integer walking;
 
     }
-//
-//    @Data
-//    public static class WaterUpdateDTO {
-//        private Integer water;
-//    }
+
+    @Data
+    public static class WaterUpdateDTO {
+        private Integer water;
+    }
 }

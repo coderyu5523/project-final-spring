@@ -85,14 +85,14 @@ public class ActivityController {
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
-//    @PutMapping("/api/activities/water-update")
-//    public ResponseEntity<?> waterUpdate(@RequestBody ActivityRequest.WaterUpdateDTO reqDTO) {
-//        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
-//
-//        ActivityResponse.WaterUpdateDTO respDTO = activityService.waterUpdate(user, reqDTO);
-//
-//        return ResponseEntity.ok(new ApiUtil<>(respDTO));
-//    }
+    @PutMapping("/api/activities/water-update")
+    public ResponseEntity<?> waterUpdate(@RequestBody ActivityRequest.WaterUpdateDTO reqDTO) {
+        SessionUser user = (SessionUser) session.getAttribute("sessionUser");
+
+        ActivityResponse.WaterUpdateDTO respDTO = activityService.waterUpdate(user, reqDTO);
+
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
+    }
 
 
 
