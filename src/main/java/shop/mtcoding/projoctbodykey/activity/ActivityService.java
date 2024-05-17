@@ -240,12 +240,12 @@ public class ActivityService {
         return new ActivityResponse.WalkingUpdateDTO(sessionUser.getId(), reqDTO.getWalking());
     }
 //
-//    @Transactional
-//    public ActivityResponse.WaterUpdateDTO waterUpdate(SessionUser user, ActivityRequest.WaterUpdateDTO reqDTO) {
-//        Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
-//
-//        activity.setDrinkWater(reqDTO.getWater());
-//
-//        return new ActivityResponse.WaterUpdateDTO(user.getId(), reqDTO.getWater());
-//    }
+    @Transactional
+    public ActivityResponse.WaterUpdateDTO waterUpdate(SessionUser user, ActivityRequest.WaterUpdateDTO reqDTO) {
+        Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());
+
+        activity.setDrinkWater(reqDTO.getWater());
+
+        return new ActivityResponse.WaterUpdateDTO(user.getId(), reqDTO.getWater());
+    }
 }

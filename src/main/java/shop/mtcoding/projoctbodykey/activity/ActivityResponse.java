@@ -175,15 +175,15 @@ public class ActivityResponse {
             this.walking = walking;
         }
     }
-//
-//    @Data
-//    public static class WaterUpdateDTO {
-//        private Integer userId;
-//        private Integer water;
-//
-//        public WaterUpdateDTO(Integer userId, Integer water) {
-//            this.userId = userId;
-//            this.water = water;
-//        }
-//    }
+
+    @Data
+    public static class WaterUpdateDTO {
+        private Integer userId;
+        private Integer water;
+
+        public WaterUpdateDTO(Integer userId, Integer water) {
+            this.userId = userId;
+            this.water = water;
+        }
+    }
 }
