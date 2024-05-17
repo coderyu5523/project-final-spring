@@ -25,8 +25,6 @@ public class UserService {
     private final UserJPARepository userJPARepository;
     private final BodyDataJPARepository bodydataJPARepository;
     private final ChallengeQueryRepository challengeQueryRepository;
-    private final ActivityService activityService;
-    private final BodyDataService bodyDataService;
 
     @Transactional
     public UserResponse.GoalFatUpdateDTO goalFatUpdate(UserRequest.GoalFatUpdateDTO reqDTO, SessionUser sessionUser) {
@@ -121,10 +119,7 @@ public class UserService {
             throw new Exception401("패스워드가 일치하지 않습니다");
         }
 
-        synchronized (this) {
-            activityService.save(userPS.getId());
-            bodyDataService.save(userPS.getId());
-        }
+
 
         String jwt = JwtUtil.create(userPS);
 

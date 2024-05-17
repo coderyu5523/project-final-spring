@@ -1,5 +1,6 @@
 package shop.mtcoding.projoctbodykey.user;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -7,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
-import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtVO;
-import shop.mtcoding.projoctbodykey.activity.Activity;
 import shop.mtcoding.projoctbodykey.activity.ActivityService;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataService;
 
@@ -20,6 +19,8 @@ import java.io.IOException;
 public class UserController {
     private final UserService userService;
     private final HttpSession session;
+    private final ActivityService activityService;
+    private final BodyDataService bodyDataService;
 
 
     @GetMapping("/api/users/my-change-fat")
@@ -80,6 +81,11 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody UserRequest.LoginDTO reqDTO, Errors errors) {
         UserResponse.LoginDTO user = userService.login(reqDTO);
+
+        synchronized (this) {
+            activityService.save(user.id());
+            bodyDataService.save(user.id());
+        }
 
         // jwt 생성
         return ResponseEntity.ok()
