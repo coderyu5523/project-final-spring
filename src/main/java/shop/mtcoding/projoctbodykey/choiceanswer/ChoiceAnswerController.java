@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import shop.mtcoding.projoctbodykey._core.utils.ApiUtil;
-import shop.mtcoding.projoctbodykey.bodydata.BodyDataRequest;
-import shop.mtcoding.projoctbodykey.bodydata.BodyDataResponse;
-import shop.mtcoding.projoctbodykey.eat.EatService;
 import shop.mtcoding.projoctbodykey.user.SessionUser;
 
 import java.util.List;

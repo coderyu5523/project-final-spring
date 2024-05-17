@@ -2,9 +2,8 @@ package shop.mtcoding.projoctbodykey.choiceanswer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.projoctbodykey._core.errors.exception.Exception404;
-import shop.mtcoding.projoctbodykey.bodydata.BodyDataRequest;
-import shop.mtcoding.projoctbodykey.dosurvey.DoSurvey;
 import shop.mtcoding.projoctbodykey.dosurvey.DoSurveyJPARepository;
 import shop.mtcoding.projoctbodykey.dosurvey.DoSurveyRequest;
 import shop.mtcoding.projoctbodykey.questionchoice.QuestionChoice;
@@ -13,7 +12,6 @@ import shop.mtcoding.projoctbodykey.survey.Survey;
 import shop.mtcoding.projoctbodykey.survey.SurveyJPARepository;
 import shop.mtcoding.projoctbodykey.surveyquestion.SurveyQuestion;
 import shop.mtcoding.projoctbodykey.surveyquestion.SurveyQuestionJPARepository;
-import shop.mtcoding.projoctbodykey.user.SessionUser;
 import shop.mtcoding.projoctbodykey.user.User;
 import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
@@ -30,6 +28,7 @@ public class ChoiceAnswerService {
     private final ChoiceAnswerJPARepository choiceAnswerJPARepository ;
     private final DoSurveyJPARepository doSurveyJPARepository;
 
+    @Transactional
     public ChoiceAnswerResponse.GetChoiceAnswer save(Integer userId, Integer surveyId, List<ChoiceAnswerRequest.AnswerDTO> answers) {
         //유저와 설문조사 찾기
         User user=userJPARepository.findById(userId).orElseThrow(() -> new Exception404("유저가 없습니다"));

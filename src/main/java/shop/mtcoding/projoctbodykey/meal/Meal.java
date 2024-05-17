@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.projoctbodykey._core.utils.MyDateUtil;
 import shop.mtcoding.projoctbodykey.activity.Activity;
+import shop.mtcoding.projoctbodykey.user.User;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -20,16 +21,16 @@ public class Meal {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Activity activity;
+    private User user;
 
     private String mealImg;
-    private LocalDateTime eatTime; // 먹은 시간
+    private String eatTime; // 먹은 시간 ex) 아침, 점심, 저녁, 간식
     private Timestamp createdAt; // 변경된 부분: LocalDateTime 대신 Timestamp 사용
 
     @Builder
-    public Meal(Integer id, Activity activity, String mealImg, LocalDateTime eatTime, Timestamp createdAt) {
+    public Meal(Integer id, User user, String mealImg, String eatTime, Timestamp createdAt) {
         this.id = id;
-        this.activity = activity;
+        this.user = user;
         this.mealImg = mealImg;
         this.eatTime = eatTime;
         this.createdAt = createdAt;
