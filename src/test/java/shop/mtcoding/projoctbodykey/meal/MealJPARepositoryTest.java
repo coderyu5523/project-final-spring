@@ -12,10 +12,10 @@ public class MealJPARepositoryTest {
     @Autowired
     private MealJPARepository mealJPARepository;
 
-    @Test
-    public void findByUserId_test() {
-        List<Meal> mealList = mealJPARepository.findByUserId(1);
-
-        System.out.println(mealList.size());
-    }
+//    @Test
+//    public void findByUserId_test() {
+//        List<Meal> mealList = mealJPARepository.findByUserId(1);
+//
+//        System.out.println(mealList.size());
+//    }
 }

@@ -1,15 +1,14 @@
 package shop.mtcoding.projoctbodykey.dosurvey;
 
 import lombok.Data;
-import shop.mtcoding.projoctbodykey.choiceanswer.ChoiceAnswer;
-import shop.mtcoding.projoctbodykey.questionchoice.QuestionChoice;
+
 import shop.mtcoding.projoctbodykey.survey.Survey;
-import shop.mtcoding.projoctbodykey.surveyquestion.SurveyQuestion;
+
 import shop.mtcoding.projoctbodykey.user.User;
 
 import java.sql.Timestamp;
 
-import static java.time.LocalTime.now;
+
 
 public class DoSurveyRequest {
     @Data

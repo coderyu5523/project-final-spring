@@ -18,6 +18,7 @@ public class Eat {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+
     private Meal meal;  // 식단 id
 
     @ManyToOne(fetch = FetchType.LAZY)

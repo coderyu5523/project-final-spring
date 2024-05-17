@@ -260,17 +260,16 @@ VALUES ('바나나', 22.84, 1.09, 0.33, 88, 100, now()),
        ('감자', 17.5, 2.0, 0.1, 77, 100, now()),
        ('그린 스무디', 25.6, 5.2, 2.4, 120, 100, now());
 
-INSERT INTO meal_tb(activity_id, created_at)
-VALUES (1, now()),
-       (4, now());
-
+INSERT INTO meal_tb(user_id, eat_time, meal_img,created_at)
+VALUES (1, '아침', '이미지',now()),
+       (1, '점심', '이미지',now())
+;
 INSERT INTO eat_tb(meal_id, food_id, quantity)
 VALUES (1, 1, 1),
        (1, 3, 2),
        (1, 4, 1),
-       (2, 5, 2),
-       (2, 6, 1),
-       (2, 8, 1);
+       (2, 4, 1)
+;
 
 -- INSERT INTO activity_tb(user_id, walking, drink_water, created_at)
 -- VALUES (1, 1111, 100, '2024-05-05'),
