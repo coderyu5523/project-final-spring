@@ -40,9 +40,7 @@ public class AttendChallengeService {
                     throw new Exception400("이미 한번 진행한 챌린지 입니다.");
                 }
             }
-        }
-
-        if (findByStatusNull != null) {
+        } else {
             throw new Exception400("진행중인 챌린지가 존재합니다.");
         }
 

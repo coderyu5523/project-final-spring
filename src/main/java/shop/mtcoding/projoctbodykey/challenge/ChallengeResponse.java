@@ -74,8 +74,8 @@ public class ChallengeResponse {
             private Integer id;
             private String challengeName; // 챌린지명
             private String distance; // 거리
-            private String badgeImg;
             private Boolean status;
+            private String badgeImg;
 
             public UpcomingChallengesDTO(Object[] upcomingChallenge, String badgeImg) {
                 this.id = (Integer) upcomingChallenge[0];
@@ -95,8 +95,8 @@ public class ChallengeResponse {
             private Integer id;
             private String challengeName; // 챌린지명
             private String distance; // 거리
-            private String badgeImg; // 뱃지 사진 경로
             private Boolean status;
+            private String badgeImg; // 뱃지 사진 경로
 
             public PastChallengesDTO(Object[] pastChallenges, String badgeImg) {
                 this.id = (Integer) pastChallenges[0];

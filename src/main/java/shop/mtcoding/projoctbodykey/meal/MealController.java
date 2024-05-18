@@ -27,7 +27,6 @@ public class MealController {
 
     @PostMapping("/api/meal/{date}")
     public ResponseEntity<?> save(@PathVariable("date") LocalDate date, @RequestBody MealRequest.SaveDTO request) {
-        System.out.println("request = " + request);
         SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         MealResponse.SaveDTO respDTO = mealService.save(sessionUser.getId(), date, request);
         return  ResponseEntity.ok(new ApiUtil<>(respDTO));
@@ -35,7 +34,6 @@ public class MealController {
 
     @DeleteMapping("/api/meal/{date}/{mealId}")
     public ResponseEntity<?> delete(@PathVariable("date") LocalDate date, @PathVariable("mealId") Integer mealId){
-        SessionUser sessionUser = (SessionUser) session.getAttribute("sessionUser");
         mealService.delete(date,mealId);
         return  ResponseEntity.ok(new ApiUtil<>(null));
     }

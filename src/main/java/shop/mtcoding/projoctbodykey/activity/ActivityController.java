@@ -22,7 +22,6 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class ActivityController {
     private final ActivityService activityService;
-    private final AttendChallengeService attendChallengeService;
     private final BodyDataService bodyDataService;
     private final HttpSession session;
 
@@ -86,14 +85,11 @@ public class ActivityController {
     }
 
     @PutMapping("/api/activities/water-update")
-    public ResponseEntity<?> waterUpdate(@RequestBody ActivityRequest.WaterUpdateDTO reqDTO) {
+    public ResponseEntity<?> waterUpdate(@Valid @RequestBody ActivityRequest.WaterUpdateDTO reqDTO, Errors errors) {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
 
         ActivityResponse.WaterUpdateDTO respDTO = activityService.waterUpdate(user, reqDTO);
 
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
-
-
-
 }
