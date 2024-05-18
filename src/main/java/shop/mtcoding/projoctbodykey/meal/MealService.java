@@ -66,12 +66,14 @@ public class MealService {
         if (bodyData != null){
             if (user.getGender().equals("M")) {
                 recommendCal = (6.25 * user.getHeight()) + (10 * bodyData.getWeight()) - (6.75 * user.getBirth().getYear())+5;
+                recommendCal = Math.round(recommendCal * 10) / 10.0;
             }else if (user.getGender().equals("F")) {
                 recommendCal = (6.25 * user.getHeight()) + (10 * bodyData.getWeight()) - (6.75 * user.getBirth().getYear())-161;
+                recommendCal = Math.round(recommendCal * 10) / 10.0;
             }
-            recommendFat = recommendCal/100*22;
-            recommendCarbon = recommendCal/100*60;
-            recommendProtein = recommendCal/100*14;
+            recommendFat = Math.round((recommendCal/100*22) * 10) / 10.0;
+            recommendCarbon = Math.round((recommendCal/100*60) * 10) / 10.0;
+            recommendProtein = Math.round((recommendCal/100*14) * 10) / 10.0;
         }
 
         //식단리스트
