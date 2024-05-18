@@ -35,6 +35,9 @@ public class MealResponse {
     @Data
     public static class MaealListAndRecommendCalDTO {
         public Double recommendCal;
+        public Double recommendCarbon;
+        public Double recommendProtein;
+        public Double recommendFat;
         public List<MealDTO> mealList = new ArrayList<>();
         @Data
         public static class MealDTO {
@@ -71,8 +74,11 @@ public class MealResponse {
             }
         }
 
-        public MaealListAndRecommendCalDTO(Double recommendCal, List<MealDTO> mealList) {
+        public MaealListAndRecommendCalDTO(Double recommendCal, Double recommendCarbon, Double recommendProtein, Double recommendFat, List<MealDTO> mealList) {
             this.recommendCal = recommendCal;
+            this.recommendCarbon = recommendCarbon;
+            this.recommendProtein = recommendProtein;
+            this.recommendFat = recommendFat;
             this.mealList = mealList;
         }
     }
