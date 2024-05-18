@@ -87,8 +87,8 @@ public class UserRequest {
         @Pattern(regexp = "^[a-zA-Z0-9]{2,14}$", message = "영문/숫자 2~14자 이내로 작성해주세요")
         private String username;
 
-        @NotEmpty(message = "비밀번호는 공백일 수 없어요.")
-        @Size(min = 4, max = 20, message = "비밀번호는 4 ~ 20자 사이로 작성하셔야 해요.")
+        @NotEmpty(message = "ID는 공백일 수 없어요.")
+        @Pattern(regexp = "^[a-zA-Z0-9]{2,14}$", message = "영문/숫자 2~14자 이내로 작성해주세요")
         private String password;
 
         public LoginDTO(String username, String password) {

@@ -45,7 +45,7 @@ public class ActivityService {
 //
 //        Integer totalKcal = eatList.stream().reduce(0, Integer::sum);
 
-        if(bodyData != null) {
+        if (bodyData != null) {
             return new ActivityResponse.activitiesDateDTO(activity, bodyData);
         } else {
             BodyData bodyDataLimit = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
@@ -65,37 +65,31 @@ public class ActivityService {
 //    }
 
     //메인페이지 walking 디테일
-    public ActivityResponse.WalkingDetail getWalkingDetail(int userId){
-        User user=userJPARepository.findById(userId).orElseThrow(() -> new Exception403("권한이 없습니다"));
+    public ActivityResponse.WalkingDetail getWalkingDetail(int userId) {
+        User user = userJPARepository.findById(userId).orElseThrow(() -> new Exception403("권한이 없습니다"));
 
         LocalDate today = LocalDate.now();
 
         //당일 걸음 수
         Activity activity = activityJPARepository.findByUserIdAndCreatedAt(userId, today).orElseThrow(() -> new Exception404("원하시는 날짜에 활동이 없습니다"));
 
-
         //한달 총 걸음 수, 한달 평균 걸음 수
-        ActivityRequest.WalkingToatalAndAVG  WalkingToatalAndAVG= activityJPARepository.findWithToatalAndAVG(userId, today).orElseThrow(() -> new Exception404("원하시는 날짜에 활동이 없습니다"));
-        System.out.println("WalkingToatalAndAVG = " + WalkingToatalAndAVG);
+        ActivityRequest.WalkingToatalAndAVG WalkingToatalAndAVG = activityJPARepository.findWithToatalAndAVG(userId, today).orElseThrow(() -> new Exception404("원하시는 날짜에 활동이 없습니다"));
 
         //한달 평균 달성률
         YearMonth yearMonth = YearMonth.from(today);
         int totalDays = yearMonth.lengthOfMonth();
         ActivityRequest.WalkingRateAvG walkingRateAvG = activityJPARepository.findWithWalkingRateAvG(userId, today).orElseThrow(() -> new Exception404("원하시는 날짜에 활동이 없습니다"));
-        System.out.println("walkingRateAvG = " + walkingRateAvG);
-        double rateAvg= (double) walkingRateAvG.getRateAvgWalking() /totalDays*100;
-        System.out.println("rateAvg = " + rateAvg);
+
+        double rateAvg = (double) walkingRateAvG.getRateAvgWalking() / totalDays * 100;
 
         //가장 많이 걸은 날
         ActivityRequest.MaxWalkingDay maxWalking = activityJPARepository.findWithMaxWalkingDay(userId, today);
-        System.out.println("maxWalkingDay = " + maxWalking);
 
         //일주일 걸음 수
         LocalDate startDate = today.minusDays(7);
-        List<Activity> weakActivity= activityJPARepository.findWithWeakActivity(Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
+        List<Activity> weakActivity = activityJPARepository.findWithWeakActivity(Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
         List<ActivityRequest.WeakWalking> weakWalking = weakActivity.stream().map(ActivityRequest.WeakWalking::new).toList();
-        System.out.println("weakWalking = " + weakWalking);
-
 
         return new ActivityResponse.WalkingDetail(activity, WalkingToatalAndAVG, rateAvg, maxWalking, weakWalking);
     }
@@ -108,8 +102,8 @@ public class ActivityService {
 
         //일주일간 물
         LocalDate startDate = today.minusDays(7);
-        List<Activity> weakActivity= activityJPARepository.findWithWeakActivity
-                        (Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
+        List<Activity> weakActivity = activityJPARepository.findWithWeakActivity
+                (Timestamp.valueOf(startDate.atStartOfDay()), Timestamp.valueOf(today.atStartOfDay()), userId);
         List<ActivityRequest.WeakWater> weakWaters = weakActivity.stream().map(ActivityRequest.WeakWater::new).toList();
 
         return new ActivityResponse.WaterDetail(activity, weakWaters);
@@ -118,7 +112,7 @@ public class ActivityService {
 
     @Transactional
     public void save(Integer userId) {
-        if(userId != null) {
+        if (userId != null) {
             User user = userJPARepository.findById(userId).orElseThrow();
 
             // 현재 날짜와 시간을 가져옵니다.
@@ -132,7 +126,7 @@ public class ActivityService {
 
             Activity activity = activityJPARepository.findByUserIdAndDate(userId, timestamp);
 
-            if(activity == null) {
+            if (activity == null) {
                 Activity newActivity = new Activity();
                 Timestamp time = Timestamp.valueOf(startOfDay);
                 newActivity.setCreatedAt(time);
@@ -162,7 +156,7 @@ public class ActivityService {
 
         Activity activity = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
 
-        if(activity == null) {
+        if (activity == null) {
             User user = userJPARepository.findById(sessionUser.getId()).orElseThrow();
 
             // 현재 날짜와 시간을 가져옵니다.
@@ -176,7 +170,7 @@ public class ActivityService {
 
             Activity ac = activityJPARepository.findByUserIdAndDate(sessionUser.getId(), timestamp);
 
-            if(ac == null) {
+            if (ac == null) {
                 Activity newActivity = new Activity();
                 Timestamp time = Timestamp.valueOf(startOfDay);
                 newActivity.setCreatedAt(time);
@@ -189,7 +183,7 @@ public class ActivityService {
                 // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
                 AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(sessionUser.getId());
 
-                if(attendChallenge != null) {
+                if (attendChallenge != null) {
                     Activity activity2 = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
 
                     // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
@@ -212,11 +206,11 @@ public class ActivityService {
             }
         } else {
             Activity activity2 = activityJPARepository.findByUserIdAndToDay(sessionUser.getId(), today);
-            if(activity2.getWalking() < reqDTO.getWalking()) {
+            if (activity2.getWalking() < reqDTO.getWalking()) {
                 // 현재 진행중인 챌린지 (스테이터스가 null인 챌린지)를 찾아옴
                 AttendChallenge attendChallenge = attendChallengeJPARepository.findByStatusNull(sessionUser.getId());
 
-                if(attendChallenge != null) {
+                if (attendChallenge != null) {
                     // 업데이트 전 activity의 걸음수를 dto의 걸음 수로 빼준다.
                     int walkingM = reqDTO.getWalking() - activity.getWalking();
 
@@ -233,13 +227,14 @@ public class ActivityService {
                     activity.setWalking(reqDTO.getWalking());
                 }
             } else {
-                throw new Exception400("저장 하고자 하는 걸음 수 값이 저장된 걸음 수 보다 적을 수 없어요.");
+                throw new Exception400("저장 하고자 하는 걸음 수 값이 저장된 걸음 수 보다 같거나 적을 수 없어요.");
             }
         }
 
         return new ActivityResponse.WalkingUpdateDTO(sessionUser.getId(), reqDTO.getWalking());
     }
-//
+
+    //
     @Transactional
     public ActivityResponse.WaterUpdateDTO waterUpdate(SessionUser user, ActivityRequest.WaterUpdateDTO reqDTO) {
         Activity activity = activityJPARepository.findByUserIdOrderDesc(user.getId());

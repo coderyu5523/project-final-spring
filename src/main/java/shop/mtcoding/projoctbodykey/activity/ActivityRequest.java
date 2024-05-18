@@ -69,13 +69,15 @@ public class ActivityRequest {
     public static class WalkingUpdateDTO {
 
         @Min(value = 0, message = "0 이상의 값만 입력하여 주세요")
-        @Max(value = 100000, message = "걸음수가 너무 많이 들어왔어요")
+        @Max(value = 100000, message = "걸음수는 100000 이하로 입력하여 주세요")
         private Integer walking;
-
     }
 
     @Data
     public static class WaterUpdateDTO {
+
+        @Min(value = 0, message = "0 이상의 값만 입력하여 주세요")
+        @Max(value = 3000, message = "마신 물양은 3000 이하로 입력하여 주세요")
         private Integer water;
     }
 }
