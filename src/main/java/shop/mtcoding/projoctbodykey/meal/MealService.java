@@ -58,14 +58,22 @@ public class MealService {
         User user = userJPARepository.findById(userId).orElseThrow(() -> new Exception404("사용자가 없습니다"));
 
         //권장 칼로리 계산
-        Double reconmandCal=null;
+        Double recommendCal=null;
+        Double recommendFat = null;
+        Double recommendCarbon = null;
+        Double recommendProtein = null;
         BodyData bodyData =bodyDataJPARepository.findByUserIdAndRecent(user.getId()).orElse(null);
         if (bodyData != null){
             if (user.getGender().equals("M")) {
-                reconmandCal = (6.25 * user.getHeight()) + (10 * bodyData.getWeight()) - (6.75 * user.getBirth().getYear())+5;
+                recommendCal = (6.25 * user.getHeight()) + (10 * bodyData.getWeight()) - (6.75 * user.getBirth().getYear())+5;
+                recommendCal = Math.round(recommendCal * 10) / 10.0;
             }else if (user.getGender().equals("F")) {
-                reconmandCal = (6.25 * user.getHeight()) + (10 * bodyData.getWeight()) - (6.75 * user.getBirth().getYear())-161;
+                recommendCal = (6.25 * user.getHeight()) + (10 * bodyData.getWeight()) - (6.75 * user.getBirth().getYear())-161;
+                recommendCal = Math.round(recommendCal * 10) / 10.0;
             }
+            recommendFat = Math.round((recommendCal/100*22) * 10) / 10.0;
+            recommendCarbon = Math.round((recommendCal/100*60) * 10) / 10.0;
+            recommendProtein = Math.round((recommendCal/100*14) * 10) / 10.0;
         }
 
         //식단리스트
@@ -80,7 +88,7 @@ public class MealService {
                     .MealDTO(meal, foodList.stream().map(MealResponse.MaealListAndRecommendCalDTO.MealDTO.FoodDTO::new).toList());
             meals.add(mealDTO);
         }
-        return new MealResponse.MaealListAndRecommendCalDTO(reconmandCal, meals);
+        return new MealResponse.MaealListAndRecommendCalDTO(recommendCal, recommendCarbon, recommendProtein, recommendFat, meals);
     }
 
     @Transactional
