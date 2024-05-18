@@ -25,16 +25,13 @@ public class FoodController {
         // 페이징 하기위해 사용함
         Pageable pageable = PageRequest.of(page, size);
 
-        // 키워드에 값이 없으면
         if (keyword.isBlank()) {
-
+            // 키워드에 값이 없으면
             FoodResponse.FoodListDTO respDTO = foodService.foodList(pageable);
             return ResponseEntity.ok(new ApiUtil<>(respDTO));
-
-            // 키워드에 값이 있으면
         } else {
-
-            FoodResponse.FoodSearchListDTO respDTO = foodService.foodSearchList(keyword, pageable);
+            // 키워드에 값이 있으면
+            FoodResponse.FoodListDTO respDTO = foodService.foodList(keyword, pageable);
             return ResponseEntity.ok(new ApiUtil<>(respDTO));
         }
     }

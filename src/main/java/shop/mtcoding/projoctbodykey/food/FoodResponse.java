@@ -17,7 +17,7 @@ public class FoodResponse {
         private List<FoodNameListDTO> foodNameList;
         private List<FoodContentListDTO> foodContentList;
 
-        public FoodListDTO( Page<Food> foods) {
+        public FoodListDTO(Page<Food> foods) {
             this.foodNameList = foods.stream().map(FoodNameListDTO::new).toList();
             this.foodContentList = foods.stream().map(FoodContentListDTO::new).toList();
         }
@@ -54,6 +54,40 @@ public class FoodResponse {
             }
         }
     }
+
+//    @Data
+//    public static class FoodSearchListDTO {
+//        private List<FoodSearchList> foodList;
+//
+//        public FoodSearchListDTO(Page<Food> foods) {
+//
+//            // 받아온 Page<Food>를 리스트로 변환
+//            this.foodList = foods.getContent().stream()
+//                    .map(FoodSearchList::new).toList();
+//        }
+//
+//        @Data
+//        public static class FoodSearchList {
+//            private Integer id;
+//            private String name;
+//            private Double carbo;
+//            private Double protein;
+//            private Double fat;
+//            private Double kcal;
+//            private Integer gram;
+//
+//            @Builder
+//            public FoodSearchList(Food food) {
+//                this.id = food.getId();
+//                this.name = food.getName();
+//                this.carbo = food.getCarbo();
+//                this.protein = food.getProtein();
+//                this.fat = food.getFat();
+//                this.kcal = food.getKcal();
+//                this.gram = food.getGram();
+//            }
+//        }
+//    }
 
     @Data
     public static class AdminFoodListDTO {
@@ -225,41 +259,6 @@ public class FoodResponse {
             this.fat = food.getFat();
             this.kcal = food.getKcal();
             this.gram = food.getGram();
-        }
-    }
-
-    @Data
-    public static class FoodSearchListDTO {
-        private List<FoodSearchList> foodList;
-
-        public FoodSearchListDTO(Page<Food> foods) {
-
-            // 받아온 Page<Food>를 리스트로 변환
-            this.foodList = foods.getContent().stream()
-                    .map(FoodSearchList::new)
-                    .collect(Collectors.toList());
-        }
-
-        @Data
-        public static class FoodSearchList {
-            private Integer id;
-            private String name;
-            private Double carbo;
-            private Double protein;
-            private Double fat;
-            private Double kcal;
-            private Integer gram;
-
-            @Builder
-            public FoodSearchList(Food food) {
-                this.id = food.getId();
-                this.name = food.getName();
-                this.carbo = food.getCarbo();
-                this.protein = food.getProtein();
-                this.fat = food.getFat();
-                this.kcal = food.getKcal();
-                this.gram = food.getGram();
-            }
         }
     }
 }

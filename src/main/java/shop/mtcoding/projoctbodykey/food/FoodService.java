@@ -86,16 +86,16 @@ public class FoodService {
     }
 
     public FoodResponse.FoodListDTO foodList(Pageable pageable) {
-        Page<Food> foods = foodJPARepository.findAll(pageable);
+        Page<Food> food = foodJPARepository.findAll(pageable);
 
 
-        return new FoodResponse.FoodListDTO(foods);
+        return new FoodResponse.FoodListDTO(food);
     }
 
-    public FoodResponse.FoodSearchListDTO foodSearchList(String keyword, Pageable pageable) {
+    public FoodResponse.FoodListDTO foodList(String keyword, Pageable pageable) {
         Page<Food> foods = foodJPARepository.findAllKeyword(keyword, pageable);
 
 
-        return new FoodResponse.FoodSearchListDTO(foods);
+        return new FoodResponse.FoodListDTO(foods);
     }
 }
