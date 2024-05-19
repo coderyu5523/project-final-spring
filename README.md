@@ -74,7 +74,6 @@ https://github.com/coderyu5523/project-final-flutter
 - 통합 테스트
 
    
-<br>
 # 4. 개발 환경
 <span>
  <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> IDE</h3>
