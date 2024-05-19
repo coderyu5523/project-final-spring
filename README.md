@@ -1,11 +1,11 @@
-# 바디키(건강 습관 관리 플랫폼)
+# 1.바디키(건강 습관 관리 플랫폼)
 
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/43997232-c0e8-4d70-969a-ab56c0411a9e)
 
 ## 참고앱
 https://play.google.com/store/apps/details?id=com.amway.bodykeykorea&hl=ko&gl=US
 
-## 프론 github
+## 프론트 github
 https://github.com/coderyu5523/project-final-flutter
 
 
@@ -14,31 +14,31 @@ https://github.com/coderyu5523/project-final-flutter
 
 
 
-# 앱소개
+# 2.앱소개
 
-## 1. 오늘의 나
+## (1) 오늘의 나
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/38ebef6a-f4ce-4bc1-88da-b1d592fedcb2)
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/e9cbdd7c-a10c-417f-8330-19d815b214e6)
 
-## 2. 나의 활동
+## (2) 나의 활동
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/a1876b9e-6f79-42fe-8bba-c557a742a404)
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/ca766228-06c4-4ce2-9aa4-bb958ed03013)
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/bff9c22f-98b6-402e-b370-93308ca28fe7)
 
-## 3. 챌린지
+## (3) 챌린지
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/60fdbe3f-4ee9-4f43-aa6c-a0a94aa978d4)
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/f19f5b61-30f2-4b28-b6d0-2b9cac137674)
 
-## 4. 설문조사
+## (4) 설문조사
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/66e93046-60db-48e5-a3e7-22d6a381acd8)
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/a72a6ff6-8a05-4628-8349-e18c416ad10c)
 
 
 
-# 진행상황
+# 3. 진행상황
 
 
-# 개발 환경
+# 4. 개발 환경
 <span>
  <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> IDE</h3>
  <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white"/>
