@@ -69,7 +69,11 @@ https://github.com/coderyu5523/project-final-flutter
 ## 프로젝트 아키텍쳐 : MVC 설계
 ![image](https://github.com/coderyu5523/project-final-spring/assets/153602328/79fa06c7-8b6e-479b-a0fa-bd5de6cf9f02)
 
-
+- 모델 (Model): 데이터와 관련된 모든 로직을 처리
+- 서비스 (Service): 비즈니스 로직을 캡슐화하여 모델과 상호작용. 모델에서 데이터를 가져오고 이를 가공한 후 컨트롤러에 제공한다.
+- 컨트롤러 (Controller): 사용자의 입력을 처리하고, 서비스의 메서드를 호출하여 비즈니스 로직을 수행. 그 결과를 뷰에 전달하여 사용자에게 표시한다.
+- 뷰 (View): 사용자 인터페이스 요소를 담당하며, 모델의 데이터를 사용자에게 표시하고 사용자로부터의 입력을 받아 컨트롤러로 전달한다.
+      
 
 ## 테이블 설계
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/ce6cf877-3b30-4e3b-84f4-0303ee579d16)
