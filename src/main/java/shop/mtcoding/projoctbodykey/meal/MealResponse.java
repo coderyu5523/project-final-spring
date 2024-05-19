@@ -41,6 +41,7 @@ public class MealResponse {
         public List<MealDTO> mealList = new ArrayList<>();
         @Data
         public static class MealDTO {
+            public Integer mealId;
             public String mealImg;
             public String eatTime;
             public List<FoodDTO> foods = new ArrayList<>();
@@ -51,7 +52,6 @@ public class MealResponse {
                 public String foodName;
                 public Double carbo;
                 public Double protein;
-
                 public Double fat;
                 public Double kcal;
                 public Integer gram;
@@ -68,6 +68,7 @@ public class MealResponse {
             }
 
             public MealDTO(Meal meal, List<FoodDTO> foods) {
+                this.mealId = meal.getId();
                 this.mealImg = meal.getMealImg();
                 this.eatTime = meal.getEatTime();
                 this.foods = foods;
