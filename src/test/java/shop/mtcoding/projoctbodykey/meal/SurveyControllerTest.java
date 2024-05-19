@@ -1,4 +1,4 @@
-package shop.mtcoding.projoctbodykey.survey;
+package shop.mtcoding.projoctbodykey.meal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -7,15 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
-import shop.mtcoding.projoctbodykey.bodydata.BodyDataRequest;
 import shop.mtcoding.projoctbodykey.user.User;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Transactional
@@ -66,6 +63,7 @@ public class SurveyControllerTest {
 
     }
 
+
     @Test
     public void surveyDetail_test() throws Exception {
         // given
@@ -91,6 +89,26 @@ public class SurveyControllerTest {
         actions.andExpect(jsonPath("$.body.questions[0].choices[0].choiceTitle").value("6시간 미만"));
         actions.andExpect(jsonPath("$.body.questions[0].choices[0].choiceNumber").value("1"));
 
+    }
+
+    @Test
+    public void surveyDetail_fail_test() throws Exception {
+        // given
+
+
+        // when
+        ResultActions actions = mvc.perform(
+                get("/api/survey/9")
+                        .header("Authorization", "Bearer " + jwt)
+        );
+        //eye
+        String respBody = actions.andReturn().getResponse().getContentAsString();
+        System.out.println("respBody : " + respBody);
+
+        // then
+        actions.andExpect(jsonPath("$.status").value(404));
+        actions.andExpect(jsonPath("$.msg").value("해당 설문조사를 찾을 수 없습니다"));
+        actions.andExpect(jsonPath("$.body").isEmpty());
     }
 }
 

@@ -7,27 +7,27 @@ import java.util.List;
 
 public class ChoiceAnswerResponse {
     @Data
-    public static class GetChoiceAnswer {
+    public static class ChoiceAnswerList {
         private Integer userId;
         private Integer surveyId;
-        private List<QuestionAndAnswerDTO> QuestionAndAnswers;
+        private List<QuestionAndAnswerDTO> questionAndAnswers;
 
 
         @Data
         public static class QuestionAndAnswerDTO{
-            private Integer surveyQuestion;
-            private Integer questionChoice;
+            private Integer questionId;
+            private Integer choiceId;
 
-            public QuestionAndAnswerDTO(Integer surveyQuestion, Integer questionChoice) {
-                this.surveyQuestion = surveyQuestion;
-                this.questionChoice = questionChoice;
+            public QuestionAndAnswerDTO(Integer questionId, Integer choiceId) {
+                this.questionId = questionId;
+                this.choiceId = choiceId;
             }
         }
 
-        public GetChoiceAnswer(Integer userId, Integer surveyId, List<QuestionAndAnswerDTO> questionAndAnswers) {
+        public ChoiceAnswerList(Integer userId, Integer surveyId, List<QuestionAndAnswerDTO> questionAndAnswers) {
             this.userId = userId;
             this.surveyId = surveyId;
-            this.QuestionAndAnswers = questionAndAnswers;
+            this.questionAndAnswers = questionAndAnswers;
         }
     }
 }
