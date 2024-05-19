@@ -66,7 +66,10 @@ https://github.com/coderyu5523/project-final-flutter
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </span>
 
-## 프로젝트 아키텍쳐 : MVC(SSR + Service) 설계
+## 프로젝트 아키텍쳐 : MVC 설계
+![image](https://github.com/coderyu5523/project-final-spring/assets/153602328/79fa06c7-8b6e-479b-a0fa-bd5de6cf9f02)
+
+
 
 ## 테이블 설계
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/ce6cf877-3b30-4e3b-84f4-0303ee579d16)
