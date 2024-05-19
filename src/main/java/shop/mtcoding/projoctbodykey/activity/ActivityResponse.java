@@ -1,13 +1,11 @@
 package shop.mtcoding.projoctbodykey.activity;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import shop.mtcoding.projoctbodykey.bodydata.BodyData;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +50,7 @@ public class ActivityResponse {
     }
 
     @Data
-    static class mainDTO {
+    public static class mainDTO {
         private String username;
         private double goalfat;
         private double fat;
@@ -75,7 +73,7 @@ public class ActivityResponse {
             this.bodys = bodyList.stream().map(BodydataDTO::new).toList();
         }
 
-        static class BodydataDTO {
+        public static class BodydataDTO {
             private double weight;
             private double muscle;
             private double fat;
@@ -93,7 +91,7 @@ public class ActivityResponse {
     }
 
     @Data
-    static class WalkingDetail {
+    public static class WalkingDetail {
         private Integer dayAcitivityId;
         private Integer dayWalking;
         private Long totalMonthWalking;
@@ -101,21 +99,21 @@ public class ActivityResponse {
         private double rateAvgWalking;
         private Integer maxWalking;
         private Timestamp maxWalkingDay;
-        private List<WeakWalkingDTO> weakWalkings;
+        private List<WeekWalkingDTO> weekWalkings;
 
         @Data
-        public class WeakWalkingDTO{
+        public static class WeekWalkingDTO{
             private Timestamp date;
             private Integer walking;
 
-            public WeakWalkingDTO(ActivityRequest.WeakWalking weakWalking) {
-                this.date = weakWalking.getDate();
-                this.walking = weakWalking.getWalking();
+            public WeekWalkingDTO(ActivityRequest.WeekWalking weekWalking) {
+                this.date = weekWalking.getDate();
+                this.walking = weekWalking.getWalking();
             }
         }
 
         public WalkingDetail(Activity activity, ActivityRequest.WalkingToatalAndAVG  WalkingToatalAndAVG,
-                             double rateAvgWalking, ActivityRequest.MaxWalkingDay maxWalking, List<ActivityRequest.WeakWalking> weakWalkings) {
+                             double rateAvgWalking, ActivityRequest.MaxWalkingDay maxWalking, List<ActivityRequest.WeekWalking> weekWalkings) {
             this.dayAcitivityId = activity.getId();
             this.dayWalking = activity.getWalking();
             this.totalMonthWalking = WalkingToatalAndAVG.getTotalMonthWalking();
@@ -123,31 +121,31 @@ public class ActivityResponse {
             this.rateAvgWalking = (int) (rateAvgWalking * 100) / 100.0;
             this.maxWalking = maxWalking.getMaxWalking();
             this.maxWalkingDay = maxWalking.getMaxWalkingDay();
-            this.weakWalkings = weakWalkings.stream().map(WeakWalkingDTO::new).toList();
+            this.weekWalkings = weekWalkings.stream().map(WeekWalkingDTO::new).toList();
         }
     }
 
     @Data
-    static class WaterDetail {
+    public static class WaterDetail {
         private Integer dayAcitivityId;
         private Integer dayWater;
-        private List<WeakWaterDTO> weakWater;
+        private List<WeekWaterDTO> weekWater;
 
         @Data
-        public class WeakWaterDTO {
+        public static class WeekWaterDTO {
             private Timestamp date;
             private Integer water;
 
-            public WeakWaterDTO(ActivityRequest.WeakWater weakWater) {
-                this.date = weakWater.getDate();
-                this.water = weakWater.getWater();
+            public WeekWaterDTO(ActivityRequest.WeekWater weekWater) {
+                this.date = weekWater.getDate();
+                this.water = weekWater.getWater();
             }
         }
 
-        public WaterDetail(Activity activity, List<ActivityRequest.WeakWater> weakWater) {
+        public WaterDetail(Activity activity, List<ActivityRequest.WeekWater> weekWater) {
             this.dayAcitivityId = activity.getId();
             this.dayWater = activity.getDrinkWater();
-            this.weakWater = weakWater.stream().map(WeakWaterDTO::new).toList();
+            this.weekWater = weekWater.stream().map(WeekWaterDTO::new).toList();
         }
     }
 

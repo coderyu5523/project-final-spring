@@ -13,22 +13,22 @@ import java.util.List;
 
 public class ActivityRequest {
     @Data
-    public static class WeakWater{
+    public static class WeekWater{
         private Integer water;
         private Timestamp date;
 
-        public WeakWater(Activity activity) {
+        public WeekWater(Activity activity) {
             this.water = activity.getDrinkWater();
             this.date = activity.getCreatedAt();
         }
     }
 
     @Data
-    public static class WeakWalking {
+    public static class WeekWalking {
         private Integer walking;
         private Timestamp date;
 
-        public WeakWalking(Activity activity) {
+        public WeekWalking(Activity activity) {
             this.walking = activity.getWalking();
             this.date = activity.getCreatedAt();
         }
