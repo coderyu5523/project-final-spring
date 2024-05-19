@@ -22,6 +22,7 @@ public class UserResponse {
         private String username;
         private String birth;
         private String gender;
+        private String phone;
         private Double height;
 
         public JoinDTO(User user) {
@@ -30,6 +31,7 @@ public class UserResponse {
             this.username = user.getUsername();
             this.birth = MyDateUtil.timestampFormat(user.getBirth());
             this.gender = user.getGender();
+            this.phone = user.getPhone();
             this.height = user.getHeight();
         }
     }
