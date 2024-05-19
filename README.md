@@ -34,7 +34,7 @@ https://github.com/coderyu5523/project-final-flutter
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/a72a6ff6-8a05-4628-8349-e18c416ad10c)
 
 
-<br>
+
 # 3. 진행상황
 
 ## 공지영
@@ -117,7 +117,6 @@ https://github.com/coderyu5523/project-final-flutter
 ## 테이블 설계
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/ce6cf877-3b30-4e3b-84f4-0303ee579d16)
 
-<br>
 # 5. 협업 전략
 
 ## 회의
