@@ -35,32 +35,32 @@ public class SurveyResponse {
     @Data
     public static class DetailDTO {
         private Integer surveyId;
-        private String title;
-        private List<QuestionDTO> questionElements;
+        private String surveyTitle;
+        private List<QuestionDTO> questions;
 
 
         @Data
         public static class QuestionDTO {
             private Integer questionId;
-            private String question;
+            private String questionTitle;
             private List<ChoiceDTO> choices;
 
             @Data
             public static class ChoiceDTO {
                 private Integer choiceId;
-                String choiceItem;
+                String choiceTitle;
                 Integer choiceNumber;
 
-                public ChoiceDTO(Integer choiceId, String choiceItem, Integer choiceNumber) {
+                public ChoiceDTO(Integer choiceId, String choiceTitle, Integer choiceNumber) {
                     this.choiceId = choiceId;
-                    this.choiceItem = choiceItem;
+                    this.choiceTitle = choiceTitle;
                     this.choiceNumber = choiceNumber;
                 }
             }
 
             public QuestionDTO(SurveyQuestion question, List<Integer> choiceId, List<String> choices, List<Integer> choiceNumbers) {
                 this.questionId = question.getId();
-                this.question = question.getQuestionItem();
+                this.questionTitle = question.getQuestionItem();
                 this.choices = IntStream.range(0, choices.size())
                         .mapToObj(i -> new ChoiceDTO(choiceId.get(i), choices.get(i), choiceNumbers.get(i)))
                         .collect(Collectors.toList());
@@ -70,8 +70,8 @@ public class SurveyResponse {
 
         public DetailDTO(Survey survey, List<QuestionDTO> questionElements) {
             this.surveyId = survey.getId();
-            this.title = survey.getTitle();
-            this.questionElements = questionElements;
+            this.surveyTitle = survey.getTitle();
+            this.questions = questionElements;
         }
     }
 
