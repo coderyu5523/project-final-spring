@@ -84,7 +84,7 @@ https://github.com/coderyu5523/project-final-flutter
 - commit : 작업 내용에 대한 요약 담기
 - comment : 문제를 겪은 부분 정리
 - issue : 버그나 해결사항 올리기
-- 
+  
 ### naming conventions [코드 컨밴션]
 - 패키지 : lowerCase, domain별 패키지 만들기
 - 파일 : camelCase
