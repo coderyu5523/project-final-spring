@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import shop.mtcoding.projoctbodykey._config.Base64Validator;
+import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataRequest;
 import shop.mtcoding.projoctbodykey.user.User;
@@ -95,7 +97,6 @@ public class ChallengeControllerTest {
     public void challenges_suc_test() throws Exception {
         // given
         Boolean st = null;
-
         // when
         ResultActions actions = mvc.perform(
                 get("/api/challenges")
@@ -104,7 +105,7 @@ public class ChallengeControllerTest {
 
         // eye
 //        String respBody = actions.andReturn().getResponse().getContentAsString();
-//        System.out.println("respBody : " + respBody);
+//       System.out.println("respBody : " + respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(200));
@@ -116,14 +117,17 @@ public class ChallengeControllerTest {
         actions.andExpect(jsonPath("$.body.coin").value(2));
         actions.andExpect(jsonPath("$.body.walking").value(100000));
         actions.andExpect(jsonPath("$.body.totalWalking").value(8303));
+        actions.andExpect(jsonPath("$.body.backImg").value(ImageUtil.encode("a79e04fc-31b8-4c5b-9729-fa1192dc7c76_grossglock.png")));
         actions.andExpect(jsonPath("$.body.upcomingChallenges[0].id").value(1));
         actions.andExpect(jsonPath("$.body.upcomingChallenges[0].challengeName").value("에베레스트"));
         actions.andExpect(jsonPath("$.body.upcomingChallenges[0].distance").value("8848m"));
         actions.andExpect(jsonPath("$.body.upcomingChallenges[0].status").value(st));
+        actions.andExpect(jsonPath("$.body.upcomingChallenges[0].badgeImg").value(ImageUtil.encode("abf1c607-62c7-429d-9601-6edb1a3e4965_everest.png")));
         actions.andExpect(jsonPath("$.body.pastChallenges[0].id").value(3));
         actions.andExpect(jsonPath("$.body.pastChallenges[0].challengeName").value("칠쿠트 트레일"));
         actions.andExpect(jsonPath("$.body.pastChallenges[0].distance").value("53K"));
         actions.andExpect(jsonPath("$.body.pastChallenges[0].status").value(true));
+        actions.andExpect(jsonPath("$.body.pastChallenges[0].badgeImg").value(ImageUtil.encode("270f40f2-683f-4a9a-be40-764e377847c6_chilkoot.png")));
     }
 
     @Test
@@ -151,6 +155,7 @@ public class ChallengeControllerTest {
         actions.andExpect(jsonPath("$.body.content").value("세계에서 가장 상징적인 트레킹 중 하나인 에베레스트 베이스캠프 루트를 정복하세요. 네팔의 히말라야를 거쳐 세계에서 가장 높은 산인 에베레스트산의 베이스캠프로 이동합니다. 이 탐험은 작은 마을인 루클라(Lukla)에서 시작하여 셰르파 마을인 남체 바자(Namche Bazaar), 텅보체(Tengboche), 딩보체(Dingboche), 고락셉(Gorakshep)을 통과합니다. 하이커들은 강과 고지대 통행로를 지나는 것과 더불어 풍부한 문화, 종교, 환대로 유명한 솔루쿰부(Solukhumbu) 지구의 중심부를 거쳐 이동합니다."));
         actions.andExpect(jsonPath("$.body.state").value(false));
         actions.andExpect(jsonPath("$.body.coin").value(2));
+        actions.andExpect(jsonPath("$.body.backgroundImg").value(ImageUtil.encode("ab9dde60-6ce4-41f9-a848-aced82c5d38c_basecampEV.png")));
     }
 
     @Test

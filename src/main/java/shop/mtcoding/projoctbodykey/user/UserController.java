@@ -74,7 +74,6 @@ public class UserController {
     @PostMapping("/join")
     public ResponseEntity<?> join(@Valid @RequestBody UserRequest.JoinDTO reqDTO, Errors errors) {
 
-
         return ResponseEntity.ok(new ApiUtil<>(userService.join(reqDTO)));
     }
 

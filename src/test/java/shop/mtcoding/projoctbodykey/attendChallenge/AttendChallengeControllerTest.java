@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.activity.ActivityRequest;
 import shop.mtcoding.projoctbodykey.challenge.Challenge;
@@ -83,7 +84,8 @@ public class AttendChallengeControllerTest {
                 .andExpect(jsonPath("$.body.id").value(28))
                 .andExpect(jsonPath("$.body.status").value(st))
                 .andExpect(jsonPath("$.body.challengeName").value("그로스글로크너"))
-                .andExpect(jsonPath("$.body.distance").value("3798m"));
+                .andExpect(jsonPath("$.body.distance").value("3798m"))
+                .andExpect(jsonPath("$.body.badgeImg").value(ImageUtil.encode("c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png")));
     }
 
     @Test
