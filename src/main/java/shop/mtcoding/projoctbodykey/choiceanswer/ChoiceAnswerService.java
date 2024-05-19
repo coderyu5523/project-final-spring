@@ -29,7 +29,7 @@ public class ChoiceAnswerService {
     private final DoSurveyJPARepository doSurveyJPARepository;
 
     @Transactional
-    public ChoiceAnswerResponse.GetChoiceAnswer save(Integer userId, Integer surveyId, List<ChoiceAnswerRequest.AnswerDTO> answers) {
+    public ChoiceAnswerResponse.ChoiceAnswerList save(Integer userId, Integer surveyId, List<ChoiceAnswerRequest.AnswerDTO> answers) {
         //유저와 설문조사 찾기
         User user=userJPARepository.findById(userId).orElseThrow(() -> new Exception404("유저가 없습니다"));
         Survey survey = surveyJPARepository.findById(surveyId).orElseThrow(() -> new Exception404("설문조사가 없습니다"));
@@ -49,8 +49,8 @@ public class ChoiceAnswerService {
         doSurveyJPARepository.save(doSurveySave.toEntity());
 
 
-        return new ChoiceAnswerResponse.GetChoiceAnswer(user.getId(),survey.getId(),choiceAnswerList.stream()
-                .map(choiceAnswer -> new ChoiceAnswerResponse.GetChoiceAnswer
+        return new ChoiceAnswerResponse.ChoiceAnswerList(user.getId(),survey.getId(),choiceAnswerList.stream()
+                .map(choiceAnswer -> new ChoiceAnswerResponse.ChoiceAnswerList
                         .QuestionAndAnswerDTO(choiceAnswer.getSurveyQuestion().getId(),choiceAnswer.getQuestionChoice().getId())).toList());
     }
 }

@@ -15,6 +15,11 @@ public class ChoiceAnswerRequest {
     public static class AnswerDTO {
         private Integer questionId;
         private Integer choiceId;
+
+        public AnswerDTO(Integer questionId, Integer choiceId) {
+            this.questionId = questionId;
+            this.choiceId = choiceId;
+        }
     }
 
     @Data
