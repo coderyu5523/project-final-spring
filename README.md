@@ -49,7 +49,9 @@ https://github.com/coderyu5523/project-final-flutter
 - 활동 물마시기 페이지
 - 활동 걸음수 페이지
 - 활동 식단 insert
-  
+- 활동 식단 페이지
+- 활동 식단 업로드 페이지
+- 통합 테스트
   
 ## 하승진
 - 테이블설계
@@ -66,8 +68,10 @@ https://github.com/coderyu5523/project-final-flutter
 - 목표 지방,근육량, 체중 insert
 - 메인 페이지
 - 챌린지 insert
+- 활동 페이지 
 - 활동 페이지 날짜별 조회
 - 식단 검색
+- 통합 테스트
 
 # 4. 개발 환경
 <span>
@@ -110,7 +114,9 @@ https://github.com/coderyu5523/project-final-flutter
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/ce6cf877-3b30-4e3b-84f4-0303ee579d16)
 
 
-## 협업 전략
+# 5. 협업 전략
+
+## 회의
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/f1be670c-8d1f-4375-a846-87a405a5b7f5)
 
 - 매일 오전 15~30분 회의
@@ -124,21 +130,7 @@ https://github.com/coderyu5523/project-final-flutter
 - issue : 버그나 해결사항 올리기
   
 ### naming conventions [코드 컨밴션]
-- 패키지 : lowerCase, domain별 패키지 만들기
-- 파일 : camelCase
-- 클래스/메서드/필드값 : pascalCase
-- 일반 테이블 (단수 명사) : `user`, `board`, `resume`, `rating`, `skill`
-- 행위 테이블 (원형 부정사) : `apply`, `subscribe`
-- DTO : Request/Response + 목적지 정보 (ServiceName/ControllerName) + 기타(전치사+명사)
-  - e.g. Request : `CreateDTO`, `UpdateDTO`, Response : `EmployerDTO`, `DetailDTO`...
-- Controller : `post`/`detail`&`listings`/`update`/`delete`
-- Service : `createEntity`/`getEntity`/`setEntity`/`removeEntity`
-- Repository : `save`/`find`/`update`/`delete` + By/With + Entity&Record
-- css : ?
-### 회의
-- 매일 회의록 작성
-  - 진행 상황 보고
-  - 문제점 발견 및 피드백
-  - 건의사항
-- 해결 과제
-  - 할 일 목록 작성
+- 패키지 : 소문자, 도메인별 패키지 만들기
+- 파일 : 카멜 표기법
+- 클래스/메서드/필드값 : 파스칼 표기법
+- api 주소 : 인증이 필요한 페이지는 주소에 api 사용, 영어는 복수형,  하이픈(-) 사용
