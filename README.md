@@ -118,7 +118,7 @@ https://github.com/coderyu5523/project-final-flutter
 
 # 5. 협업 전략
 
-## 회의
+### 회의
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/f1be670c-8d1f-4375-a846-87a405a5b7f5)
 
 - 매일 오전 15~30분 회의
