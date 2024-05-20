@@ -39,7 +39,7 @@ public class FoodControllerTest {
     }
 
     @Test
-    public void foods_page_suc_test() throws Exception {
+    public void foods_page_success_test() throws Exception {
         // given
         Integer page = 1;
 
@@ -68,7 +68,7 @@ public class FoodControllerTest {
     }
 
     @Test
-    public void foods_suc_test() throws Exception {
+    public void foods_success_test() throws Exception {
         // given
 
         // when
@@ -96,7 +96,7 @@ public class FoodControllerTest {
     }
 
     @Test
-    public void foods_keyword_suc_test() throws Exception {
+    public void foods_keyword_success_test() throws Exception {
         // given
         String keyword = "그";
 
@@ -125,7 +125,7 @@ public class FoodControllerTest {
     }
 
     @Test
-    public void foods_fail_suc_test() throws Exception {
+    public void foods_fail_success_test() throws Exception {
         // given
         String keyword = "123456789";
 

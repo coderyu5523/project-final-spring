@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.activity.ActivityRequest;
 import shop.mtcoding.projoctbodykey.user.User;
@@ -25,12 +27,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class ActivityControllerTest {
+public class ActivityControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
-
-    @Autowired
-    private MockMvc mvc;
 
     private static String jwt;
 
@@ -45,7 +44,7 @@ public class ActivityControllerTest {
     }
 
     @Test
-    public void waterUpdate_suc_test() throws Exception {
+    public void waterUpdate_success_test() throws Exception {
         // given
         ActivityRequest.WaterUpdateDTO reqDTO = new ActivityRequest.WaterUpdateDTO();
         reqDTO.setWater(1500);
@@ -69,6 +68,7 @@ public class ActivityControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.water").value(1500));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class ActivityControllerTest {
     }
 
     @Test
-    public void walkingUpdate_suc_test() throws Exception {
+    public void walkingUpdate_success_test() throws Exception {
         // given
         ActivityRequest.WalkingUpdateDTO reqDTO = new ActivityRequest.WalkingUpdateDTO();
         reqDTO.setWalking(10001);
@@ -154,7 +154,7 @@ public class ActivityControllerTest {
 
 
     @Test
-    public void update_suc_test() throws Exception {
+    public void update_success_test() throws Exception {
         // given
         ActivityRequest.UpdateDTO reqDTO = new ActivityRequest.UpdateDTO();
         reqDTO.setWalking(5000);
@@ -220,20 +220,20 @@ public class ActivityControllerTest {
         );
 
         // eye
-//        String respBody = actions.andReturn().getResponse().getContentAsString();
-//        System.out.println("respBody : " + respBody);
+        String respBody = actions.andReturn().getResponse().getContentAsString();
+        System.out.println("respBody : " + respBody);
 //        int statusCode = actions.andReturn().getResponse().getStatus();
 //        System.out.println("statusCode : "+statusCode);
 
         // then
         actions.andExpect(jsonPath("$.status").value(200))
                 .andExpect(jsonPath("$.msg").value("성공"))
-                .andExpect(jsonPath("$.body.dayAcitivityId").value(4))
-                .andExpect(jsonPath("$.body.dayWater").value(2500))
-                .andExpect(jsonPath("$.body.weakWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weakWater[0].water").value(2000))
-                .andExpect(jsonPath("$.body.weakWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weakWater[1].water").value(2300));
+                .andExpect(jsonPath("$.body.dayAcitivityId").value(5))
+                .andExpect(jsonPath("$.body.dayWater").value(2000))
+                .andExpect(jsonPath("$.body.weekWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
+                .andExpect(jsonPath("$.body.weekWater[0].water").value(2000))
+                .andExpect(jsonPath("$.body.weekWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
+                .andExpect(jsonPath("$.body.weekWater[1].water").value(2300));
     }
 
     @Test
@@ -255,17 +255,17 @@ public class ActivityControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(200))
                 .andExpect(jsonPath("$.msg").value("성공"))
-                .andExpect(jsonPath("$.body.dayAcitivityId").value(4))
+                .andExpect(jsonPath("$.body.dayAcitivityId").value(5))
                 .andExpect(jsonPath("$.body.dayWalking").value(10000))
-                .andExpect(jsonPath("$.body.totalMonthWalking").value(57684))
-                .andExpect(jsonPath("$.body.avgMonthWalking").value(8240.57))
+                .andExpect(jsonPath("$.body.totalMonthWalking").value(42353))
+                .andExpect(jsonPath("$.body.avgMonthWalking").value(8470.6))
                 .andExpect(jsonPath("$.body.rateAvgWalking").value(9.67))
                 .andExpect(jsonPath("$.body.maxWalking").value(10000))
                 .andExpect(jsonPath("$.body.maxWalkingDay").value("2024-05-19T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weakWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weakWalkings[0].walking").value(5325))
-                .andExpect(jsonPath("$.body.weakWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weakWalkings[1].walking").value(7028));
+                .andExpect(jsonPath("$.body.weekWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
+                .andExpect(jsonPath("$.body.weekWalkings[0].walking").value(5325))
+                .andExpect(jsonPath("$.body.weekWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
+                .andExpect(jsonPath("$.body.weekWalkings[1].walking").value(7028));
 
     }
 
@@ -309,7 +309,7 @@ public class ActivityControllerTest {
     @Test
     public void activitiesDate_test() throws Exception {
         // given
-        String dateTimeString = "2024-05-21T18:12:00.000+00:00";
+        String dateTimeString = "2024-05-20T18:12:00.000+00:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
         LocalDate date = dateTime.toLocalDate();
@@ -329,9 +329,9 @@ public class ActivityControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
-        actions.andExpect(jsonPath("$.body.createdAt").value("2024-05-21T18:12:00.000+00:00"));
-        actions.andExpect(jsonPath("$.body.walking").value(7028));
-        actions.andExpect(jsonPath("$.body.drinkWater").value(2300));
+        actions.andExpect(jsonPath("$.body.createdAt").value("2024-05-20T18:12:00.000+00:00"));
+        actions.andExpect(jsonPath("$.body.walking").value(10000));
+        actions.andExpect(jsonPath("$.body.drinkWater").value(2000));
         actions.andExpect(jsonPath("$.body.kcal").value(0));
         actions.andExpect(jsonPath("$.body.weight").value(76.3));
     }

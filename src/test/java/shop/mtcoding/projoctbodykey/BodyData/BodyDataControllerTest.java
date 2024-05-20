@@ -46,7 +46,7 @@ public class BodyDataControllerTest {
     }
 
     @Test
-    public void update_suc_test() throws Exception {
+    public void update_success_test() throws Exception {
         // given
         BodyDataRequest.UpdateDTO reqDTO = new BodyDataRequest.UpdateDTO();
         reqDTO.setFat(23.3d);
