@@ -61,8 +61,8 @@ public class ChoiceAnswerControllerTest {
         );
 
         //eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : "+respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : "+respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(200));

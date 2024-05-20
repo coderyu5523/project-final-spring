@@ -58,7 +58,7 @@ public class AttendChallengeControllerTest {
     }
 
     @Test
-    public void statusUpdate_suc_test() throws Exception {
+    public void statusUpdate_success_test() throws Exception {
         // given
         AttendChallengeRequest.StatusUpdateDTO reqDTO = new AttendChallengeRequest.StatusUpdateDTO();
         Boolean st = false;
@@ -115,7 +115,7 @@ public class AttendChallengeControllerTest {
     }
 
     @Test
-    public void save_suc_test() throws Exception {
+    public void save_success_test() throws Exception {
         // given
         AttendChallengeRequest.SaveDTO reqDTO = new AttendChallengeRequest.SaveDTO();
         Challenge challenge = new Challenge();

@@ -94,7 +94,7 @@ public class ChallengeControllerTest {
     }
 
     @Test
-    public void challenges_suc_test() throws Exception {
+    public void challenges_success_test() throws Exception {
         // given
         Boolean st = null;
         // when
@@ -131,7 +131,7 @@ public class ChallengeControllerTest {
     }
 
     @Test
-    public void challengeDetail_suc_test() throws Exception {
+    public void challengeDetail_success_test() throws Exception {
         // given
         Integer id = 2;
 

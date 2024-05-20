@@ -44,7 +44,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void goalWeightUpdate_suc_test() throws Exception {
+    public void goalWeightUpdate_success_test() throws Exception {
         // given
         UserRequest.GoalWeightUpdateDTO reqDTO = new UserRequest.GoalWeightUpdateDTO();
         reqDTO.setGoalWeight(70.0d);
@@ -97,7 +97,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void goalMuscleUpdate_suc_test() throws Exception {
+    public void goalMuscleUpdate_success_test() throws Exception {
         // given
         UserRequest.GoalMuscleUpdateDTO reqDTO = new UserRequest.GoalMuscleUpdateDTO();
         reqDTO.setGoalMuscle(23.0d);
@@ -150,7 +150,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void goalFatUpdate_suc_test() throws Exception {
+    public void goalFatUpdate_success_test() throws Exception {
         // given
         UserRequest.GoalFatUpdateDTO reqDTO = new UserRequest.GoalFatUpdateDTO();
         reqDTO.setGoalFat(22.0d);
@@ -232,7 +232,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void update_suc_test() throws Exception {
+    public void update_success_test() throws Exception {
         // given
         UserRequest.UpdateDTO reqDTO = new UserRequest.UpdateDTO();
         reqDTO.setName("하승진");
@@ -455,7 +455,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void login_suc_test() throws Exception {
+    public void login_success_test() throws Exception {
         // given
         String username = "ssar";
         String password = "1234";
@@ -512,7 +512,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void join_suc_test() throws Exception {
+    public void join_success_test() throws Exception {
         // given
         UserRequest.JoinDTO reqDTO = new UserRequest.JoinDTO();
         reqDTO.setUsername("egdg4587");
