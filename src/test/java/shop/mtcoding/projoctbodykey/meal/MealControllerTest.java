@@ -56,8 +56,8 @@ public class MealControllerTest {
         );
 
         // eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : " + respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : " + respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(200));
@@ -103,13 +103,13 @@ public class MealControllerTest {
         );
 
         //eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : "+respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : "+respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
-        actions.andExpect(jsonPath("$.body.mealId").value(3));
+        actions.andExpect(jsonPath("$.body.mealId").value(4));
         actions.andExpect(jsonPath("$.body.mealImg").value("이미지"));
         actions.andExpect(jsonPath("$.body.foods[0].foodId").value(1));
         actions.andExpect(jsonPath("$.body.foods[0].foodQuantity").value(5));
@@ -140,8 +140,8 @@ public class MealControllerTest {
         );
 
         //eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : "+respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : "+respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(404));
@@ -183,8 +183,8 @@ public class MealControllerTest {
         );
 
         //eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : "+respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : "+respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(404));

@@ -262,8 +262,8 @@ VALUES ('바나나', 22.84, 1.09, 0.33, 88, 100, now()),
        ('그린 스무디', 25.6, 5.2, 2.4, 120, 100, now());
 
 INSERT INTO meal_tb(user_id, eat_time, meal_img, created_at)
-VALUES (1, '아침', '이미지', '2024-05-20'),
-       (1, '점심', '이미지', '2024-05-20')
+VALUES (1, '아침', '이미지', '2024-05-19'),
+       (1, '점심', '이미지', '2024-05-19')
 ;
 INSERT INTO eat_tb(meal_id, food_id, quantity)
 VALUES (1, 1, 1),
