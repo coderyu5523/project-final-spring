@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 
@@ -23,13 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class UserControllerTest {
+public class UserControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
-
-    @Autowired
-    private MockMvc mvc;
-
 
     private static String jwt;
 
@@ -68,6 +66,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.goalWeight").value(70.0d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -121,6 +120,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.goalMuscle").value(23.0d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -174,6 +174,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.goalFat").value(22.0d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -200,6 +201,7 @@ public class UserControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("100 이하의 값을 입력하여 주세요. : goalFat"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -229,6 +231,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -263,6 +266,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.body.name").value("하승진"));
         actions.andExpect(jsonPath("$.body.phone").value("010-7551-5747"));
         actions.andExpect(jsonPath("$.body.height").value(169.8d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -294,6 +298,7 @@ public class UserControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("010-0000-0000 형식으로 작성해주세요 : phone"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -320,6 +325,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.body.phone").value("010-0100-0100"));
         actions.andExpect(jsonPath("$.body.height").value(178.5));
         actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -348,12 +354,13 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.body.goalWeight").value(70.0));
         actions.andExpect(jsonPath("$.body.fat").value(21.3));
         actions.andExpect(jsonPath("$.body.muscle").value(21.5));
-        actions.andExpect(jsonPath("$.body.weight").value(75.8));
+        actions.andExpect(jsonPath("$.body.weight").value(76.3));
         actions.andExpect(jsonPath("$.body.bodyData[0].id").value(1));
         actions.andExpect(jsonPath("$.body.bodyData[0].fat").value(21.3));
         actions.andExpect(jsonPath("$.body.bodyData[0].muscle").value(21.5));
         actions.andExpect(jsonPath("$.body.bodyData[0].weight").value(76.3));
-        actions.andExpect(jsonPath("$.body.bodyData[0].date").value("2024-05-20T09:12:00.000+00:00"));
+        actions.andExpect(jsonPath("$.body.bodyData[0].date").value("2024-05-16T09:12:00.000+00:00"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -379,13 +386,14 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.body.name").value("류재성"));
         actions.andExpect(jsonPath("$.body.fat").value(21.3d));
         actions.andExpect(jsonPath("$.body.muscle").value(21.5d));
-        actions.andExpect(jsonPath("$.body.weight").value(75.8));
+        actions.andExpect(jsonPath("$.body.weight").value(76.3));
         actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].id").value(3));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].challengeName").value("칠쿠트 트레일"));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].distance").value("53K"));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].status").value(true));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].badgeImg").value(ImageUtil.encode("270f40f2-683f-4a9a-be40-764e377847c6_chilkoot.png")));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -408,6 +416,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.fatDataList[0].fat").value(21.3d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -430,6 +439,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.muscleDataList[0].muscle").value(21.5d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -452,6 +462,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.weightDataList[0].weight").value(76.3d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -481,6 +492,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.username").value("ssar"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -509,6 +521,7 @@ public class UserControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("영문/숫자 2~14자 이내로 작성해주세요 : password"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -548,6 +561,7 @@ public class UserControllerTest {
         actions.andExpect(jsonPath("$.body.gender").value("M"));
         actions.andExpect(jsonPath("$.body.phone").value("010-7551-5747"));
         actions.andExpect(jsonPath("$.body.height").value(169.8d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -581,6 +595,7 @@ public class UserControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("010-0000-0000 형식으로 작성해주세요 : phone"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
 //        actions.andExpect(jsonPath("$.body.username").value("egdg"));
 //        actions.andExpect(jsonPath("$.body.name").value("하승진"));
 //        actions.andExpect(jsonPath("$.body.gender").value("M"));

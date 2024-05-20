@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.user.User;
 
@@ -18,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class SurveyControllerTest {
+public class SurveyControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
 
@@ -60,7 +62,7 @@ public class SurveyControllerTest {
         actions.andExpect(jsonPath("$.body.[0].isAttend").value("참여가능"));
         actions.andExpect(jsonPath("$.body.[0].progress").value("진행중"));
         actions.andExpect(jsonPath("$.body.[0].questionCount").value(19));
-
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
 
@@ -88,7 +90,7 @@ public class SurveyControllerTest {
         actions.andExpect(jsonPath("$.body.questions[0].choices[0].choiceId").value("1"));
         actions.andExpect(jsonPath("$.body.questions[0].choices[0].choiceTitle").value("6시간 미만"));
         actions.andExpect(jsonPath("$.body.questions[0].choices[0].choiceNumber").value("1"));
-
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -102,13 +104,14 @@ public class SurveyControllerTest {
                         .header("Authorization", "Bearer " + jwt)
         );
         //eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : " + respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : " + respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(404));
         actions.andExpect(jsonPath("$.msg").value("해당 설문조사를 찾을 수 없습니다"));
         actions.andExpect(jsonPath("$.body").isEmpty());
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }
 

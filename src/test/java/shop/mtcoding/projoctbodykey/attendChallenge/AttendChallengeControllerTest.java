@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.activity.ActivityRequest;
@@ -30,12 +32,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class AttendChallengeControllerTest {
+public class AttendChallengeControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
-
-    @Autowired
-    private MockMvc mvc;
 
     private static String jwt;
     private static String jwt5;
@@ -85,7 +84,9 @@ public class AttendChallengeControllerTest {
                 .andExpect(jsonPath("$.body.status").value(st))
                 .andExpect(jsonPath("$.body.challengeName").value("그로스글로크너"))
                 .andExpect(jsonPath("$.body.distance").value("3798m"))
-                .andExpect(jsonPath("$.body.badgeImg").value(ImageUtil.encode("c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png")));
+                .andExpect(jsonPath("$.body.badgeImg").value(ImageUtil.encode("c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png")))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
+
     }
 
     @Test
@@ -111,7 +112,8 @@ public class AttendChallengeControllerTest {
 
         // then
         actions.andExpect(jsonPath("$.status").value(400))
-                .andExpect(jsonPath("$.msg").value("현재 진행중인 챌린지가 없어, 챌린지의 스테이터스 값을 변경할 수 없습니다."));
+                .andExpect(jsonPath("$.msg").value("현재 진행중인 챌린지가 없어, 챌린지의 스테이터스 값을 변경할 수 없습니다."))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -142,7 +144,8 @@ public class AttendChallengeControllerTest {
                 .andExpect(jsonPath("$.msg").value("성공"))
                 .andExpect(jsonPath("$.body.userId").value(5))
                 .andExpect(jsonPath("$.body.challengeId").value(1))
-                .andExpect(jsonPath("$.body.status").value(st));
+                .andExpect(jsonPath("$.body.status").value(st))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
 
     }
 
@@ -170,7 +173,8 @@ public class AttendChallengeControllerTest {
 
         // then
         actions.andExpect(jsonPath("$.status").value(400))
-                .andExpect(jsonPath("$.msg").value("진행중인 챌린지가 존재합니다."));
+                .andExpect(jsonPath("$.msg").value("진행중인 챌린지가 존재합니다."))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
 //                .andExpect(jsonPath("$.body.userId").value(5))
 //                .andExpect(jsonPath("$.body.challengeId").value(1))
 //                .andExpect(jsonPath("$.body.status").value(st));

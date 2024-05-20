@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.user.User;
 
@@ -23,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class ChoiceAnswerControllerTest {
+public class ChoiceAnswerControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
 
@@ -71,6 +73,7 @@ public class ChoiceAnswerControllerTest {
         actions.andExpect(jsonPath("$.body.surveyId").value(1));
         actions.andExpect(jsonPath("$.body.questionAndAnswers[0].questionId").value(1));
         actions.andExpect(jsonPath("$.body.questionAndAnswers[0].choiceId").value(2));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -99,7 +102,7 @@ public class ChoiceAnswerControllerTest {
         actions.andExpect(jsonPath("$.status").value(404));
         actions.andExpect(jsonPath("$.msg").value("설문조사가 없습니다"));
         actions.andExpect(jsonPath("$.body").isEmpty());
-
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }
 

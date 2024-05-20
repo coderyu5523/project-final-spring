@@ -95,6 +95,7 @@ public class ActivityControllerTest extends MyRestDoc {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("마신 물양은 3000 이하로 입력하여 주세요 : water"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -122,6 +123,7 @@ public class ActivityControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.walking").value(10001));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -150,6 +152,7 @@ public class ActivityControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.msg").value("저장 하고자 하는 걸음 수 값이 저장된 걸음 수 보다 같거나 적을 수 없어요."));
 //        actions.andExpect(jsonPath("$.body.walking").value(5000));
 //        actions.andExpect(jsonPath("$.body.water").value(350));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
 
@@ -180,6 +183,7 @@ public class ActivityControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.walking").value(5000));
         actions.andExpect(jsonPath("$.body.water").value(350));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -207,6 +211,7 @@ public class ActivityControllerTest extends MyRestDoc {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("걸음수가 너무 많이 들어왔어요 : walking"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -220,8 +225,8 @@ public class ActivityControllerTest extends MyRestDoc {
         );
 
         // eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : " + respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : " + respBody);
 //        int statusCode = actions.andReturn().getResponse().getStatus();
 //        System.out.println("statusCode : "+statusCode);
 
@@ -233,7 +238,8 @@ public class ActivityControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.body.weekWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weekWater[0].water").value(2000))
                 .andExpect(jsonPath("$.body.weekWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWater[1].water").value(2300));
+                .andExpect(jsonPath("$.body.weekWater[1].water").value(2300))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -265,8 +271,8 @@ public class ActivityControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.body.weekWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weekWalkings[0].walking").value(5325))
                 .andExpect(jsonPath("$.body.weekWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWalkings[1].walking").value(7028));
-
+                .andExpect(jsonPath("$.body.weekWalkings[1].walking").value(7028))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -291,19 +297,20 @@ public class ActivityControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.body.userId").value(1))
                 .andExpect(jsonPath("$.body.fat").value(21.3))
                 .andExpect(jsonPath("$.body.muscle").value(21.5))
-                .andExpect(jsonPath("$.body.weight").value(75.8))
+                .andExpect(jsonPath("$.body.weight").value(76.3))
                 .andExpect(jsonPath("$.body.goalFat").value(12.0))
                 .andExpect(jsonPath("$.body.goalMuscle").value(35.0))
                 .andExpect(jsonPath("$.body.goalWeight").value(70.0))
-                .andExpect(jsonPath("$.body.fatTimeLine[0].bodyDateId").value(3))
+                .andExpect(jsonPath("$.body.fatTimeLine[0].bodyDateId").value(5))
                 .andExpect(jsonPath("$.body.fatTimeLine[0].fat").value(21.3))
-                .andExpect(jsonPath("$.body.fatTimeLine[0].fatTimeLine").value("2024-05-22T10:32:00.000+00:00"))
-                .andExpect(jsonPath("$.body.muscleTimeLine[0].bodyDateId").value(3))
+                .andExpect(jsonPath("$.body.fatTimeLine[0].fatTimeLine").value("2024-05-20T09:12:00.000+00:00"))
+                .andExpect(jsonPath("$.body.muscleTimeLine[0].bodyDateId").value(5))
                 .andExpect(jsonPath("$.body.muscleTimeLine[0].muscle").value(21.5))
-                .andExpect(jsonPath("$.body.muscleTimeLine[0].muscleTimeLine").value("2024-05-22T10:32:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weightTimeLine[0].bodyDateId").value(3))
-                .andExpect(jsonPath("$.body.weightTimeLine[0].weight").value(75.8))
-                .andExpect(jsonPath("$.body.weightTimeLine[0].weightTimeLine").value("2024-05-22T10:32:00.000+00:00"));
+                .andExpect(jsonPath("$.body.muscleTimeLine[0].muscleTimeLine").value("2024-05-20T09:12:00.000+00:00"))
+                .andExpect(jsonPath("$.body.weightTimeLine[0].bodyDateId").value(5))
+                .andExpect(jsonPath("$.body.weightTimeLine[0].weight").value(76.3))
+                .andExpect(jsonPath("$.body.weightTimeLine[0].weightTimeLine").value("2024-05-20T09:12:00.000+00:00"))
+                .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -334,5 +341,6 @@ public class ActivityControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.drinkWater").value(2000));
         actions.andExpect(jsonPath("$.body.kcal").value(0));
         actions.andExpect(jsonPath("$.body.weight").value(76.3));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }
