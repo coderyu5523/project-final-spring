@@ -22,7 +22,6 @@ public class AdminSurveyController {
     public String surveycharts(HttpServletRequest request) {
         AdminSurveyResponse.statsDTO respDTO = surveyService.chartList();
         request.setAttribute("stats", respDTO);
-        System.out.println("respDTO = " + respDTO);
         return "survey/chart-list";
     }
 
@@ -30,7 +29,6 @@ public class AdminSurveyController {
     @GetMapping("/admin/surveyscharts/{id}")
     public String surveyChart(@PathVariable int id, HttpServletRequest request) {
         AdminSurveyResponse.ChartDTO respDTO = surveyService.chart(id);
-        System.out.println("respDTO = " + respDTO);
         request.setAttribute("survey", respDTO);
         return "survey/chart";
     }
@@ -44,7 +42,6 @@ public class AdminSurveyController {
     //설문조사 저장
     @PostMapping("/admin/surveys/save")
     public String surveySave(@RequestBody AdminSurveyRequest.SaveDTO reqDTOs) {
-        System.out.println("reqDTOs = " + reqDTOs);
         surveyService.save(reqDTOs);
         return "redirect:/admin/surveys";
     }
@@ -52,15 +49,12 @@ public class AdminSurveyController {
     @GetMapping("/admin/surveys/{id}/update-form")
     public String surveyUpdateForm(@PathVariable int id, HttpServletRequest request) {
         AdminSurveyResponse.DetailStatusDTO respDTO=surveyService.findByIdWithStatus(id);
-        System.out.println("respDTO = " + respDTO);
-        request.setAttribute("survey",respDTO);
         return "survey/update-form";
     }
 
     //설문조사 업데이트
     @PostMapping("/admin/surveys/{id}/update")
     public String surveyUpdate(@PathVariable int id, @RequestBody AdminSurveyRequest.UpdateDTO reqDTOs) {
-        System.out.println("reqDTOs = " + reqDTOs);
         surveyService.update(id, reqDTOs);
         return "redirect:/admin/surveys";
     }
@@ -79,7 +73,6 @@ public class AdminSurveyController {
     @GetMapping("/admin/surveys")
     public String surveys(HttpServletRequest request) {
         List<AdminSurveyResponse.SurveysDTO> respDTO = surveyService.findWithQuestionCount();
-        System.out.println("respDTO = " + respDTO);
         request.setAttribute("surveys", respDTO);
         return "survey/survey";
     }

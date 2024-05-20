@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println("preHandle............");
+//        System.out.println("preHandle............");
 
 //        String requestURI = request.getRequestURI();
 //        if ("/login".equals(requestURI)) {

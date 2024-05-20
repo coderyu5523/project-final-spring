@@ -76,7 +76,6 @@ public class SurveyService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SurveyRequest.SaveDTO saveSurveyDTO = new SurveyRequest.SaveDTO(reqDTOs.getTitle(), timestamp);
         Survey survey = surveyJPARepository.save(saveSurveyDTO.toEntity());
-        System.out.println("survey = " + survey);
 
         //설문지 질문 저장
         for (int i = 0; i < reqDTOs.getQuestionElements().size(); i++) {
@@ -98,7 +97,6 @@ public class SurveyService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Survey survey = surveyJPARepository.findById(id).orElseThrow(() -> new Exception404("해당 설문조사를 찾을 수 없습니다"));
         survey.update(reqDTOs.getTitle(), reqDTOs.getStatus(),timestamp);
-        System.out.println("survey = " + survey);
 
         questionChoiceJPARepository.deleteBySurveyId(survey.getId());
         surveyQuestionJPARepository.deleteBySurveyId(survey.getId());
