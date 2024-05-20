@@ -80,7 +80,7 @@ public class UserService {
 
         // 이미지에 UUID 붙힘
         String imgUUID = ImageUtil.decodeAsUUID(reqDTO.getUserImg());
-        user.setUserImg(imgUUID);
+        user.setUserImg("/upload/" + imgUUID);
 
         return new UserResponse.ImgUpdateDTO(user.getId(), imgUUID);
     }
