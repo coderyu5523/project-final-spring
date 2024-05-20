@@ -96,7 +96,7 @@ public class FoodService {
         Page<Food> foods = foodJPARepository.findAllKeyword(keyword, pageable);
 
         if(foods.isEmpty()) {
-            throw new Exception404("음식을 찾을 수 없어요.");
+            throw new Exception404("검색하신 음식을 찾을 수 없어요.");
         }
 
         return new FoodResponse.FoodListDTO(foods);

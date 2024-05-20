@@ -29,8 +29,6 @@ public class ChoiceAnswerControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
 
-    @Autowired
-    private MockMvc mvc;
 
     private static String jwt;
     

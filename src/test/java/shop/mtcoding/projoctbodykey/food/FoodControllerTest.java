@@ -38,7 +38,7 @@ public class FoodControllerTest extends MyRestDoc {
     }
 
     @Test
-    public void foods_page_success_test() throws Exception {
+    public void foods_page_test() throws Exception {
         // given
         Integer page = 1;
 
@@ -68,7 +68,7 @@ public class FoodControllerTest extends MyRestDoc {
     }
 
     @Test
-    public void foods_success_test() throws Exception {
+    public void foods_test() throws Exception {
         // given
 
         // when
@@ -78,8 +78,8 @@ public class FoodControllerTest extends MyRestDoc {
         );
 
         // eye
-        String respBody = actions.andReturn().getResponse().getContentAsString();
-        System.out.println("respBody : " + respBody);
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        System.out.println("respBody : " + respBody);
 
         // then
         actions.andExpect(jsonPath("$.status").value(200));
@@ -127,7 +127,7 @@ public class FoodControllerTest extends MyRestDoc {
     }
 
     @Test
-    public void foods_fail_success_test() throws Exception {
+    public void foods_keyword_fail_success_test() throws Exception {
         // given
         String keyword = "123456789";
 
@@ -143,7 +143,7 @@ public class FoodControllerTest extends MyRestDoc {
 
         // then
         actions.andExpect(jsonPath("$.status").value(404));
-        actions.andExpect(jsonPath("$.msg").value("음식을 찾을 수 없어요."));
+        actions.andExpect(jsonPath("$.msg").value("검색하신 음식을 찾을 수 없어요."));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }

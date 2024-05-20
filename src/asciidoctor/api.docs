@@ -7,8 +7,11 @@ ifndef::snippets[]
 endif::[]
 
 :user: user-controller-test
-:board: board-controller-test
-:reply: reply-controller-test
+:activity: activity-controller-test
+:attend-challenge: attend-challenge-controller-test
+:body-data: body-data-controller-test
+:challenge: challenge-controller-test
+:food: food-controller-test
 
 :toc: left
 :toclevels: 2
@@ -19,44 +22,369 @@ endif::[]
 === 회원가입
 
 ==== 요청 예시
-include::{snippets}/{user}/join_test/http-request.adoc[]
+include::{snippets}/{user}/join_success_test/http-request.adoc[]
 
 ==== 응답 예시
-include::{snippets}/{user}/join_test/http-response.adoc[]
+include::{snippets}/{user}/join_success_test/http-response.adoc[]
 
-=== 회원가입 유저네임 중복체크
+=== 회원가입 실패 (휴대폰 번호)
 
 ==== 요청 예시
-include::{snippets}/{user}/join_username_same_fail_test/http-request.adoc[]
+include::{snippets}/{user}/join_fail_test/http-request.adoc[]
 
 ==== 응답 예시
-include::{snippets}/{user}/join_username_same_fail_test/http-response.adoc[]
+include::{snippets}/{user}/join_fail_test/http-response.adoc[]
 
-== 게시글
-
-=== 게시글 상세보기
+=== 로그인
 
 ==== 요청 예시
-include::{snippets}/{board}/detail_fait_test/http-request.adoc[]
+include::{snippets}/{user}/login_success_test/http-request.adoc[]
 
 ==== 응답 예시
-include::{snippets}/{board}/detail_fait_test/http-response.adoc[]
+include::{snippets}/{user}/login_success_test/http-response.adoc[]
 
-=== 게시글 한건보기
+=== 로그인 실패
 
 ==== 요청 예시
-include::{snippets}/{board}/find-one_fail_test/http-request.adoc[]
+include::{snippets}/{user}/login_fail_test/http-request.adoc[]
 
 ==== 응답 예시
-include::{snippets}/{board}/find-one_fail_test/http-response.adoc[]
+include::{snippets}/{user}/login_fail_test/http-response.adoc[]
 
-
-== 댓글
-
-=== 댓글 쓰기
+=== 마이페이지
 
 ==== 요청 예시
-include::{snippets}/{reply}/save_suc_test/http-request.adoc[]
+include::{snippets}/{user}/my-page_test/http-request.adoc[]
 
 ==== 응답 예시
-include::{snippets}/{reply}/save_suc_test/http-response.adoc[]
+include::{snippets}/{user}/my-page_test/http-response.adoc[]
+
+=== 사용자 정보 수정 화면
+
+==== 요청 예시
+include::{snippets}/{user}/update-form_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/update-form_test/http-response.adoc[]
+
+=== 사용자 정보 수정
+
+==== 요청 예시
+include::{snippets}/{user}/update-success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/update-success_test/http-response.adoc[]
+
+=== 사용자 정보 수정 실패
+
+==== 요청 예시
+include::{snippets}/{user}/update-fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/update-fail_test/http-response.adoc[]
+
+=== 사용자 정보 수정 실패
+
+==== 요청 예시
+include::{snippets}/{user}/update-fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/update-fail_test/http-response.adoc[]
+
+=== 사용자 프로필 사진 수정
+
+==== 요청 예시
+include::{snippets}/{user}/img-update_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/img-update_test/http-response.adoc[]
+
+=== 메인페이지
+
+==== 요청 예시
+include::{snippets}/{user}/main-page_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/main-page_test/http-response.adoc[]
+
+=== 사용자 지방량 날짜별 데이터
+
+==== 요청 예시
+include::{snippets}/{user}/my-change-fat_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/my-change-fat_test/http-response.adoc[]
+
+=== 사용자 근육량 날짜별 데이터
+
+==== 요청 예시
+include::{snippets}/{user}/my-change-muscle_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/my-change-muscle_test/http-response.adoc[]
+
+=== 사용자 체중 날짜별 데이터
+
+==== 요청 예시
+include::{snippets}/{user}/my-change-weight_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/my-change-weight_test/http-response.adoc[]
+
+=== 목표 지방량 설정
+
+==== 요청 예시
+include::{snippets}/{user}/goal-fat-update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/goal-fat-update_success_test/http-response.adoc[]
+
+=== 목표 지방량 설정 실패
+
+==== 요청 예시
+include::{snippets}/{user}/goal-fat-update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/goal-fat-update_fail_test/http-response.adoc[]
+
+=== 목표 근육량 설정
+
+==== 요청 예시
+include::{snippets}/{user}/goal-muscle-update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/goal-muscle-update_success_test/http-response.adoc[]
+
+=== 목표 근육량 설정 실패
+
+==== 요청 예시
+include::{snippets}/{user}/goal-muscle-update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/goal-muscle-update_fail_test/http-response.adoc[]
+
+=== 목표 체중 설정
+
+==== 요청 예시
+include::{snippets}/{user}/goal-weight-update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/goal-weight-update_success_test/http-response.adoc[]
+
+=== 목표 체중 설정 실패
+
+==== 요청 예시
+include::{snippets}/{user}/goal-weight-update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{user}/goal-weight-update_fail_test/http-response.adoc[]
+
+== 활동
+
+=== 활동 날짜별 상세보기
+
+==== 요청 예시
+include::{snippets}/{activity}/activitys-body-date_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/activitys-body-date_test/http-response.adoc[]
+
+=== 나의 활동
+
+==== 요청 예시
+include::{snippets}/{activity}/activitys-date_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/activitys-date_test/http-response.adoc[]
+
+=== 물, 걸음수 수정
+
+==== 요청 예시
+include::{snippets}/{activity}/update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/update_success_test/http-response.adoc[]
+
+=== 물, 걸음수 실패
+
+==== 요청 예시
+include::{snippets}/{activity}/update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/update_fail_test/http-response.adoc[]
+
+=== 걸음수 수정
+
+==== 요청 예시
+include::{snippets}/{activity}/walking-update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/walking-update_success_test/http-response.adoc[]
+
+=== 걸음수 수정 실패
+
+==== 요청 예시
+include::{snippets}/{activity}/walking-update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/walking-update_fail_test/http-response.adoc[]
+
+=== 걸음수 상세보기
+
+==== 요청 예시
+include::{snippets}/{activity}/walking-detail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/walking-detail_test/http-response.adoc[]
+
+=== 마신 물양 수정
+
+==== 요청 예시
+include::{snippets}/{activity}/water-update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/water-update_success_test/http-response.adoc[]
+
+=== 마신 물양 수정 실패
+
+==== 요청 예시
+include::{snippets}/{activity}/water-update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}/water-update_fail_test/http-response.adoc[]
+
+=== 마신 물양 상세보기
+
+==== 요청 예시
+include::{snippets}/{activity}/water-detail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{activity}water-detail_test/http-response.adoc[]
+
+== 챌린지 진행관련
+
+=== 챌린지 진행 세이브
+
+==== 요청 예시
+include::{snippets}/{attend-challenge}/save-success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{attend-challenge}/save-success_test/http-response.adoc[]
+
+=== 챌린지 진행 세이브 실패
+
+==== 요청 예시
+include::{snippets}/{attend-challenge}/save-fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{attend-challenge}/save-fail_test/http-response.adoc[]
+
+=== 챌린지 진행 완료 수정
+
+==== 요청 예시
+include::{snippets}/{attend-challenge}/status-update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{attend-challenge}/status-update_success_test/http-response.adoc[]
+
+=== 챌린지 진행 완료 수정 실패
+
+==== 요청 예시
+include::{snippets}/{attend-challenge}/status-update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{attend-challenge}/status-update_fail_test/http-response.adoc[]
+
+== 바디 데이터
+
+=== 바디 데이터 수정
+
+==== 요청 예시
+include::{snippets}/{body-data}/update_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/update_success_test/http-response.adoc[]
+
+=== 바디 데이터 수정 실패
+
+==== 요청 예시
+include::{snippets}/{body-data}/update_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/update_fail_test/http-response.adoc[]
+
+== 챌린지
+
+=== 챌린지 디테일
+
+==== 요청 예시
+include::{snippets}/{challenge}/challenge-detail_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/challenge-detail_success_test/http-response.adoc[]
+
+=== 챌린지 디테일 찾기 실패
+
+==== 요청 예시
+include::{snippets}/{challenge}/challenge-detail_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/challenge-detail_fail_test/http-response.adoc[]
+
+=== 챌린지 화면 메인 페이지
+
+==== 요청 예시
+include::{snippets}/{challenge}/challenges_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/challenges_test/http-response.adoc[]
+
+=== 진행중인 챌린지 찾기
+
+==== 요청 예시
+include::{snippets}/{challenge}/ongoing-challenge_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/ongoing-challenge_success_test/http-response.adoc[]
+
+=== 진행중인 챌린지 찾기 실패
+
+==== 요청 예시
+include::{snippets}/{challenge}/ongoing-challenge_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/ongoing-challenge_fail_test/http-response.adoc[]
+
+== 음식
+
+=== 음식 리스트
+
+==== 요청 예시
+include::{snippets}/{food}/foods_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/foods_test/http-response.adoc[]
+
+=== 음식 검색하여 찾기
+
+==== 요청 예시
+include::{snippets}/{food}/foods_keyword_success_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/foods_keyword_success_test/http-response.adoc[]
+
+=== 음식 검색하여 찾기 실패
+
+==== 요청 예시
+include::{snippets}/{food}/foods_keyword_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/foods_keyword_fail_test/http-response.adoc[]
+
+=== 음식 리스트 페이징
+
+==== 요청 예시
+include::{snippets}/{food}/foods_page_fail_test/http-request.adoc[]
+
+==== 응답 예시
+include::{snippets}/{body-data}/foods_page_fail_test/http-response.adoc[]
