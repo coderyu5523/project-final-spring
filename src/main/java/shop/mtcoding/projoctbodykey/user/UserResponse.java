@@ -60,11 +60,7 @@ public class UserResponse {
                 this.muscle = bodyData.getMuscle();
                 this.weight = bodyData.getWeight();
                 this.conqueredChallenge = conqueredChallenge.stream().map(partChallenge -> new ConqueredChallengeDTO(partChallenge, (String) partChallenge[4])).toList();
-                try {
-                    this.userImg = ImageUtil.encode(user.getUserImg());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                this.userImg = user.getUserImg();
             } else {
                 this.fat = 0.0d;
                 this.muscle = 0.0d;

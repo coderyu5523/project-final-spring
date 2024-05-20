@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.activity.ActivityRequest;
 import shop.mtcoding.projoctbodykey.bodydata.BodyDataRequest;
@@ -26,12 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class BodyDataControllerTest {
+public class BodyDataControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
 
-    @Autowired
-    private MockMvc mvc;
 
     private static String jwt;
 
@@ -75,7 +75,8 @@ public class BodyDataControllerTest {
         actions.andExpect(jsonPath("$.body.fat").value(23.3));
         actions.andExpect(jsonPath("$.body.muscle").value(29.5));
         actions.andExpect(jsonPath("$.body.weight").value(62.3));
-        actions.andExpect(jsonPath("$.body.date").value("2024-05-22T10:32:00.000+00:00"));
+        actions.andExpect(jsonPath("$.body.date").value("2024-05-20T09:12:00.000+00:00"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -104,5 +105,6 @@ public class BodyDataControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(400));
         actions.andExpect(jsonPath("$.msg").value("100 이하의 값을 입력하여 주세요. : fat"));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }

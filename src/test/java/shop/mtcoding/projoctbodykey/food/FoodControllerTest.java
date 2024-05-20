@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
 import shop.mtcoding.projoctbodykey.user.User;
 
@@ -18,12 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class FoodControllerTest {
+public class FoodControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
-
-    @Autowired
-    private MockMvc mvc;
 
     private static String jwt;
     private static String jwt5;
@@ -65,6 +64,7 @@ public class FoodControllerTest {
         actions.andExpect(jsonPath("$.body.foodContentList[0].fat").value(1.4));
         actions.andExpect(jsonPath("$.body.foodContentList[0].kcal").value(135.0));
         actions.andExpect(jsonPath("$.body.foodContentList[0].gram").value(100));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -93,6 +93,7 @@ public class FoodControllerTest {
         actions.andExpect(jsonPath("$.body.foodContentList[0].fat").value(0.33));
         actions.andExpect(jsonPath("$.body.foodContentList[0].kcal").value(88.0));
         actions.andExpect(jsonPath("$.body.foodContentList[0].gram").value(100));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -122,6 +123,7 @@ public class FoodControllerTest {
         actions.andExpect(jsonPath("$.body.foodContentList[0].fat").value(2.4));
         actions.andExpect(jsonPath("$.body.foodContentList[0].kcal").value(120.0));
         actions.andExpect(jsonPath("$.body.foodContentList[0].gram").value(100));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -142,5 +144,6 @@ public class FoodControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(404));
         actions.andExpect(jsonPath("$.msg").value("음식을 찾을 수 없어요."));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }

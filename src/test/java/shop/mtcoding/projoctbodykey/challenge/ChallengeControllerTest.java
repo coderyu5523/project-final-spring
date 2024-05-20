@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import shop.mtcoding.projoctbodykey.MyRestDoc;
 import shop.mtcoding.projoctbodykey._config.Base64Validator;
 import shop.mtcoding.projoctbodykey._core.utils.ImageUtil;
 import shop.mtcoding.projoctbodykey._core.utils.JwtUtil;
@@ -23,12 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class ChallengeControllerTest {
+public class ChallengeControllerTest extends MyRestDoc {
 
     private ObjectMapper om = new ObjectMapper();
 
-    @Autowired
-    private MockMvc mvc;
 
     private static String jwt;
     private static String jwt5;
@@ -72,6 +72,7 @@ public class ChallengeControllerTest {
         actions.andExpect(jsonPath("$.body.subtitle").value("알프스-오스트리아 3,798.0m(약 1.2천층 올라감)"));
         actions.andExpect(jsonPath("$.body.total_walking").value(8303));
         actions.andExpect(jsonPath("$.body.walking").value(100000));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -128,6 +129,7 @@ public class ChallengeControllerTest {
         actions.andExpect(jsonPath("$.body.pastChallenges[0].distance").value("53K"));
         actions.andExpect(jsonPath("$.body.pastChallenges[0].status").value(true));
         actions.andExpect(jsonPath("$.body.pastChallenges[0].badgeImg").value(ImageUtil.encode("270f40f2-683f-4a9a-be40-764e377847c6_chilkoot.png")));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -156,6 +158,7 @@ public class ChallengeControllerTest {
         actions.andExpect(jsonPath("$.body.state").value(false));
         actions.andExpect(jsonPath("$.body.coin").value(2));
         actions.andExpect(jsonPath("$.body.backgroundImg").value(ImageUtil.encode("ab9dde60-6ce4-41f9-a848-aced82c5d38c_basecampEV.png")));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
     @Test
@@ -176,5 +179,6 @@ public class ChallengeControllerTest {
         // then
         actions.andExpect(jsonPath("$.status").value(404));
         actions.andExpect(jsonPath("$.msg").value("해당 챌린지를 찾을 수 없습니다."));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 }
