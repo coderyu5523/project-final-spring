@@ -51,7 +51,7 @@ public class ChallengeControllerTest extends MyRestDoc {
     }
 
     @Test
-    public void ongoingChallenge_suc_test() throws Exception {
+    public void ongoingChallenge_success_test() throws Exception {
         // given
 
         // when
@@ -95,7 +95,7 @@ public class ChallengeControllerTest extends MyRestDoc {
     }
 
     @Test
-    public void challenges_success_test() throws Exception {
+    public void challenges_test() throws Exception {
         // given
         Boolean st = null;
         // when

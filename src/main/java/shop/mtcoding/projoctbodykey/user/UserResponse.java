@@ -103,15 +103,7 @@ public class UserResponse {
             this.name = user.getName();
             this.phone = user.getPhone();
             this.height = user.getHeight();
-            if (user.getUserImg() != null) {
-                try {
-                    this.userImg = ImageUtil.encode(user.getUserImg());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                this.userImg = null;
-            }
+            this.userImg = user.getUserImg();
         }
     }
 
@@ -138,11 +130,6 @@ public class UserResponse {
         public ImgUpdateDTO(Integer userId, String userImg) {
             this.id = userId;
             this.userImg = userImg;
-                try {
-                    this.userImg = ImageUtil.encode(userImg);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
         }
     }
 
