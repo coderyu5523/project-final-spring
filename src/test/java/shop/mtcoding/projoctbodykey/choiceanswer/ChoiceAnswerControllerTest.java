@@ -54,7 +54,7 @@ public class ChoiceAnswerControllerTest {
 
         // when
         ResultActions actions = mvc.perform(
-                post("/api/survey/8")
+                post("/api/survey/1")
                         .header("Authorization", "Bearer " + jwt)
                         .content(reqBody)
                         .contentType(MediaType.APPLICATION_JSON)
