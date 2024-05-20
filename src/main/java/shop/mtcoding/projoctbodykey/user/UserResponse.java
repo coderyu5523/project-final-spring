@@ -129,7 +129,7 @@ public class UserResponse {
 
         public ImgUpdateDTO(Integer userId, String userImg) {
             this.id = userId;
-            this.userImg = userImg;
+            this.userImg = "/upload/" + userImg;
         }
     }
 
