@@ -13,7 +13,6 @@ public interface ChoiceAnswerJPARepository extends JpaRepository<ChoiceAnswer, I
     @Query("select new shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest$ChoiceCountDTO(ca.questionChoice.id, COUNT(ca.questionChoice.id)) FROM ChoiceAnswer ca WHERE ca.surveyQuestion.id = :questionId GROUP BY ca.questionChoice.id")
     List<AdminSurveyRequest.ChoiceCountDTO> findWithChoiceCount(@Param("questionId") Integer surveyId);
 
-    @Query("SELECT new shop.mtcoding.projoctbodykey.admin.survey.AdminSurveyRequest$UserStatsDTO(s.id, s.title, COUNT(DISTINCT ca.user.id)) FROM ChoiceAnswer ca right JOIN  ca.survey s GROUP BY s.id")
-    List<AdminSurveyRequest.UserStatsDTO> findWithChoiceCount();
+
 
 }
