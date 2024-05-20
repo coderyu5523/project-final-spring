@@ -56,7 +56,7 @@ public class SurveyControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.[0].id").value(1));
         actions.andExpect(jsonPath("$.body.[0].title").value("설문조사1"));
-        actions.andExpect(jsonPath("$.body.[0].isAttend").value("참여가능"));
+        actions.andExpect(jsonPath("$.body.[0].isAttend").value("참여완료"));
         actions.andExpect(jsonPath("$.body.[0].progress").value("진행중"));
         actions.andExpect(jsonPath("$.body.[0].questionCount").value(19));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);

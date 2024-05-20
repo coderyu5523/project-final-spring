@@ -68,12 +68,12 @@ public class MealControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.mealList[0].mealId").value("1"));
         actions.andExpect(jsonPath("$.body.mealList[0].mealImg").value("이미지"));
         actions.andExpect(jsonPath("$.body.mealList[0].eatTime").value("아침"));
-        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].foodId").value(1));
-        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].foodName").value("바나나"));
-        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].carbo").value(22.84));
-        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].protein").value(1.09));
-        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].fat").value(0.33));
-        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].kcal").value(88.0));
+        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].foodId").value(30));
+        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].foodName").value("닭가슴살 샐러드"));
+        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].carbo").value(5.0));
+        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].protein").value(20.0));
+        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].fat").value(3.0));
+        actions.andExpect(jsonPath("$.body.mealList[0].foods[0].kcal").value(150.0));
         actions.andExpect(jsonPath("$.body.mealList[0].foods[0].gram").value(100));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
@@ -109,7 +109,7 @@ public class MealControllerTest extends MyRestDoc {
         // then
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
-        actions.andExpect(jsonPath("$.body.mealId").value(4));
+        actions.andExpect(jsonPath("$.body.mealId").value(14));
         actions.andExpect(jsonPath("$.body.mealImg").value("이미지"));
         actions.andExpect(jsonPath("$.body.foods[0].foodId").value(1));
         actions.andExpect(jsonPath("$.body.foods[0].foodQuantity").value(5));
