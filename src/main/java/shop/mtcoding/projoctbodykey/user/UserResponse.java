@@ -81,11 +81,7 @@ public class UserResponse {
                 this.challengeName = (String) conqueredChallenge[1];
                 this.distance = (String) conqueredChallenge[2];
                 this.status = (Boolean) conqueredChallenge[3];
-                try {
-                    this.badgeImg = ImageUtil.encode(badgeImg);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                this.badgeImg = badgeImg;
             }
         }
     }

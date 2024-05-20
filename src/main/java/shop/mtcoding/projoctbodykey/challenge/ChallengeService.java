@@ -59,9 +59,8 @@ public class ChallengeService {
 
         Boolean attendChallenge = attendChallengeJPARepository.findByChallengeIdAndUserId(sessionUser.getId(), id);
 
-        String backgroundImg = ImageUtil.encode(challenge.getBackgroundImg());
 
-        return new ChallengeResponse.DetailDTO(attendChallenge, backgroundImg, challenge);
+        return new ChallengeResponse.DetailDTO(attendChallenge, challenge);
     }
 
     // 검색 없는 관리자 페이지 챌린지 리스트

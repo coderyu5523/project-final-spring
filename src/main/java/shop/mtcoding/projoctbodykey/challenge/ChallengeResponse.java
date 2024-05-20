@@ -55,11 +55,7 @@ public class ChallengeResponse {
             this.coin = (Integer) ongoingChallenges[4];
             this.walking = (Integer) ongoingChallenges[6];
             this.totalWalking = (Integer) ongoingChallenges[7];
-            try {
-                this.backImg = ImageUtil.encode((String) ongoingChallenges[5]);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.backImg = (String) ongoingChallenges[5];
             this.upcomingChallenges = upcomingChallenges.stream().map(ongoingChallenge -> new UpcomingChallengesDTO(ongoingChallenge, (String) ongoingChallenge[3])).toList();
             this.pastChallenges = pastChallenges.stream().map(partChallenge -> new PastChallengesDTO(partChallenge, (String) partChallenge[3])).toList();
         }
@@ -81,11 +77,7 @@ public class ChallengeResponse {
                 this.id = (Integer) upcomingChallenge[0];
                 this.challengeName = (String) upcomingChallenge[1];
                 this.distance = (String) upcomingChallenge[2];
-                try {
-                    this.badgeImg = ImageUtil.encode(badgeImg);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                this.badgeImg = badgeImg;
                 this.status = (Boolean) upcomingChallenge[4];
             }
         }
@@ -102,11 +94,7 @@ public class ChallengeResponse {
                 this.id = (Integer) pastChallenges[0];
                 this.challengeName = (String) pastChallenges[1];
                 this.distance = (String) pastChallenges[2];
-                try {
-                    this.badgeImg = ImageUtil.encode(badgeImg);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                this.badgeImg = badgeImg;
                 this.status = (Boolean) pastChallenges[4];
             }
         }
@@ -125,11 +113,7 @@ public class ChallengeResponse {
             this.status = status;
             this.challengeName = (String) upcomingChallenge[2];
             this.distance = (String) upcomingChallenge[3];
-            try {
-                this.badgeImg = ImageUtil.encode((String) upcomingChallenge[4]);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.badgeImg = (String) upcomingChallenge[4];
         }
     }
 
@@ -149,7 +133,7 @@ public class ChallengeResponse {
         private String backgroundImg;// 챌린지 배경사진
 
         @Builder
-        public DetailDTO(Boolean state, String backgroundImg, Challenge challenge) {
+        public DetailDTO(Boolean state, Challenge challenge) {
             this.id = challenge.getId();
             this.challengeName = challenge.getChallengeName();
             this.subTitle = challenge.getSubTitle();
@@ -161,7 +145,7 @@ public class ChallengeResponse {
             this.coin = challenge.getCoin();
 //            this.period = challenge.getPeriod();
 //            this.createdAt = challenge.getCreatedAt();
-            this.backgroundImg = backgroundImg;
+            this.backgroundImg = challenge.getBackgroundImg();
         }
     }
 
