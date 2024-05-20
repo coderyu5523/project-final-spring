@@ -82,7 +82,7 @@ public class UserService {
         String imgUUID = ImageUtil.decodeAsUUID(reqDTO.getUserImg());
         user.setUserImg("/upload/" + imgUUID);
 
-        return new UserResponse.ImgUpdateDTO(user.getId(), imgUUID);
+        return new UserResponse.ImgUpdateDTO(user.getId(), user.getUserImg());
     }
 
     @Transactional

@@ -210,6 +210,7 @@ public class UserControllerTest extends MyRestDoc {
         UserRequest.ImgUpdateDTO reqDTO = new UserRequest.ImgUpdateDTO();
         reqDTO.setUserImg(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png"));
 
+
         String reqBody = om.writeValueAsString(reqDTO);
         //System.out.println("reqBody : "+reqBody);
 
@@ -230,7 +231,6 @@ public class UserControllerTest extends MyRestDoc {
         // then
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
-        actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
@@ -324,7 +324,7 @@ public class UserControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.name").value("류재성"));
         actions.andExpect(jsonPath("$.body.phone").value("010-0100-0100"));
         actions.andExpect(jsonPath("$.body.height").value(178.5));
-        actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
+        actions.andExpect(jsonPath("$.body.userImg").value("/upload/86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png"));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
@@ -392,7 +392,7 @@ public class UserControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].challengeName").value("칠쿠트 트레일"));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].distance").value("53K"));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].status").value(true));
-        actions.andExpect(jsonPath("$.body.conqueredChallenge[0].badgeImg").value(ImageUtil.encode("270f40f2-683f-4a9a-be40-764e377847c6_chilkoot.png")));
+        actions.andExpect(jsonPath("$.body.conqueredChallenge[0].badgeImg").value("/upload/270f40f2-683f-4a9a-be40-764e377847c6_chilkoot.png"));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 

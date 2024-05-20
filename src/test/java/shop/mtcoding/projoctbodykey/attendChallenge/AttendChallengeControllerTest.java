@@ -84,7 +84,7 @@ public class AttendChallengeControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.body.status").value(st))
                 .andExpect(jsonPath("$.body.challengeName").value("그로스글로크너"))
                 .andExpect(jsonPath("$.body.distance").value("3798m"))
-                .andExpect(jsonPath("$.body.badgeImg").value(ImageUtil.encode("c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png")))
+                .andExpect(jsonPath("$.body.badgeImg").value("/upload/c6d37c1b-a37b-45a6-a170-5254a68970de_grossglock.png"))
                 .andDo(MockMvcResultHandlers.print()).andDo(document);
 
     }
