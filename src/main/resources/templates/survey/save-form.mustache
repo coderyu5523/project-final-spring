@@ -41,7 +41,7 @@
                 <div class="d-flex justify-content-center mx-2 pb-4 w-100">
                     <div class="border border-tertiary p-5 w-100">
                         <h4><label for="question">설문지 제목 입력하기</label></h4>
-                        <input class="form-control Survey" type="text" placeholder="설문지 제목" required>
+                        <input class="form-control title" type="text" placeholder="설문지 제목" required>
                     </div>
                 </div>
             </div>
@@ -61,8 +61,9 @@
 
 <script>
     function saveElement() {
+        let title = $(".title:first").val();
         let questionElements = [];
-        let items = $("#element-input-box .question-element-item");
+        let items = $(".question-element-item");
         items.each(function (index, element) {
             let question = $(element).find(".question:first").val();
             let choices = [];
@@ -78,12 +79,17 @@
             questionElements.push(questionElement);
         });
 
-        console.log(questionElements);
+        let requestData = {
+            title: title,
+            questionElements: questionElements
+        }
+
+        console.log(requestData);
 
         $.ajax({
             url: `/admin/surveys/save`,
             method: "post",
-            data: JSON.stringify(questionElements),
+            data: JSON.stringify(requestData),
             contentType: "application/json; charset=utf-8"
         }).done((res) => {
             location.href = `/admin/surveys`;
