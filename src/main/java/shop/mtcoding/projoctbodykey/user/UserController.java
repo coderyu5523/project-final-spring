@@ -52,6 +52,8 @@ public class UserController {
         SessionUser user = (SessionUser) session.getAttribute("sessionUser");
         UserResponse.MyPageDTO respDTO = userService.myPage(user);
 
+        System.out.println("respDTO = " + respDTO.getUserImg());
+
         return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
