@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class MealControllerTest {
+public class SurveyControllerTest {
 
     private ObjectMapper om = new ObjectMapper();
 

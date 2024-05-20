@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc // MockMvc IoC 로드
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 모든 빈 IoC 로드
-public class SurveyControllerTest {
+public class mealControllerTest {
 
     private ObjectMapper om = new ObjectMapper();
 
@@ -38,7 +38,7 @@ public class SurveyControllerTest {
     }
     
     @Test
-    public void mealList_test() throws Exception {
+    public void walkList_test() throws Exception {
         // given
         
         
