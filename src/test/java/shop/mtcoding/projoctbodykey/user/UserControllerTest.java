@@ -387,7 +387,7 @@ public class UserControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.fat").value(21.3d));
         actions.andExpect(jsonPath("$.body.muscle").value(21.5d));
         actions.andExpect(jsonPath("$.body.weight").value(76.3));
-        actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
+        actions.andExpect(jsonPath("$.body.userImg").value(ImageUtil.encode("/upload/86d1375a-9cc3-47bc-a1a0-6561c01fa2e4_saram1.png")));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].id").value(3));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].challengeName").value("칠쿠트 트레일"));
         actions.andExpect(jsonPath("$.body.conqueredChallenge[0].distance").value("53K"));
