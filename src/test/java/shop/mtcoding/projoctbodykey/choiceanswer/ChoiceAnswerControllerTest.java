@@ -75,7 +75,7 @@ public class ChoiceAnswerControllerTest extends MyRestDoc {
     }
 
     @Test
-    public void save_not_exist_survey_fail_test() throws Exception {
+    public void save_fail_test() throws Exception {
         // given
         List<ChoiceAnswerRequest.AnswerDTO> reqDTO =new ArrayList<>();
         ChoiceAnswerRequest.AnswerDTO answer = new ChoiceAnswerRequest.AnswerDTO(1, 2);
