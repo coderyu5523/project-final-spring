@@ -9,12 +9,8 @@
             <div class="mt-5" style="width: 1200px; justify-content: center;">
                 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
                     <div style="width: 70%">
-                        <h3 class="text-center">설문자 참여 현황</h3>
-                        <canvas id="bar-chart" width="300" height="100"></canvas>
-                    </div>
-                    <div style="width: 70%">
-                        <h3 class="text-center">설문자 참여 현황</h3>
-                        <canvas id="bar-chart" width="300" height="100"></canvas>
+                        <h3 class="text-center">설문자 참여 현황 </h3>
+                        <canvas id="bar-chart" width="200" height="100"></canvas>
                     </div>
                 </div>
                 <div class="container p-5">
@@ -69,17 +65,23 @@
             labels: [{{#stats.charts}}"{{surveyTitle}}"{{^@last}},{{/@last}}{{/stats.charts}}],
             datasets: [
                 {
-                    label: "Population (millions)",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c45850", "#c45850", "#c45850"],
+                    label: "Population",
+                    backgroundColor: ["#84e388", "#deb9e8", "#80b8dc", "#efe89b", "#c45850", "#c45850", "#c45850", "#c45850"],
                     data: [{{#stats.charts}}{{count}}{{^@last}},{{/@last}}{{/stats.charts}}]
                 }
             ]
         },
         options: {
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.5, // 막대의 폭을 조절 (0.0 - 1.0)
+                    categoryPercentage: 0.5 // 카테고리 내 막대 그룹의 폭을 조절 (0.0 - 1.0)
+                }]
+            },
             legend: {display: false},
             title: {
                 display: true,
-                text: 'Predicted world population (millions) in 2050'
+                text: '설문 참가자 수'
             }
         }
     });

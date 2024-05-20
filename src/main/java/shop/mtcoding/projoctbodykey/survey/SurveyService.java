@@ -126,7 +126,7 @@ public class SurveyService {
 
     public AdminSurveyResponse.statsDTO chartList() {
         List<AdminSurveyRequest.SurveyAndQuestionCount> surveys = surveyJPARepository.findWithQuestionCount();
-        List<AdminSurveyRequest.UserStatsDTO> userStats=choiceAnswerJPARepository.findWithChoiceCount();
+        List<AdminSurveyRequest.UserStatsDTO> userStats=doSurveyJPARepository.findWithChoiceCount();
         AdminSurveyResponse.statsDTO stats=new AdminSurveyResponse.statsDTO(
                 surveys.stream().map(AdminSurveyResponse.statsDTO.SurveysDTO::new).toList(),
                 userStats.stream().map(AdminSurveyResponse.statsDTO.ChartDTO::new).toList());
