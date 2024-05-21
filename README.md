@@ -23,10 +23,28 @@ https://github.com/coderyu5523/project-final-flutter
 |                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/153602328?v=4" alt="profile" width="100" height="100"> | [@coderyu5523](https://github.com/coderyu5523) |
 
 ### Back-End
-|                     이름                     |                     프로필 사진                     |       GitHub 주소        |
-|:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
-|                     공지영                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@Kongjiyoung](https://github.com/Kongjiyoung)  |
-|                     김정수                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@zeeq123](https://github.com/zeeq123) |
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center;">이름</th>
+            <th style="text-align: center;">프로필 사진</th>
+            <th style="text-align: center;">GitHub 주소</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">공지영</td>
+            <td style="text-align: center;"><img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"></td>
+            <td style="text-align: center;"><a href="https://github.com/Kongjiyoung">@Kongjiyoung</a></td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">김정수</td>
+            <td style="text-align: center;"><img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"></td>
+            <td style="text-align: center;"><a href="https://github.com/zeeq123">@zeeq123</a></td>
+        </tr>
+    </tbody>
+</table>
+
 
 ### Front-End
 |                     이름                     |                     프로필 사진                     |       GitHub 주        |
