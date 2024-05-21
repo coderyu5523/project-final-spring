@@ -154,9 +154,10 @@ https://github.com/coderyu5523/project-final-flutter
 
 ## 류재성
 - 프로젝트 세팅
+- 테이블 설계
 
 ## 공지영
-- 테이블설계
+- 테이블 설계
 - 관리자 식단 insert
 - 관리자 식단 상세보기
 - 관리자 식단 수
@@ -172,7 +173,7 @@ https://github.com/coderyu5523/project-final-flutter
 - 통합 테스트
   
 ## 하승진
-- 테이블설계
+- 테이블 설계
 - 관리자 페이지 view
 - 관리자 챌린지 insert
 - 관리자 챌린지 상세보기
