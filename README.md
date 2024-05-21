@@ -152,6 +152,9 @@ https://github.com/coderyu5523/project-final-flutter
 
 # 4. 진행상황
 
+## 류재성
+- 프로젝트 세팅
+
 ## 공지영
 - 테이블설계
 - 관리자 식단 insert
