@@ -21,12 +21,12 @@ https://github.com/coderyu5523/project-final-flutter
 |                                                        류재성(팀장)                                                    |
 |:---------------------------------------------------------------------------------------------------------------------:|
 | <img src="https://ca.slack-edge.com/T06B351QHF0-U06JXGQ1DAN-c05d9be15921-512" alt="profile" width="100" height="100"> |
-|                                    [@donghunseol](https://github.com/donghunseol)                                     |
+|                                    [@donghunseol](https://github.com/coderyu5523)                                     |
 ### Front-End
 |                                                   공지영                                                  |                                                   김정수                                                 |
 |:--------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
 | <img src="https://avatars.githubusercontent.com/u/153582401?v=4" alt="profile" width="100" height="100"> | <img src="https://avatars.githubusercontent.com/u/153582240?v=4" alt="profile" width="100" height="100"> |
-|                                    [@vosw1](https://github.com/vosw1)                                    |                              [@dongkipark1](https://github.com/dongkipark1)                              |
+|                                    [@vosw1](https://github.com/vosw1)                                    |                              [@dongkipark1](https://github.com/zeeq123)                                  |
 ### Back-End
 |                                                   장유진                                                 |                                                     하승진                                               |
 |:-------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
