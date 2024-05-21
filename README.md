@@ -80,8 +80,8 @@ https://github.com/coderyu5523/project-final-flutter
   <td align=center>오늘 데이터 설정</td>
 </tr>
 <tr>
-  <td><img src=""  width="256" height="455"/></td>
-  <td><img src=""  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/282a7b02-628d-487f-88df-33685ca5e70a"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/6ab82f79-dc6c-4f76-b1f2-75c8e70fad50"  width="256" height="455"/></td>
 </tr>
 <tr>
   <td align=center>활동 페이지</td>
