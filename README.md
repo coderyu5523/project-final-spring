@@ -18,18 +18,18 @@ https://github.com/coderyu5523/project-final-flutter
 <br>
 
 ### Team-Leader
-|                                                         이름                                                        |                     프로필 사진                     |       GitHub 프로필        |
+|                                                         이름                                                        |                     프로필 사진                     |       GitHub 주소        |
 |:---------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
 |                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/153602328?v=4" alt="profile" width="100" height="100"> | [@coderyu5523](https://github.com/coderyu5523) |
 
 ### Back-End
-|                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
+|                     이름                     |                     프로필 사진                     |       GitHub 주소        |
 |:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
 |                     공지영                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@Kongjiyoung](https://github.com/Kongjiyoung)  |
 |                     김정수                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@zeeq123](https://github.com/zeeq123) |
 
 ### Front-End
-|                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
+|                     이름                     |                     프로필 사진                     |       GitHub 주        |
 |:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
 |                     장유진                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@hillview0303](https://github.com/hillview0303)  |
 |                     하승진                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@HaSenugJin](https://github.com/HaSenugJin)  |
@@ -88,7 +88,7 @@ https://github.com/coderyu5523/project-final-flutter
   <td align=center>걸음 상세보기</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/8b587185-da6d-44df-87b7-eaccb17b95f7"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/aa457bef-223e-41b5-8e3d-737b82406ffe"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/280f50c3-8782-469e-8cfe-21d11f1a9a8d"  width="256" height="455"/></td>
 </tr>
 <tr>
