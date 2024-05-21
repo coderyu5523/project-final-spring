@@ -115,13 +115,21 @@ https://github.com/coderyu5523/project-final-flutter
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/e178e6bd-2c43-4e4f-beea-3883c5df0688"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/f78002dd-8b38-49ab-a749-2ce694a0c4ef"  width="256" height="455"/></td>
 </tr>
-    <tr>
-  <td align=center>진행중인 챌린</td>
-  <td align=center>설문조사</td>
+<tr>
+  <td align=center>진행중인 챌린지</td>
+  <td align=center>설문조사 페이지</td>
 </tr>
 <tr>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/083a83a6-2fdf-448f-a6ad-bfa33f5e2b75"  width="256" height="455"/></td>
-  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/3b74fe91-8a25-451f-9e6a-072042bc9248"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/3e5959aa-e4df-4bdf-b45c-99d6ee4947ca"  width="256" height="455"/></td>
+</tr>
+<tr>
+  <td align=center>설문조사 작성중</td>
+  <td align=center>설문조사 완료</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/f986ded2-9567-4d68-9a36-23e23cab5115"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/56f72b12-9877-425c-8b60-c0ea33d03299"  width="256" height="455"/></td>
 </tr>
 </table>
 
