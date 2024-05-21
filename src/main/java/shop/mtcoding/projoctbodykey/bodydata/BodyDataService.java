@@ -12,6 +12,7 @@ import shop.mtcoding.projoctbodykey.user.UserJPARepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,9 +25,25 @@ public class BodyDataService {
     public BodyDataResponse.UpdateDTO update(SessionUser sessionUser, BodyDataRequest.UpdateDTO reqDTO) {
         BodyData bodyData = bodydataJPARepository.findByUserIdOrderDesc(sessionUser.getId());
 
+        // 현재 날짜와 시간을 가져옵니다.
+        LocalDateTime now = LocalDateTime.now();
+
+        // 시분초를 0으로 초기화합니다.
+        LocalDateTime startOfDay = now.withHour(0).withMinute(0).withSecond(0).withNano(0);
+
+        // 로컬 날짜와 시간을 타임스탬프로 변환합니다.
+        Timestamp timestamp = Timestamp.valueOf(startOfDay);
+
+        // UTC 기준의 Timestamp를 LocalDateTime으로 변환합니다.
+        LocalDateTime utcDateTime = timestamp.toLocalDateTime();
+
+        // LocalDateTime을 한국 표준시(KST)로 변환합니다.
+        LocalDateTime kstDateTime = utcDateTime.atZone(ZoneId.of("UTC")).withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+
         bodyData.setFat(reqDTO.getFat());
         bodyData.setMuscle(reqDTO.getMuscle());
         bodyData.setWeight(reqDTO.getWeight());
+        bodyData.setCreatedAt(Timestamp.valueOf(kstDateTime));
 
         return new BodyDataResponse.UpdateDTO(bodyData);
     }
@@ -63,6 +80,7 @@ public class BodyDataService {
                     newBodyData.setFat(bodyDataDesc.getFat());
                     newBodyData.setMuscle(bodyDataDesc.getMuscle());
                     newBodyData.setWeight(bodyDataDesc.getWeight());
+                    newBodyData.setCreatedAt(bodyDataDesc.getCreatedAt());
 
                     bodydataJPARepository.save(newBodyData);
                 }

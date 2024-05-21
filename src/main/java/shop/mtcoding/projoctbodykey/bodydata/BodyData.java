@@ -25,7 +25,7 @@ public class BodyData {
     private Double weight;
     private Double muscle;
     private Double fat;
-    @CreationTimestamp
+
     private Timestamp createdAt;
 
     @Builder
