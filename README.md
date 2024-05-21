@@ -16,23 +16,29 @@ https://github.com/coderyu5523/project-final-flutter
 ## 팀원 소개
 
 <br>
-# :아빠_엄마_딸_딸: 팀원 소개
-### Team-Leader
-|                                                        류재성(팀장)                                                    |
-|:---------------------------------------------------------------------------------------------------------------------:|
-| <img src="https://ca.slack-edge.com/T06B351QHF0-U06JXGQ1DAN-c05d9be15921-512" alt="profile" width="100" height="100"> |
-|                                    [@donghunseol](https://github.com/coderyu5523)                                     |
-### Front-End
-|                                                   공지영                                                  |                                                   김정수                                                 |
-|:--------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
-| <img src="https://avatars.githubusercontent.com/u/153582401?v=4" alt="profile" width="100" height="100"> | <img src="https://avatars.githubusercontent.com/u/153582240?v=4" alt="profile" width="100" height="100"> |
-|                                    [@vosw1](https://github.com/vosw1)                                    |                              [@dongkipark1](https://github.com/zeeq123)                                  |
-### Back-End
-|                                                   장유진                                                 |                                                     하승진                                               |
-|:-------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
-| <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | <img src="https://avatars.githubusercontent.com/u/118310514?v=4" alt="profile" width="100" height="100"> |
-|                              [@greenpig4b](https://github.com/greenpig4b)                               |                               [@minmeanmin](https://github.com/minmeanmin)                               |
+## 시연
+## PPT
+
+## 팀원 소개
+
 <br>
+# :family_man_woman_girl_girl: 팀원 소개
+
+### Team-Leader
+|                                                         이름                                                        |                     프로필 사진                     |       GitHub 프로필        |
+|:---------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
+|                                                        류재성(팀장)                                                    | <img src="https://ca.slack-edge.com/T06B351QHF0-U06JXGQ1DAN-c05d9be15921-512" alt="profile" width="100" height="100"> | [@donghunseol](https://github.com/donghunseol) |
+
+### Front-End
+|                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
+|:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
+|                     공지영                  | <img src="https://avatars.githubusercontent.com/u/153582401?v=4" alt="profile" width="100" height="100"> | [@vosw1](https://github.com/Kongjiyoung)  |
+|                     김정수                  | <img src="https://avatars.githubusercontent.com/u/153582240?v=4" alt="profile" width="100" height="100"> | [@dongkipark1](https://github.com/dongkipark1) |
+
+### Back-End
+|                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
+|:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
+|                     장유진                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@
 
 
 
