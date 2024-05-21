@@ -16,24 +16,17 @@ https://github.com/coderyu5523/project-final-flutter
 ## 팀원 소개
 
 <br>
-## 시연
-## PPT
-
-## 팀원 소개
-
-<br>
-# :family_man_woman_girl_girl: 팀원 소개
 
 ### Team-Leader
 |                                                         이름                                                        |                     프로필 사진                     |       GitHub 프로필        |
 |:---------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
-|                                                        류재성(팀장)                                                    | <img src="https://ca.slack-edge.com/T06B351QHF0-U06JXGQ1DAN-c05d9be15921-512" alt="profile" width="100" height="100"> | [@coderyu5523](https://github.com/coderyu5523) |
+|                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100">> | [@coderyu5523](https://github.com/coderyu5523) |
 
 ### Back-End
 |                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
 |:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
-|                     공지영                  | <img src="https://avatars.githubusercontent.com/u/153582401?v=4" alt="profile" width="100" height="100"> | [@Kongjiyoung](https://github.com/Kongjiyoung)  |
-|                     김정수                  | <img src="https://avatars.githubusercontent.com/u/153582240?v=4" alt="profile" width="100" height="100"> | [@zeeq123](https://github.com/zeeq123) |
+|                     공지영                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@Kongjiyoung](https://github.com/Kongjiyoung)  |
+|                     김정수                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@zeeq123](https://github.com/zeeq123) |
 
 ### Front-End
 |                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
