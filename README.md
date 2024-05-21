@@ -72,40 +72,40 @@ https://github.com/coderyu5523/project-final-flutter
   <td align=center>메인 페이지</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/baf287d6-59f9-437e-be45-d51fd2e0c1c2"  width="256" height="455"/></td>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/e51caa27-5f99-4811-bd60-a091b59e89f0"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/c3689a4f-c77d-49b8-885e-693211420b2b"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/7ec0f32e-1caa-4916-b9c3-8b07320c473f"  width="256" height="455"/></td>
 </tr>
 <tr>
   <td align=center>목표 데이터 설정</td>
   <td align=center>오늘 데이터 설정</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/929550b6-2a5a-45f1-b535-c24cea2f1e75"  width="256" height="455"/></td>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/34328614-db6a-4cf9-853a-5429f1742b55"  width="256" height="455"/></td>
+  <td><img src=""  width="256" height="455"/></td>
+  <td><img src=""  width="256" height="455"/></td>
 </tr>
 <tr>
   <td align=center>활동 페이지</td>
   <td align=center>걸음 상세보기</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/f74b1e79-a04e-44ac-87c6-b0b017873aa1"  width="256" height="455"/></td>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/f3e957cd-4189-4bb7-937b-702099e82e58"  width="256" height="455"/></td>
+  <td><img src=""  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/280f50c3-8782-469e-8cfe-21d11f1a9a8d"  width="256" height="455"/></td>
 </tr>
 <tr>
   <td align=center>물 마시기</td>
   <td align=center>식단 페이지</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/410a4740-dc9a-4368-88da-c70ee6764c31"  width="256" height="455"/></td>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/8f096a70-d6d9-4f02-ba2e-b26e8761093e"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/9bc6ce72-fac8-4368-9446-4206af533621"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/35aef2fe-a173-4ac1-82ba-2241aa3d76bd"  width="256" height="455"/></td>
 </tr>
 <tr>
   <td align=center>식단 업로드</td>
   <td align=center>나의 변화량</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/03d45f69-8b3a-4fc7-a298-05f23fa68cf4"  width="256" height="455"/></td>
-  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/e30e586c-b80c-4765-8e39-9c46647a8d68"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/4de61583-ca47-436b-9db0-b725edc55c60"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/3b74fe91-8a25-451f-9e6a-072042bc9248"  width="256" height="455"/></td>
 </tr>
 </table>
 
