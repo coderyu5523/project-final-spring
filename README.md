@@ -20,7 +20,7 @@ https://github.com/coderyu5523/project-final-flutter
 ### Team-Leader
 |                                                         이름                                                        |                     프로필 사진                     |       GitHub 프로필        |
 |:---------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
-|                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@coderyu5523](https://github.com/coderyu5523) |
+|                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/153602328?v=4" alt="profile" width="100" height="100"> | [@coderyu5523](https://github.com/coderyu5523) |
 
 ### Back-End
 |                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
