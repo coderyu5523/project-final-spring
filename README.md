@@ -26,13 +26,13 @@ https://github.com/coderyu5523/project-final-flutter
 |                     이름                     |                     프로필 사진                     |       GitHub 주소        |
 |:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
 |                     공지영                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@Kongjiyoung](https://github.com/Kongjiyoung)  |
-|                     김정수                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@zeeq123](https://github.com/zeeq123) |
+|                     하승진                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@HaSenugJin](https://github.com/HaSenugJin) |
 
 ### Front-End
 |                     이름                     |                     프로필 사진                     |       GitHub 주        |
 |:-------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
+|                     김정수                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@zeeq123](https://github.com/zeeq123)  |
 |                     장유진                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@hillview0303](https://github.com/hillview0303)  |
-|                     하승진                  | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@HaSenugJin](https://github.com/HaSenugJin)  |
 
 
 # 2.앱소개
