@@ -131,7 +131,9 @@ https://github.com/coderyu5523/project-final-flutter
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/f986ded2-9567-4d68-9a36-23e23cab5115"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/56f72b12-9877-425c-8b60-c0ea33d03299"  width="256" height="455"/></td>
 </tr>
-<tr>
+</table>
+<table>
+  <tr>
   <td align=center>설문조사 작성(관리자)</td>
 </tr>
 <tr>
