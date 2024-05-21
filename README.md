@@ -62,24 +62,23 @@ https://github.com/coderyu5523/project-final-flutter
 <tr>
   <td align=center>구동 화면</td>
   <td align=center>회원가입</td>
+  <td align=center>로그인</td>
+
 </tr>
 <tr>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/71c0bcfb-ccd9-44ab-8c9a-e3f60dc170ea"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/fe89cdd0-5943-4a30-97b9-80207463b4ef"  width="256" height="455"/></td>
-</tr>
-<tr>
-  <td align=center>로그인</td>
-  <td align=center>메인 페이지</td>
-</tr>
-<tr>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/c3689a4f-c77d-49b8-885e-693211420b2b"  width="256" height="455"/></td>
-  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/7ec0f32e-1caa-4916-b9c3-8b07320c473f"  width="256" height="455"/></td>
+
 </tr>
+
 <tr>
+  <td align=center>메인 페이지</td>
   <td align=center>목표 데이터 설정</td>
   <td align=center>오늘 데이터 설정</td>
 </tr>
 <tr>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/7ec0f32e-1caa-4916-b9c3-8b07320c473f"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/282a7b02-628d-487f-88df-33685ca5e70a"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/6ab82f79-dc6c-4f76-b1f2-75c8e70fad50"  width="256" height="455"/></td>
 </tr>
