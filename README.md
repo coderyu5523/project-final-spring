@@ -64,7 +64,7 @@ https://github.com/coderyu5523/project-final-flutter
   <td align=center>회원가입</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/68075659-03c0-45d9-8f6b-a895b240bd76"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/71c0bcfb-ccd9-44ab-8c9a-e3f60dc170ea"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/fe89cdd0-5943-4a30-97b9-80207463b4ef"  width="256" height="455"/></td>
 </tr>
 <tr>
