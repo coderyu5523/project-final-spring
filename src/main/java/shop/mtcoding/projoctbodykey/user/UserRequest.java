@@ -55,7 +55,7 @@ public class UserRequest {
         private Timestamp birth;
 
         @NotNull(message = "성별을 작성하여 주세요")
-        @Pattern(regexp = "[MF]", message = "성별은 'M' 또는 'F' 로 작성하여 주세요")
+        @Pattern(regexp = "남|여", message = "성별은 '남' 또는 '여' 로 작성하여 주세요")
         private String gender;
 
         @NotEmpty(message = "휴대폰 번호는 공백일 수 없어요.")
