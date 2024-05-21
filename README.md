@@ -56,7 +56,59 @@ https://github.com/coderyu5523/project-final-flutter
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/a72a6ff6-8a05-4628-8349-e18c416ad10c)
 
 
-# 3. 기능 소개
+# 3. 시나리오
+
+<table style="border: 2px;">
+<tr>
+  <td align=center>구동 화면</td>
+  <td align=center>회원가입</td>
+</tr>
+<tr>
+  <td><img src="![1  구동화면](https://github.com/coderyu5523/project-final-spring/assets/153602328/68075659-03c0-45d9-8f6b-a895b240bd76)"  width="256" height="455"/></td>
+  <td><img src="![2  회원가입](https://github.com/coderyu5523/project-final-spring/assets/153602328/fe89cdd0-5943-4a30-97b9-80207463b4ef)"  width="256" height="455"/></td>
+</tr>
+<tr>
+  <td align=center>로그인</td>
+  <td align=center>메인 페이지</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/baf287d6-59f9-437e-be45-d51fd2e0c1c2"  width="256" height="455"/></td>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/e51caa27-5f99-4811-bd60-a091b59e89f0"  width="256" height="455"/></td>
+</tr>
+<tr>
+  <td align=center>목표 데이터 설정</td>
+  <td align=center>오늘 데이터 설정</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/929550b6-2a5a-45f1-b535-c24cea2f1e75"  width="256" height="455"/></td>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/34328614-db6a-4cf9-853a-5429f1742b55"  width="256" height="455"/></td>
+</tr>
+<tr>
+  <td align=center>활동 페이지</td>
+  <td align=center>걸음 상세보기</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/f74b1e79-a04e-44ac-87c6-b0b017873aa1"  width="256" height="455"/></td>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/f3e957cd-4189-4bb7-937b-702099e82e58"  width="256" height="455"/></td>
+</tr>
+<tr>
+  <td align=center>물 마시기</td>
+  <td align=center>식단 페이지</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/410a4740-dc9a-4368-88da-c70ee6764c31"  width="256" height="455"/></td>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/8f096a70-d6d9-4f02-ba2e-b26e8761093e"  width="256" height="455"/></td>
+</tr>
+<tr>
+  <td align=center>식단 업로드</td>
+  <td align=center>나의 변화량</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/03d45f69-8b3a-4fc7-a298-05f23fa68cf4"  width="256" height="455"/></td>
+  <td><img src="https://github.com/donghunseol/yeogi_copy/assets/153582315/e30e586c-b80c-4765-8e39-9c46647a8d68"  width="256" height="455"/></td>
+</tr>
+</table>
+
 
 
 # 4. 진행상황
