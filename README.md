@@ -20,7 +20,7 @@ https://github.com/coderyu5523/project-final-flutter
 ### Team-Leader
 |                                                         이름                                                        |                     프로필 사진                     |       GitHub 프로필        |
 |:---------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------:|:--------------------------:|
-|                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100">> | [@coderyu5523](https://github.com/coderyu5523) |
+|                                                        류재성(팀장)                                                    | <img src="https://avatars.githubusercontent.com/u/78337301?v=4" alt="profile" width="100" height="100"> | [@coderyu5523](https://github.com/coderyu5523) |
 
 ### Back-End
 |                     이름                     |                     프로필 사진                     |       GitHub 프로필        |
@@ -36,6 +36,7 @@ https://github.com/coderyu5523/project-final-flutter
 
 
 # 2.앱소개
+
 
 ## (1) 오늘의 나
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/38ebef6a-f4ce-4bc1-88da-b1d592fedcb2)
@@ -55,8 +56,10 @@ https://github.com/coderyu5523/project-final-flutter
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/a72a6ff6-8a05-4628-8349-e18c416ad10c)
 
 
+# 3. 기능 소개
 
-# 3. 진행상황
+
+# 4. 진행상황
 
 ## 공지영
 - 테이블설계
@@ -95,7 +98,7 @@ https://github.com/coderyu5523/project-final-flutter
 - 통합 테스트
 
    
-# 4. 개발 환경
+# 5. 개발 환경
 <span>
  <h3><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" width=30" /> IDE</h3>
  <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white"/>
@@ -137,7 +140,7 @@ https://github.com/coderyu5523/project-final-flutter
 ## 테이블 설계
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/ce6cf877-3b30-4e3b-84f4-0303ee579d16)
 
-# 5. 협업 전략
+# 6. 협업 전략
 
 ### 회의
 ![image](https://github.com/coderyu5523/project-final-flutter/assets/153602328/f1be670c-8d1f-4375-a846-87a405a5b7f5)
