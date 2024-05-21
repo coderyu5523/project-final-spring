@@ -108,11 +108,19 @@ https://github.com/coderyu5523/project-final-flutter
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/3b74fe91-8a25-451f-9e6a-072042bc9248"  width="256" height="455"/></td>
 </tr>
   <tr>
-  <td align=center>챌린</td>
-  <td align=center>나의 변화량</td>
+  <td align=center>챌린지 상세보기</td>
+  <td align=center>챌린지 참가</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/4de61583-ca47-436b-9db0-b725edc55c60"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/e178e6bd-2c43-4e4f-beea-3883c5df0688"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/f78002dd-8b38-49ab-a749-2ce694a0c4ef"  width="256" height="455"/></td>
+</tr>
+    <tr>
+  <td align=center>진행중인 챌린</td>
+  <td align=center>설문조사</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/083a83a6-2fdf-448f-a6ad-bfa33f5e2b75"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/3b74fe91-8a25-451f-9e6a-072042bc9248"  width="256" height="455"/></td>
 </tr>
 </table>
