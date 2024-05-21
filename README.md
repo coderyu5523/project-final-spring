@@ -88,7 +88,7 @@ https://github.com/coderyu5523/project-final-flutter
   <td align=center>걸음 상세보기</td>
 </tr>
 <tr>
-  <td><img src=""  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/8b587185-da6d-44df-87b7-eaccb17b95f7"  width="256" height="455"/></td>
   <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/280f50c3-8782-469e-8cfe-21d11f1a9a8d"  width="256" height="455"/></td>
 </tr>
 <tr>
@@ -101,6 +101,14 @@ https://github.com/coderyu5523/project-final-flutter
 </tr>
 <tr>
   <td align=center>식단 업로드</td>
+  <td align=center>나의 변화량</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/4de61583-ca47-436b-9db0-b725edc55c60"  width="256" height="455"/></td>
+  <td><img src="https://github.com/coderyu5523/project-final-spring/assets/153602328/3b74fe91-8a25-451f-9e6a-072042bc9248"  width="256" height="455"/></td>
+</tr>
+  <tr>
+  <td align=center>챌린</td>
   <td align=center>나의 변화량</td>
 </tr>
 <tr>
