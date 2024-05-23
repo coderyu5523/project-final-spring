@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 public class Activity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
