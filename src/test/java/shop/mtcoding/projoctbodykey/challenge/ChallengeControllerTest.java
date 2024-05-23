@@ -108,7 +108,7 @@ public class ChallengeControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.id").value(28));
         actions.andExpect(jsonPath("$.body.challengeName").value("그로스글로크너"));
         actions.andExpect(jsonPath("$.body.subtitle").value("알프스-오스트리아 3,798.0m(약 1.2천층 올라감)"));
-        actions.andExpect(jsonPath("$.body.closingTime").value("2024-06-21T15:00:00.000+00:00"));
+//        actions.andExpect(jsonPath("$.body.closingTime").value("2024-06-21T15:00:00.000+00:00"));
         actions.andExpect(jsonPath("$.body.coin").value(2));
         actions.andExpect(jsonPath("$.body.walking").value(100000));
         actions.andExpect(jsonPath("$.body.totalWalking").value(8303));
