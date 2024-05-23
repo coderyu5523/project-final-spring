@@ -55,6 +55,7 @@ public class MyExceptionHandler {
 //        return "err/500";
 //    }
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> unknownServerError(Exception e){
         log.error(e.getMessage());
