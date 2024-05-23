@@ -359,6 +359,7 @@ public class UserControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.body.bodyData[0].fat").value(21.3));
         actions.andExpect(jsonPath("$.body.bodyData[0].muscle").value(21.5));
         actions.andExpect(jsonPath("$.body.bodyData[0].weight").value(76.3));
+
 //        actions.andExpect(jsonPath("$.body.bodyData[0].date").value("2024-05-16T09:12:00.000+00:00"));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
