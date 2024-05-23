@@ -17,6 +17,7 @@ public class UserResponse {
 
     @Data
     public static class JoinDTO {
+
         private Integer id;
         private String name;
         private String username;
