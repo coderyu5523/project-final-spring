@@ -55,7 +55,7 @@ public class SurveyControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.[0].id").value(1));
-        actions.andExpect(jsonPath("$.body.[0].title").value("설문조사1"));
+        actions.andExpect(jsonPath("$.body.[0].title").value("생활 습관 및 건강 평가 설문조사"));
         actions.andExpect(jsonPath("$.body.[0].isAttend").value("참여완료"));
         actions.andExpect(jsonPath("$.body.[0].progress").value("진행중"));
         actions.andExpect(jsonPath("$.body.[0].questionCount").value(19));
@@ -81,7 +81,7 @@ public class SurveyControllerTest extends MyRestDoc {
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
         actions.andExpect(jsonPath("$.body.surveyId").value(1));
-        actions.andExpect(jsonPath("$.body.surveyTitle").value("설문조사1"));
+        actions.andExpect(jsonPath("$.body.surveyTitle").value("생활 습관 및 건강 평가 설문조사"));
         actions.andExpect(jsonPath("$.body.questions[0].questionId").value("1"));
         actions.andExpect(jsonPath("$.body.questions[0].questionTitle").value("하루 평균 수면 시간은 얼마나 되십니까?"));
         actions.andExpect(jsonPath("$.body.questions[0].choices[0].choiceId").value("1"));

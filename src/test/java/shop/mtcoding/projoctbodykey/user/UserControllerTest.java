@@ -532,6 +532,46 @@ public class UserControllerTest extends MyRestDoc {
         reqDTO.setName("하낙복");
         reqDTO.setPassword("1234");
         reqDTO.setBirth(Timestamp.valueOf("1994-12-26 00:00:00"));
+        reqDTO.setGender("남");
+        reqDTO.setPhone("010-7551-5747");
+        reqDTO.setHeight(169.8d);
+
+        String reqBody = om.writeValueAsString(reqDTO);
+//        System.out.println("reqBody : "+reqBody);
+
+        // when
+        ResultActions actions = mvc.perform(
+                post("/join")
+                        .content(reqBody)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // eye
+//        String respBody = actions.andReturn().getResponse().getContentAsString();
+//        int statusCode = actions.andReturn().getResponse().getStatus();
+//        System.out.println("respBody : "+respBody);
+//        System.out.println("statusCode : "+statusCode);
+
+        // then
+        actions.andExpect(jsonPath("$.status").value(200));
+        actions.andExpect(jsonPath("$.msg").value("성공"));
+        actions.andExpect(jsonPath("$.body.username").value("egdg4587"));
+        actions.andExpect(jsonPath("$.body.name").value("하낙복"));
+        actions.andExpect(jsonPath("$.body.birth").value("1994-12-26"));
+        actions.andExpect(jsonPath("$.body.gender").value("남"));
+        actions.andExpect(jsonPath("$.body.phone").value("010-7551-5747"));
+        actions.andExpect(jsonPath("$.body.height").value(169.8d));
+        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
+    }
+
+    @Test
+    public void join_fall_test() throws Exception {
+        // given
+        UserRequest.JoinDTO reqDTO = new UserRequest.JoinDTO();
+        reqDTO.setUsername("egdg4587");
+        reqDTO.setName("하낙복");
+        reqDTO.setPassword("1234");
+        reqDTO.setBirth(Timestamp.valueOf("1994-12-26 00:00:00"));
         reqDTO.setGender("M");
         reqDTO.setPhone("010-7551-5747");
         reqDTO.setHeight(169.8d);
@@ -553,48 +593,8 @@ public class UserControllerTest extends MyRestDoc {
 //        System.out.println("statusCode : "+statusCode);
 
         // then
-        actions.andExpect(jsonPath("$.status").value(200));
-        actions.andExpect(jsonPath("$.msg").value("성공"));
-        actions.andExpect(jsonPath("$.body.username").value("egdg4587"));
-        actions.andExpect(jsonPath("$.body.name").value("하낙복"));
-        actions.andExpect(jsonPath("$.body.birth").value("1994-12-26"));
-        actions.andExpect(jsonPath("$.body.gender").value("M"));
-        actions.andExpect(jsonPath("$.body.phone").value("010-7551-5747"));
-        actions.andExpect(jsonPath("$.body.height").value(169.8d));
-        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
-
-    @Test
-    public void join_fall_test() throws Exception {
-        // given
-        UserRequest.JoinDTO reqDTO = new UserRequest.JoinDTO();
-        reqDTO.setUsername("egdg4587");
-        reqDTO.setName("하낙복");
-        reqDTO.setPassword("1234");
-        reqDTO.setBirth(Timestamp.valueOf("1994-12-26 00:00:00"));
-        reqDTO.setGender("M");
-        reqDTO.setPhone("010-75515747");
-        reqDTO.setHeight(169.8d);
-
-        String reqBody = om.writeValueAsString(reqDTO);
-        //System.out.println("reqBody : "+reqBody);
-
-        // when
-        ResultActions actions = mvc.perform(
-                post("/join")
-                        .content(reqBody)
-                        .contentType(MediaType.APPLICATION_JSON)
-        );
-
-        // eye
-//        String respBody = actions.andReturn().getResponse().getContentAsString();
-//        int statusCode = actions.andReturn().getResponse().getStatus();
-//        System.out.println("respBody : "+respBody);
-//        System.out.println("statusCode : "+statusCode);
-
-        // then
         actions.andExpect(jsonPath("$.status").value(400));
-        actions.andExpect(jsonPath("$.msg").value("010-0000-0000 형식으로 작성해주세요 : phone"));
+        actions.andExpect(jsonPath("$.msg").value("성별은 '남' 또는 '여' 로 작성하여 주세요 : gender"));
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
 //        actions.andExpect(jsonPath("$.body.username").value("egdg"));
 //        actions.andExpect(jsonPath("$.body.name").value("하승진"));
