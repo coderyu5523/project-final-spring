@@ -20,7 +20,6 @@ public class ActivityResponse {
         private Integer kcal;
         private Double weight;
 
-
         public activitiesDateDTO(Activity activity, BodyData bodyData) {
             if (activity != null) {
                 this.walking = activity.getWalking();
