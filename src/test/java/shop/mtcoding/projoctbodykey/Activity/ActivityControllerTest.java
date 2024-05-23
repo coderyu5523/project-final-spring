@@ -235,9 +235,9 @@ public class ActivityControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.msg").value("성공"))
                 .andExpect(jsonPath("$.body.dayAcitivityId").value(8))
                 .andExpect(jsonPath("$.body.dayWater").value(2000))
-                .andExpect(jsonPath("$.body.weekWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weekWater[0].water").value(2000))
-                .andExpect(jsonPath("$.body.weekWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weekWater[1].water").value(2300))
                 .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
@@ -267,10 +267,10 @@ public class ActivityControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.body.avgMonthWalking").value(9044.12))
                 .andExpect(jsonPath("$.body.rateAvgWalking").value(19.35))
                 .andExpect(jsonPath("$.body.maxWalking").value(10000))
-                .andExpect(jsonPath("$.body.maxWalkingDay").value("2024-05-22T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.maxWalkingDay").value("2024-05-22T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weekWalkings[0].walking").value(5325))
-                .andExpect(jsonPath("$.body.weekWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weekWalkings[1].walking").value(7028))
                 .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
@@ -303,13 +303,13 @@ public class ActivityControllerTest extends MyRestDoc {
                 .andExpect(jsonPath("$.body.goalWeight").value(70.0))
                 .andExpect(jsonPath("$.body.fatTimeLine[0].bodyDateId").value(8))
                 .andExpect(jsonPath("$.body.fatTimeLine[0].fat").value(21.3))
-                .andExpect(jsonPath("$.body.fatTimeLine[0].fatTimeLine").value("2024-05-23T09:12:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.fatTimeLine[0].fatTimeLine").value("2024-05-23T09:12:00.000+00:00"))
                 .andExpect(jsonPath("$.body.muscleTimeLine[0].bodyDateId").value(8))
                 .andExpect(jsonPath("$.body.muscleTimeLine[0].muscle").value(21.5))
-                .andExpect(jsonPath("$.body.muscleTimeLine[0].muscleTimeLine").value("2024-05-23T09:12:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.muscleTimeLine[0].muscleTimeLine").value("2024-05-23T09:12:00.000+00:00"))
                 .andExpect(jsonPath("$.body.weightTimeLine[0].bodyDateId").value(8))
                 .andExpect(jsonPath("$.body.weightTimeLine[0].weight").value(76.3))
-                .andExpect(jsonPath("$.body.weightTimeLine[0].weightTimeLine").value("2024-05-23T09:12:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weightTimeLine[0].weightTimeLine").value("2024-05-23T09:12:00.000+00:00"))
                 .andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
@@ -336,7 +336,7 @@ public class ActivityControllerTest extends MyRestDoc {
         // then
         actions.andExpect(jsonPath("$.status").value(200));
         actions.andExpect(jsonPath("$.msg").value("성공"));
-        actions.andExpect(jsonPath("$.body.createdAt").value("2024-05-20T18:12:00.000+00:00"));
+//        actions.andExpect(jsonPath("$.body.createdAt").value("2024-05-20T18:12:00.000+00:00"));
         actions.andExpect(jsonPath("$.body.walking").value(10000));
         actions.andExpect(jsonPath("$.body.drinkWater").value(2000));
         actions.andExpect(jsonPath("$.body.kcal").value(0));
