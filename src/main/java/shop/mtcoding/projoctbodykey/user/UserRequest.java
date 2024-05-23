@@ -12,6 +12,7 @@ public class UserRequest {
     @Data
     public static class UpdateDTO {
 
+
         @NotEmpty(message = "이름은 공백일 수 없어요.")
         @Size(min = 2, max = 10, message = "이름은 2 ~ 10자 사이로 작성하셔야 해요.")
         private String name;
