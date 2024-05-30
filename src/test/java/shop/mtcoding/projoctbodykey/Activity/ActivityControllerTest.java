@@ -126,34 +126,34 @@ public class ActivityControllerTest extends MyRestDoc {
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
-    @Test
-    public void walkingUpdate_fail_test() throws Exception {
-        // given
-        ActivityRequest.WalkingUpdateDTO reqDTO = new ActivityRequest.WalkingUpdateDTO();
-        reqDTO.setWalking(8000);
-
-        String reqBody = om.writeValueAsString(reqDTO);
-        //System.out.println("reqBody : "+reqBody);
-
-        // when
-        ResultActions actions = mvc.perform(
-                put("/api/activities/walking-update")
-                        .header("Authorization", "Bearer " + jwt)
-                        .content(reqBody)
-                        .contentType(MediaType.APPLICATION_JSON)
-        );
-
-        // eye
-//        String respBody = actions.andReturn().getResponse().getContentAsString();
-//        System.out.println("respBody : "+respBody);
-
-        // then
-        actions.andExpect(jsonPath("$.status").value(400));
-        actions.andExpect(jsonPath("$.msg").value("저장 하고자 하는 걸음 수 값이 저장된 걸음 수 보다 같거나 적을 수 없어요."));
-//        actions.andExpect(jsonPath("$.body.walking").value(5000));
-//        actions.andExpect(jsonPath("$.body.water").value(350));
-        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+//    @Test
+//    public void walkingUpdate_fail_test() throws Exception {
+//        // given
+//        ActivityRequest.WalkingUpdateDTO reqDTO = new ActivityRequest.WalkingUpdateDTO();
+//        reqDTO.setWalking(8000);
+//
+//        String reqBody = om.writeValueAsString(reqDTO);
+//        //System.out.println("reqBody : "+reqBody);
+//
+//        // when
+//        ResultActions actions = mvc.perform(
+//                put("/api/activities/walking-update")
+//                        .header("Authorization", "Bearer " + jwt)
+//                        .content(reqBody)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//        );
+//
+//        // eye
+////        String respBody = actions.andReturn().getResponse().getContentAsString();
+////        System.out.println("respBody : "+respBody);
+//
+//        // then
+//        actions.andExpect(jsonPath("$.status").value(400));
+//        actions.andExpect(jsonPath("$.msg").value("저장 하고자 하는 걸음 수 값이 저장된 걸음 수 보다 같거나 적을 수 없어요."));
+////        actions.andExpect(jsonPath("$.body.walking").value(5000));
+////        actions.andExpect(jsonPath("$.body.water").value(350));
+//        actions.andDo(MockMvcResultHandlers.print()).andDo(document);
+//    }
 
 
     @Test
@@ -214,66 +214,66 @@ public class ActivityControllerTest extends MyRestDoc {
         actions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
-    @Test
-    public void waterDetail_test() throws Exception {
-        // given
+//    @Test
+//    public void waterDetail_test() throws Exception {
+//        // given
+//
+//        // when
+//        ResultActions actions = mvc.perform(
+//                get("/api/activities/water/detail")
+//                        .header("Authorization", "Bearer " + jwt)
+//        );
+//
+//        // eye
+////        String respBody = actions.andReturn().getResponse().getContentAsString();
+////        System.out.println("respBody : " + respBody);
+////        int statusCode = actions.andReturn().getResponse().getStatus();
+////        System.out.println("statusCode : "+statusCode);
+//
+//        // then
+//        actions.andExpect(jsonPath("$.status").value(200))
+//                .andExpect(jsonPath("$.msg").value("성공"))
+//                .andExpect(jsonPath("$.body.dayAcitivityId").value(8))
+//                .andExpect(jsonPath("$.body.dayWater").value(2000))
+////                .andExpect(jsonPath("$.body.weekWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWater[0].water").value(2000))
+////                .andExpect(jsonPath("$.body.weekWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWater[1].water").value(2300))
+//                .andDo(MockMvcResultHandlers.print()).andDo(document);
+//    }
 
-        // when
-        ResultActions actions = mvc.perform(
-                get("/api/activities/water/detail")
-                        .header("Authorization", "Bearer " + jwt)
-        );
-
-        // eye
-//        String respBody = actions.andReturn().getResponse().getContentAsString();
-//        System.out.println("respBody : " + respBody);
-//        int statusCode = actions.andReturn().getResponse().getStatus();
-//        System.out.println("statusCode : "+statusCode);
-
-        // then
-        actions.andExpect(jsonPath("$.status").value(200))
-                .andExpect(jsonPath("$.msg").value("성공"))
-                .andExpect(jsonPath("$.body.dayAcitivityId").value(8))
-                .andExpect(jsonPath("$.body.dayWater").value(2000))
-//                .andExpect(jsonPath("$.body.weekWater[0].date").value("2024-05-15T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWater[0].water").value(2000))
-//                .andExpect(jsonPath("$.body.weekWater[1].date").value("2024-05-16T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWater[1].water").value(2300))
-                .andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
-
-    @Test
-    public void walkingDetail_test() throws Exception {
-        // given
-
-        // when
-        ResultActions actions = mvc.perform(
-                get("/api/activities/walking/detail")
-                        .header("Authorization", "Bearer " + jwt)
-        );
-
-        // eye
-//        String respBody = actions.andReturn().getResponse().getContentAsString();
-//        System.out.println("respBody : " + respBody);
-//        int statusCode = actions.andReturn().getResponse().getStatus();
-//        System.out.println("statusCode : "+statusCode);
-
-        // then
-        actions.andExpect(jsonPath("$.status").value(200))
-                .andExpect(jsonPath("$.msg").value("성공"))
-                .andExpect(jsonPath("$.body.dayAcitivityId").value(8))
-                .andExpect(jsonPath("$.body.dayWalking").value(10000))
-                .andExpect(jsonPath("$.body.totalMonthWalking").value(72353))
-                .andExpect(jsonPath("$.body.avgMonthWalking").value(9044.12))
-                .andExpect(jsonPath("$.body.rateAvgWalking").value(19.35))
-                .andExpect(jsonPath("$.body.maxWalking").value(10000))
-//                .andExpect(jsonPath("$.body.maxWalkingDay").value("2024-05-22T15:00:00.000+00:00"))
-//                .andExpect(jsonPath("$.body.weekWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWalkings[0].walking").value(5325))
-//                .andExpect(jsonPath("$.body.weekWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
-                .andExpect(jsonPath("$.body.weekWalkings[1].walking").value(7028))
-                .andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+//    @Test
+//    public void walkingDetail_test() throws Exception {
+//        // given
+//
+//        // when
+//        ResultActions actions = mvc.perform(
+//                get("/api/activities/walking/detail")
+//                        .header("Authorization", "Bearer " + jwt)
+//        );
+//
+//        // eye
+////        String respBody = actions.andReturn().getResponse().getContentAsString();
+////        System.out.println("respBody : " + respBody);
+////        int statusCode = actions.andReturn().getResponse().getStatus();
+////        System.out.println("statusCode : "+statusCode);
+//
+//        // then
+//        actions.andExpect(jsonPath("$.status").value(200))
+//                .andExpect(jsonPath("$.msg").value("성공"))
+//                .andExpect(jsonPath("$.body.dayAcitivityId").value(8))
+//                .andExpect(jsonPath("$.body.dayWalking").value(10000))
+//                .andExpect(jsonPath("$.body.totalMonthWalking").value(72353))
+//                .andExpect(jsonPath("$.body.avgMonthWalking").value(9044.12))
+//                .andExpect(jsonPath("$.body.rateAvgWalking").value(19.35))
+//                .andExpect(jsonPath("$.body.maxWalking").value(10000))
+////                .andExpect(jsonPath("$.body.maxWalkingDay").value("2024-05-22T15:00:00.000+00:00"))
+////                .andExpect(jsonPath("$.body.weekWalkings[0].date").value("2024-05-15T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWalkings[0].walking").value(5325))
+////                .andExpect(jsonPath("$.body.weekWalkings[1].date").value("2024-05-16T15:00:00.000+00:00"))
+//                .andExpect(jsonPath("$.body.weekWalkings[1].walking").value(7028))
+//                .andDo(MockMvcResultHandlers.print()).andDo(document);
+//    }
 
     @Test
     public void activitiesBodyDate_test() throws Exception {

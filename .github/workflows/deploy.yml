@@ -1,4 +1,4 @@
-name: blog
+name: bodykey
 on:
   push:
     branches:
@@ -30,6 +30,7 @@ jobs:
         run: |
           mkdir deploy
           cp build/libs/*.jar deploy/application.jar
+          cp -r upload deploy/upload
           cp Procfile deploy/Procfile
           cp -r .ebextensions deploy/.ebextensions
           cd deploy && zip -r deploy.zip .
@@ -39,8 +40,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: bodykey
-          environment_name: Bodykey-env
+          application_name: bdk
+          environment_name: Bdk-env
           version_label: ${{ github.run_number }}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip

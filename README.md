@@ -158,6 +158,7 @@ https://youtu.be/ngoAZXk4fdQ
 ## 류재성
 - 프로젝트 세팅
 - 테이블 설계
+- AWS CI/CD 배포
 
 ## 공지영
 - 테이블 설계
